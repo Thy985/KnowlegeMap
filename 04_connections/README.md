@@ -31,7 +31,7 @@
 ## 2026-09-02 雷达新增连接（5 条）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
-| **DeepSeek Harness v0.1** | TeamMind（同构对照）/ agent-attention | Harness/Control Plane / 五维模型 Runtime | 🟡 已出候选卡 | [deepseek-harness-2026](../03_expansion_queue/candidates/[cand]deepseek-harness-2026.md) |
+| **DeepSeek Harness v0.1** | TeamMind（同构对照）/ agent-attention | Harness/Control Plane / 五维模型 Runtime | ✅ 已验证（源码级） | [deepseek-harness-2026 → [val]](../03_expansion_queue/validated/[val]deepseek-harness-2026.md) |
 | **Flutter 本地 LLM 工具链** | **Tafcm**（离线 AI）/ silver-shield | 本地/边缘 AI（G3）/ 移动工程 | 🟡 已出候选卡 | [flutter-local-llm-2026](../03_expansion_queue/candidates/[cand]flutter-local-llm-2026.md) |
 | **Browser Harness** | campus_order / E2E-CLI / agent-attention | Computer Use / EP-002 权限边界 | 🟡 已出候选卡 | [browser-harness-2026](../03_expansion_queue/candidates/[cand]browser-harness-2026.md) |
 | **MS Research Webwright** | E2E-CLI（脚本化浏览器）/ campus_order | Computer Use / 可复现验证 | 🟡 已出候选卡 | [webwright-2026](../03_expansion_queue/candidates/[cand]webwright-2026.md) |

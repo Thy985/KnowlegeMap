@@ -36,3 +36,17 @@
 - 验证优先级：S 级 DeepSeek Harness（clone 源码/对照 TeamMind）＞ A 级 Flutter 本地 LLM（Tafcm 最小 demo）＞ Browser Harness（本地跑通）
 - Webwright / hermes-agent 待一手来源核验（GitHub/论文）后再定是否深入
 - 下次扫描聚焦：AI 安全（G1）红队工具实测、Tafcm 本地 LLM 选型实证进度
+
+## 6. 追加：一手来源核验 + DeepSeek Harness 晋升 validated（2026-09-02 同日续做）
+### 6.1 三对象一手来源核验（general_search ×3，全部确认 FACT 级）
+| 对象 | 一手来源 | 证据等级 | 备注 |
+|---|---|---|---|
+| DeepSeek Harness | github.com/deepseek-ai/deepseek-harness ｜ deepseek.com/harness/en/ ｜ deepseek-harness.github.io ｜ 论文 arXiv 2608.25512 | FACT | 确认 MIT/TS/dev-preview/Cordis 全插件 |
+| MS Webwright | github.com/microsoft/Webwright ｜ microsoft.github.io/Webwright ｜ MSR writeup ｜ arXiv 论文 | FACT | 确认 Terminal-native + skill_factory；Odysseys 60.1% / Online-Mind2Web 86.7% |
+| hermes-agent | github.com/NousResearch/hermes-agent ｜ hermes-agent.nousresearch.com ｜ newreleases 记录 | FACT | **关键修正：stars ~57k → ~217k（v0.18.2，2026-07-07）**，远超雷达初记 |
+### 6.2 DeepSeek Harness 源码级验证（S 级 → 晋升 validated）
+- 验证动作：`git clone --depth 1 github.com/deepseek-ai/deepseek-harness`（~8800 文件，50+ packages）→ 精读 README.zh / docs/architecture.zh / docs/capability-seams.zh
+- 验证结论（全部确证）：Cordis 插件树（无特权内核，一切皆插件）；profile（web/headless/sdk/sdk-minimal/acp）+ 组合包 + 有序 patch overlay 配置树；capability seam 三角色（Service Definition/Provider/Consumer）；配套论文 arXiv 2608.25512
+- TeamMind 对照产出：五维模型逐项映射（Runtime=agent-loop/seam、Memory=session 事件日志+projection、Tool=guarded tools 流水线、Orchestration=subagent/agent-teams、Evaluation=invariants）→ 三点可借鉴：插件化 seam 化 / 事件溯源会话日志 / 把关工具流水线
+- 归档：`03_expansion_queue/validated/[val]deepseek-harness-2026.md` + `validated/README.md`（连同首轮 promptfoo 共 2 张 validated）
+- 相关文件同步更新：三张候选卡证据升级 FACT、06_expansion_index、04_connections、_INDEX.md

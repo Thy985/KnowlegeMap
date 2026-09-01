@@ -1,5 +1,5 @@
-# 候选证据卡 · [cand] DeepSeek Harness v0.1（开源 Agent Harness）
-> 状态：`[cand]` ｜ 分类：Agent Runtime / Harness（S5） ｜ 发现：2026-09-02（雷达） ｜ 等级：**S**
+# 候选证据卡 · [val] DeepSeek Harness v0.1（开源 Agent Harness）
+> 状态：`[val]` ｜ 分类：Agent Runtime / Harness（S5） ｜ 发现：2026-09-02（雷达） ｜ 等级：**S**
 ## 一句话定位
 DeepSeek 于 2026-08-13 开源的 Agent Harness 开发者预览版（`deepseek-ai/deepseek-harness`，MIT，TypeScript）：主打"**Everything is a plugin** / Agent = Model + Harness"，基于 **Cordis 内核**（插件挂载/卸载/依赖管理），模型/工具/技能/会话/沙箱/存储/循环/调度/UI 全部由插件组合而成，可自由替换重组。
 ## 1. 它是什么 / 解决什么问题
