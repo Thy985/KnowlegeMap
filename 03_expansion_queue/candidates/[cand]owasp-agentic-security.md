@@ -10,6 +10,7 @@ OWASP 为"自主 AI Agent"发布的整套权威安全框架：`ASI01-ASI10`（Ag
 - **OWASP Agentic Skills Top 10**（AST01–AST10，v1.0 目标 2026 Q3）：Over-Privileged Skills、Insecure Metadata、Untrusted External Instructions、Weak Isolation、Update Drift——专门针对"工具/Skills 供应链"["https://github.com/OWASP/www-project-agentic-skills-top-10"]
 - **《Practical Guide for Secure MCP Server Development》+ 第三方 MCP server 使用 CheatSheet**：MCP 是 agent-tool 连接点，官方出安全指南["https://genai.owasp.org/initiatives/agentic-security-initiative/"]
 - 微软已发布 **Agent Governance Toolkit（AGT）参考架构**，把 ASI01–10 逐一映射到缓解模式["http://microsoft.github.io/agent-governance-toolkit/compliance/owasp-agentic-top10-architecture/"]
+- **雷达增量（2026-09-02）**：OWASP GenAI 项目 2026-08 新增《AI Security Solutions Landscape for AI and Agentic Red Teaming（Q2 2026）》与 **Red Teaming Taxonomy**（红/蓝/紫队能力分类，按 practitioner 生命周期）["https://genai.owasp.org/learning_persona/all/"]；Skills Top10 新增 **B1-B4 Trust Boundary Model**（AI coding agent 流水线级威胁模型：Developer↔Agent↔Repo↔Prod 信任边界）["https://owasp.org/www-project-agentic-skills-top-10/trust-boundary-model.html"]
 
 ## 2. 为什么与我的知识/项目有关
 - **EP-002「Permission Is Security Boundary」** 的直接理论化落地：ASI02 Tool Misuse、ASI03 Privilege Abuse 就是我 EP 原则要解决的事

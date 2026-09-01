@@ -7,7 +7,7 @@
 
 每条连接卡包含：`外部对象` → `连接的项目` → `连接的知识点` → `潜在收益` → `验证方式` → `状态`。
 
-## 已识别的连接（2026-09-01：首轮扫描 4 张 + Expansion 扫描 13 张候选卡，共 17 条）
+## 已识别的连接（截至 2026-09-02：首轮 4 + Expansion 13 + 雷达 5，共 22 条）
 
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
@@ -28,6 +28,15 @@
 | **开源 Agentic CI** | AI Code Review 资产族 / Tafcm | Agentic CI / 代码审查 | 🟡 已出候选卡 | [open-source-agentic-ci](../03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) |
 | **Fine-tuning 对齐新范式** | ML 方法论 / silver-shield | Fine-tuning / 对齐 | 🟡 已出候选卡 | [llm-finetuning-alignment-2026](../03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) |
 | **Multi-Agent 框架终局（LangGraph/CrewAI/AG2/MS）** | TeamMind | 多Agent_框架选型与拓扑 | 🟡 已出候选卡 | [multiagent-framework-2026](../03_expansion_queue/candidates/[cand]multiagent-framework-2026.md) |
+## 2026-09-02 雷达新增连接（5 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **DeepSeek Harness v0.1** | TeamMind（同构对照）/ agent-attention | Harness/Control Plane / 五维模型 Runtime | 🟡 已出候选卡 | [deepseek-harness-2026](../03_expansion_queue/candidates/[cand]deepseek-harness-2026.md) |
+| **Flutter 本地 LLM 工具链** | **Tafcm**（离线 AI）/ silver-shield | 本地/边缘 AI（G3）/ 移动工程 | 🟡 已出候选卡 | [flutter-local-llm-2026](../03_expansion_queue/candidates/[cand]flutter-local-llm-2026.md) |
+| **Browser Harness** | campus_order / E2E-CLI / agent-attention | Computer Use / EP-002 权限边界 | 🟡 已出候选卡 | [browser-harness-2026](../03_expansion_queue/candidates/[cand]browser-harness-2026.md) |
+| **MS Research Webwright** | E2E-CLI（脚本化浏览器）/ campus_order | Computer Use / 可复现验证 | 🟡 已出候选卡 | [webwright-2026](../03_expansion_queue/candidates/[cand]webwright-2026.md) |
+| **hermes-agent** | OpenClaw 生态对照 / campus_order | Agent Framework 格局 / 开源生态 | 🟡 已出候选卡 | [hermes-agent-2026](../03_expansion_queue/candidates/[cand]hermes-agent-2026.md) |
+> 雷达增量（2026-09-02）：MCP / A2A / OWASP / Agent Memory 四条已知对象的重要变化已在对应候选卡内追加记录，连接关系不变。
 
 ## 规则
 

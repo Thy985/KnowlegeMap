@@ -8,7 +8,7 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 ## 1. 它是什么 / 解决什么问题
 | 框架 | 记忆模型 | 2026 关键动态 |
 |---|---|---|
-| **Mem0** | 抽取+检索，向量优先 | 2026-04 新算法（单遍分层抽取+多信号检索）：LoCoMo 92.5 / LongMemEval 94.4 / BEAM(1M) 64.1["https://mem0.ai/blog/state-of-ai-agent-memory-2026?ref=swarmsignal.net"] |
+| **Mem0** | 抽取+检索，向量优先 | 2026-04 新算法（单遍分层抽取+多信号检索）：LoCoMo 92.5 / LongMemEval 94.4 / BEAM(1M) 64.1["https://mem0.ai/blog/state-of-ai-agent-memory-2026?ref=swarmsignal.net"]；**雷达增量（2026-09-02）**：SDK 2.0 单遍抽取（写延迟 ↓50%）+ 混合检索器["https://github.com/enflory/ingolmo/blob/main/standalone-memory-tools-survey-2026/README.md"]；Platform v3 支持时间感知检索（"上周/即将/现在"）["https://docs.mem0.ai/changelog/highlights"]；Letta 2026-08 发布 **Agents SDK**（stateful persistent agents）+ 2026-06 **Mods**（harness 级自改进）["https://www.letta.com/blog/"] |
 | **Zep (Graphiti)** | 时序知识图谱，双时间事实+溯源，框架无关，数据层治理（ABAC/保留/审计） | 面向企业生产；自称 LoCoMo 领先、检索 p50 87ms["https://www.getzep.com/mem0-alternative/"] |
 | **Letta** | 自编辑记忆（MemGPT 系），Core/Recall/Archival 三级 | 2026-03 转向"memory-first agent harness"，押注 computer use["https://www.letta.com/blog/our-next-phase"] |
 | **A-MEM** | Zettelkasten 动态组织+链接（NeurIPS 2025） | ~1K stars，研究向["https://github.com/Anandesh-Sharma/awesome-agentic-memory"] |

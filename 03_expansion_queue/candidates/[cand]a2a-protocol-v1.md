@@ -17,6 +17,7 @@ A2A（Agent2Agent）v1.0 于 2026-03-12 冻结，是"Agent↔Agent"的事实标�
 - SDK 已扩展至 Python/JavaScript/Java/Go/.NET 五种语言
 - IBM Research 的 ACP 已并入 A2A 路线图；ANP（W3C DID）作为开放互联网补充["https://zylos.ai/research/2026-04-18-agent-to-agent-interoperability-protocols/"]
 - AAIF 成员从 <40 增至 250+（含 Anthropic、OpenAI、Bloomberg、Cloudflare、Shopify、Block）["https://bigaiagent.tech/ai-agent-interoperability-2026-a2a-joins-mcp/"]
+- **雷达增量（2026-09-02）**：2026-08-17/18 Google 正式将 A2A 移交 AAIF（250+ 成员共同治理，与 MCP 同基金会）["https://dailyaiworld.com/blogs/a2a-10-joins-agentic-ai-foundation-internet-agents"]；Microsoft Agent Framework .NET 已同步更新 A2A v1 SDK（client 发现/托管）["https://devblogs.microsoft.com/agent-framework/a2a-v1-is-here-cross-platform-agent-communication-in-microsoft-agent-framework-for-net/"]
 
 ## 3. 与我的知识/项目关系
 - **TeamMind（Java 多 Agent 团队运行时）** 直接受益：A2A 提供标准化的 Agent 发现/协作/任务模型，可与 MCP 一起成为 TeamMind 的协议层

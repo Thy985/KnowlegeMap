@@ -31,16 +31,16 @@
 |---|---|---|
 | [README.md](03_expansion_queue/README.md) | 队列工作流说明 | 📌 |
 | inbox/ | 原始线索（未筛选） | ⬜ |
-| candidates/ | 候选证据卡（待深入） | 📌 17 张（首轮 4 + Expansion 13） |
+| candidates/ | 候选证据卡（待深入） | 📌 22 张（首轮 4 + Expansion 13 + 雷达 5） |
 | validated/ | 已验证高价值对象（可入内库） | ⬜ |
 
-### candidates/（2026-09-01 产出，共 17 张）
+### candidates/（截至 2026-09-02 雷达扫描，共 22 张）
 
-**S 级（4）**：[[cand]owasp-agentic-security](03_expansion_queue/candidates/[cand]owasp-agentic-security.md) ｜ [[cand]a2a-protocol-v1](03_expansion_queue/candidates/[cand]a2a-protocol-v1.md) ｜ [[cand]agent-harness-control-plane](03_expansion_queue/candidates/[cand]agent-harness-control-plane.md) ｜ [[cand]agent-memory-2026](03_expansion_queue/candidates/[cand]agent-memory-2026.md)
+**S 级（5）**：[[cand]owasp-agentic-security](03_expansion_queue/candidates/[cand]owasp-agentic-security.md) ｜ [[cand]a2a-protocol-v1](03_expansion_queue/candidates/[cand]a2a-protocol-v1.md) ｜ [[cand]agent-harness-control-plane](03_expansion_queue/candidates/[cand]agent-harness-control-plane.md) ｜ [[cand]agent-memory-2026](03_expansion_queue/candidates/[cand]agent-memory-2026.md) ｜ [[cand]deepseek-harness-2026](03_expansion_queue/candidates/[cand]deepseek-harness-2026.md)
 
-**A 级（6）**：[[cand]ai-offensive-toolchain](03_expansion_queue/candidates/[cand]ai-offensive-toolchain.md) ｜ [[cand]computer-browser-use-2026](03_expansion_queue/candidates/[cand]computer-browser-use-2026.md) ｜ [[cand]e2b-sandbox](03_expansion_queue/candidates/[cand]e2b-sandbox.md) ｜ [[cand]otel-genai-observability](03_expansion_queue/candidates/[cand]otel-genai-observability.md) ｜ [[cand]agentic-benchmarks-2026](03_expansion_queue/candidates/[cand]agentic-benchmarks-2026.md) ｜ [[cand]local-edge-llm-2026](03_expansion_queue/candidates/[cand]local-edge-llm-2026.md)
+**A 级（8）**：[[cand]ai-offensive-toolchain](03_expansion_queue/candidates/[cand]ai-offensive-toolchain.md) ｜ [[cand]computer-browser-use-2026](03_expansion_queue/candidates/[cand]computer-browser-use-2026.md) ｜ [[cand]e2b-sandbox](03_expansion_queue/candidates/[cand]e2b-sandbox.md) ｜ [[cand]otel-genai-observability](03_expansion_queue/candidates/[cand]otel-genai-observability.md) ｜ [[cand]agentic-benchmarks-2026](03_expansion_queue/candidates/[cand]agentic-benchmarks-2026.md) ｜ [[cand]local-edge-llm-2026](03_expansion_queue/candidates/[cand]local-edge-llm-2026.md) ｜ [[cand]flutter-local-llm-2026](03_expansion_queue/candidates/[cand]flutter-local-llm-2026.md) ｜ [[cand]browser-harness-2026](03_expansion_queue/candidates/[cand]browser-harness-2026.md)
 
-**B 级（3）**：[[cand]open-source-agentic-ci](03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) ｜ [[cand]llm-finetuning-alignment-2026](03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) ｜ [[cand]multiagent-framework-2026](03_expansion_queue/candidates/[cand]multiagent-framework-2026.md)
+**B 级（5）**：[[cand]open-source-agentic-ci](03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) ｜ [[cand]llm-finetuning-alignment-2026](03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) ｜ [[cand]multiagent-framework-2026](03_expansion_queue/candidates/[cand]multiagent-framework-2026.md) ｜ [[cand]webwright-2026](03_expansion_queue/candidates/[cand]webwright-2026.md) ｜ [[cand]hermes-agent-2026](03_expansion_queue/candidates/[cand]hermes-agent-2026.md)
 
 **首轮（4）**：[[cand]mcp-2026-07-28-stateless](03_expansion_queue/candidates/[cand]mcp-2026-07-28-stateless.md) ｜ [[cand]mcp-notification-servers](03_expansion_queue/candidates/[cand]mcp-notification-servers.md) ｜ [[cand]promptfoo-agent-evals](03_expansion_queue/candidates/[cand]promptfoo-agent-evals.md) ｜ [[cand]evals-framework-landscape](03_expansion_queue/candidates/[cand]evals-framework-landscape.md)
 

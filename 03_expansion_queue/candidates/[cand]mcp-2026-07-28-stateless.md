@@ -12,6 +12,7 @@ MCP 协议发布史上最大版本 `2026-07-28`：从有状态双向协议转型
 
 ## 2. 为什么现在值得关注（活跃度证据）
 - 官方发布：2026-07-28 正式发布（发布距今仅 1 个月）["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
+- **雷达增量（2026-09-02）**：2026-08-22 官方发布 final 后新 Roadmap，宣告 2026-07-28 已落地 transport 演进等核心目标，转向"agent 通信 / 治理成熟 / 企业就绪"下一阶段["https://blog.modelcontextprotocol.io/posts/mcp-roadmap/"]；go-sdk 已按 Stateless 新规发布（2026-09-01）["https://github.com/modelcontextprotocol/go-sdk/releases"]
 - Tier1 SDK（TS/Python/Go/C#）月下载合计近 5 亿，TS 与 Python SDK 各自累计下载已破 10 亿["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
 - AWS（Bedrock AgentCore）、Cloudflare（Agents SDK 首发支持）、Google Cloud、Figma、Sentry/Linear、honeycomb（20% 交互查询来自 Agent）等企业级背书["https://aws.amazon.com/jp/blogs/machine-learning/how-agentcore-gateway-supports-the-mcp-2026-07-28-spec/"]["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
 - 官方 Registry 已收录数千 server（Anthropic/GitHub/PulseMCP/Microsoft 背书），Registry 仍 Preview["https://registry.modelcontextprotocol.io/"]

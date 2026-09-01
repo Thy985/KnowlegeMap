@@ -16,3 +16,4 @@
 | 2026-09-01 | [Bootstrap 首次扫描](2026-09/2026-09-01_bootstrap_scan.md) | 0（按指令不做大规模扩展） | ✅ |
 | 2026-09-01 | [首轮定向扫描：MCP + Evals](2026-09/2026-09-01_mcp-evals_scan.md) | 6 → 4 候选卡 | ✅ |
 | 2026-09-01 | [External Knowledge Expansion 全领域扫描](2026-09/2026-09-01_external-expansion_scan.md) | 40+ → 13 候选卡（S4/A6/B3） | ✅ |
+| 2026-09-02 | [Personal Tech Radar 首次扫描（每日 External Knowledge Watch）](2026-09/2026-09-02_radar-watch_scan.md) | 12 信号 → 5 新卡（S1/A2/B2）+ 4 条增量 | ✅ |
