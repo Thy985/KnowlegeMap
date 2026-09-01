@@ -1,0 +1,40 @@
+# 06 · Expansion Index（外部知识扩展索引）
+
+> 本索引维护每一次"外部世界新发现"的完整记录，回答：**第一次发现时间 / 来源 / 分类 / 与我的项目关系 / 当前状态 / 优先级 / 是否已深入研究 / 是否已实际验证**。
+> 用途：全仓去重（避免重复收集同一对象）、追踪每条线索的生命周期、为后续自动探索提供去重基准。
+
+## 状态定义
+- `[cand]` 候选卡已建，未完成真机验证
+- `[validated]` 已晋升（≥2 条独立证据 + 一次真机验证）
+- `[dropped]` 已评估并放弃
+- `[observe]` 仅观察，暂不投入
+
+## 2026-09-01 首轮定向扫描（MCP + Evals）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| MCP 2026-07-28 无状态协议 | 2026-09-01 | 官方博客/Spec | MCP 生态 | Tafcm/agent-attention/TeamMind/OpenClaw | [cand] | S | 部分 | 未 |
+| MCP 通知类 Server | 2026-09-01 | GitHub | MCP 生态 | agent-attention（同域） | [cand] | S | 部分 | 未 |
+| promptfoo | 2026-09-01 | 官方文档+实测 | Agent Evals | Tafcm ADI / silver-shield | [cand] | S | 是 | ✅ 本机 eval 2/2 PASS |
+| Evals 框架格局 | 2026-09-01 | 2026 横向评测 | Agent Evals | Tafcm/silver-shield/dsh-pentest | [cand] | A | 是 | 未 |
+
+## 2026-09-01 External Knowledge Expansion 扫描
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| OWASP Agentic Security 体系 | 2026-09-01 | OWASP 官方 | AI 安全治理（G1） | dsh-pentest/silver-shield/EP-002 | [cand] | **S** | 否 | 未 |
+| A2A 协议 v1.0 + AAIF | 2026-09-01 | Linux Foundation/A2A 官网 | 多 Agent/互操作 | TeamMind（协议层） | [cand] | **S** | 否 | 未 |
+| Agent Harness/Control Plane 范式 | 2026-09-01 | Databricks/MS/arXiv | Runtime/Harness | TeamMind/五维模型/验证编译器 | [cand] | **S** | 否 | 未 |
+| Agent Memory 2026 实现层 | 2026-09-01 | Mem0/Zep/Letta/MemEval | Agent Memory | GrowthOS/TeamMind/Validation | [cand] | **S** | 部分 | 未 |
+| AI 攻防工具链 | 2026-09-01 | 官方仓库+评测 | AI 攻防（G1） | dsh-pentest/silver-shield | [cand] | A | 否 | 未 |
+| Computer/Browser Use GA | 2026-09-01 | Claude 官方/browser-use | Computer Use | campus_order/E2E-CLI/agent-attention | [cand] | A | 否 | 未 |
+| E2B 沙箱 + APP | 2026-09-01 | E2B 官方 | 代码沙箱 | TeamMind/EP-002/dsh-pentest | [cand] | A | 否 | 未 |
+| OTel GenAI 可观测标准 | 2026-09-01 | OTel/Langfuse 官方 | LLM 可观测 | Tafcm ADI/silver-shield | [cand] | A | 否 | 未 |
+| Agentic 基准 2026 批判 | 2026-09-01 | 2026 评测/OpenAI | Agent 基准 | Validation/silver-shield | [cand] | A | 否 | 未 |
+| 本地/边缘 LLM 推理 | 2026-09-01 | arXiv/官方文档 | 本地/边缘 AI | Tafcm/silver-shield | [cand] | A | 否 | 未 |
+| 开源 Agentic CI | 2026-09-01 | InfoQ/评测 | Agentic CI | AI Code Review 资产族/Tafcm | [cand] | B | 否 | 未 |
+| Fine-tuning 对齐新范式 | 2026-09-01 | arXiv/GitHub | Fine-tuning | ML 方法论/silver-shield | [cand] | B | 否 | 未 |
+| Multi-Agent 框架终局 | 2026-09-01 | 2026 对比 | 多 Agent 编排 | TeamMind | [cand] | B | 否 | 未 |
+
+## 去重基准（扫描前先查这里）
+已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra。
+
+> 新扫描前：先 grep 本表对象名，命中即不重复收集，只做增量更新。

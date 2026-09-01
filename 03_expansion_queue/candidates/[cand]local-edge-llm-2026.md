@@ -1,0 +1,31 @@
+# 候选证据卡 · [cand] 本地/边缘 LLM 推理与边缘微调（LlamaWeb / MLC-LLM / BitNet 边缘微调 / TinyLLM）
+
+> 状态：`[cand]` ｜ 分类：本地/边缘 AI（B13）/ G3 项目需要 ｜ 发现：2026-09-01 ｜ 等级：**A**
+
+## 一句话定位
+2026 本地/边缘 LLM 进入"跨端 + 浏览器 + 移动 GPU 微调"阶段：LlamaWeb 把 llama.cpp 跑进浏览器 WebGPU、MLC-LLM 全平台、BitNet 可在手机 GPU 微调、TinyLLM 实证边缘 agent SLM——直接服务 Tafcm（离线优先）与 silver-shield（边缘感知）。
+
+## 1. 关键事实
+- **LlamaWeb**（arXiv 2026）：llama.cpp 的 WebGPU 后端，浏览器内 GPU 加速跑多模型，多精度、内存高效["https://arxiv.org/html/2605.20706v1"]
+- **MLC-LLM**：跨平台，Vulkan/Metal/OpenCL/WebGPU/Android 均 production["https://localaimaster.com/blog/mlc-llm-setup-guide"]
+- **BitNet b1.58 边缘微调**（QVAC Fabric）：首次在移动 GPU（Adreno/Mali/Apple Bionic）微调 BitNet，125M 约 10 分钟（Samsung S25），1B 级亦可["https://github.com/tetherto/qvac-rnd-fabric-llm-bitnet"]
+- **TinyLLM**（arXiv）：小语言模型在边缘做 agentic 任务的评测与优化，DPO 对齐 SLM agent["https://arxiv.org/html/2511.22138v1/"]
+- 运行时谱系：llama.cpp（GGUF 事实标准，CPU/ARM/Apple）、ONNX Runtime（CPU/CUDA/TensorRT/DirectML）、OpenVINO（Intel）、TensorRT-LLM（NVIDIA）["https://martinuke0.github.io/posts/2026-03-22-the-shift-to-edge-native-llms-optimizing-local-inference-for-privacy-first-developer-workflows/"]
+
+## 2. 与我的知识/项目关系
+- **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径
+- **silver-shield**（摄像头端感知）：边缘分类/事件检测（YAMNet 类）可用 ONNX Runtime/OpenVINO
+- **G3 缺口"本地/边缘/移动 AI"** 是 KB 空白，本卡建立第一层
+
+## 3. 证据与验证计划
+| 项 | 内容 |
+|---|---|
+| 证据等级 | FACT（arXiv + 官方文档） |
+| 来源 | https://arxiv.org/html/2605.20706v1 ｜ https://github.com/tetherto/qvac-rnd-fabric-llm-bitnet ｜ https://arxiv.org/html/2511.22138v1/ |
+| 验证方式 | 评估在 Flutter/Dart 侧用 llama.cpp FFI 跑一个小模型的概念验证；对比 WebGPU 方案 |
+| 预期 | 2026-10 |
+
+## 4. 决策
+- [ ] 晋升 validated
+- [x] 维持观察
+- [ ] 拒绝

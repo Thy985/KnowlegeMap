@@ -25,29 +25,30 @@
 |---|---|---|
 | [README.md](02_active_research/README.md) | 进行中研究主题与验证状态 | 📌 |
 
-## 03_expansion_queue（探索队列）⬜
+## 03_expansion_queue（探索队列）📌
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
 | [README.md](03_expansion_queue/README.md) | 队列工作流说明 | 📌 |
 | inbox/ | 原始线索（未筛选） | ⬜ |
-| candidates/ | 候选证据卡（待深入） | 📌 4 张（2026-09-01） |
+| candidates/ | 候选证据卡（待深入） | 📌 17 张（首轮 4 + Expansion 13） |
 | validated/ | 已验证高价值对象（可入内库） | ⬜ |
 
-### candidates/（首轮扫描产出）
+### candidates/（2026-09-01 产出，共 17 张）
 
-| 候选卡 | 方向 | 状态 |
-|---|---|---|
-| [[cand]mcp-2026-07-28-stateless](03_expansion_queue/candidates/[cand]mcp-2026-07-28-stateless.md) | MCP 生态 | 🟡 待精读验证 |
-| [[cand]mcp-notification-servers](03_expansion_queue/candidates/[cand]mcp-notification-servers.md) | MCP / agent-attention | 🟡 待架构对照 |
-| [[cand]promptfoo-agent-evals](03_expansion_queue/candidates/[cand]promptfoo-agent-evals.md) | Agent Evals | 🟡 本机实测通过 |
-| [[cand]evals-framework-landscape](03_expansion_queue/candidates/[cand]evals-framework-landscape.md) | Agent Evals | 🟡 选型依据 |
+**S 级（4）**：[[cand]owasp-agentic-security](03_expansion_queue/candidates/[cand]owasp-agentic-security.md) ｜ [[cand]a2a-protocol-v1](03_expansion_queue/candidates/[cand]a2a-protocol-v1.md) ｜ [[cand]agent-harness-control-plane](03_expansion_queue/candidates/[cand]agent-harness-control-plane.md) ｜ [[cand]agent-memory-2026](03_expansion_queue/candidates/[cand]agent-memory-2026.md)
+
+**A 级（6）**：[[cand]ai-offensive-toolchain](03_expansion_queue/candidates/[cand]ai-offensive-toolchain.md) ｜ [[cand]computer-browser-use-2026](03_expansion_queue/candidates/[cand]computer-browser-use-2026.md) ｜ [[cand]e2b-sandbox](03_expansion_queue/candidates/[cand]e2b-sandbox.md) ｜ [[cand]otel-genai-observability](03_expansion_queue/candidates/[cand]otel-genai-observability.md) ｜ [[cand]agentic-benchmarks-2026](03_expansion_queue/candidates/[cand]agentic-benchmarks-2026.md) ｜ [[cand]local-edge-llm-2026](03_expansion_queue/candidates/[cand]local-edge-llm-2026.md)
+
+**B 级（3）**：[[cand]open-source-agentic-ci](03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) ｜ [[cand]llm-finetuning-alignment-2026](03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) ｜ [[cand]multiagent-framework-2026](03_expansion_queue/candidates/[cand]multiagent-framework-2026.md)
+
+**首轮（4）**：[[cand]mcp-2026-07-28-stateless](03_expansion_queue/candidates/[cand]mcp-2026-07-28-stateless.md) ｜ [[cand]mcp-notification-servers](03_expansion_queue/candidates/[cand]mcp-notification-servers.md) ｜ [[cand]promptfoo-agent-evals](03_expansion_queue/candidates/[cand]promptfoo-agent-evals.md) ｜ [[cand]evals-framework-landscape](03_expansion_queue/candidates/[cand]evals-framework-landscape.md)
 
 ## 04_connections（连接地图）📌
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 4 行升 🟡 |
+| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 17 行全升 🟡 |
 
 ## 05_scan_logs（扫描日志）📌
 
@@ -56,6 +57,13 @@
 | [README.md](05_scan_logs/README.md) | 扫描日志规范 | 📌 |
 | [2026-09/2026-09-01_bootstrap_scan.md](05_scan_logs/2026-09/2026-09-01_bootstrap_scan.md) | Bootstrap 首次扫描记录 | 📌 |
 | [2026-09/2026-09-01_mcp-evals_scan.md](05_scan_logs/2026-09/2026-09-01_mcp-evals_scan.md) | 首轮定向扫描（MCP + Evals） | 📌 |
+| [2026-09/2026-09-01_external-expansion_scan.md](05_scan_logs/2026-09/2026-09-01_external-expansion_scan.md) | External Knowledge Expansion 全领域扫描 | 📌 |
+
+## 06_expansion_index（扩展索引）📌
+
+| 目录 | 内容 | 状态 |
+|---|---|---|
+| [README.md](06_expansion_index/README.md) | Expansion Index：全对象清单 + 生命周期 + 去重基准 | 📌 17 条 |
 
 ## 99_templates（模板）📌
 
