@@ -31,14 +31,23 @@
 |---|---|---|
 | [README.md](03_expansion_queue/README.md) | 队列工作流说明 | 📌 |
 | inbox/ | 原始线索（未筛选） | ⬜ |
-| candidates/ | 候选证据卡（待深入） | ⬜ |
+| candidates/ | 候选证据卡（待深入） | 📌 4 张（2026-09-01） |
 | validated/ | 已验证高价值对象（可入内库） | ⬜ |
 
-## 04_connections（连接地图）⬜
+### candidates/（首轮扫描产出）
+
+| 候选卡 | 方向 | 状态 |
+|---|---|---|
+| [[cand]mcp-2026-07-28-stateless](03_expansion_queue/candidates/[cand]mcp-2026-07-28-stateless.md) | MCP 生态 | 🟡 待精读验证 |
+| [[cand]mcp-notification-servers](03_expansion_queue/candidates/[cand]mcp-notification-servers.md) | MCP / agent-attention | 🟡 待架构对照 |
+| [[cand]promptfoo-agent-evals](03_expansion_queue/candidates/[cand]promptfoo-agent-evals.md) | Agent Evals | 🟡 本机实测通过 |
+| [[cand]evals-framework-landscape](03_expansion_queue/candidates/[cand]evals-framework-landscape.md) | Agent Evals | 🟡 选型依据 |
+
+## 04_connections（连接地图）📌
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 |
+| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 4 行升 🟡 |
 
 ## 05_scan_logs（扫描日志）📌
 
@@ -46,6 +55,7 @@
 |---|---|---|
 | [README.md](05_scan_logs/README.md) | 扫描日志规范 | 📌 |
 | [2026-09/2026-09-01_bootstrap_scan.md](05_scan_logs/2026-09/2026-09-01_bootstrap_scan.md) | Bootstrap 首次扫描记录 | 📌 |
+| [2026-09/2026-09-01_mcp-evals_scan.md](05_scan_logs/2026-09/2026-09-01_mcp-evals_scan.md) | 首轮定向扫描（MCP + Evals） | 📌 |
 
 ## 99_templates（模板）📌
 
