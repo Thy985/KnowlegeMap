@@ -22,6 +22,11 @@
 | 验证方式 | 在 Tafcm 侧建最小 demo：flutter_gemma 跑一个离线生成任务，对比 ai_edge 系统原生路线，测启动/首 token/体积 |
 | 预期完成时间 | 2026-09 内 |
 ## 5. 验证结果
+> **雷达增量（2026-09-03，Changed）**：
+> - **新发现：`flutter_litert_lm`**（Flutter 插件，跑 Google **LiteRT-LM**——Android 端已**替代 MediaPipe LLM Inference** 的官方新路线，支持 Gemma/Qwen/Phi/DeepSeek 及 litert-community 全系模型，GPU(OpenCL)/NPU 硬件加速，无 API key 无网络）["https://github.com/songhieu/flutter_litert_lm"]——这是 Tafcm 本地 LLM 选型的重要新增候选
+> - 新增 `llx_flutter`（Flutter FFI 插件跑 GGUF via llama.cpp，Dart 拥有 app-facing API + 生命周期，原生层管 model loading/context/token，示例含 bundle GGUF）["https://github.com/gmarzjr/llx_flutter"]、`flutter_native_ai`（统一 API 封装 Apple Foundation Models + Gemini Nano）["https://github.com/bowvie/flutter_native_ai"]、`Flutter Local AI`（三端统一 API：Android ML Kit GenAI / iOS FoundationModels / Windows AI APIs，零模型下载）["https://pub.dev/documentation/flutter_local_ai/latest/"]
+> - 平台格局已收敛为**三派**：系统原生（Apple Core AI / LiteRT-LM / Windows AI）｜ Flutter 官方（ai_edge v0.1.0 on MediaPipe GenAI）｜ 开源 GGUF（llama.cpp 系：llx_flutter/Llamafu/llama_flutter_android）["https://aicoding.csdn.net/6a68693f10ee7a33f29343f1.html"]
+> - **含义**：Tafcm 选型可从 3 派各取一实测（推荐 flutter_litert_lm 或 flutter_local_ai 作为零下载系统原生派代表 + llx_flutter 作为可控 GGUF 派代表）
 <!-- 待回填 -->
 ## 6. 决策
 - [ ] 晋升 validated

@@ -23,8 +23,14 @@ Nous Research 的 hermes-agent（MIT，~217k★）：2026 年增长最猛的开�
 | 验证方式 | 读 README/架构/源码（memory 注入扫描、skills 自改进、MCP client）→ 对照 OpenClaw 能力边界 → 判断是否纳入框架选型对比 |
 | 预期完成时间 | 2026-09 内 |
 ## 5. 验证结果
+> **雷达增量（2026-09-03，Changed）**：
+> - **版本已到 v0.20.x 系列**：v0.20.0「The Herald」（2026-08-03，可打断操作/新增能力）→ v0.20.3（2026-08-16.2，稳定 rollup，~125 merged PRs / ~250 commits，含 session 加载提速，供 Docker/托管下游消费）["https://hermesagent.org.cn/releases"]["https://thenextgentechinsider.com/pulse/nous-research-releases-hermes-agent-update-to-boost-session-load-speeds"]
+> - 2026-07 前后的 Quicksilver 系列主线：实时持久子代理 transcript、restart-safe 终消息投递、自主后台 Curator、显著升级的自我改进循环["https://hermes-ai.net/changelog/"]
+> - 新增 Native Windows 支持 + DeepSeek V4 推理模型 + Super Grok 集成 + AI 视频生成（2026-05 前后）["https://www.geeky-gadgets.com/deepseek-v4-free-hermes/"]
+> - 活跃度证据强化：release 链持续高频（v0.11→v0.15→v0.18→v0.20，2026-04→08），大版本 4 个月内从 0.11 迭代到 0.20，远超普通开源项目节奏["https://github.com/NousResearch/hermes-agent/releases"]
+> - **含义**：hermes-agent 已从"值得观察"升级为"开源 agent 框架格局中增速最快的实证样本"，建议在本轮后重新评估是否升 A（尤其其 browser automation + MCP client + 自我改进 skills 与我的 Tools 体系直接同构）
 <!-- 待回填 -->
 ## 6. 决策
 - [ ] 晋升 validated
-- [x] 维持观察
+- [x] 维持观察（2026-09-03 后建议评估升 A）
 - [ ] 拒绝

@@ -42,6 +42,12 @@
 | MS Research Webwright | 2026-09-02 | MS Research | Computer Use / Web Agent | E2E-CLI/campus_order | [cand] | B | 否 | 未（一手来源已核验 FACT） |
 | hermes-agent（Nous Research） | 2026-09-02 | GitHub/ClawBench | Agent Framework | OpenClaw 对照 | [cand] | B | 否 | 未（一手来源已核验 FACT，★修正 ~57k→~217k） |
 > **雷达增量（Changed，2026-09-02）**：MCP（final 后新 Roadmap 2026-08-22 + go-sdk Stateless 发布）、A2A（08-17/18 正式移交 AAIF + MS .NET 接 A2A v1）、OWASP（新增 Red Teaming Solutions Landscape + Red Teaming Taxonomy + Skills B1-B4 Trust Boundary Model）、Agent Memory（Mem0 SDK 2.0 + Platform v3 时间感知 + Letta Agents SDK/Mods）。以上 4 条已在原候选卡内追加雷达增量记录，不新建卡。
+## 2026-09-03 Personal Tech Radar 第 2 次扫描（每日 External Knowledge Watch）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| Microsoft RAMPART + Clarity | 2026-09-03 | MS Security Blog/GitHub | AI 安全攻防（G1） | dsh-pentest/silver-shield/E2E-CLI | [cand] | **S** | 否 | 未（一手来源已核验 FACT） |
+| PI-Hunter 注入审计线（+ARGUS/PISmith/SoK） | 2026-09-03 | arXiv | AI 安全攻防 / 注入审计（G1） | dsh-pentest/TeamMind/Validation | [cand] | A | 否 | 未（arXiv 全文可读 FACT） |
+> **雷达增量（Changed，2026-09-03）**：hermes-agent（v0.20.x 系列：The Herald 08-03 + v0.20.3 08-16 稳定 rollup ~125 PRs + 新增 Native Windows/DeepSeek V4/AI 视频生成）、Flutter 本地 LLM（**flutter_litert_lm**：Android 端 LiteRT-LM 已取代 MediaPipe LLM Inference + llx_flutter/flutter_native_ai/Flutter Local AI 新插件）。已在原候选卡内追加增量记录，不新建卡。
 
 ## 去重基准（扫描前先查这里）
 已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra。
