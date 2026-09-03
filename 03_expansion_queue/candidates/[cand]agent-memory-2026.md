@@ -15,6 +15,14 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 | **MemEval** | 独立评测套件（ProsusAI，2026-08） | 排名：Memory-R1 0.389 / SimpleMem 0.358 / Mem0 0.344 / MemU 0.299 F1["https://github.com/ProsusAI/MemEval"] |
 
 **基准与批判**：三主流基准 LoCoMo（趋于饱和 ~92）/ LongMemEval（ICLR25，更难）/ BEAM（1M/10M token）。**两条关键批判**：① 长上下文模型直接碾压记忆管线（LoCoMo +35.2pp、LongMemEval +33.4pp）——压缩是 lossy 的["https://dreaming.press/posts/how-to-read-an-agent-memory-benchmark.html"]；② LoCoMo 被审计出 1540 题中 99 处得分污染错误（6.4%）["https://essays.bloo-mind.ai/posts/2026-05-20-mem-eval/"]
+> **雷达增量（2026-09-04，Changed）**：
+> - **Mem0 v3.0.0 新记忆算法（2026-04 起）**：ground-up 重写记忆 pipeline，LoCoMo 71.4→91.6（+20）、LongMemEval 67.8→93.4（+26），~3-4x 更低成本；README 现报 LoCoMo 92.5 / LongMemEval 94.4（~6.9K tokens/query）["https://docs.mem0.ai/changelog/highlights"]["https://github.com/mem0ai/mem0/"]
+> - **重要可信度批判（数字本身有歧义）**：Mem0 README 高分注明"reflects managed platform（含开源 SDK 没有的 proprietary 优化）"——`pip install mem0ai` 拿不到 94 分；Zep 原始 LoCoMo claim 84% 已被更正为 58%（独立复测）["https://dreaming.press/posts/how-to-read-2026-agent-memory-scores.html"]["https://github.com/enflory/ingolmo/blob/main/standalone-memory-tools-survey-2026/README.md"]
+> - **基准格局收敛**：LoCoMo / LongMemEval / BEAM 已成行业标准三件套（Mem0 官方报告 + automem 独立复测交叉验证）["https://automem.ai/blog/agent-memory-in-2026-an-honest-comparison-of-mem0-zep-letta-and-the-rest"]
+> - **Letta 新方向**：2026-04 **Context Constitution**（agent 如何管理 context 学习的原则集）+ 2026-02 **Context Repositories**（coding agent 的 git-based 记忆版本化）["https://www.letta.com/blog-categories/research"]
+> - **Zep 强化**：自报 DMR 94.8%（vs MemGPT 93.4%）、LongMemEval +18.5% 且 -90% 延迟——但均为厂商自报，需独立复测["https://www.developersdigest.tech/blog/best-ai-agent-memory-providers-2026"]
+> - **Supermemory**：LongMemEval 自报 SOTA（81-85%）、MCP-原生适配 Claude Code/OpenCode——但多依赖自家技术报告["https://blog.csdn.net/qq_44193969/article/details/160620303"]
+> - **含义**：记忆厂商"数字大战"激烈，但分数口径不一（平台 vs SDK），验证纪律（区分厂商自报 vs 独立评测）正是我的判断优势
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上

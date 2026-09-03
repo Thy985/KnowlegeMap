@@ -43,6 +43,11 @@
 | **Microsoft RAMPART + Clarity** | dsh-pentest（AI 攻防 CI）/ silver-shield / E2E-CLI | AI 安全（G1）/ EP-002 / Validation | 🟡 已出候选卡 | [rampart-clarity-2026](../03_expansion_queue/candidates/[cand]rampart-clarity-2026.md) |
 | **PI-Hunter 注入审计线** | dsh-pentest / TeamMind / Validation 编译器 | AI 安全（G1）/ 注入路径定位 / 证据链思维 | 🟡 已出候选卡 | [pi-hunter-injection-audit-2026](../03_expansion_queue/candidates/[cand]pi-hunter-injection-audit-2026.md) |
 > 雷达增量（2026-09-03）：hermes-agent（v0.20.x 系列 + Native Windows/DeepSeek V4）、Flutter 本地 LLM（flutter_litert_lm / LiteRT-LM 取代 MediaPipe）两条已知对象的重要变化已在对应候选卡内追加记录，连接关系不变。
+## 2026-09-04 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agentic CLEAR（IBM 自动多层级评估）** | silver-shield（Benchmark Harness）/ Tafcm ADI / Validation 编译器 | Agent Evaluation / 自动 trace 评估 / Evidence→Judgment | 🟡 已出候选卡 | [agentic-clear-2026](../03_expansion_queue/candidates/[cand]agentic-clear-2026.md) |
+> 雷达增量（2026-09-04）：Agent Memory（Mem0 v3 + 分数批判）、OTel GenAI（语义规范稳定化 + 阿里 LoongSuite）两条已知对象的重要变化已在对应候选卡内追加记录，连接关系不变。
 
 ## 规则
 

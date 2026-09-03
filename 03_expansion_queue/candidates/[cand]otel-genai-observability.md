@@ -10,6 +10,11 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 - **Langfuse v3**：基于 OpenTelemetry 重建；自托管；trace/评估/prompt 管理一体["https://langfuse.com/docs/observability/sdk/upgrade-path/python-v2-to-v3"]
 - **平台格局**：LangSmith（LangChain/LangGraph 原生）、Arize Phoenix（eval 严谨/RAG 漂移）、Braintrust（eval-first）、OpenLIT（自动插桩）["https://www.marktechpost.com/2026/08/09/top-llm-observability-and-evaluation-platforms-in-2026-langfuse-langsmith-braintrust-arize-and-more-compared/amp/"]
 - 选型：LangGraph 栈→LangSmith；自托管→Langfuse；eval 严谨→Phoenix["https://www.marktechpost.com/2026/08/09/top-llm-observability-and-evaluation-platforms-in-2026-langfuse-langsmith-braintrust-arize-and-more-compared/amp/"]
+> **雷达增量（2026-09-04，Changed）**：
+> - **OTel GenAI 语义约定已稳定**（2025 末正式 stabilized）：`gen_ai.*` 属性标准化 prompt/model/token 用量/tool 与 agent 调用，已成 CNCF 生态厂商中立基线；2026-04-21 OTel 官方博客（MS James Newton-King）详解"LLM 调用内部：GenAI 可观测性"["https://github.com/open-telemetry/opentelemetry.io/blob/0c1d9634144d434ac1604c1611ffd6b24bdf24ed/content/en/blog/2026/genai-observability/index.md"]["https://signoz.io/comparisons/llm-observability-tools/"]
+> - **可观测覆盖 6 层已成形**：LLM 调用 / agent 编排 / MCP 工具调用 / content capture / 质量评估，多数工具已原生接入 OTel["https://www.greptime.com/blogs/2026-05-09-opentelemetry-genai-semantic-conventions"]
+> - **新玩家**：阿里云 **LoongSuite**（OTel 之上推出 GenAI 可观测语义规范 + 零代码 Python Agent 采集）、Iris（OTel-native 自托管 trace+eval+回归检测，但同名项目混乱待甄别）["https://www.alibabacloud.com/blog/loongsuite-python-agent-launches-observability-into-every-ai-agent-action-zero-code-integration_603016"]["https://github.com/saishettar/iris"]
+> - **含义**：Tafcm ADI 接 OTel GenAI 现在有稳定规范可依；阿里 LoongSuite 的零代码采集与 MCP 工具调用观测值得对照
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座
