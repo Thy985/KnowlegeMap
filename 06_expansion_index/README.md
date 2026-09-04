@@ -53,8 +53,14 @@
 |---|---|---|---|---|---|---|---|---|
 | Agentic CLEAR（IBM，arXiv 2605.22608） | 2026-09-04 | arXiv / ibm.github.io | Agent Evaluation / 评估方法论（G2） | silver-shield Benchmark / Tafcm ADI / Validation | [cand] | A | 否 | 未（arXiv+官方页核验 FACT） |
 > **雷达增量（Changed，2026-09-04）**：Agent Memory（**Mem0 v3.0 新记忆算法** LoCoMo +20/LongMemEval +26、3-4x 低成本；**分数可信度批判** Zep LoCoMo 84%→58% 更正、Mem0 平台分 vs SDK 分；Letta Context Constitution + Context Repositories；Zep DMR 94.8% 自报；Supermemory MCP 原生）、LLM 可观测（**OTel GenAI 语义约定已稳定** 2025 末 + 阿里 LoongSuite 零代码采集 + Iris 观察不建卡）。已在原候选卡内追加增量记录，不新建卡。
+## 2026-09-05 Personal Tech Radar 第 4 次扫描（每日 External Knowledge Watch）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| Agent Skill 供应链安全（SkillFortify 形式化验证 + Unit 42 BIV 实证） | 2026-09-05 | arXiv 2603.00195 / unit42.paloaltonetworks.com | AI 安全攻防 / Agent 供应链（G1） | **EP-002** / campus_order（OpenClaw）/ dsh-pentest | [cand] | **S** | 否 | 未（arXiv+官方报告核验 FACT） |
+| Agentic GraphRAG 2026（MemGraphRAG / Graph-R1 / A-RAG） | 2026-09-05 | GitHub / arXiv 2606.00610 / OpenReview | RAG 系统化（G2） | GrowthOS / TeamMind / silver-shield | [cand] | A | 否 | 未（GitHub+arXiv 核验 FACT） |
+> 说明：MCP 侧 2026-09-05 仅确认 SDK 落地执行（rust 3.0 beta / C# v2 / go v1.7 / Cloudflare 采用 2026-07-28 stateless），属已知对象执行确认，无新范式，不记录为新条目。
 
 ## 去重基准（扫描前先查这里）
-已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra。
+已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra、Agentic CLEAR/AgentEval、Mem0 v3/Letta Context Constitution/Zep DMR、RAMPART/Clarity、PI-Hunter/ARGUS/PISmith、SkillFortify/BIV/MalSkills/SkillSafetyBench、MemGraphRAG/Graph-R1/A-RAG。
 
 > 新扫描前：先 grep 本表对象名，命中即不重复收集，只做增量更新。

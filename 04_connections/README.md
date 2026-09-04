@@ -48,6 +48,12 @@
 |---|---|---|---|---|
 | **Agentic CLEAR（IBM 自动多层级评估）** | silver-shield（Benchmark Harness）/ Tafcm ADI / Validation 编译器 | Agent Evaluation / 自动 trace 评估 / Evidence→Judgment | 🟡 已出候选卡 | [agentic-clear-2026](../03_expansion_queue/candidates/[cand]agentic-clear-2026.md) |
 > 雷达增量（2026-09-04）：Agent Memory（Mem0 v3 + 分数批判）、OTel GenAI（语义规范稳定化 + 阿里 LoongSuite）两条已知对象的重要变化已在对应候选卡内追加记录，连接关系不变。
+## 2026-09-05 雷达新增连接（2 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agent Skill 供应链安全（SkillFortify 形式化验证 + Unit 42 BIV）** | **EP-002**（权限即安全边界）/ campus_order（OpenClaw）/ dsh-pentest | AI 安全（G1）/ Skills 体系 / 声明 vs 实际验证 / OWASP ASI04 | 🟡 已出候选卡 | [skill-supply-chain-security-2026](../03_expansion_queue/candidates/[cand]skill-supply-chain-security-2026.md) |
+| **Agentic GraphRAG 2026（MemGraphRAG / Graph-R1 / A-RAG）** | **GrowthOS** / TeamMind / silver-shield | RAG 系统化（G2）/ 记忆×图×多 Agent / Context Engineering | 🟡 已出候选卡 | [agentic-graphrag-2026](../03_expansion_queue/candidates/[cand]agentic-graphrag-2026.md) |
+> 雷达增量（2026-09-05）：无已知对象重要变化；MCP 侧 2026-07-28 stateless 已由各语言 SDK（rust 3.0 beta / C# v2 / go v1.7）落地，属已知事件执行确认。
 
 ## 规则
 
