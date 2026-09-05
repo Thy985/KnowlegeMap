@@ -31,16 +31,16 @@
 |---|---|---|
 | [README.md](03_expansion_queue/README.md) | 队列工作流说明 | 📌 |
 | inbox/ | 原始线索（未筛选） | ⬜ |
-| candidates/ | 候选证据卡（待深入） | 📌 27 张（首轮 4 + Expansion 13 + 雷达 5 + 09-03 雷达 2 + 09-04 雷达 1 + 09-05 雷达 2；DeepSeek Harness 已晋升） |
+| candidates/ | 候选证据卡（待深入） | 📌 28 张（首轮 4 + Expansion 13 + 雷达 5 + 09-03 雷达 2 + 09-04 雷达 1 + 09-05 雷达 2 + 09-06 雷达 1；DeepSeek Harness 已晋升） |
 | validated/ | 已验证高价值对象（可入内库） | 📌 2 张（DeepSeek Harness S + promptfoo S） |
 
-### candidates/（截至 2026-09-05 雷达第 4 次，共 27 张）
+### candidates/（截至 2026-09-06 雷达第 5 次，共 28 张）
 
 **S 级（7，DeepSeek Harness 已晋升 validated）**：[[cand]owasp-agentic-security](03_expansion_queue/candidates/[cand]owasp-agentic-security.md) ｜ [[cand]a2a-protocol-v1](03_expansion_queue/candidates/[cand]a2a-protocol-v1.md) ｜ [[cand]agent-harness-control-plane](03_expansion_queue/candidates/[cand]agent-harness-control-plane.md) ｜ [[cand]agent-memory-2026](03_expansion_queue/candidates/[cand]agent-memory-2026.md) ｜ [[cand]rampart-clarity-2026](03_expansion_queue/candidates/[cand]rampart-clarity-2026.md) ｜ [[cand]skill-supply-chain-security-2026](03_expansion_queue/candidates/[cand]skill-supply-chain-security-2026.md) ｜ [DeepSeek Harness → [val]](03_expansion_queue/validated/[val]deepseek-harness-2026.md)
 
 **A 级（11）**：[[cand]ai-offensive-toolchain](03_expansion_queue/candidates/[cand]ai-offensive-toolchain.md) ｜ [[cand]computer-browser-use-2026](03_expansion_queue/candidates/[cand]computer-browser-use-2026.md) ｜ [[cand]e2b-sandbox](03_expansion_queue/candidates/[cand]e2b-sandbox.md) ｜ [[cand]otel-genai-observability](03_expansion_queue/candidates/[cand]otel-genai-observability.md) ｜ [[cand]agentic-benchmarks-2026](03_expansion_queue/candidates/[cand]agentic-benchmarks-2026.md) ｜ [[cand]local-edge-llm-2026](03_expansion_queue/candidates/[cand]local-edge-llm-2026.md) ｜ [[cand]flutter-local-llm-2026](03_expansion_queue/candidates/[cand]flutter-local-llm-2026.md) ｜ [[cand]browser-harness-2026](03_expansion_queue/candidates/[cand]browser-harness-2026.md) ｜ [[cand]pi-hunter-injection-audit-2026](03_expansion_queue/candidates/[cand]pi-hunter-injection-audit-2026.md) ｜ [[cand]agentic-clear-2026](03_expansion_queue/candidates/[cand]agentic-clear-2026.md) ｜ [[cand]agentic-graphrag-2026](03_expansion_queue/candidates/[cand]agentic-graphrag-2026.md)
 
-**B 级（5）**：[[cand]open-source-agentic-ci](03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) ｜ [[cand]llm-finetuning-alignment-2026](03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) ｜ [[cand]multiagent-framework-2026](03_expansion_queue/candidates/[cand]multiagent-framework-2026.md) ｜ [[cand]webwright-2026](03_expansion_queue/candidates/[cand]webwright-2026.md) ｜ [[cand]hermes-agent-2026](03_expansion_queue/candidates/[cand]hermes-agent-2026.md)
+**B 级（6）**：[[cand]open-source-agentic-ci](03_expansion_queue/candidates/[cand]open-source-agentic-ci.md) ｜ [[cand]llm-finetuning-alignment-2026](03_expansion_queue/candidates/[cand]llm-finetuning-alignment-2026.md) ｜ [[cand]multiagent-framework-2026](03_expansion_queue/candidates/[cand]multiagent-framework-2026.md) ｜ [[cand]webwright-2026](03_expansion_queue/candidates/[cand]webwright-2026.md) ｜ [[cand]hermes-agent-2026](03_expansion_queue/candidates/[cand]hermes-agent-2026.md) ｜ [[cand]agentic-ux-2026](03_expansion_queue/candidates/[cand]agentic-ux-2026.md)
 
 **首轮（4）**：[[cand]mcp-2026-07-28-stateless](03_expansion_queue/candidates/[cand]mcp-2026-07-28-stateless.md) ｜ [[cand]mcp-notification-servers](03_expansion_queue/candidates/[cand]mcp-notification-servers.md) ｜ [[cand]promptfoo-agent-evals](03_expansion_queue/candidates/[cand]promptfoo-agent-evals.md) ｜ [[cand]evals-framework-landscape](03_expansion_queue/candidates/[cand]evals-framework-landscape.md)
 
@@ -48,7 +48,7 @@
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 27 行全升 🟡 |
+| [README.md](04_connections/README.md) | 外部技术 ↔ 现有项目/知识连接说明 | 📌 28 行全升 🟡 |
 
 ## 05_scan_logs（扫描日志）📌
 
@@ -62,12 +62,13 @@
 | [2026-09/2026-09-03_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-03_radar-watch_scan.md) | Personal Tech Radar 第 2 次扫描（G1 安全工具 + Tafcm 选型增量） | 📌 |
 | [2026-09/2026-09-04_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-04_radar-watch_scan.md) | Personal Tech Radar 第 3 次扫描（Evals 方法论 + Memory 增量） | 📌 |
 | [2026-09/2026-09-05_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-05_radar-watch_scan.md) | Personal Tech Radar 第 4 次扫描（Skill 供应链安全 + Agentic GraphRAG） | 📌 |
+| [2026-09/2026-09-06_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-06_radar-watch_scan.md) | Personal Tech Radar 第 5 次扫描（Agentic UX + OpenClaw 2.0 + ATR） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](06_expansion_index/README.md) | Expansion Index：全对象清单 + 生命周期 + 去重基准 | 📌 27 条 |
+| [README.md](06_expansion_index/README.md) | Expansion Index：全对象清单 + 生命周期 + 去重基准 | 📌 28 条 |
 
 ## 99_templates（模板）📌
 

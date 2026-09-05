@@ -54,6 +54,11 @@
 | **Agent Skill 供应链安全（SkillFortify 形式化验证 + Unit 42 BIV）** | **EP-002**（权限即安全边界）/ campus_order（OpenClaw）/ dsh-pentest | AI 安全（G1）/ Skills 体系 / 声明 vs 实际验证 / OWASP ASI04 | 🟡 已出候选卡 | [skill-supply-chain-security-2026](../03_expansion_queue/candidates/[cand]skill-supply-chain-security-2026.md) |
 | **Agentic GraphRAG 2026（MemGraphRAG / Graph-R1 / A-RAG）** | **GrowthOS** / TeamMind / silver-shield | RAG 系统化（G2）/ 记忆×图×多 Agent / Context Engineering | 🟡 已出候选卡 | [agentic-graphrag-2026](../03_expansion_queue/candidates/[cand]agentic-graphrag-2026.md) |
 > 雷达增量（2026-09-05）：无已知对象重要变化；MCP 侧 2026-07-28 stateless 已由各语言 SDK（rust 3.0 beta / C# v2 / go v1.7）落地，属已知事件执行确认。
+## 2026-09-06 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agentic UX / AI 原生产品设计模式** | **TeamMind** / campus_order（OpenClaw 2.0 浏览器 UI）/ agent-attention / Tafcm | AI 原生产品（G2 空白区）/ 五级自主度 / diff 预览即确认 / EP-002 可见性 | 🟡 已出候选卡 | [agentic-ux-2026](../03_expansion_queue/candidates/[cand]agentic-ux-2026.md) |
+> 雷达增量（2026-09-06）：OpenClaw 2.0（v2026.8.1 大版本）、SkillSpector/CHAINDROP/Tenable、ATR 威胁规则等 3 条已知对象重要变化已在对应候选卡内追加记录，连接关系不变。
 
 ## 规则
 

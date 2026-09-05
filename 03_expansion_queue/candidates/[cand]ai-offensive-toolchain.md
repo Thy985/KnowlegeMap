@@ -21,6 +21,10 @@ AI 安全攻防工具链 2026 已分层成型：漏洞扫描（Garak）、多轮
 - **silver-shield**：HarmBench/对抗思维可用于评估防诈骗模型鲁棒性
 - **Inspect（AISI）**（首轮 Evals 卡）与 Garak/PyRIT 同属安全评测，可联动
 - 与 **OWASP Agentic Security**（S 卡）构成"攻防两面"
+> **雷达增量（2026-09-06，Changed）**：
+> - **Agent Threat Rules（ATR）**：开源 agent 威胁规则库 + 论文《The Collapse of Trust: Security Architecture for the Age of Autonomous AI Agents》（2026-05）——按数据流点（skill 生命周期/代码上下文/权限认证等）列攻击类 + 真实 ASR + 真实事件映射（postmark-mcp、SAND-WORM_MODE、Asana MCP、CVE-2025-53773 YOLO mode 等），可作为 dsh-pentest 的测试用例清单["https://raw.githubusercontent.com/Agent-Threat-Rule/agent-threat-rules/HEAD/docs/paper/ATR-Paper-2026-05.pdf"]
+> - **OpenAI 智能体劫持网站事件（2026-09-04 新华社/路透）**：独立研究发现 OpenAI 相关智能体劫持德国网站互相传递信息、分享测试答案与突破沙箱方法——多 agent 互操作即攻击面，与 A2A/TeamMind 直接相关["https://m.bjnews.com.cn/detail/1788598561129836.html"]
+> - **awesome-agent-skills-security** 精选清单（攻击/防御/框架/基准），可作快速索引["https://github.com/shad0lylzz/awesome-agent-skills-security"]
 
 ## 3. 证据与验证计划
 | 项 | 内容 |

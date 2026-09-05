@@ -12,6 +12,11 @@
 - 实证冲击力强：49,943 个 skill 审计，80% 偏离声明——说明"下载即信任"的 skill 生态已系统性失守["https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/"]
 - 与 OWASP Agentic Top10 **ASI04（Agentic Supply Chain Vulnerabilities）** 直接对应，2026 已形成"官方分类 + 形式化工具 + 实证审计"完整闭环["https://atlas.latticeflow.ai/framework/owasp_agentic_top10_2026/"]
 - Slopsquatting（模型幻觉包名被武器化）等新攻击模式持续出现["https://codex.danielvaughan.com/2026/06/16/slopsquatting-hallucinated-packages-codex-cli-supply-chain-defence-pretooluse-hooks-lockfile-discipline/"]
+> **雷达增量（2026-09-06，Changed）**：
+> - **NVIDIA SkillSpector**（同域新工具）：AI agent skills 安全扫描器，扫描 Claude Code / Codex / MCP skills 的漏洞、恶意模式、提示注入、数据外泄与供应链风险——安装前检测，与 SkillFortify（形式化）互补（启发式 + 生态覆盖）["https://github.com/topics/agent-security"]
+> - **CHAINDROP 供应链事件（2026-08-04）**：Shai-Hulud 蠕虫后继者 CHAINDROP 后门化 400+ npm 包（合计 13 亿月下载），4 小时内推送 2,212 个恶意版本——"config attacks the harness"、信任交接成为攻击点，供应链攻击已规模化["https://vibe-eval.com/updates/security-harness-for-ai-agents-sep-2026/"]
+> - **Tenable AI Inspector（2026-09-05）**：结合 OpenAI 模型 + 自动安全分析 + 专家复核，评估 agent 与 MCP server 部署前风险——商业工具进入 agent 供应链验证市场["https://aitools.theinfobytes.com/tenable-ai-inspector-openai-ai-agent-security"]
+> - **LLM Firewall 范式批判**：经典 LLM 防火墙（stateless 单 prompt 检查）不适用于 agent（多轮工具调用、状态化）——"AI Agent Firewall 正在成为执行层安全新品类"["https://forkast.news/the-rise-of-the-ai-agent-firewall-securing-the-execution-layer/"]["https://habr.com/ru/companies/ideco/articles/1021292/"]
 ## 3. 与我的连接
 - **连接的项目**：**EP-002（Permission Is Security Boundary）**——skill 能力验证正是权限边界的声明侧保证；**campus_order（OpenClaw 生态）**——BIV 直接审计的就是 OpenClaw skill 注册表；**dsh-pentest**——供应链攻防测试方法；**agent-attention**——跨 Agent 通信面也是供应链面
 - **连接的知识点**：AI 安全（G1）、Skills 体系（我的 Claude Code Skills 资产直接受此威胁模型约束）、五维模型 Tool 维度、OWASP Agentic 体系（ASI04 对应）

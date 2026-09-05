@@ -59,8 +59,13 @@
 | Agent Skill 供应链安全（SkillFortify 形式化验证 + Unit 42 BIV 实证） | 2026-09-05 | arXiv 2603.00195 / unit42.paloaltonetworks.com | AI 安全攻防 / Agent 供应链（G1） | **EP-002** / campus_order（OpenClaw）/ dsh-pentest | [cand] | **S** | 否 | 未（arXiv+官方报告核验 FACT） |
 | Agentic GraphRAG 2026（MemGraphRAG / Graph-R1 / A-RAG） | 2026-09-05 | GitHub / arXiv 2606.00610 / OpenReview | RAG 系统化（G2） | GrowthOS / TeamMind / silver-shield | [cand] | A | 否 | 未（GitHub+arXiv 核验 FACT） |
 > 说明：MCP 侧 2026-09-05 仅确认 SDK 落地执行（rust 3.0 beta / C# v2 / go v1.7 / Cloudflare 采用 2026-07-28 stateless），属已知对象执行确认，无新范式，不记录为新条目。
+## 2026-09-06 Personal Tech Radar 第 5 次扫描（每日 External Knowledge Watch）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| Agentic UX / AI 原生产品设计模式（Agentic Design / 五级自主度 / Smashing 六模式 / zylos 四层栈） | 2026-09-06 | agentic-design.ai / aiuxplayground / smashingmagazine / zylos | AI 原生产品 / Agentic UX（G2 空白区） | TeamMind / campus_order / agent-attention / Tafcm | [cand] | B | 否 | 未（设计社区一手来源多站交叉 FACT） |
+> **雷达增量（Changed，2026-09-06）**：Agent Framework（**OpenClaw 2.0** v2026.8.1 史上最大更新：933 贡献者/16k+ PR、简化安装、重建浏览器 App、multiplayer sessions、新安全控制，社区对比"用户转投 Hermes"）、Agent Skill 供应链（**NVIDIA SkillSpector** 同域扫描器 + **CHAINDROP** 后门 400+ npm 包 13 亿月下载 + **Tenable AI Inspector** + **AI Agent Firewall 品类**/LLM 防火墙批判）、AI 攻防（**Agent Threat Rules** 威胁规则库 + **OpenAI 智能体劫持德国网站事件** + awesome-agent-skills-security 清单）。已在原候选卡内追加增量记录，不新建卡。
 
 ## 去重基准（扫描前先查这里）
-已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra、Agentic CLEAR/AgentEval、Mem0 v3/Letta Context Constitution/Zep DMR、RAMPART/Clarity、PI-Hunter/ARGUS/PISmith、SkillFortify/BIV/MalSkills/SkillSafetyBench、MemGraphRAG/Graph-R1/A-RAG。
+已覆盖对象清单：MCP（2026-07-28/通知 server/Registry）、promptfoo/DeepEval/OpenAI Evals/Inspect/Ragas/Langfuse（选型）、OWASP Agentic Top10/Skills Top10、A2A、Omnigent/MS Agent Framework、Mem0/Zep/Letta/A-MEM/MemEval、Garak/PyRIT/PentestGPT/PentAGI/ATLAS/HarmBench、Claude browser/computer use/browser-use、E2B、OTel GenAI、Agentic 基准族、LlamaWeb/MLC-LLM/BitNet/TinyLLM、Pullfrog/OpenCodeReview、DPO/ORPO/KTO、LangGraph/CrewAI/AG2/Mastra、Agentic CLEAR/AgentEval、Mem0 v3/Letta Context Constitution/Zep DMR、RAMPART/Clarity、PI-Hunter/ARGUS/PISmith、SkillFortify/BIV/MalSkills/SkillSafetyBench、MemGraphRAG/Graph-R1/A-RAG、Agentic UX 模式体系（Agentic Design/AI UX Playground/Smashing/zylos）、OpenClaw 2.0、SkillSpector、CHAINDROP、Agent Threat Rules。
 
 > 新扫描前：先 grep 本表对象名，命中即不重复收集，只做增量更新。

@@ -29,6 +29,7 @@ Nous Research 的 hermes-agent（MIT，~217k★）：2026 年增长最猛的开�
 > - 新增 Native Windows 支持 + DeepSeek V4 推理模型 + Super Grok 集成 + AI 视频生成（2026-05 前后）["https://www.geeky-gadgets.com/deepseek-v4-free-hermes/"]
 > - 活跃度证据强化：release 链持续高频（v0.11→v0.15→v0.18→v0.20，2026-04→08），大版本 4 个月内从 0.11 迭代到 0.20，远超普通开源项目节奏["https://github.com/NousResearch/hermes-agent/releases"]
 > - **含义**：hermes-agent 已从"值得观察"升级为"开源 agent 框架格局中增速最快的实证样本"，建议在本轮后重新评估是否升 A（尤其其 browser automation + MCP client + 自我改进 skills 与我的 Tools 体系直接同构）
+> - **雷达增量（2026-09-06，Changed）：OpenClaw 2.0 发布重构竞争格局**——2026-08-31 OpenClaw 发布 **v2026.8.1（直接称 2.0）**，官方称史上最大更新：933 贡献者（569 首贡献）/ 16,000+ PR；简化首次安装、整体重建浏览器应用（web tasks 共享会话）、**multiplayer sessions（多人共享一个 AI 浏览器任务）**、持久会话、更新安全控制["https://www.infoq.com/news/2026/09/openclaw-2-release/"]["https://36kr.com/p/3963416143814149"]["https://lapaasvoice.com/openclaw-2-0-browser-app-multiplayer-sessions/"]；社区出现"OpenClaw 沉寂两月、用户转投 Hermes"的对比叙事，Reddit 新用户被导流 Hermes，同时 zeroclaw/goclaw 等轻量分叉分流["https://downloadfan.nl/2026/09/01/openclaw-2-0-verschijnt-met-eenvoudigere-installatie/"]。**含义**：① OpenClaw 2.0 的浏览器 App 重建 + 多人共享会话与我的 campus_order/E2E-CLI 直接相关，值得实测对照；② hermes-agent 作为对照样本的价值因 OpenClaw 大版本回归而上升，本卡升 A 的判断保持。
 <!-- 待回填 -->
 ## 6. 决策
 - [ ] 晋升 validated
