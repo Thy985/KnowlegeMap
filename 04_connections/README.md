@@ -59,6 +59,11 @@
 |---|---|---|---|---|
 | **Agentic UX / AI 原生产品设计模式** | **TeamMind** / campus_order（OpenClaw 2.0 浏览器 UI）/ agent-attention / Tafcm | AI 原生产品（G2 空白区）/ 五级自主度 / diff 预览即确认 / EP-002 可见性 | 🟡 已出候选卡 | [agentic-ux-2026](../03_expansion_queue/candidates/[cand]agentic-ux-2026.md) |
 > 雷达增量（2026-09-06）：OpenClaw 2.0（v2026.8.1 大版本）、SkillSpector/CHAINDROP/Tenable、ATR 威胁规则等 3 条已知对象重要变化已在对应候选卡内追加记录，连接关系不变。
+## 2026-09-07 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **去中心化 AI / Agent 联邦学习（IETF 草案）** | **TeamMind**（协作面与执行面解耦类比）/ silver-shield / EP-002 延伸 | 去中心化 AI（G4）/ 隐私保护 / 多 Agent 互操作（A2A 对接） | 🟡 已出候选卡 | [decentralized-ai-federated-agents-2026](../03_expansion_queue/candidates/[cand]decentralized-ai-federated-agents-2026.md) |
+> 雷达增量（2026-09-07）：DeepSeek Harness（validated）v0.1.3 大版本迭代（原生图片输入 + 异构 sub-agent 编排 + 200k stars）已在 validated 卡内追加记录，连接关系不变。
 
 ## 规则
 

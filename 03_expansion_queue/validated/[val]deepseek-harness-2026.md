@@ -36,6 +36,10 @@ DeepSeek 于 2026-08-13 开源的 Agent Harness 开发者预览版（`deepseek-a
   - **可观测**：`session-telemetry-otel`（OpenTelemetry 后端）
   - **互操作**：内置 `mcp`、`acp`（Agent Client Protocol）、`e2b` 沙箱
 - **TeamMind 对照结论**：dsh 的"能力 seam + 插件树"即我五维模型的工程化样本——Runtime=agent-loop/seam、Memory=session 日志+projection、Tool=guarded tools、Orchestration=subagent/agent-teams、Evaluation=invariants；TeamMind 可从"插件化 seam 化 + 事件溯源会话日志 + 把关流水线"三点直接借鉴。验证达标（≥2 独立证据：官方仓库+架构文档+论文）
+> **雷达增量（2026-09-07，Changed）**：
+> - **版本快速迭代至 v0.1.3（2026-08-31/09-01 发布）**：v0.1.0-rc.8（08-19）起 14 项升级——**原生图片输入**（/goal、/plan 等核心命令直接看图）、**Claude Code / Codex 可安装为 sub-agent bundles 并编排**（异构 agent 组合）；v0.1.2-alpha.1（08-27）支持**每个 subagent 独立选 provider/模型/effort** + Python SDK Windows x64 包；v0.1.2-alpha.3/v0.1.3 改进长会话导航渲染、修复排队图片投递、移除可选 SQLite Session 后端["https://deepseekv4pro.com/news/deepseek-harness-0-1-2-alpha-3-update"]["https://deepthink.ltd/blog/deepseek-harness-rc8-claude-codex-subagent-2026/"]
+> - **星数增长验证**：发布两周突破 **200k+ stars**（09-01 快照），社区对比评测（vs Claude Code/Codex CLI）持续产出["https://pasqualepillitteri.it/news/13654/deepseek-harness-200mila-stelle-claude-code-codex"]["https://rohitraj.tech/en/notes/deepseek-harness-vs-claude-code-codex-cli-2026"]
+> - **含义**：① dsh 迭代速度极快且已具备"异构 agent 编排"（Claude Code/Codex 作 sub-agent）能力——这正是 TeamMind 多运行时编排的直接参考；② 图片输入支持让 Tafcm 本地多模态对照价值上升；③ 需在后续轮次核实 v0.1.3 是否仍保持"无特权内核"架构承诺
 ## 6. 决策
 - [x] 晋升 validated（源码级验证通过，可作 TeamMind 架构参考）
 - [ ] 维持观察
