@@ -15,6 +15,10 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 > - **可观测覆盖 6 层已成形**：LLM 调用 / agent 编排 / MCP 工具调用 / content capture / 质量评估，多数工具已原生接入 OTel["https://www.greptime.com/blogs/2026-05-09-opentelemetry-genai-semantic-conventions"]
 > - **新玩家**：阿里云 **LoongSuite**（OTel 之上推出 GenAI 可观测语义规范 + 零代码 Python Agent 采集）、Iris（OTel-native 自托管 trace+eval+回归检测，但同名项目混乱待甄别）["https://www.alibabacloud.com/blog/loongsuite-python-agent-launches-observability-into-every-ai-agent-action-zero-code-integration_603016"]["https://github.com/saishettar/iris"]
 > - **含义**：Tafcm ADI 接 OTel GenAI 现在有稳定规范可依；阿里 LoongSuite 的零代码采集与 MCP 工具调用观测值得对照
+> **雷达增量（2026-09-08，Changed）**：
+> - **Helicone 进入维护模式**：2026-03 被 Mintlify 收购后仅安全补丁与 bugfix，不再功能迭代——可观测选型格局出现一个"事实出局"样本，选型清单需更新["https://www.kosmoy.com/resources/blog/best-ai-observability-platforms-2026/"]
+> - 新进者：**xtrace**（自托管 OTLP collector/UI/业务报告层，独立于 Xrouter，2026-09-03 活跃）、pydantic **Logfire**（生产 LLM/agent 可观测，AI 工具链深度绑定）、Comet **Opik**（trace+自动评估+仪表盘）["https://github.com/EeroEternal/xtrace"]["https://github.com/topics/agent-observability?l=python"]
+> - **含义**：自托管 OTLP 栈（Langfuse/xtrace）与 eval 一体化（Opik/Logfire）双路线并行；Tafcm ADI 选型时需把 Helicone 从候选剔除
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座

@@ -64,6 +64,12 @@
 |---|---|---|---|---|
 | **去中心化 AI / Agent 联邦学习（IETF 草案）** | **TeamMind**（协作面与执行面解耦类比）/ silver-shield / EP-002 延伸 | 去中心化 AI（G4）/ 隐私保护 / 多 Agent 互操作（A2A 对接） | 🟡 已出候选卡 | [decentralized-ai-federated-agents-2026](../03_expansion_queue/candidates/[cand]decentralized-ai-federated-agents-2026.md) |
 > 雷达增量（2026-09-07）：DeepSeek Harness（validated）v0.1.3 大版本迭代（原生图片输入 + 异构 sub-agent 编排 + 200k stars）已在 validated 卡内追加记录，连接关系不变。
+## 2026-09-08 雷达新增连接（2 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agent 形式化验证 / 可证明 Guardrail** | **Validation 编译器**（证据机器可核验层）/ EP-002 / TeamMind（工具调用策略）/ silver-shield | 形式化验证（G5 战略）/ 可证明安全 / 策略即代码 | 🟡 已出候选卡 | [agent-formal-verification-2026](../03_expansion_queue/candidates/[cand]agent-formal-verification-2026.md) |
+| **Robotics×LLM / 具身智能 VLA** | **multi_arm_line_ws**（孤悬项目知识支撑）/ TeamMind（统一 harness 范式类比） | Robotics × LLM（G4）/ 多模态 / 世界模型 | 🟡 已出候选卡 | [robotics-llm-vla-2026](../03_expansion_queue/candidates/[cand]robotics-llm-vla-2026.md) |
+> 雷达增量（2026-09-08）：LLM 可观测选型格局——Helicone 进入维护模式（Mintlify 收购后），xtrace/Logfire/Opik 新进者双路线，已在 otel-genai 卡内追加记录，连接关系不变。
 
 ## 规则
 
