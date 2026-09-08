@@ -70,6 +70,12 @@
 | **Agent 形式化验证 / 可证明 Guardrail** | **Validation 编译器**（证据机器可核验层）/ EP-002 / TeamMind（工具调用策略）/ silver-shield | 形式化验证（G5 战略）/ 可证明安全 / 策略即代码 | 🟡 已出候选卡 | [agent-formal-verification-2026](../03_expansion_queue/candidates/[cand]agent-formal-verification-2026.md) |
 | **Robotics×LLM / 具身智能 VLA** | **multi_arm_line_ws**（孤悬项目知识支撑）/ TeamMind（统一 harness 范式类比） | Robotics × LLM（G4）/ 多模态 / 世界模型 | 🟡 已出候选卡 | [robotics-llm-vla-2026](../03_expansion_queue/candidates/[cand]robotics-llm-vla-2026.md) |
 > 雷达增量（2026-09-08）：LLM 可观测选型格局——Helicone 进入维护模式（Mintlify 收购后），xtrace/Logfire/Opik 新进者双路线，已在 otel-genai 卡内追加记录，连接关系不变。
+## 2026-09-09 雷达新增连接（2 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agentic Attack 范式事件** | **silver-shield**（防御侧直接对标）/ dsh-pentest（实战基准参考）/ TeamMind（多 agent 安全边界正反教材）/ EP-002（权限失效模式） | AI 安全攻防（G1 第一盲区）/ Agent 威胁建模 / 攻击经济学 | 🟡 已出候选卡 | [agentic-attack-2026](../03_expansion_queue/candidates/[cand]agentic-attack-2026.md) |
+| **OpenCode（headless HTTP coding agent）** | **TeamMind**（异构 harness 编排参考）/ Tafcm（agent 服务化对照）/ DeepSeek Harness（谱系对照） | Agent Harness 架构（S3）/ 五维 Runtime / agent 服务化 | 🟡 已出候选卡 | [opencode-agent-2026](../03_expansion_queue/candidates/[cand]opencode-agent-2026.md) |
+> 雷达增量（2026-09-09）：Agent Memory——Mem0×DeepSeek Harness 原生插件、Letta Code memory-first coding agent 已在 agent-memory 卡内追加记录，连接关系不变。
 
 ## 规则
 

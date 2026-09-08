@@ -23,6 +23,11 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Zep 强化**：自报 DMR 94.8%（vs MemGPT 93.4%）、LongMemEval +18.5% 且 -90% 延迟——但均为厂商自报，需独立复测["https://www.developersdigest.tech/blog/best-ai-agent-memory-providers-2026"]
 > - **Supermemory**：LongMemEval 自报 SOTA（81-85%）、MCP-原生适配 Claude Code/OpenCode——但多依赖自家技术报告["https://blog.csdn.net/qq_44193969/article/details/160620303"]
 > - **含义**：记忆厂商"数字大战"激烈，但分数口径不一（平台 vs SDK），验证纪律（区分厂商自报 vs 独立评测）正是我的判断优势
+> **雷达增量（2026-09-09，Changed）**：
+> - **Mem0 × DeepSeek Harness 原生插件（2026-08-24）**：Mem0 发布 dsh Cordis 插件——跨会话持久记忆 + search/add 工具 + 服务端托管存储 + 生命周期原生集成，与 dsh 其他连接 agent 共享同一 memory bank；官方明言"dsh agent 会话间即忘"是痛点["https://releasebot.io/updates/mem0"]
+> - **Letta Code（2026-09 观察）**：Letta 之上推出的 memory-first coding agent——单一持久化 agent 跨编码会话学习、可移植跨 LLM provider（Apache 2.0，~1.5k★）；"stateless 编码助手会话结束即忘"的对立面["https://www.evermx.com/open-source/letta-code-memory-first-coding-agent"]
+> - **Zep 记忆检索嵌入基准**：Nemotron 3 Embed 1B（2026-07-16 发布）在生产 recall 查询 5954 条上击败 Zep 生产基线及另两模型["https://blog.getzep.com/"]
+> - **含义**：记忆层正在"harness 原生嵌入"（Mem0→dsh、Letta→coding agent）——记忆不再是独立服务而是 harness 内置能力，TeamMind 记忆设计需对照此趋势
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
