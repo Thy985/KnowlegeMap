@@ -76,6 +76,11 @@
 | **Agentic Attack 范式事件** | **silver-shield**（防御侧直接对标）/ dsh-pentest（实战基准参考）/ TeamMind（多 agent 安全边界正反教材）/ EP-002（权限失效模式） | AI 安全攻防（G1 第一盲区）/ Agent 威胁建模 / 攻击经济学 | 🟡 已出候选卡 | [agentic-attack-2026](../03_expansion_queue/candidates/[cand]agentic-attack-2026.md) |
 | **OpenCode（headless HTTP coding agent）** | **TeamMind**（异构 harness 编排参考）/ Tafcm（agent 服务化对照）/ DeepSeek Harness（谱系对照） | Agent Harness 架构（S3）/ 五维 Runtime / agent 服务化 | 🟡 已出候选卡 | [opencode-agent-2026](../03_expansion_queue/candidates/[cand]opencode-agent-2026.md) |
 > 雷达增量（2026-09-09）：Agent Memory——Mem0×DeepSeek Harness 原生插件、Letta Code memory-first coding agent 已在 agent-memory 卡内追加记录，连接关系不变。
+## 2026-09-10 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **HAAF 可信度评估范式（场景流形采样）** | **Validation 编译器**（Evidence 收集代表性理论）/ silver-shield（风险敏感采样）/ Agentic CLEAR（元框架对照） | Agentic 评测方法论（S2 核心）/ 基准批判 / 代表性评估 | 🟡 已出候选卡 | [haaf-trustworthy-agent-eval-2026](../03_expansion_queue/candidates/[cand]haaf-trustworthy-agent-eval-2026.md) |
+> 雷达增量（2026-09-10）：OpenClaw 2026.9.3（2.0 后首个稳定迭代）记日志；A2A v1.0 加入 AAIF 为已记录事件日期确认，连接关系不变。
 
 ## 规则
 
