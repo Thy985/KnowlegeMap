@@ -40,6 +40,10 @@ DeepSeek 于 2026-08-13 开源的 Agent Harness 开发者预览版（`deepseek-a
 > - **版本快速迭代至 v0.1.3（2026-08-31/09-01 发布）**：v0.1.0-rc.8（08-19）起 14 项升级——**原生图片输入**（/goal、/plan 等核心命令直接看图）、**Claude Code / Codex 可安装为 sub-agent bundles 并编排**（异构 agent 组合）；v0.1.2-alpha.1（08-27）支持**每个 subagent 独立选 provider/模型/effort** + Python SDK Windows x64 包；v0.1.2-alpha.3/v0.1.3 改进长会话导航渲染、修复排队图片投递、移除可选 SQLite Session 后端["https://deepseekv4pro.com/news/deepseek-harness-0-1-2-alpha-3-update"]["https://deepthink.ltd/blog/deepseek-harness-rc8-claude-codex-subagent-2026/"]
 > - **星数增长验证**：发布两周突破 **200k+ stars**（09-01 快照），社区对比评测（vs Claude Code/Codex CLI）持续产出["https://pasqualepillitteri.it/news/13654/deepseek-harness-200mila-stelle-claude-code-codex"]["https://rohitraj.tech/en/notes/deepseek-harness-vs-claude-code-codex-cli-2026"]
 > - **含义**：① dsh 迭代速度极快且已具备"异构 agent 编排"（Claude Code/Codex 作 sub-agent）能力——这正是 TeamMind 多运行时编排的直接参考；② 图片输入支持让 Tafcm 本地多模态对照价值上升；③ 需在后续轮次核实 v0.1.3 是否仍保持"无特权内核"架构承诺
+> **雷达增量（2026-09-11，Changed）**：
+> - **v0.1.5（2026-09-10 发布，同日 DeepSeek-V4.1-Flash 正式发布）**：与 **V4.1 Flash 联合训练**——模型针对 Harness 的标准模式、程序化工具调用（PTC）模式、极简模式专项训练优化（"模型与 Harness 一起训练，强化连续工作能力"）；新增文件上传、侧栏预览、标准化 UI 扩展入口["https://www.zonaintegritas.news/deepseek-harness-releases-version-0-1-5"]["https://technode.com/2026/09/10/deepseek-releases-harness-0-1-5-with-v4-1-flash-support-file-uploads-and-sidebar-previews/"]["https://36kr.com/p/3977300285174021"]
+> - **生态持续膨胀**：awesome-deepseek-harness 收录 **181 个项目**（09-07，⭐214k+）——插件生态已成规模["https://github.com/Rodert/awesome-deepSeek-harness/blob/main/README.fr.md"]
+> - **含义**：① "模型×Harness 联合训练"是全新信号——harness 成为模型专项优化的运行时，反向印证 Agent Harness 是 Agent 工程主战场；② TeamMind 的模型适配层设计可参考 dsh 的 PTC/极简多模式专项优化；③ v0.1.3→v0.1.5 两周两版，迭代速度持续验证"无特权内核"承诺需再核实
 ## 6. 决策
 - [x] 晋升 validated（源码级验证通过，可作 TeamMind 架构参考）
 - [ ] 维持观察

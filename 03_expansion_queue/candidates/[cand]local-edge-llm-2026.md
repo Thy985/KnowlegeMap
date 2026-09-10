@@ -11,6 +11,12 @@
 - **BitNet b1.58 边缘微调**（QVAC Fabric）：首次在移动 GPU（Adreno/Mali/Apple Bionic）微调 BitNet，125M 约 10 分钟（Samsung S25），1B 级亦可["https://github.com/tetherto/qvac-rnd-fabric-llm-bitnet"]
 - **TinyLLM**（arXiv）：小语言模型在边缘做 agentic 任务的评测与优化，DPO 对齐 SLM agent["https://arxiv.org/html/2511.22138v1/"]
 - 运行时谱系：llama.cpp（GGUF 事实标准，CPU/ARM/Apple）、ONNX Runtime（CPU/CUDA/TensorRT/DirectML）、OpenVINO（Intel）、TensorRT-LLM（NVIDIA）["https://martinuke0.github.io/posts/2026-03-22-the-shift-to-edge-native-llms-optimizing-local-inference-for-privacy-first-developer-workflows/"]
+> **雷达增量（2026-09-11，Changed）**：
+> - **MiniCPM5-2B（2026-09-07，OpenBMB，Apache-2.0）**：25 亿参数小模型（1.98B 激活），目标"手机/笔记本/边缘盒"级硬件——Tafcm 移动端 SLM 直接候选["https://ai-tldr.dev/models/minicpm5-2b/"]
+> - **Qwen3.8 系列（2026-08 起）**：Qwen3.8-27B（08-14，原生 VLM，本地 Mac 第一，LLMCheck Score 71）超 Qwen3.6 27B；Empero **Qwen3.8-9B-GGUF**（从 Qwen3.8 2.4T A95B 全参蒸馏至 Qwen3.5-9B 架构）；Qwen3-4B-Instruct/Thinking-2507["https://llmcheck.net/blog/state-of-open-source-local-llms-september-2026/"]["https://ai.atomgit.com/hf_mirrors/empero-ai/Qwen3.8-9B-GGUF"]
+> - **Edge LLM（WASM-first + WebGPU，纯 Rust）**：浏览器内零服务器跑 LLM，同代码库编译 native+WASM（同一 WGSL shader/量化核/推理管线）；M5 Pro 基准 vs llama.cpp 对比公开——与 flutter-local-llm 的浏览器路线互补["https://github.com/CloseAI-ai/edge-llm"]
+> - **GLM-5.3-Flash（MIT，320B/18B active MoE）**：quant 可跑 Mac Studio——前沿 MoE 进入本地["https://llmcheck.net/blog/state-of-open-source-local-llms-september-2026/"]
+> - **含义**：本地 SLM 竞争从"能跑"转向"手机/浏览器原生"（MiniCPM5-2B/Edge LLM）；Qwen3.8-27B 证明 27B 级 VLM 已可在 24GB RAM 本地部署——Tafcm 本地选型池显著扩大
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径
