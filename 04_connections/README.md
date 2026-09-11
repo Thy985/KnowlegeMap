@@ -86,6 +86,11 @@
 |---|---|---|---|---|
 | **Agent 防火墙 / 运行时防御品类** | **silver-shield**（确定性 guardrail 借鉴）/ EP-002（权限边界工程实现）/ campus_order（ClawKeeper 针对 OpenClaw）/ TeamMind（工具治理选型池）/ dsh-pentest（可攻击测试） | AI 安全防御侧（G1）/ Agent 运行时治理 / Skill 供应链同线 | 🟡 已出候选卡 | [agent-firewall-runtime-defense-2026](../03_expansion_queue/candidates/[cand]agent-firewall-runtime-defense-2026.md) |
 > 雷达增量（2026-09-11）：DeepSeek Harness v0.1.5×V4.1 Flash 联合训练、local-edge-llm MiniCPM5-2B/Edge LLM 已分别在 validated/local-edge 卡内追加记录，连接关系不变。
+## 2026-09-12 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Trace-based Agent Evaluation（agentevals/TraceBench/AWS）** | **Validation 编译器**（trace 即 Evidence、可重放评测）/ TeamMind（tool trajectory 确定性门禁=Evaluation 不变量）/ Tafcm（本地零成本评测）/ silver-shield（trace 审计+回归门禁） | Agent 评测方法论（S2 核心）/ 可观测 × 评测交叉 | 🟡 已出候选卡 | [trace-based-agent-eval-2026](../03_expansion_queue/candidates/[cand]trace-based-agent-eval-2026.md) |
+> 雷达增量（2026-09-12）：Agent 防火墙品类第二批（OWASP Agent Memory Guard/Guardian 等）已追加在 agent-firewall-runtime-defense-2026 卡内，连接关系不变。
 
 ## 规则
 

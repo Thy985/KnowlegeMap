@@ -9,6 +9,13 @@
 - **AgentGuard（0xrem）**：桌面/开发机 AI Agent 运行时防火墙——Prompt Guard（输入/检索/工具参数：warn/mask/block/ask）+ Tool Guard（文件/浏览器/HTTP/DB/邮件：allow/deny/ask/sandbox）+ Command Guard（shell：suspend/block/confirm/kill）["https://github.com/0xrem/agentguard"]
 - **Pipelock v3.5.0（2026-09-01）**：开源 AI agent 防火墙，扫描 HTTP/MCP/A2A/WebSocket 流量防外泄/SSRF/prompt injection，**可验证签名 action receipts** 供审计["https://kitploit.com/en/posts/github-luckypipewrench-pipelock-v350"]
 - 同线：Agent Guard（Avveerayy，运行时治理层）、NeuralGuard（FastAPI 中间件）、LlamaFirewall（arXiv 2505.03574，open source guardrail 框架）["https://github.com/Aveerayy/agent-guard"]["https://arxiv.org/pdf/2505.03574"]
+> **雷达增量（2026-09-12，品类持续爆炸）**：
+> - **OWASP Agent Memory Guard（OWASP 官方 Incubator，2026-08-30 页面）**：**ASI06 Memory Poisoning 的参考实现**（OWASP Top 10 for Agentic Applications 该风险项此前缺实现）——SHA-256 密码学基线验证记忆完整性、检测注入/敏感泄漏/关键键修改/突变/大小异常、YAML 声明式安全策略、快照取证 + 回滚到已知良好态、drop-in 中间件（LangChain/LlamaIndex/CrewAI）；被 MITRE ATLAS "Memory Hardening" 缓解项引用——**与已覆盖的 OWASP Agentic Security（S）+ Agent Memory（S）形成官方项目级闭环**["https://owasp.org/www-project-agent-memory-guard/"]
+> - **Guardian（LegionForge，2026-09-10）**：FastAPI sidecar，工具调用前 7 项**确定性检查**（Task token ACL / 模式匹配 / 哈希校验 / 密码学验证）——"No LLM. No heuristics. decisions that cannot be prompt-injected"["https://github.com/LegionForge/guardian"]
+> - **AI Protector（szesnasty，09-02）**：确定性安全运行时（~50ms 全本地），"provable"——Benchmark Hub 度量 + runtime 执行 + 证明
+> - **Agent Shield（cdayAI，09-03）**：npm SDK（agentshield-sdk），40+ 威胁类别零依赖本地检测
+> - **InjectShield（09-04）/ llm-injection-guard（09-02）**：启发式规则库 REST API / Python 实时注入检测库
+> - **含义**：① 品类从"4 个代表项目"扩张为"10+ 项目生态"，确定性（无 LLM 判定）、密码学验证、可证明（provable）成为共同主线——**Aigis/Guardian/AI Protector 三选一实测**应尽快排期；② OWASP 官方下场做 Memory Poisoning 参考实现，说明 Agent 安全正式进入标准治理层；③ silver-shield 的"记忆/状态完整性"防线可直接采用 SHA-256 基线 + 回滚模式["https://github.com/szesnasty/ai-protector"]["https://github.com/cdayAI/Agent-Shield"]["https://github.com/maheshmakvana/llm-injection-guard"]
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-11）**：Aigis GitHub/PyPI ✅、ClawKeeper 多源报道 ✅、AgentGuard GitHub ✅、Pipelock release ✅
 - 时间密集：09-01 Pipelock → 09-02 AgentGuard → 09-04 ClawKeeper/Aigis PyPI → 09-05 Aigis 更新——一周内至少 4 个独立项目发布，品类成形信号
