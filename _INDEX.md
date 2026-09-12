@@ -69,6 +69,7 @@
 | [2026-09/2026-09-10_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-10_radar-watch_scan.md) | Personal Tech Radar 第 9 次扫描（HAAF 评测范式 + 协议确认） | 📌 |
 | [2026-09/2026-09-11_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-11_radar-watch_scan.md) | Personal Tech Radar 第 10 次扫描（Agent 防火墙品类 + dsh v0.1.5） | 📌 |
 | [2026-09/2026-09-12_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-12_radar-watch_scan.md) | Personal Tech Radar 第 11 次扫描（Trace-based Eval 范式 + 防火墙品类二批） | 📌 |
+| [2026-09/2026-09-13_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-13_radar-watch_scan.md) | Personal Tech Radar 第 12 次扫描（Mem0 架构/Letta Trajectory + Edge0 磁盘流式 MoE） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

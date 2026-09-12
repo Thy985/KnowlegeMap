@@ -23,6 +23,10 @@ OpenCode 是增长最快的开源 coding agent / harness 之一（**~147k★、6
 | 验证方式 | 本机装 OpenCode 跑一个真实任务 → 评估 headless 接入面是否能作为 TeamMind 的外部运行时插件 |
 | 预期完成时间 | 2026-09/10 |
 ## 5. 验证结果
+> **雷达增量（2026-09-13，Changed）**：
+> - **常规迭代 v1.18.28→v1.18.30（09-04/09-09）**：GPT-6 Astra system prompt、Codex OAuth 模型过滤（gpt-6 整数版本识别）、Copilot session ID 透传、Astra 支持——持续小步快跑["https://opencode.ai/zh/changelog"]
+> - **竞品动态：Cline SDK（2026-05 发布，09 月持续更新）**：Cline 将自身**重建于自研 agent runtime（Cline SDK）之上**，CLI/桌面/IDE 一体化 + 完全 headless（CI/CD/脚本）——67.9k★、8M+ installs，Apache-2.0；与 OpenCode 的 headless 服务化路线互相印证"coding agent 从终端应用走向可编程运行时"["https://github.com/Cline/Cline"]["https://cline.ghost.io/introducing-cline-sdk-the-upgraded-agent-runtime/"]
+> - **含义**：① OpenCode 仍在快速迭代（GPT-6 时代适配领先）；② Cline SDK 化证明"runtime 化"是主流 coding agent 的共同演进方向，OpenCode 的 headless HTTP 是其中走得最远的一支——TeamMind 异构编排接入面选型池再增一员
 <!-- 待回填 -->
 ## 6. 决策
 - [ ] 晋升 validated

@@ -28,6 +28,11 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Letta Code（2026-09 观察）**：Letta 之上推出的 memory-first coding agent——单一持久化 agent 跨编码会话学习、可移植跨 LLM provider（Apache 2.0，~1.5k★）；"stateless 编码助手会话结束即忘"的对立面["https://www.evermx.com/open-source/letta-code-memory-first-coding-agent"]
 > - **Zep 记忆检索嵌入基准**：Nemotron 3 Embed 1B（2026-07-16 发布）在生产 recall 查询 5954 条上击败 Zep 生产基线及另两模型["https://blog.getzep.com/"]
 > - **含义**：记忆层正在"harness 原生嵌入"（Mem0→dsh、Letta→coding agent）——记忆不再是独立服务而是 harness 内置能力，TeamMind 记忆设计需对照此趋势
+> **雷达增量（2026-09-13，Changed）**：
+> - **Mem0 架构细节确认（Habr 09-07）**：新算法将两遍 extraction（extract→diff→ADD/UPDATE/DELETE）改为**单遍 ADD-only**（一次提取新事实、并排写入、检索时去重）；**同时移除图存储支持**——向量+关系检索的简化取向["https://habr.com/ru/articles/1028790/"]；Mem0 新 release（09-09）：Pi Agent Plugin v0.3.0（复用会话准备/记忆格式化/作用域工具）+ Strands 集成["https://github.com/mem0ai/mem0/releases"]
+> - **Letta Trajectory（2026-07）**：开源包，把 Claude Code/Codex/Letta Code 等 harness 的编码会话**规范化为一套 token 高效标准格式**，供"agent 从经验中学习"——与 Trace-based Evaluation（09-12 新卡）同属"以行为数据为标准证据"范式，但 trajectory 面向学习/复用而非评测，两者可组合["https://www.letta.com/research/"]
+> - **同线新项目（观察级）**：agentmemory（hansonkim，09-04，面向编码 agent 的持久记忆，自称基于真实世界基准第一，vs mem0 53K★/Letta 22K★）、agents-memory v1.1.0（Lolaplex，09-08，本地 markdown 记忆 + 跨 agent 上下文引擎）——均主打"编码 agent 记忆"，印证记忆→harness 内置化趋势["https://github.com/hansonkim/agentmemory"]["https://github.com/Lolaplex/agents-memory/releases"]
+> - **含义**：① Mem0 去图存储说明"抽取-写入-检索"简化路线正在胜出，Zep 的时序图路线成为差异化分支；② trajectory/trace 标准格式若收敛，Agent 记忆、评测、经验学习将共享同一行为数据层——这是 TeamMind 数据层设计的强信号
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上

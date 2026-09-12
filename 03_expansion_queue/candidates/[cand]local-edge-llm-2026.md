@@ -17,6 +17,11 @@
 > - **Edge LLM（WASM-first + WebGPU，纯 Rust）**：浏览器内零服务器跑 LLM，同代码库编译 native+WASM（同一 WGSL shader/量化核/推理管线）；M5 Pro 基准 vs llama.cpp 对比公开——与 flutter-local-llm 的浏览器路线互补["https://github.com/CloseAI-ai/edge-llm"]
 > - **GLM-5.3-Flash（MIT，320B/18B active MoE）**：quant 可跑 Mac Studio——前沿 MoE 进入本地["https://llmcheck.net/blog/state-of-open-source-local-llms-september-2026/"]
 > - **含义**：本地 SLM 竞争从"能跑"转向"手机/浏览器原生"（MiniCPM5-2B/Edge LLM）；Qwen3.8-27B 证明 27B 级 VLM 已可在 24GB RAM 本地部署——Tafcm 本地选型池显著扩大
+> **雷达增量（2026-09-13，Changed）**：
+> - **Edge0-35B-A3B（MindStudio，2026-09-12）**：35B MoE 模型在 **<3 GiB 活跃内存**运行——大部分权重留在磁盘、按需流式加载 expert（prerouter + 递归路由 + 4-bit 量化，基于 Qwen3.5-MoE 35B-A3B）——"存储-计算解耦"路线，区别于纯量化["https://www.mindstudio.ai/blog/edge0-35b-phone-memory-moe"]
+> - **Falcon-Edge（TII，2026-09-08）**：1.58-bit 三元量化（权重转 -1/0/1）系列，手机/平板本地运行、开源可微调——BitNet 路线（已覆盖 b1.58）的正式产品化["https://noticias-inteligencia-artificial.com/articulo/falcon-edge-modelos-de-lenguaje-de-158-bits-que-caben-en-un-movil-e3238325"]
+> - **Qwen3.8-Flash-Next 手机 CPU 实证（09-05）**：MoE 绕过 NPU 依赖在旗舰手机 CPU 本地运行（IQ3_XXS 超低位量化）——"MoE 民主化到边缘"信号["https://baguaai.com/breaking-mobile-inference-barriers-qwen3-8-flash-next-achieves-local-execution-on-xiaomi-14t-pro-cpu/"]
+> - **含义**：① 边缘 LLM 从"量化压缩"进入"**磁盘流式 MoE + 超低位量化**"两条新路线，35B 级 MoE 已可入手机内存预算；② Tafcm 移动端选型出现"小模型常驻 + 大 MoE 按需流式"混合架构可能；③ Edge0/Falcon-Edge 均需后续核验实际可用性与生态成熟度
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径
