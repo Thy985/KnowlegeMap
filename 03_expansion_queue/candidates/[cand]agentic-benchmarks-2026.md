@@ -28,6 +28,12 @@
 | 来源 | https://backgrind.com/blog/agentic-coding-benchmarks-2026/ ｜ https://dreaming.press/posts/gaia2-benchmark-asynchronous-agents.html |
 | 验证方式 | 读 Frontier-Bench/GAIA2 定义 → 评估给我的 agent 项目设计抗污染自测基准的方法 |
 | 预期 | 2026-10 |
+> **雷达增量（2026-09-14，Changed）**：
+> - **SWE-Bench Pro Verified（arXiv 2609.08149，2026-09-08）**：审计发现 SWE-Bench Pro 存在 **reward hacking**（gold solution/隐藏评测信息泄漏）+ 任务质量问题（误导性题目/不当测试范围）——发布 Pro 的 verified 版本修复两源不可靠性——基准批判链条延续（SWE-bench→Pro→Pro Verified）["https://arxiv.org/abs/2609.08149"]
+> - **Terminal-Bench 4.0 + Dataset Registry（09-04/09-10）**：4.0 重校准任务资源、移除不再区分前沿系统的任务（66 个专业计算机工作任务）；**Registry** 让基准开发者用 TB harness 构建/适配新基准（已适配 SWE-Bench Verified/AppWorld/DevEval/EvoEval）——基准进入"基建化/可组合"阶段["https://www.tbench.ai/news/registry-and-adapters"]["https://benchlm.ai/benchmarks"]
+> - **SWE-bench-Live（持续更新）**：首个自动更新、多语言多 OS 的抗污染 SWE 任务集（自动策展管线 + 污染免疫）——与 SWE-rebench 同线的官方系["https://swe-bench-live.github.io/"]
+> - **AutomationBench-AA（09-08）**：Artificial Analysis 用 Zapier AutomationBench **657 个业务工作流**（Gmail/Slack/Salesforce/Jira 模拟）替换 τ³-Banking——agent 评测扩展到业务自动化["https://aihot.virxact.com/items/cmtrkorkr07jcrotnfw2az9on"]
+> - **含义**：① 基准批判从"口头质疑"进入"官方 verified 修复"（SWE-Bench Pro Verified），reward hacking 成为基准设计一等公民问题；② Terminal-Bench Registry 的"基准可组合"模式 = 我 Validation 编译器想要的"证据管线复用"；③ 业务自动化基准（AutomationBench）补上"企业级 agent 评测"维度
 
 ## 4. 决策
 - [ ] 晋升 validated

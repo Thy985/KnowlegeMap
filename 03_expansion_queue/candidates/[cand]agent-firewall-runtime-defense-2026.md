@@ -16,6 +16,7 @@
 > - **Agent Shield（cdayAI，09-03）**：npm SDK（agentshield-sdk），40+ 威胁类别零依赖本地检测
 > - **InjectShield（09-04）/ llm-injection-guard（09-02）**：启发式规则库 REST API / Python 实时注入检测库
 > - **含义**：① 品类从"4 个代表项目"扩张为"10+ 项目生态"，确定性（无 LLM 判定）、密码学验证、可证明（provable）成为共同主线——**Aigis/Guardian/AI Protector 三选一实测**应尽快排期；② OWASP 官方下场做 Memory Poisoning 参考实现，说明 Agent 安全正式进入标准治理层；③ silver-shield 的"记忆/状态完整性"防线可直接采用 SHA-256 基线 + 回滚模式["https://github.com/szesnasty/ai-protector"]["https://github.com/cdayAI/Agent-Shield"]["https://github.com/maheshmakvana/llm-injection-guard"]
+> **雷达增量（2026-09-14，品类商业化）**：**天融信获国内首批《人工智能防火墙产品测评》证书（09-13）**——提示词注入防护覆盖 DAN 越狱/模型劫持/角色扮演等数十种手法（直接+间接注入）、OCR 识别图片/文档隐藏指令、敏感数据双向检测脱敏、Token 消耗阈值风控——Agent 防火墙品类进入**商用合规产品化**阶段["http://m.toutiao.com/group/7684990768863363593/"]
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-11）**：Aigis GitHub/PyPI ✅、ClawKeeper 多源报道 ✅、AgentGuard GitHub ✅、Pipelock release ✅
 - 时间密集：09-01 Pipelock → 09-02 AgentGuard → 09-04 ClawKeeper/Aigis PyPI → 09-05 Aigis 更新——一周内至少 4 个独立项目发布，品类成形信号
