@@ -44,6 +44,10 @@ DeepSeek 于 2026-08-13 开源的 Agent Harness 开发者预览版（`deepseek-a
 > - **v0.1.5（2026-09-10 发布，同日 DeepSeek-V4.1-Flash 正式发布）**：与 **V4.1 Flash 联合训练**——模型针对 Harness 的标准模式、程序化工具调用（PTC）模式、极简模式专项训练优化（"模型与 Harness 一起训练，强化连续工作能力"）；新增文件上传、侧栏预览、标准化 UI 扩展入口["https://www.zonaintegritas.news/deepseek-harness-releases-version-0-1-5"]["https://technode.com/2026/09/10/deepseek-releases-harness-0-1-5-with-v4-1-flash-support-file-uploads-and-sidebar-previews/"]["https://36kr.com/p/3977300285174021"]
 > - **生态持续膨胀**：awesome-deepseek-harness 收录 **181 个项目**（09-07，⭐214k+）——插件生态已成规模["https://github.com/Rodert/awesome-deepSeek-harness/blob/main/README.fr.md"]
 > - **含义**：① "模型×Harness 联合训练"是全新信号——harness 成为模型专项优化的运行时，反向印证 Agent Harness 是 Agent 工程主战场；② TeamMind 的模型适配层设计可参考 dsh 的 PTC/极简多模式专项优化；③ v0.1.3→v0.1.5 两周两版，迭代速度持续验证"无特权内核"承诺需再核实
+> **雷达增量（2026-09-15，Changed）**：
+> - **v0.1.5-alpha.1（09-08/09 发布，跳过 0.1.4）**：**动态系统提示词**（运行时可更新且**不破坏 KV Cache**，避免热更新丢缓存）+ 实验性 Sidebar + 多标签/分栏/全屏 + 历史会话迁移升级（Codex 0.153.4 / Claude Code 2.1.263）["https://www.iesdouyin.com/share/video/7683387405353699438"]["https://technode.com/2026/09/10/deepseek-releases-harness-0-1-5-with-v4-1-flash-support-file-uploads-and-sidebar-previews/"]
+> - **36kr《DeepSeek "推倒重来"》（09-14）**："先有模型、后有 Harness"的行业常规被打破——**模型与 Harness 联合训练**成为 DeepSeek 新范式（V4.1 Flash × dsh v0.1.5 同步发布实证）["https://36kr.com/p/3983071485843079"]
+> - **含义**：① "动态系统提示词 + KV Cache 保留"是 harness 层关键工程点（提示词更新≠上下文重建）——TeamMind 的会话层可借鉴；② 模型-harness 联合训练被媒体正式定性为范式转变，dsh 作为"运行时主战场"的地位再确认
 ## 6. 决策
 - [x] 晋升 validated（源码级验证通过，可作 TeamMind 架构参考）
 - [ ] 维持观察

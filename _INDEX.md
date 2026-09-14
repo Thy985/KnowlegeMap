@@ -71,6 +71,7 @@
 | [2026-09/2026-09-12_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-12_radar-watch_scan.md) | Personal Tech Radar 第 11 次扫描（Trace-based Eval 范式 + 防火墙品类二批） | 📌 |
 | [2026-09/2026-09-13_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-13_radar-watch_scan.md) | Personal Tech Radar 第 12 次扫描（Mem0 架构/Letta Trajectory + Edge0 磁盘流式 MoE） | 📌 |
 | [2026-09/2026-09-14_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-14_radar-watch_scan.md) | Personal Tech Radar 第 13 次扫描（RSAC 24 CVE/SIR 攻击 + GPT-6 Astra + SWE-Bench Pro Verified） | 📌 |
+| [2026-09/2026-09-15_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-15_radar-watch_scan.md) | Personal Tech Radar 第 14 次扫描（MS Agent Governance Toolkit + Proof-of-Guardrail TEE） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
