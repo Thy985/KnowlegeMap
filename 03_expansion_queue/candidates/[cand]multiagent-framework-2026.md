@@ -26,6 +26,11 @@
 | 来源 | https://www.n-ix.com/langgraph-vs-crewai-vs-autogen/ ｜ https://growthengineer.ai/blog/ai-agent-frameworks-compared |
 | 验证方式 | 产出 TeamMind 的框架接入评估（是否引入框架、还是保持自研 harness + 协议层） |
 | 预期 | 2026-10 |
+> **雷达增量（2026-09-16，编排范式变化）**：
+> - **OpenClaw 2026.9.2（2026-09-05 发布）**：**默认开启并发 sub-agent 编排（swarms）**——结构化结果 + 实时进度，保留 opt-out/工具限制/独立 Code Mode 开关；同时**权限模型变更：跨 agent 会话访问默认扩大**——"default swarms multiply both productivity and responsibility"["https://openclawnews.tech/openclaw-agent-control-stack-swarms-2026/"]["https://ramadigital.id/en/blog/openclaw-2026-9-2-swarm-default-cross-agent-session-access"]
+> - **Swarms v15 'Akira'（2026-09-01）**：**DynamicToolLoader**（工具 schema 目录化延迟加载——50 工具 agent 只发 1 个 schema，抗上下文膨胀）+ 重建真实 agent harness（16 内置工具）+ 多 agent 结构统一 typed chat turns["https://www.swarms.ai/blog/swarms-v15-akira-release"]
+> - **SwarmBench（arXiv 2608.30661）**：LLM 能否当 agent swarm orchestrator 的系统评测 + **SwarmExp**（从任务执行积累可复用编排经验）["https://arxiv.org/pdf/2608.30661"]
+> - **含义**：① **"swarm 默认开启"成为编排框架新默认**——但权限模型同步扩大（跨 agent 会话访问），对照 09-14 RSAC"coding agent 100% 可注入"，campus_order 升级 OpenClaw 2026.9.2 前需先审权限变更清单；② **动态工具加载**是工具注册表新思路（TeamMind 可参考，控制上下文预算）；③ SwarmBench 补"编排者能力"评测维度（关联 agentic-benchmarks 卡）
 
 ## 4. 决策
 - [ ] 晋升 validated

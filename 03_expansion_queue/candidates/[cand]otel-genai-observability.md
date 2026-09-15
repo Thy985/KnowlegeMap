@@ -19,6 +19,12 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 > - **Helicone 进入维护模式**：2026-03 被 Mintlify 收购后仅安全补丁与 bugfix，不再功能迭代——可观测选型格局出现一个"事实出局"样本，选型清单需更新["https://www.kosmoy.com/resources/blog/best-ai-observability-platforms-2026/"]
 > - 新进者：**xtrace**（自托管 OTLP collector/UI/业务报告层，独立于 Xrouter，2026-09-03 活跃）、pydantic **Logfire**（生产 LLM/agent 可观测，AI 工具链深度绑定）、Comet **Opik**（trace+自动评估+仪表盘）["https://github.com/EeroEternal/xtrace"]["https://github.com/topics/agent-observability?l=python"]
 > - **含义**：自托管 OTLP 栈（Langfuse/xtrace）与 eval 一体化（Opik/Logfire）双路线并行；Tafcm ADI 选型时需把 Helicone 从候选剔除
+> **雷达增量（2026-09-16，agent span 语义正式化）**：
+> - **OTel GenAI semconv v1.41.0（09-15 更新）**：`invoke_agent` span kind 规则正式化——**provider-managed agents**（OpenAI Assistants、Bedrock Agents，agent 跑在服务端）= **CLIENT** span；**framework-managed agents**（LangChain、CrewAI、Vercel AI SDK ToolLoopAgent）= **INTERNAL** span——不再由框架任意选择，agent span 语义可跨框架互操作["https://hivebook.wiki/wiki/opentelemetry-genai-semantic-conventions-gen-ai-span-attributes"]
+> - **genai-otel-instrument 1.19.0（09-06）**：TraceVerde 生产 gap 反哺 spec 已成机制（PR #142：BlobPart/FilePart/UriPart 增加 modality 枚举，PDF/DOCX 不再落入 free-form 字符串分支，2026-05-16 merged）["https://pypi.org/project/genai-otel-instrument/"]
+> - **OpenSearch LLM traces（09-01）**：OpenSearch 可观测性直接消费 GenAI semconv（model/token 用量/tool/agent step 标准化 span），GenAI SDK 支持 Strands Agents 等自动插桩["https://dev.to/jon_handler_9bb3e6b4a2fd0/read-your-ai-agents-mind-opensearch-observability-for-llm-traces-2ll"]
+> - **TrueFoundry LLM 网关插桩实践（09-11）**：span kind 约定落地——外部 provider 调用=CLIENT、网关内 guardrail（PII 脱敏/schema 校验）=INTERNAL、根=SERVER["https://www.truefoundry.com/ar/blog/opentelemetry-llm-gateway-instrumentation"]
+> - **含义**：① agent span kind 规则解决"同一 agent 在不同框架 trace 语义不一致"的互操作问题——**Tafcm ADI 接 OTel 时 span kind 决策有标准可依**；② 生产实践（OpenSearch/TrueFoundry/genai-otel-instrument）与 spec 双向往返，标准进入稳定演进期
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座

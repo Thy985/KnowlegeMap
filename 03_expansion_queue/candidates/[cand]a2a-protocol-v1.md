@@ -18,6 +18,12 @@ A2A（Agent2Agent）v1.0 于 2026-03-12 冻结，是"Agent↔Agent"的事实标�
 - IBM Research 的 ACP 已并入 A2A 路线图；ANP（W3C DID）作为开放互联网补充["https://zylos.ai/research/2026-04-18-agent-to-agent-interoperability-protocols/"]
 - AAIF 成员从 <40 增至 250+（含 Anthropic、OpenAI、Bloomberg、Cloudflare、Shopify、Block）["https://bigaiagent.tech/ai-agent-interoperability-2026-a2a-joins-mcp/"]
 - **雷达增量（2026-09-02）**：2026-08-17/18 Google 正式将 A2A 移交 AAIF（250+ 成员共同治理，与 MCP 同基金会）["https://dailyaiworld.com/blogs/a2a-10-joins-agentic-ai-foundation-internet-agents"]；Microsoft Agent Framework .NET 已同步更新 A2A v1 SDK（client 发现/托管）["https://devblogs.microsoft.com/agent-framework/a2a-v1-is-here-cross-platform-agent-communication-in-microsoft-agent-framework-for-net/"]
+> **雷达增量（2026-09-16，实现成熟期）**：
+> - **A2A Java SDK 1.3.0.Final（2026-08-27）**：多租户支持 + **授权模型默认 fail-closed** + 一批安全加固 + 全传输协议合规；含 breaking changes——官方 Java SDK 首个"安全默认"版本["https://a2aproject.github.io/a2a-java/posts/a2a-java-sdk-1-3-0-final-released/"]
+> - **A2A Jakarta 1.0.0.Final（2026-09-10，WildFly）**：Jakarta 集成，支持 v1.0 协议的 JSON-RPC/gRPC/HTTP+JSON/REST 三传输 + v0.3 兼容层（同部署可服务两版客户端）["https://www.wildfly.org/news/2026/09/10/A2A-Jakarta-1-0-0-Final-is-released/"]
+> - **Azure Foundry A2A 工具 GA（2026-09-15 更新）**：`a2a` 工具类型正式 GA（替代 a2a_preview）；incoming A2A 要求 responses protocol（不支持 SSE streaming）["https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/agent-to-agent"]["https://learn.microsoft.com/en-gb/AZURE/foundry/agents/how-to/enable-agent-to-agent-endpoint"]
+> - **Fetch.ai A2A Outbound Adapter（09-13）**：uAgents 仓库集成 A2A 出站适配器["https://www.coindesk.cc/fetch-ai-releases-a2a-outbound-adapter-for-seamless-agent-integration-113112.html"]
+> - **含义**：① A2A 从"规范冻结（v1.0/AAIF）"进入**实现成熟期**——企业级 Java SDK 落定 + Azure GA + Jakarta EE 生态；② **fail-closed 默认授权**是工程层安全信号（与 agent-firewall 品类"确定性"主线呼应）；③ TeamMind（Java）的 A2A 接入可直接基于 **Java SDK 1.3.0**（Agent Card/任务模型/多租户）落地，无需从零实现协议
 
 ## 3. 与我的知识/项目关系
 - **TeamMind（Java 多 Agent 团队运行时）** 直接受益：A2A 提供标准化的 Agent 发现/协作/任务模型，可与 MCP 一起成为 TeamMind 的协议层
