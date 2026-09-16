@@ -73,6 +73,7 @@
 | [2026-09/2026-09-14_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-14_radar-watch_scan.md) | Personal Tech Radar 第 13 次扫描（RSAC 24 CVE/SIR 攻击 + GPT-6 Astra + SWE-Bench Pro Verified） | 📌 |
 | [2026-09/2026-09-15_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-15_radar-watch_scan.md) | Personal Tech Radar 第 14 次扫描（MS Agent Governance Toolkit + Proof-of-Guardrail TEE） | 📌 |
 | [2026-09/2026-09-16_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-16_radar-watch_scan.md) | Personal Tech Radar 第 15 次扫描（A2A Java SDK 1.3.0 + OpenClaw 2026.9.2 swarms） | 📌 |
+| [2026-09/2026-09-17_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-17_radar-watch_scan.md) | Personal Tech Radar 第 16 次扫描（OpenAI HF 事件机制披露 + RubyGems 蔓延 + Vero） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

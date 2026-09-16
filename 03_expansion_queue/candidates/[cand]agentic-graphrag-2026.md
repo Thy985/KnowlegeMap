@@ -23,6 +23,11 @@
 | 证据等级 | **FACT（GitHub 仓库 + arXiv/OpenReview 全文核验通过）** |
 | 验证方式 | 读 MemGraphRAG 源码 → 在小语料上跑三层记忆 + 多 Agent 构建 → 对比普通 RAG 的多跳问答 → 评估 GrowthOS 接入 |
 | 预期完成时间 | 2026-09/10 |
+> **雷达增量（2026-09-17，agent 化 RAG 管线 + 运行时图修复）**：
+> - **Agent-Enhanced Heterogeneous Graph RAG（arXiv 2609.00761，2026-09-01 + ACM DL）**：把 RAG 三阶段显式 agent 化——**query-aware 检索 agent**（分析查询类型选图遍历策略）+ **sufficiency-aware 重排 agent**（评估证据完整性、自适应扩展子图）+ **graph-grounded 验证 agent**（输出前校验实体/关系/属性正确性）——"验证 agent"范式与我的 Validation 编译器（Evidence→Judgment）同构["https://arxiv.org/abs/2609.00761"]
+> - **Cognition on Graph（第 4 代 Agentic RAG，09-16 报道）**：**Runtime Graph Repair**（运行时实时修复缺失连接）+ 文本语义×图拓扑双向协同；规模化到 **50 亿词/14 亿图边**——从静态检索走向动态认知推理["https://latestllm.com/articles/beyond-graphrag-exploring-runtime-graph-repair-and-agentic-rag-mu3whkxj"]
+> - **Neo4j NODES AI 2026（09-04）**：Agentic GraphRAG 产业化——多 agent 自动推断 schema、构建 KG、按查询结构与风险信号在向量/图检索间自适应路由（无手工 schema）["https://neo4j.com/videos/nodes-ai-2026-agentic-graphrag-autonomous-knowledge-graph-construction-and-adaptive-retrieval-2/"]
+> - **含义**：① "RAG 管线每一步都可 agent 化 + 验证 agent 兜底"成为新共识——silver-shield 知识库检索可直接采用"检索→重排→验证"三段 agent 化设计；② **运行时图修复**解决"图构建不完整则检索失败"的静态缺陷——对 GrowthOS 大规模经验库有价值；③ Neo4j 下场说明该范式已过研究验证、进入企业路线图
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策

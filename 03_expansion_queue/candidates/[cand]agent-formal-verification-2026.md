@@ -24,6 +24,12 @@
 | 证据等级 | **FACT（AWS 官方 + arXiv + GitHub 核验通过）** |
 | 验证方式 | 读 Dogwood 规范 → 对 TeamMind 的一个高风险工具调用写策略 → 对照 ePCA 证明约束思路 → 评估并入 Validation 编译器的证据层 |
 | 预期完成时间 | 2026-09/10 |
+> **雷达增量（2026-09-17，工程实践 + 能力缺口量化）**：
+> - **NVIDIA OpenShell（2026-09-10）**：用 **Z3 SMT 对 agent 策略做形式化**——ports 映射整数、hosts/paths 映射字符串、globs 映射正则、策略组合映射布尔逻辑，再交给 Z3 证明——与 Google CEL/AWS Cedar 同线的工程化实践["https://nvidia.github.io/OpenShell-Research/dev-notes/posts/2026-09-10-learning-formal-methods-agent-policy-prover/"]
+> - **Vero benchmark（2026-08-13 发布，09-16 深度分析）**：**首个系统性衡量"frontier coding agents 能否在仓库规模同时产出实现 + 机器检查证明"**的基准（43 实例）——最强配置仅解 27 个、最具挑战代码库上完成 0 规格——"agent 驱动可验证软件合成"能力缺口被量化（与 agentic-benchmarks 卡交叉）["https://codex.danielvaughan.com/2026/08/14/vero-benchmark-formally-verified-software-repositories-coding-agents-codex-cli-proof-synthesis-posttooluse-verification/"]
+> - **NabaOS（arXiv 2603.10060，09-16 更新）**：轻量验证框架——**HMAC 签名的工具执行 receipts（LLM 无法伪造）** + 认识论来源分类（pramāṇa：直接工具输出/推理/外部证言/缺失/无根据观点），逐句判定幻觉归属——与 trace-based eval 的"行为证据"范式呼应["https://arxiv.org/html/2603.10060"]
+> - **Verus 路线（PAgE 2026 keynote，09-08）**：LLM agent 随代码发形式证明、由 **Verus（SMT-based Rust verifier）** 验证——仓库级系统代码上"frontier-model-gated yes"；但**规格仍是可信头（TCB）**，agent 只提供证明不提供规格["https://wal.sh/events/pldi-2026/page-2026/keynote-shan-lu/"]
+> - **含义**：① 形式化验证从"语言/框架"进入"策略验证工程"（NVIDIA Z3 实践）——TeamMind 工具策略可先做 Z3 可解建模；② **Vero 量化缺口**说明 agent 自动证明仍是开放问题，但"验证钩子（verification hooks）"已成 codex 等 CLI 标配；③ **NabaOS 的不可伪造 receipts**是"机器可核验证据"的轻量形态——Validation 编译器证据层可参考（成本远低于 Lean 内核证明）
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策
