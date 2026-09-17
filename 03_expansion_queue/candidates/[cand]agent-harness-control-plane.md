@@ -22,6 +22,10 @@
 | 证据等级 | FACT（Databricks/MS 官方 + arXiv 一手来源核验） |
 | 来源 | https://github.com/omnigent-ai/omnigent ｜ https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents ｜ https://arxiv.org/abs/2606.20683v1 |
 | 活跃度 | 极高（Omnigent 2026-06 开源、路线图含 GEPA/MemEx/RLM/Omnigent Server MCP；MS 2026-06 Build GA） |
+> **雷达增量（2026-09-18，harness 内 context 工程机制）**：
+> - **"Context Engineering Inside the Harness"（MarkTechPost 09-12）**：harness 层四机制击败上下文溢出/目标丢失——**compaction（压缩）、memory strategy（记忆策略）、context budgeting（上下文预算）、todo-state（任务状态跟踪）**，逐一对比 LangChain Deep Agents/Claude Code/Manus/OpenAI Codex/Bedrock AgentCore 的实现与**实际阈值**——context 工程从"prompt 层技巧"下沉为 harness 机制["https://www.marktechpost.com/2026/09/12/context-engineering-inside-the-harness-4-mechanisms-that-beat-context-overflow-and-goal-loss-on-long-horizon-tasks/"]
+> - **TrueFoundry 网关层 context 工程（09-11）**：`X-TFY-CONVERSATION-ID` 会话管理把 30 轮运行变成一条可查询时间线（而非 30 条孤立请求）——context 编排下沉到网关层["https://www.truefoundry.com/es/blog/context-engineering-gateway-session-management"]
+> - **含义**：① 与 Harness 调查论文"六职责"（observation/context/control…）互证——**context 职责的工程细节（四机制阈值）已在生产 harness 中收敛**；② Omnigent"控制面在 harness 层而非 prompt 层"获得实现级印证；③ TeamMind/自研 harness 可直接对照四机制与阈值做差距分析（compaction 触发阈值/budget 分配）
 
 ## 4. 验证计划
 - [ ] 精读六职责分解论文，与我五维模型做逐项对照（产出对照卡）

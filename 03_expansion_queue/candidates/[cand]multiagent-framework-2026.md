@@ -31,6 +31,11 @@
 > - **Swarms v15 'Akira'（2026-09-01）**：**DynamicToolLoader**（工具 schema 目录化延迟加载——50 工具 agent 只发 1 个 schema，抗上下文膨胀）+ 重建真实 agent harness（16 内置工具）+ 多 agent 结构统一 typed chat turns["https://www.swarms.ai/blog/swarms-v15-akira-release"]
 > - **SwarmBench（arXiv 2608.30661）**：LLM 能否当 agent swarm orchestrator 的系统评测 + **SwarmExp**（从任务执行积累可复用编排经验）["https://arxiv.org/pdf/2608.30661"]
 > - **含义**：① **"swarm 默认开启"成为编排框架新默认**——但权限模型同步扩大（跨 agent 会话访问），对照 09-14 RSAC"coding agent 100% 可注入"，campus_order 升级 OpenClaw 2026.9.2 前需先审权限变更清单；② **动态工具加载**是工具注册表新思路（TeamMind 可参考，控制上下文预算）；③ SwarmBench 补"编排者能力"评测维度（关联 agentic-benchmarks 卡）
+> **雷达增量（2026-09-18，OpenClaw 2.0 + 信任模型文档化）**：
+> - **OpenClaw 2.0（2026.9.4，09-11 发布）**：更安全回滚（核心/插件变更在隔离候选状态预演后再激活）、插件统一工作空间、cloud 会话可预先准备、**read-only 配置**、慢会话诊断——运营/升级风险面收敛["https://openclaw-lab.ru/news/oficialnye_novosti_openclaw/1-0-3"]["https://raw.githubusercontent.com/openclaw/openclaw/main/appcast.xml"]
+> - **OpenClaw SECURITY.md Operator Trust Model 正式化（09-08 更新）**：**单 gateway 不建模为多租户对抗性用户边界**——认证的 Gateway 调用者视为可信操作者；localhost/loopback Control UI + gateway secret 认证会话同属该可信桶——信任模型边界首次文档化（含 Incident Response Plan + NVIDIA/Tencent 安全贡献者）["http://raw.githubusercontent.com/openclaw/openclaw/HEAD/SECURITY.md"]
+> - **exec-approvals 默认值（09-17 文档确认）**：Gateway/node host 默认 `full`；**sandbox host 默认 `deny`**——沙箱执行默认拒绝["https://docs.openclaw.ai/pl/tools/exec-approvals"]
+> - **含义**：① OpenClaw 信任模型文档化 + 沙箱默认拒绝 = "策略→执行"移动（对应 agent-firewall 品类确定性主线）；② **campus_order 部署需先答"谁能认证访问 gateway"**——单 gateway=可信操作者意味着 gateway 凭据即全权限；③ 2026.9.4 回滚/read-only 增强降低升级风险，升级路径从 2026.9.2 直接评估 2026.9.4
 
 ## 4. 决策
 - [ ] 晋升 validated

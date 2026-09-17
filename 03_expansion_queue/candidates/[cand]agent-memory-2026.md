@@ -33,6 +33,13 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Letta Trajectory（2026-07）**：开源包，把 Claude Code/Codex/Letta Code 等 harness 的编码会话**规范化为一套 token 高效标准格式**，供"agent 从经验中学习"——与 Trace-based Evaluation（09-12 新卡）同属"以行为数据为标准证据"范式，但 trajectory 面向学习/复用而非评测，两者可组合["https://www.letta.com/research/"]
 > - **同线新项目（观察级）**：agentmemory（hansonkim，09-04，面向编码 agent 的持久记忆，自称基于真实世界基准第一，vs mem0 53K★/Letta 22K★）、agents-memory v1.1.0（Lolaplex，09-08，本地 markdown 记忆 + 跨 agent 上下文引擎）——均主打"编码 agent 记忆"，印证记忆→harness 内置化趋势["https://github.com/hansonkim/agentmemory"]["https://github.com/Lolaplex/agents-memory/releases"]
 > - **含义**：① Mem0 去图存储说明"抽取-写入-检索"简化路线正在胜出，Zep 的时序图路线成为差异化分支；② trajectory/trace 标准格式若收敛，Agent 记忆、评测、经验学习将共享同一行为数据层——这是 TeamMind 数据层设计的强信号
+> **雷达增量（2026-09-18，多平台密集动作）**：
+> - **Apple Shared Selective Persistent Memory（09-16）**：识别并保留**四类可复用上下文**（任务规格/数据 schema/工具配置/输出约束）而丢弃会话推理痕迹；**记忆可跨用户共享（RBAC 角色访问控制）**——协作平台部署（与 Zep DMR 的"选择性"同线，新增共享/权限维度）["https://machinelearning.apple.com/research/shared-selective-persistent-memory"]
+> - **Microsoft Agent Framework × Azure Cosmos DB 原生记忆（09-04）**：新 Python 包 `agent-framework-azure-cosmos-memory`（CosmosMemoryContextProvider）——agent 自动存对话轮次、提取持久记忆、召回相关事实——**框架级原生记忆**（与 MS AF 治理栈同生态）["https://devblogs.microsoft.com/agent-framework/native-memory-for-microsoft-agent-framework-with-azure-cosmos-db/"]
+> - **MemForest（arXiv 2605.23986）**：把 agent 记忆重构为**写高效时序数据管理问题**——canonical facts 为持久写单元（证据与摘要/索引分离）、并行块提取解顺序瓶颈、分层时间索引["https://arxiv.org/html/2605.23986"]
+> - **OKF Agent Memory（09-05）**：**Git-native 记忆层**（Open Knowledge Format v0.2）——架构决策/领域发现/操作事实存 Markdown+YAML frontmatter 直接进项目仓库，本地 BM25 索引免向量库——**与 KnowlegeMap 仓库模式同构**["https://aitoolly.com/ai-news/article/2026-09-06-okf-agent-memory-a-git-native-persistent-memory-solution-for-ai-coding-agents-and-project-knowledge"]
+> - **Grok Build 跨会话记忆（09-16）**：xAI 终端 coding agent 后台记约定/决策/项目事实为 markdown notes，后续会话自动读回（含 Anthropic Managed Agents 同模式：memory=挂载 /mnt/memory/ 的文本文档目录，用 bash/file 工具读写）["https://www.unite.ai/xai-adds-cross-session-memory-to-grok-build-coding-agent/"]["https://opentools.ai/news/anthropic-managed-agents-add-memory-persistent-state-for-ai-that-actually-ships"]
+> - **含义**：① **"记忆=文件/Markdown 仓库"路线成型**（OKF/Grok Build/Anthropic /mnt/memory）与"记忆=向量库"并行——前者与 KnowlegeMap 仓库模式、GrowthOS 经验管理直接同构，可低成本试；② Apple 引入"选择性 + 跨用户共享 RBAC"新维度；③ 记忆继续向 harness/平台内置化收敛（MS AF Cosmos、Grok Build）
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
