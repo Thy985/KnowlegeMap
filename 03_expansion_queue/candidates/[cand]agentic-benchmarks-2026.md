@@ -34,6 +34,12 @@
 > - **SWE-bench-Live（持续更新）**：首个自动更新、多语言多 OS 的抗污染 SWE 任务集（自动策展管线 + 污染免疫）——与 SWE-rebench 同线的官方系["https://swe-bench-live.github.io/"]
 > - **AutomationBench-AA（09-08）**：Artificial Analysis 用 Zapier AutomationBench **657 个业务工作流**（Gmail/Slack/Salesforce/Jira 模拟）替换 τ³-Banking——agent 评测扩展到业务自动化["https://aihot.virxact.com/items/cmtrkorkr07jcrotnfw2az9on"]
 > - **含义**：① 基准批判从"口头质疑"进入"官方 verified 修复"（SWE-Bench Pro Verified），reward hacking 成为基准设计一等公民问题；② Terminal-Bench Registry 的"基准可组合"模式 = 我 Validation 编译器想要的"证据管线复用"；③ 业务自动化基准（AutomationBench）补上"企业级 agent 评测"维度
+> **雷达增量（2026-09-19，新基准 + 权威榜单更新）**：
+> - **Sierra Hyper-τ-Bench（09-08 开源）**：评估 **coding agents 能否构建可用的客服 agent**——自动化最高 23.9% vs 人工组合 82.2%——"agent 建 agent"能力被量化（与 HAAF/Agentified Assessment 的"agent 评估 agent"同线）["https://bobweb.ai/sierra-releases-hyper-%CF%84-bench-as-open-source-a-benchmark-for-agent-development-unite-ai/"]
+> - **GitTaskBench（09-13）**：中科院/北大/港科大合研的代码 agent 评估框架["https://ai-damn.com/gittaskbench-revolutionizes-code-agent-evaluation-standards-1756700723292"]
+> - **MTAC-IFBench（09-14，arXiv 2609.14992）**：多轮 agentic 编码的**指令跟随**基准——平均 7.04 轮/实例、91.33 条约束/实例，checklist + 验证脚本 + judge 三层评测——"多轮约束保持"新评测维度["https://arxiv.org/abs/2609.14992"]
+> - **Artificial Analysis Coding Agent Index v1.5（09-18 更新）**：Terminal-Bench 2.1→4.0（66 更硬终端任务）、DeepSWE v1.0→v1.1（隔离验证 patch）、SWE-Atlas-QnA 对齐——**权威榜单口径持续收紧**["https://artificialanalysis.ai/methodology/coding-agents-benchmarking"]
+> - **含义**：① 基准谱系从"解题"扩展到"**构建 agent**（Hyper-τ）与"**多轮约束保持**"（MTAC-IF）——评估对象从单任务能力转向长程工程能力；② AA Index 每次换版都收紧任务/验证（防饱和+防污染）印证"基准工程化"主线；③ 对 silver-shield Benchmark Harness 的设计输入：checklist+验证脚本+judge 三层结构可直接借鉴
 
 ## 4. 决策
 - [ ] 晋升 validated

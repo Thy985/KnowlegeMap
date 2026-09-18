@@ -75,6 +75,7 @@
 | [2026-09/2026-09-16_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-16_radar-watch_scan.md) | Personal Tech Radar 第 15 次扫描（A2A Java SDK 1.3.0 + OpenClaw 2026.9.2 swarms） | 📌 |
 | [2026-09/2026-09-17_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-17_radar-watch_scan.md) | Personal Tech Radar 第 16 次扫描（OpenAI HF 事件机制披露 + RubyGems 蔓延 + Vero） | 📌 |
 | [2026-09/2026-09-18_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-18_radar-watch_scan.md) | Personal Tech Radar 第 17 次扫描（OpenClaw 2.0 信任模型 + 记忆=文件仓库 + harness 4 机制） | 📌 |
+| [2026-09/2026-09-19_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-19_radar-watch_scan.md) | Personal Tech Radar 第 18 次扫描（HF 官方时间线 + Hacktron 攻 OpenAI + Plugin4Shell + Gemma 4） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

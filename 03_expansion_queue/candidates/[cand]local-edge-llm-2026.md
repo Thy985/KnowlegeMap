@@ -22,6 +22,13 @@
 > - **Falcon-Edge（TII，2026-09-08）**：1.58-bit 三元量化（权重转 -1/0/1）系列，手机/平板本地运行、开源可微调——BitNet 路线（已覆盖 b1.58）的正式产品化["https://noticias-inteligencia-artificial.com/articulo/falcon-edge-modelos-de-lenguaje-de-158-bits-que-caben-en-un-movil-e3238325"]
 > - **Qwen3.8-Flash-Next 手机 CPU 实证（09-05）**：MoE 绕过 NPU 依赖在旗舰手机 CPU 本地运行（IQ3_XXS 超低位量化）——"MoE 民主化到边缘"信号["https://baguaai.com/breaking-mobile-inference-barriers-qwen3-8-flash-next-achieves-local-execution-on-xiaomi-14t-pro-cpu/"]
 > - **含义**：① 边缘 LLM 从"量化压缩"进入"**磁盘流式 MoE + 超低位量化**"两条新路线，35B 级 MoE 已可入手机内存预算；② Tafcm 移动端选型出现"小模型常驻 + 大 MoE 按需流式"混合架构可能；③ Edge0/Falcon-Edge 均需后续核验实际可用性与生态成熟度
+> **雷达增量（2026-09-19，多模态/厂商密集发布）**：
+> - **MiniCPM-V 4.6（2026-05-11 发布，09-17 更新解读）**：混合 4x/16x 视觉 token 压缩（视觉编码成本 -50%+ 且精度对齐更大模型）+ **第一方 iOS/Android/HarmonyOS 部署代码**——多模态端侧 + 官方移动端 SDK，Tafcm 多模态移动端直接候选（注：09-16 另有 MiniCPM-V 4.5 报道，一手信息薄，未采纳）["https://evermx.com/open-source/minicpm-v-pocket-sized-multimodal-llm-edge-deployment"]
+> - **Gemma 4（09-04）**：Google 边缘主力——**E2B/E4B 尺寸为移动/边缘设计**（LiteRT-LM 今日已支持），定位 reasoning/agentic/coding/multimodal——**Google 官方把"agentic workflow"列为边缘模型目标场景**["https://developers.google.com/edge/litert-lm/models/gemma-4"]
+> - **LFM2.5-2.6B（08-05）**：Liquid AI 手机端 agent 工作流模型——"专为 agent workflows 设计、全设备运行"（无云）["https://ai-damn.com/liquid-ai-s-new-model-runs-entirely-on-your-phone-no-cloud-needed-1785970816151"]
+> - **Desert Ant Labs（09-08 出隐身）**：**18 个端侧模型**（音频/视觉/文本），单 SDK 覆盖 Swift/Kotlin/JS，权重已上 Hugging Face——"端侧模型全家桶 + 跨端 SDK"模式["https://mer.vin/news/desert-ant-labs-on-device-ai-models/"]
+> - **PrismML Bonsai 2 27B（09-17）**：**三元权重压缩**——27B Qwen 系压到 5.9GB 声称保留 98% 原基准性能（每权重 +/0/1）——可入 PC/旗舰手机["https://superintelligencenews.com/ai-fields/tiny-llm-prismml-on-device-ai/"]
+> - **含义**：① 边缘 LLM 竞争从"纯文本小模型"扩展到**多模态 + agentic 定位 + 跨端 SDK**（MiniCPM-V 4.6/Gemma 4/LFM2.5/Desert Ant）——Tafcm 选型池从"几个文本 SLM"扩到"多模态端侧全家桶"；② 三元权重（Falcon-Edge/PrismML）成为压缩新主线，与磁盘流式 MoE 并列；③ Gemma 4 E2B/E4B 有 Google 官方 LiteRT-LM 支持链，工程确定性最高
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径

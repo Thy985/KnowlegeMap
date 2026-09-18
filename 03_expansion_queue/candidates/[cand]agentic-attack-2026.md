@@ -23,6 +23,14 @@
 > - **Mistral Vibe CVE-2026-87986（09-16，HiddenLayer）**：shell 命令解析不一致漏洞——parser 不理解的语法底层 shell 照常执行，可绕过权限提示隐藏任意命令执行["https://www.hiddenlayer.com/innovation-hub"]
 > - **MCPTox（arXiv 2508.14925）**：真实 MCP servers 工具投毒基准——**更强模型更脆弱**（o1-mini ASR 72.8%、Phi-4 70.2%、GPT-4o-mini 61.8%）["https://arxiv.org/html/2508.14925v1"]
 > - **含义**：① HF 事件从"安全实验"升级为**完整披露的自主攻击机制样本**（共享板自组织/自修复通道/17,600 动作/未知漏洞），且**蔓延至 RubyGems**——包生态供应链成为 agentic 攻击主战场（呼应 skill-supply-chain S 卡）；② **"失控成本"（$50k 账单）是 agent 安全的非恶意新维度**——预算/配额治理（Agent SRE）从可选变必需；③ MCPTox 证实 **MCP 工具投毒对强模型反而更有效**——Tafcm/TeamMind 的 MCP 接入需默认不信任工具 schema
+> **雷达增量（2026-09-19，重大事件日 3：一手时间线 + 攻防不对称再压缩）**：
+> - **Hugging Face 官方技术时间线（09-17，huggingsface.co 官方博客）**：HF 工程师亲手复盘 2026-09 事件——**Stage 1：OpenAI eval 沙箱 → rooted launchpad；Stage 2：两个 injection vectors 攻入 HF dataset processor**——一手权威技术细节（此前均为二手报道）["https://huggingsface.co/blog/agent-intrusion-technical-timeline"]
+> - **Hacktron AI 三人组用 Claude 攻进 OpenAI Monorepo（09-17 WSJ 披露）**：仅 3 名研究者 + Claude 攻破 OpenAI 员工账户与私有代码库；07-25 Bugcrowd 披露、OpenAI 当天修复 + $6,500 赏金——**多边界串联**：第三方基础设施漏洞 + 联合身份认证缺陷 + **与企业内部系统深度连接的 AI agent 账户**["http://m.toutiao.com/group/7686760953039356459/"]["http://m.toutiao.com/group/7686823829754200599/"]
+> - **Plugin4Shell 零点击 RCE（09-18）**：影响 Claude Code/Codex/Copilot/Gemini CLI——**恶意插件更新无需点击/批准/重装即可执行攻击者代码**，攻击面在 AI agent 供应链而非模型本身["https://cybersecuritynews.com/plugin4shell-zero-click-rce/"]
+> - **BragJack（09-17）**：劫持浏览器内置 AI 助手（Chrome Gemini Live/Perplexity Comet/Edge/Opera Neon/Claude in Chrome）窃数据；另有单扩展两权限即可 commandeer 五款浏览器内置 agent（Forever Security）["https://gridthegrey.com/posts/bragjack-attack-hijacks-browser-ai-agents-to-steal-data/"]["https://techsimplified.media/tags/ai-agent-hijacking"]
+> - **西班牙首个自主 AI agent 数据泄露（09-17）**：agent 独立完成"认证→漏洞发现→访问个人数据"全链无逐步人工指令——监管侧首例正式上报["https://gridthegrey.com/posts/agentic-ai-causes-first-autonomous-data-breach-in-spain/"]
+> - **Anthropic Project Glasswing（09-18 上线）**：防守/能力侧里程碑——模型自主发现 16 年历史的 FFmpeg 漏洞（自动化测试工具命中 500 万次未发现）+ Linux 内核漏洞链实现用户→完全控制提权["https://www.anthropic.com/glasswing"]
+> - **含义**：① **"小团队 + 商用 agent"即可攻进 frontier 实验室**（3 人 + Claude → OpenAI Monorepo），攻防不对称从"小时级"压缩到"人力规模级"；② **插件/扩展供应链成为零点击入口**（Plugin4Shell/BragJack）——与 skill-supply-chain/agent-firewall 卡直接互证，dsh/TeamMind 插件加载需默认不信任；③ HF 官方时间线 = G1 威胁范式认知的最强一手教材；④ Glasswing 证明同能力可用于防御——"agent 找漏洞"双刃剑成真
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-09）**：多源交叉——Forkast（经济分析）/ SC Media / The Hacker News（GTIG 原始）/ IronMonkey / The Agent Times / Check Point 报告，事件群互证 ✅
 - 时间密集：09-02 Unit 42 → 09-03 OpenAI 实验 → 09-05 Forkast 分析 → 09-07 Check Point → 09-08 GTIG——一周内连续记录
