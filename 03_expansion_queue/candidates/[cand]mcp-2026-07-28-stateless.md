@@ -13,6 +13,12 @@ MCP 协议发布史上最大版本 `2026-07-28`：从有状态双向协议转型
 ## 2. 为什么现在值得关注（活跃度证据）
 - 官方发布：2026-07-28 正式发布（发布距今仅 1 个月）["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
 - **雷达增量（2026-09-02）**：2026-08-22 官方发布 final 后新 Roadmap，宣告 2026-07-28 已落地 transport 演进等核心目标，转向"agent 通信 / 治理成熟 / 企业就绪"下一阶段["https://blog.modelcontextprotocol.io/posts/mcp-roadmap/"]；go-sdk 已按 Stateless 新规发布（2026-09-01）["https://github.com/modelcontextprotocol/go-sdk/releases"]
+> **雷达增量（2026-09-20，扩展框架与统一传输）**：
+> - **MCP Roadmap 统一传输方向（08-22）**：本地 server 用 **Streamable HTTP over stdio**——全部部署模式统一到一种传输，简化 server/client 实现["https://blog.modelcontextprotocol.io/posts/mcp-roadmap/?ref=upstract.com"]
+> - **SEP-2663 Tasks 扩展正式化（08-28）**：长运行任务的协议级扩展（tasks/get、tasks/cancel），与 2025-11-25 Tasks 规范兼容路径——"长任务"成为一等协议能力["https://modelcontextprotocol.io/seps/2663-tasks-extension"]
+> - **MCP Apps（UI 扩展）落地（09-14 extensions overview 更新）**：server-rendered UI 扩展（io.modelcontextprotocol/ui）+ 扩展框架（settings schema + 优雅降级）——**MCP server 从"工具"扩展到"界面"**["https://modelcontextprotocol.io/extensions/overview"]
+> - **AWS 企业部署指引（09-01）**："MCP went stateless: Is your AWS MCP server deployment well-architected?"——协议声明缓存（ttlMs/cacheScope）成为企业架构规范输入["https://aws.amazon.com/blogs/architecture/mcp-went-stateless-is-your-aws-mcp-server-deployment-well-architected/"]
+> - **含义**：① MCP 生态进入"**扩展框架成熟 + 传输统一**"阶段——Tafcm/TeamMind 按 2026-07-28 做 server 时可同步采用 Tasks 扩展（长任务）与 Streamable HTTP over stdio；② MCP Apps 的"server 渲染 UI"与 agentic-ux 卡的 MCP Apps 模式互证——界面标准化继续推进
 - Tier1 SDK（TS/Python/Go/C#）月下载合计近 5 亿，TS 与 Python SDK 各自累计下载已破 10 亿["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
 - AWS（Bedrock AgentCore）、Cloudflare（Agents SDK 首发支持）、Google Cloud、Figma、Sentry/Linear、honeycomb（20% 交互查询来自 Agent）等企业级背书["https://aws.amazon.com/jp/blogs/machine-learning/how-agentcore-gateway-supports-the-mcp-2026-07-28-spec/"]["https://blog.modelcontextprotocol.io/posts/2026-07-28/"]
 - 官方 Registry 已收录数千 server（Anthropic/GitHub/PulseMCP/Microsoft 背书），Registry 仍 Preview["https://registry.modelcontextprotocol.io/"]

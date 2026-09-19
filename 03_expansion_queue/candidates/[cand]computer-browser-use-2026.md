@@ -29,6 +29,13 @@
 > - **frontier 四模型三日齐发（09-01~03）**：Anthropic Claude Fable 5.1、OpenAI GPT-6 Astra、Google Gemini 3.8 Flash、Meta Muse Spark 1.3——computer use 能力是各旗舰标配卖点["https://yorozuipsc.com/uploads/1/3/2/5/132566344/be586a8853d9417591f0.pdf"]
 > - **Gemini CLI v0.61 nightly（09-09/10）**：NTFS 路径修复 + **沙箱安全加固**——CLI agent 沙箱化继续推进["https://releases.sh/google/gemini"]
 > - **含义**：① computer use 从"小众 API"进入**消费级产品与旗舰标配**阶段，campus_order/E2E-CLI 的"Agent 代操作"路径成熟度显著上升；② SIR 攻击（见 agentic-attack 卡 09-14 增量）专门劫持 computer-use agent——能力普及与攻击面扩大同步，安全约束必须前置
+> **雷达增量（2026-09-20，GA 产品化 + 生态入场）**：
+> - **Anthropic Computer Use/Skills/Files API 正式 GA（09-18）**：三大核心 agent API 企业级 GA（含完整 SLA），同时发布**新 Browser Use 工具**（agent 自主导航操作浏览器）；**Computer Use 支持单模型调用内连续多动作**——任务更快、往返更少["https://aicoder.com/news/news-20260918-anthropic-computer-use-skills-files-api-ga"]["https://ai-damn.com/anthropic-s-big-update-computer-use-skills-and-files-apis-now-live-1787526310076"]
+> - **Vercel Agent Browser（09-15）**：免装浏览器驱动的 LLM 网页交互（点击/滚动/交互）——Vercel 以基础设施商身份入场["https://ai-damn.com/vercel-s-new-tool-lets-ai-actually-use-websites-like-humans-1768345535936"]
+> - **Browserbase 重建 Stagehand（09-09）**：更快更 token 高效的浏览器 agent + **MCP 工具面** + Playwright→Stagehand 转译——"code your way through the web"["https://releasebot.io/updates/browserbase/browserbase"]
+> - **Skyvern 3.0 Engine beta（08 月）**：持久工具循环 + 标记截图回退 + **原生 hCaptcha/TOTP/邮件一次性码处理**——验证码/2FA 自动化突破["https://agenticindex.io/vendors/skyvern"]
+> - **Gemini Spark 降价普及（07-30 Chrome 集成，09-14 报道）**：操作真实桌面浏览器 + 使用登录账户/密码，敏感操作（支付）强制人工批准；价格从 $249/月 Ultra 独占降至 $19 套餐捆绑["https://www.toolbit.ai/blog/inside-gemini-spark-googles-new"]
+> - **含义**：① computer use 进入"**GA 标准化 + 基础设施商入场 + 验证码能力突破**"三线并进——E2E-CLI/campus_order 的"Agent 代操作"已无技术壁垒；② Gemini Spark 的"敏感动作人工批准"与 BragJack 攻击（09-19 轮）同帧——浏览器 agent 权限边界是产品层一等问题
 
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）

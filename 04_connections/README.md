@@ -91,6 +91,10 @@
 |---|---|---|---|---|
 | **Trace-based Agent Evaluation（agentevals/TraceBench/AWS）** | **Validation 编译器**（trace 即 Evidence、可重放评测）/ TeamMind（tool trajectory 确定性门禁=Evaluation 不变量）/ Tafcm（本地零成本评测）/ silver-shield（trace 审计+回归门禁） | Agent 评测方法论（S2 核心）/ 可观测 × 评测交叉 | 🟡 已出候选卡 | [trace-based-agent-eval-2026](../03_expansion_queue/candidates/[cand]trace-based-agent-eval-2026.md) |
 > 雷达增量（2026-09-12）：Agent 防火墙品类第二批（OWASP Agent Memory Guard/Guardian 等）已追加在 agent-firewall-runtime-defense-2026 卡内，连接关系不变。
+## 2026-09-20 雷达新增连接（1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Agentic Inference Infra（NVIDIA Dynamo/AWS prefix-aware/HyperPod Gateway/vLLM KV offload/Unified AI Gateway）** | **Tafcm**（端-边-云联合路由=本地优先架构参考）/ **TeamMind**（multi-agent fan-out 推理模式）/ **dsh**（coding agent 长 prefill+tool call 循环优化）/ E2E-CLI（长链路推理） | AI Infra × Agent（G3/G5 空白区）/ Context Engineering（前缀复用=缓存预算）/ Harness 六职责 control 侧面 | 🟡 已出候选卡 | [agentic-inference-infra-2026](../03_expansion_queue/candidates/[cand]agentic-inference-infra-2026.md) |
 
 ## 规则
 
