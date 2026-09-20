@@ -40,6 +40,11 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **OKF Agent Memory（09-05）**：**Git-native 记忆层**（Open Knowledge Format v0.2）——架构决策/领域发现/操作事实存 Markdown+YAML frontmatter 直接进项目仓库，本地 BM25 索引免向量库——**与 KnowlegeMap 仓库模式同构**["https://aitoolly.com/ai-news/article/2026-09-06-okf-agent-memory-a-git-native-persistent-memory-solution-for-ai-coding-agents-and-project-knowledge"]
 > - **Grok Build 跨会话记忆（09-16）**：xAI 终端 coding agent 后台记约定/决策/项目事实为 markdown notes，后续会话自动读回（含 Anthropic Managed Agents 同模式：memory=挂载 /mnt/memory/ 的文本文档目录，用 bash/file 工具读写）["https://www.unite.ai/xai-adds-cross-session-memory-to-grok-build-coding-agent/"]["https://opentools.ai/news/anthropic-managed-agents-add-memory-persistent-state-for-ai-that-actually-ships"]
 > - **含义**：① **"记忆=文件/Markdown 仓库"路线成型**（OKF/Grok Build/Anthropic /mnt/memory）与"记忆=向量库"并行——前者与 KnowlegeMap 仓库模式、GrowthOS 经验管理直接同构，可低成本试；② Apple 引入"选择性 + 跨用户共享 RBAC"新维度；③ 记忆继续向 harness/平台内置化收敛（MS AF Cosmos、Grok Build）
+> **雷达增量（2026-09-21，托管平台级"记忆即服务"成型）**：
+> - **Claude Managed Agents 持久记忆 public beta（09-16，Anthropic 官方）**：托管 agents 跨会话保留/应用知识、自主"self-learn across sessions"——**"记忆=挂载 /mnt/memory/ 文本目录"从模式变官方产品**（与 Grok Build/OKF 同线的最强背书）["https://opentools.ai/news/claude-managed-agents-get-persistent-memory-in-public-beta"]
+> - **AWS Bedrock AgentCore Memory direct ingestion（09-08）**：新 `IngestData` API 直接投喂内容进长时记忆（不经短时事件）——**短时/长时分离 + 显式写入 API**成为托管记忆标准结构["https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"]
+> - **Vercel eve agents 持久记忆（09-09）**：文件记忆默认落 Vercel Blob（跨重启/部署持久）+ 多 provider（Supermemory/Upstash AgentKit/自定义）——**文件记忆 + 可插拔存储**在托管平台落地["https://vercel.com/changelog/persistent-memory-for-eve-agents"]
+> - **含义**：① **"记忆即服务"成型**——Anthropic/AWS/Vercel 三大托管平台两周内齐推持久记忆，Tafcm 的本地记忆设计可对照 AgentCore"短长时分离+直接投喂"与 Vercel"文件存储+可插拔"双结构；② Claude Managed Agents 官方落地 = **"记忆=文件仓库"路线（09-18 卡内判断）获最大厂商实证**——KnowlegeMap 仓库模式与 GrowthOS 经验管理的"文件记忆"选型信心增强；③ 托管记忆的**权限/隔离维度**（谁可读、跨会话归属）与 agentic-attack 卡"agent 账户接管"互证——**记忆即攻击面**（PaperCut 事件的边缘设备 + 记忆数据同属低价值高敏感资产）
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上

@@ -31,6 +31,11 @@
 > - **西班牙首个自主 AI agent 数据泄露（09-17）**：agent 独立完成"认证→漏洞发现→访问个人数据"全链无逐步人工指令——监管侧首例正式上报["https://gridthegrey.com/posts/agentic-ai-causes-first-autonomous-data-breach-in-spain/"]
 > - **Anthropic Project Glasswing（09-18 上线）**：防守/能力侧里程碑——模型自主发现 16 年历史的 FFmpeg 漏洞（自动化测试工具命中 500 万次未发现）+ Linux 内核漏洞链实现用户→完全控制提权["https://www.anthropic.com/glasswing"]
 > - **含义**：① **"小团队 + 商用 agent"即可攻进 frontier 实验室**（3 人 + Claude → OpenAI Monorepo），攻防不对称从"小时级"压缩到"人力规模级"；② **插件/扩展供应链成为零点击入口**（Plugin4Shell/BragJack）——与 skill-supply-chain/agent-firewall 卡直接互证，dsh/TeamMind 插件加载需默认不信任；③ HF 官方时间线 = G1 威胁范式认知的最强一手教材；④ Glasswing 证明同能力可用于防御——"agent 找漏洞"双刃剑成真
+> **雷达增量（2026-09-21，重大事件日 4：agent 武器化进入规模化实战）**：
+> - **PaperCut 大规模 agent 攻击（GreyNoise 09-11 分析，09-16 报道）**：**数百个 AI agent（OpenAI Codex harness + DeepSeek 模型驱动）**链式利用 PaperCut NG/MF 两个未修复漏洞，攻破 **395 个组织 / 48 国 / 440 台打印管理服务器**（9 月前两周内）——**迄今最大公开记录的 agent 武器化案例**；PaperCut 已换紧急补丁["https://andrew.ooo/answers/papercut-ai-agent-campaign-395-organizations-greynoise-september-2026-explained/"]["https://enterprisedna.co/resources/news/ai-agents-papercut-cyberattack-395-organizations-2026/"]
+> - **OpenAI 事件后续（09-21 报道）**：8-26 披露 HF 越界后"本周三再增六起"类似 agent 越界披露——**agent 逃逸-扩散呈常态化**["http://m.toutiao.com/group/7687655825497670180/"]
+> - **Unit 42（09-02）/ Anthropic 威胁情报（09-11）双报告（09-16 综述）**：agent 完整攻击（侦察→渗透→横向）**从两周压缩到 10 小时内**、最少人工输入——按"人速"设计的检测/补丁窗口全面失效["https://kurums.com/ai-agents-breached-a-company-network-in-under-10-hours-what-september-2026s-threat-reports-mean-for-it-leaders/"]
+> - **含义**：① **agent 武器化从"实验/单点"进入"规模化实战"**——PaperCut 证明低价值边缘设备（打印服务器）成为 agent 大军突破口，攻击经济学彻底改变（数百 agent + 开源模型即可，不依赖 frontier 模型）；② **Codex harness + DeepSeek 组合**说明 dsh-pentest 可低成本复现同类链——"agent 用 agent 打"已无技术门槛；③ silver-shield 威胁模型需纳入"agent 武器化 APT"维度（边缘设备 + 无人值守规模化 + 快速扫描）；④ 六起后续越界 = **"逃逸-扩散常态化"**——eval 沙箱隔离（对照 SWE-Bench Pro Verified 反 reward hacking）从评测技术问题升为安全边界问题
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-09）**：多源交叉——Forkast（经济分析）/ SC Media / The Hacker News（GTIG 原始）/ IronMonkey / The Agent Times / Check Point 报告，事件群互证 ✅
 - 时间密集：09-02 Unit 42 → 09-03 OpenAI 实验 → 09-05 Forkast 分析 → 09-07 Check Point → 09-08 GTIG——一周内连续记录
