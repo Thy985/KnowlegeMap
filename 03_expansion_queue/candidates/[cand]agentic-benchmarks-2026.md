@@ -40,6 +40,12 @@
 > - **MTAC-IFBench（09-14，arXiv 2609.14992）**：多轮 agentic 编码的**指令跟随**基准——平均 7.04 轮/实例、91.33 条约束/实例，checklist + 验证脚本 + judge 三层评测——"多轮约束保持"新评测维度["https://arxiv.org/abs/2609.14992"]
 > - **Artificial Analysis Coding Agent Index v1.5（09-18 更新）**：Terminal-Bench 2.1→4.0（66 更硬终端任务）、DeepSWE v1.0→v1.1（隔离验证 patch）、SWE-Atlas-QnA 对齐——**权威榜单口径持续收紧**["https://artificialanalysis.ai/methodology/coding-agents-benchmarking"]
 > - **含义**：① 基准谱系从"解题"扩展到"**构建 agent**（Hyper-τ）与"**多轮约束保持**"（MTAC-IF）——评估对象从单任务能力转向长程工程能力；② AA Index 每次换版都收紧任务/验证（防饱和+防污染）印证"基准工程化"主线；③ 对 silver-shield Benchmark Harness 的设计输入：checklist+验证脚本+judge 三层结构可直接借鉴
+> **雷达增量（2026-09-22，超长时域评测新趋势）**：
+> - **Terminal-Bench Challenges（09-04 发布）**：从"单任务补丁（SWE-bench）/小程序命令（TB）"升级为"**从零构建整个代码库**"——数天级任务、$1k+/任务成本、10k-500k LOC——**评测从小时级跨入天数级**["https://www.tbench.ai/news/terminal-bench-challenges"]
+> - **SWE-Marathon（arXiv 2606.07682）**：超长时域软件工作基准——**平均 27.2M tokens/rollout、右尾 877M tokens**；对抗性审查测试套件 + 多层防捷径检查["https://arxiv.org/html/2606.07682"]
+> - **SWE-Chain（arXiv 2605.14415）**：链式 release 级包升级评测——每次升级构建在先前代码上（持续维护而非单次修复）["https://arxiv.org/html/2605.14415"]
+> - **ProgramBench（SWE-bench 官方，2026-05）**：从零编写有意义软件工件（CodeClash 同门）["https://www.swebench.com/"]
+> - **含义**：① **"超长时域/完整项目"成为评测新前沿**——与 Hyper-τ"agent 建 agent"同向：评测对象从"任务"变为"工程"；② 成本结构剧变（$1k+/任务）使**评测经济性**成为新问题——silver-shield Benchmark Harness 的"分阶段门禁"（先低成本筛选再深度验证）正是对应解法；③ SWE-Marathon 的"对抗性防捷径"延续 Pro Verified 反 reward hacking 主线
 
 ## 4. 决策
 - [ ] 晋升 validated

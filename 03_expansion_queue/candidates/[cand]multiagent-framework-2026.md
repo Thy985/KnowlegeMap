@@ -36,6 +36,9 @@
 > - **OpenClaw SECURITY.md Operator Trust Model 正式化（09-08 更新）**：**单 gateway 不建模为多租户对抗性用户边界**——认证的 Gateway 调用者视为可信操作者；localhost/loopback Control UI + gateway secret 认证会话同属该可信桶——信任模型边界首次文档化（含 Incident Response Plan + NVIDIA/Tencent 安全贡献者）["http://raw.githubusercontent.com/openclaw/openclaw/HEAD/SECURITY.md"]
 > - **exec-approvals 默认值（09-17 文档确认）**：Gateway/node host 默认 `full`；**sandbox host 默认 `deny`**——沙箱执行默认拒绝["https://docs.openclaw.ai/pl/tools/exec-approvals"]
 > - **含义**：① OpenClaw 信任模型文档化 + 沙箱默认拒绝 = "策略→执行"移动（对应 agent-firewall 品类确定性主线）；② **campus_order 部署需先答"谁能认证访问 gateway"**——单 gateway=可信操作者意味着 gateway 凭据即全权限；③ 2026.9.4 回滚/read-only 增强降低升级风险，升级路径从 2026.9.2 直接评估 2026.9.4
+> **雷达增量（2026-09-22，OpenClaw 2026.9.5 发布）**：
+> - **OpenClaw 2026.9.5（09-21 报道）**：**Atomic Updates + Plugin Hot Reload + Specialist AI Agent Teams**——onboarding 可一键创建专业 agent 团队（预设四角色：Chief of staff/Researcher/Writer/Reviewer，也可单专业 agent），团队以提案形式呈现由用户确认——**"专业 agent 团队"从手动编排走向引导式创建**["https://theinfobytes.com/openclaw-2026-9-5-atomic-updates-ai-agent-teams"]
+> - **含义**：① 2026.9.2 swarms 默认开启 → 2026.9.5 专业团队引导创建——**编排从"能力"走向"开箱即用工作流"**（对照 09-16 SwarmBench"编排者能力"评测维度）；② **plugin hot reload + atomic updates**降低升级/插件迭代风险（campus_order 升级路径可从 2026.9.4 直接评估 2026.9.5）；③ 四角色预设（Chief of staff/Researcher/Writer/Reviewer）与 TeamMind 的"团队运行时"设计直接对照——验证"专家化分工+验证者"模式是行业共识
 
 ## 4. 决策
 - [ ] 晋升 validated

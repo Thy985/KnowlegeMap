@@ -78,6 +78,7 @@
 | [2026-09/2026-09-19_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-19_radar-watch_scan.md) | Personal Tech Radar 第 18 次扫描（HF 官方时间线 + Hacktron 攻 OpenAI + Plugin4Shell + Gemma 4） | 📌 |
 | [2026-09/2026-09-20_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-20_radar-watch_scan.md) | Personal Tech Radar 第 19 次扫描（Anthropic CU GA + MCP Tasks 扩展 + Agentic Inference 新卡） | 📌 |
 | [2026-09/2026-09-21_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-21_radar-watch_scan.md) | Personal Tech Radar 第 20 次扫描（PaperCut 395 组织攻击 + Claude Managed Agents 记忆） | 📌 |
+| [2026-09/2026-09-22_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-22_radar-watch_scan.md) | Personal Tech Radar 第 21 次扫描（OpenClaw 2026.9.5 + 超长时域评测 + 端点 AIDR） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
