@@ -24,6 +24,12 @@ A2A（Agent2Agent）v1.0 于 2026-03-12 冻结，是"Agent↔Agent"的事实标�
 > - **Azure Foundry A2A 工具 GA（2026-09-15 更新）**：`a2a` 工具类型正式 GA（替代 a2a_preview）；incoming A2A 要求 responses protocol（不支持 SSE streaming）["https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/agent-to-agent"]["https://learn.microsoft.com/en-gb/AZURE/foundry/agents/how-to/enable-agent-to-agent-endpoint"]
 > - **Fetch.ai A2A Outbound Adapter（09-13）**：uAgents 仓库集成 A2A 出站适配器["https://www.coindesk.cc/fetch-ai-releases-a2a-outbound-adapter-for-seamless-agent-integration-113112.html"]
 > - **含义**：① A2A 从"规范冻结（v1.0/AAIF）"进入**实现成熟期**——企业级 Java SDK 落定 + Azure GA + Jakarta EE 生态；② **fail-closed 默认授权**是工程层安全信号（与 agent-firewall 品类"确定性"主线呼应）；③ TeamMind（Java）的 A2A 接入可直接基于 **Java SDK 1.3.0**（Agent Card/任务模型/多租户）落地，无需从零实现协议
+> **雷达增量（2026-09-23，生态清单成型 + v1.1 路线）**：
+> - **A2A Community Hub（09-02 更新）**：**13 个框架内置 A2A 集成**——ADK/Agno/AG2/BeeAI/CrewAI/Hector/LangGraph/LiteLLM/Microsoft Agent Framework/Noorle/Pydantic AI/Slide/Strands + 多社区 SDK——**跨框架互操作从"可能"变"默认"**["https://a2a-protocol.org/latest/community/"]
+> - **A2A Roadmap v1.1（09-15 更新）**：**v1.1 协议增强**——细化 task timeline 规范、标准化事件过滤机制（向后兼容）、核心健壮性加固["https://a2a-protocol.org/latest/roadmap/"]
+> - **AG2 A2A 模块（09-02）**：transport-agnostic——同一 agent 可经 JSON-RPC/HTTP+JSON(REST)/gRPC 三种传输服务，客户端按发布绑定选择["https://docs.ag2.ai/latest/docs/beta/a2a/overview/"]
+> - **Microsoft Foundry A2A 双向打通（09-15）**：A2A 工具 GA（出站连远程 A2A 端点）+ **入站 A2A 端点启用**（Foundry agent 可被外部 agent 调用）——平台级双向互操作["https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/agent-to-agent"]
+> - **含义**：① A2A 生态进入"**13 框架默认集成 + 平台双向打通 + v1.1 演进**"——TeamMind 接入成本进一步下降（Java SDK 1.3.0 + AG2 传输无关可作参考实现）；② v1.1 的 task timeline/事件过滤标准化 = 可观测性规范化（与 otel-genai 卡同向）；③ A2A 从"协议标准"变成"生态默认"，与 MCP 一起构成完整的 Agent 互操作地基
 
 ## 3. 与我的知识/项目关系
 - **TeamMind（Java 多 Agent 团队运行时）** 直接受益：A2A 提供标准化的 Agent 发现/协作/任务模型，可与 MCP 一起成为 TeamMind 的协议层

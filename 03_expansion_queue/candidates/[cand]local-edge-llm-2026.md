@@ -29,6 +29,10 @@
 > - **Desert Ant Labs（09-08 出隐身）**：**18 个端侧模型**（音频/视觉/文本），单 SDK 覆盖 Swift/Kotlin/JS，权重已上 Hugging Face——"端侧模型全家桶 + 跨端 SDK"模式["https://mer.vin/news/desert-ant-labs-on-device-ai-models/"]
 > - **PrismML Bonsai 2 27B（09-17）**：**三元权重压缩**——27B Qwen 系压到 5.9GB 声称保留 98% 原基准性能（每权重 +/0/1）——可入 PC/旗舰手机["https://superintelligencenews.com/ai-fields/tiny-llm-prismml-on-device-ai/"]
 > - **含义**：① 边缘 LLM 竞争从"纯文本小模型"扩展到**多模态 + agentic 定位 + 跨端 SDK**（MiniCPM-V 4.6/Gemma 4/LFM2.5/Desert Ant）——Tafcm 选型池从"几个文本 SLM"扩到"多模态端侧全家桶"；② 三元权重（Falcon-Edge/PrismML）成为压缩新主线，与磁盘流式 MoE 并列；③ Gemma 4 E2B/E4B 有 Google 官方 LiteRT-LM 支持链，工程确定性最高
+> **雷达增量（2026-09-23，视觉语言边缘化 + 国内厂商加速）**：
+> - **Qwen3-VL 4B/8B 边缘变体（2026-09-20，阿里官方）**：旗舰视觉语言模型的精简版 4B/8B 参数变体——**多模态 VLM 边缘化加速**（对标 MiniCPM-V 4.6 同赛道）["https://ai-damn.com/alibaba-unveils-compact-qwen3-vl-ai-models-for-edge-devices-1760569585080"]
+> - **ModelBest 开源边缘 agentic 模型（09-08 PRNewswire）**：中国 AI 初创（model best）发布开源模型——**通用 agentic 能力低成本部署到边缘设备**（官方定位"general-purpose agentic capability to edge devices at a lower cost"）["https://www.prnewswire.com/news-releases/chinas-latest-ai-model-brings-general-purpose-agentic-capability-to-edge-devices-at-a-lower-cost-302873367.html"]
+> - **含义**：① "**agentic 定位 + 视觉语言 + 低成本**"成为边缘模型三要素——Tafcm 多模态移动端选型池再扩（Qwen3-VL 4B/8B 官方系 vs MiniCPM-V 4.6 vs Gemma 4 E2B）；② 国内厂商（阿里/OpenBMB/ModelBest）密集下场边缘 agentic，生态竞争白热化——选型需以"官方支持链 + 实测"为准（Gemma 4 的 LiteRT-LM 仍是工程确定性最高）
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径

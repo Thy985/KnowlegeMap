@@ -28,6 +28,12 @@
 > - **Cognition on Graph（第 4 代 Agentic RAG，09-16 报道）**：**Runtime Graph Repair**（运行时实时修复缺失连接）+ 文本语义×图拓扑双向协同；规模化到 **50 亿词/14 亿图边**——从静态检索走向动态认知推理["https://latestllm.com/articles/beyond-graphrag-exploring-runtime-graph-repair-and-agentic-rag-mu3whkxj"]
 > - **Neo4j NODES AI 2026（09-04）**：Agentic GraphRAG 产业化——多 agent 自动推断 schema、构建 KG、按查询结构与风险信号在向量/图检索间自适应路由（无手工 schema）["https://neo4j.com/videos/nodes-ai-2026-agentic-graphrag-autonomous-knowledge-graph-construction-and-adaptive-retrieval-2/"]
 > - **含义**：① "RAG 管线每一步都可 agent 化 + 验证 agent 兜底"成为新共识——silver-shield 知识库检索可直接采用"检索→重排→验证"三段 agent 化设计；② **运行时图修复**解决"图构建不完整则检索失败"的静态缺陷——对 GrowthOS 大规模经验库有价值；③ Neo4j 下场说明该范式已过研究验证、进入企业路线图
+> **雷达增量（2026-09-23，无锚实体 + 文档结构化 + 检索产品化）**：
+> - **AnchorRAG（arXiv 2509.01238，多 agent 协作 KG RAG）**：**无需预定义 anchor 实体**——predictor agent 提取关键词+语义匹配候选实体 → 多 retriever agent 并行图遍历——解决"开放世界查询"下 anchor 缺失问题["https://arxiv.org/html/2509.01238"]
+> - **DocNavRAG（arXiv 2608.01565，09-16 更新）**：**文档结构化图 RAG + 状态化证据构建**——多粒度层级图（保留原始段落为证据单元）+ 文档内外主题水平链接 + agentic 检索控制器自适应导航，training-free["https://arxiv.org/html/2608.01565v1"]
+> - **Azure AI Search Agentic Retrieval（09-18）**：**LLM query planning（preview）**多查询管线——复杂问题拆子查询、跨专有/外部内容覆盖，服务 agent-to-agent 工作流——**检索产品化到微软官方**["https://learn.microsoft.com/en-gb/azure/search/agentic-retrieval-overview"]
+> - **AWS Unified KG RAG（09-14，Apache-2.0）**：**GraphRAG + LightRAG 同栈**开源部署（统一知识图谱 RAG 栈）["https://aws.amazon.com/blogs/opensource/unified-knowledge-graph-rag-on-aws-graphrag-and-lightrag-on-one-stack/"]
+> - **含义**：① Agentic GraphRAG 三线并进——**无 anchor 泛化**（AnchorRAG）、**文档结构保持**（DocNavRAG，贴近企业文档场景）、**云厂商检索产品化**（Azure/AWS）——范式全面进入工程可用期；② "验证 agent"仍是共同骨架（对照 Validation 编译器）；③ silver-shield/GrowthOS 的 RAG 选型可对照 Azure 的"query planning 拆子查询"作为多跳检索参考实现
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策
