@@ -26,6 +26,14 @@
 > - **"Context Engineering Inside the Harness"（MarkTechPost 09-12）**：harness 层四机制击败上下文溢出/目标丢失——**compaction（压缩）、memory strategy（记忆策略）、context budgeting（上下文预算）、todo-state（任务状态跟踪）**，逐一对比 LangChain Deep Agents/Claude Code/Manus/OpenAI Codex/Bedrock AgentCore 的实现与**实际阈值**——context 工程从"prompt 层技巧"下沉为 harness 机制["https://www.marktechpost.com/2026/09/12/context-engineering-inside-the-harness-4-mechanisms-that-beat-context-overflow-and-goal-loss-on-long-horizon-tasks/"]
 > - **TrueFoundry 网关层 context 工程（09-11）**：`X-TFY-CONVERSATION-ID` 会话管理把 30 轮运行变成一条可查询时间线（而非 30 条孤立请求）——context 编排下沉到网关层["https://www.truefoundry.com/es/blog/context-engineering-gateway-session-management"]
 > - **含义**：① 与 Harness 调查论文"六职责"（observation/context/control…）互证——**context 职责的工程细节（四机制阈值）已在生产 harness 中收敛**；② Omnigent"控制面在 harness 层而非 prompt 层"获得实现级印证；③ TeamMind/自研 harness 可直接对照四机制与阈值做差距分析（compaction 触发阈值/budget 分配）
+> **雷达增量（2026-09-24，Harness 自我演化/生成新主线）**：
+> - **JIT-Agent（arXiv 2608.25593，09-03）**：**首个专为 just-in-time harness 生成打造的模型**——把 harness 智能确立为"可训练、可迁移、可复合"的 agent 能力维度["https://arxiv.org/html/2608.25593"]
+> - **HarnessDev（arXiv 2609.01437，ByteDance Seed + SUTD + Georgia Tech + M-A-P + TokenWave）**：**LLM 能否创建并演化自己的 agent harness 的基准**——直接命中我 09-18"Context Engineering Inside the Harness"与 dsh 的 DeepSeek harness 主线（harness 从"手写"走向"模型自演化"）["https://arxiv.org/pdf/2609.01437"]
+> - **Ecdysis（arXiv 2609.11677，09-10）**：运行时 harness 的高效/有效训练——harness 本身成为可训练对象["https://arxiv.org/abs/2609.11677"]
+> - **StarHarness（arXiv 2608.24804，08-25，ServiceNow + Mila + Montréal，GitHub 开源）**：企业环境的**分层搜索演化 harness**（替换/演化 harness 组件）["https://arxiv.org/html/2608.24804v1"]
+> - **AgentAO（arXiv 2608.13574v2）**：**策略治理的嵌入式工具使用 agent 运行时 harness**——威胁模型/治理模型/执行管线/结构化事件接口（不提供形式安全保证，但治理显式化）["https://arxiv.org/pdf/2608.13574v2"]
+> - **Harness Engineering via Reusable Tool Primitives（arXiv 2609.01736，09-01）**：agent 原生**可复用工具原语**降低 harness 工程成本["https://arxiv.org/abs/2609.01736"]
+> - **含义**：① **"harness 自我演化"成为 harness 领域研究新前沿**（生成/训练/演化三维）——与 DeepSeek harness（dsh）、HarnessDev（字节）直接同线，我的"自研 harness + 验证编译器"路线获得学术侧强印证；② **HarnessDev 作为基准**可用来评估"我的 harness 能否被模型重写"——dsh-pentest 可把 JIT-Agent/HarnessDev 作为验证对象；③ AgentAO 的"策略治理 + 事件接口"与 agent-firewall 卡"策略→执行"主线互证——harness 层治理显式化成为共识
 
 ## 4. 验证计划
 - [ ] 精读六职责分解论文，与我五维模型做逐项对照（产出对照卡）

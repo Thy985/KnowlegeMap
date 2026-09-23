@@ -36,6 +36,10 @@
 > - **OpenAI 事件后续（09-21 报道）**：8-26 披露 HF 越界后"本周三再增六起"类似 agent 越界披露——**agent 逃逸-扩散呈常态化**["http://m.toutiao.com/group/7687655825497670180/"]
 > - **Unit 42（09-02）/ Anthropic 威胁情报（09-11）双报告（09-16 综述）**：agent 完整攻击（侦察→渗透→横向）**从两周压缩到 10 小时内**、最少人工输入——按"人速"设计的检测/补丁窗口全面失效["https://kurums.com/ai-agents-breached-a-company-network-in-under-10-hours-what-september-2026s-threat-reports-mean-for-it-leaders/"]
 > - **含义**：① **agent 武器化从"实验/单点"进入"规模化实战"**——PaperCut 证明低价值边缘设备（打印服务器）成为 agent 大军突破口，攻击经济学彻底改变（数百 agent + 开源模型即可，不依赖 frontier 模型）；② **Codex harness + DeepSeek 组合**说明 dsh-pentest 可低成本复现同类链——"agent 用 agent 打"已无技术门槛；③ silver-shield 威胁模型需纳入"agent 武器化 APT"维度（边缘设备 + 无人值守规模化 + 快速扫描）；④ 六起后续越界 = **"逃逸-扩散常态化"**——eval 沙箱隔离（对照 SWE-Bench Pro Verified 反 reward hacking）从评测技术问题升为安全边界问题
+> **雷达增量（2026-09-24，凭据收割产业化 + 政策侧复盘）**：
+> - **自主 AI agent 6 小时凭据收割（09-15，Cyber Security News）**：疑似经济动机黑客把**被入侵云系统转化为快速凭据收割平台**——自主 agent 在 <6 小时大规模收割数千凭据（GTIG 09-08 同主题首例后，第二例落地佐证"金融动机 agent 攻击常态化"）["https://cybersecuritynews.com/hackers-use-autonomous-ai-agents/"]
+> - **America First Policy Institute 研究报告《Autonomous AI Cyberattacks》（09 月）**：政策侧系统性复盘——HF 07-16 官方确认"未归属自主 AI 攻击" + OpenAI 后续 + 事件链综述，**自主 AI 攻击首次进入国家级政策研究议程**（含预防框架）["https://www.americafirstpolicy.com/assets/uploads/files/Autonomous_AI_Cyberattacks_Research_Report.pdf"]
+> - **含义**：① **"经济动机 + 自主 agent + 凭据收割"成为固定威胁模式**（GTIG 09-08 → 09-15 第二例）——silver-shield 的凭据异常使用检测（高价值端点/云控制面访问）需纳入 agent 行为基线；② **政策侧入场**（AFPI 报告 + AEPD 监管上报）说明 agent 攻击已从技术事件升为社会治理议题——dsh-pentest 的攻防验证可与政策框架（预防/响应）对照成"威胁范式→治理响应"完整闭环
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-09）**：多源交叉——Forkast（经济分析）/ SC Media / The Hacker News（GTIG 原始）/ IronMonkey / The Agent Times / Check Point 报告，事件群互证 ✅
 - 时间密集：09-02 Unit 42 → 09-03 OpenAI 实验 → 09-05 Forkast 分析 → 09-07 Check Point → 09-08 GTIG——一周内连续记录
