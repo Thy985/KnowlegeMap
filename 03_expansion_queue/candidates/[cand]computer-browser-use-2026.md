@@ -36,6 +36,9 @@
 > - **Skyvern 3.0 Engine beta（08 月）**：持久工具循环 + 标记截图回退 + **原生 hCaptcha/TOTP/邮件一次性码处理**——验证码/2FA 自动化突破["https://agenticindex.io/vendors/skyvern"]
 > - **Gemini Spark 降价普及（07-30 Chrome 集成，09-14 报道）**：操作真实桌面浏览器 + 使用登录账户/密码，敏感操作（支付）强制人工批准；价格从 $249/月 Ultra 独占降至 $19 套餐捆绑["https://www.toolbit.ai/blog/inside-gemini-spark-googles-new"]
 > - **含义**：① computer use 进入"**GA 标准化 + 基础设施商入场 + 验证码能力突破**"三线并进——E2E-CLI/campus_order 的"Agent 代操作"已无技术壁垒；② Gemini Spark 的"敏感动作人工批准"与 BragJack 攻击（09-19 轮）同帧——浏览器 agent 权限边界是产品层一等问题
+> **雷达增量（2026-09-25，浏览器内置 agent 再添厂商）**：
+> - **Claude for Chrome（09-24 发布）**：Anthropic **浏览器扩展 AI agent**（research preview，首批 1,000 Max 订阅者 + waitlist）——sidebar 内保持上下文、对话并**代执行浏览器任务（点击/填表）**["https://www.techshotsapp.com/technology/anthropic-introduces-claude-for-chrome--ai-agent-inside-your-browser"]
+> - **含义**：① 浏览器内置 AI agent 从 Google（Gemini Spark）/Perplexity（Comet）扩展到 **Anthropic**——"浏览器=agent 主战场"三巨头齐集，E2E-CLI/campus_order 的"Agent 代操作"可跟随任一生态；② **BragJack 攻击面（09-19）随 Claude for Chrome 扩大**——内置 agent 常驻浏览器 = 默认攻击入口（劫持/数据窃取面），silver-shield 浏览器侧风险检测与 campus_order 部署需把"浏览器 agent 权限边界"前置为设计约束
 
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）

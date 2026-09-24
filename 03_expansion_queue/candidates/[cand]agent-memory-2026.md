@@ -45,6 +45,9 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **AWS Bedrock AgentCore Memory direct ingestion（09-08）**：新 `IngestData` API 直接投喂内容进长时记忆（不经短时事件）——**短时/长时分离 + 显式写入 API**成为托管记忆标准结构["https://aws.amazon.com/about-aws/whats-new/2026/09/agentcore-memory-direct-ingest/"]
 > - **Vercel eve agents 持久记忆（09-09）**：文件记忆默认落 Vercel Blob（跨重启/部署持久）+ 多 provider（Supermemory/Upstash AgentKit/自定义）——**文件记忆 + 可插拔存储**在托管平台落地["https://vercel.com/changelog/persistent-memory-for-eve-agents"]
 > - **含义**：① **"记忆即服务"成型**——Anthropic/AWS/Vercel 三大托管平台两周内齐推持久记忆，Tafcm 的本地记忆设计可对照 AgentCore"短长时分离+直接投喂"与 Vercel"文件存储+可插拔"双结构；② Claude Managed Agents 官方落地 = **"记忆=文件仓库"路线（09-18 卡内判断）获最大厂商实证**——KnowlegeMap 仓库模式与 GrowthOS 经验管理的"文件记忆"选型信心增强；③ 托管记忆的**权限/隔离维度**（谁可读、跨会话归属）与 agentic-attack 卡"agent 账户接管"互证——**记忆即攻击面**（PaperCut 事件的边缘设备 + 记忆数据同属低价值高敏感资产）
+> **雷达增量（2026-09-25，证据保留型记忆研究）**：
+> - **EnSIMem（arXiv 2609.27279，09-23 提交）**：**实体结构化索引长期记忆**——按实体聚合索引而非有损摘要；agent 从**保留的源证据**（原文片段）生成回答而非从 lossy memory summaries——"证据保留"替代"压缩"成为记忆检索新取向（与 Validation 编译器"Evidence→Judgment"同构、对照 09-04 批判"压缩是 lossy 的"）["https://arxiv.org/abs/2609.27279"]
+> - **含义**：① "记忆=证据库而非摘要库"获得明确方法论表述——**GrowthOS/KnowlegeMap 的"原文优先+结构化索引"路线（与 OKF 同线）再获学术支持**；② EnSIMem 的"实体结构化"可与 MemGraphRAG 三层记忆/Graph-R1 对照——记忆检索从"语义压缩"走向"结构保留+按需聚合"，这是 Tafcm 本地记忆与 silver-shield 证据链检索的设计输入
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上

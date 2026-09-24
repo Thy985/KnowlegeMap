@@ -81,6 +81,7 @@
 | [2026-09/2026-09-22_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-22_radar-watch_scan.md) | Personal Tech Radar 第 21 次扫描（OpenClaw 2026.9.5 + 超长时域评测 + 端点 AIDR） | 📌 |
 | [2026-09/2026-09-23_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-23_radar-watch_scan.md) | Personal Tech Radar 第 22 次扫描（Qwen3-VL 边缘 + A2A 生态清单 + Agentic GraphRAG 工程化） | 📌 |
 | [2026-09/2026-09-24_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-24_radar-watch_scan.md) | Personal Tech Radar 第 23 次扫描（Harness 自我演化 + 凭据收割产业化 + MCP Registry 破万） | 📌 |
+| [2026-09/2026-09-25_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-25_radar-watch_scan.md) | Personal Tech Radar 第 24 次扫描（EnSIMem 证据记忆 + Claude for Chrome + Agentic KV Cache 研究爆发） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
