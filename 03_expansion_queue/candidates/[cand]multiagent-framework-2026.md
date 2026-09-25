@@ -39,6 +39,9 @@
 > **雷达增量（2026-09-22，OpenClaw 2026.9.5 发布）**：
 > - **OpenClaw 2026.9.5（09-21 报道）**：**Atomic Updates + Plugin Hot Reload + Specialist AI Agent Teams**——onboarding 可一键创建专业 agent 团队（预设四角色：Chief of staff/Researcher/Writer/Reviewer，也可单专业 agent），团队以提案形式呈现由用户确认——**"专业 agent 团队"从手动编排走向引导式创建**["https://theinfobytes.com/openclaw-2026-9-5-atomic-updates-ai-agent-teams"]
 > - **含义**：① 2026.9.2 swarms 默认开启 → 2026.9.5 专业团队引导创建——**编排从"能力"走向"开箱即用工作流"**（对照 09-16 SwarmBench"编排者能力"评测维度）；② **plugin hot reload + atomic updates**降低升级/插件迭代风险（campus_order 升级路径可从 2026.9.4 直接评估 2026.9.5）；③ 四角色预设（Chief of staff/Researcher/Writer/Reviewer）与 TeamMind 的"团队运行时"设计直接对照——验证"专家化分工+验证者"模式是行业共识
+> **雷达增量（2026-09-26，OpenClaw 2026.9.6 发布）**：
+> - **OpenClaw v2026.9.6（09-24/25 release notes）**：**命令面板启动后台任务 + 个人主题 + 实时会议笔记跟随 + Telegram 群历史保留**——操作面（后台任务/会议协作）与个性化（主题）持续补齐["https://docs.openclaw.ai/releases"]
+> - **含义**：① 2026.9.5（团队/插件热重载）→ 2026.9.6（后台任务/会议跟随）——**OpenClaw 从"agent 运行时"扩展为"日常协同工作台"**（会议、群聊、后台任务均为"长时间驻留+异步"场景，与 TeamMind 的"常驻团队运行时"语义同向）；② campus_order 若用 OpenClaw 承载"通知/关注类常驻任务"，2026.9.6 的后台任务与 Telegram 群历史保留直接可用；③ 版本节奏约两周一版（2026.9.4→9.5→9.6），升级评估窗口已缩短——campus_order 需建立"每版权限/信任模型 diff 审查"轻流程
 
 ## 4. 决策
 - [ ] 晋升 validated

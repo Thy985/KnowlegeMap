@@ -30,6 +30,12 @@
 > - **NabaOS（arXiv 2603.10060，09-16 更新）**：轻量验证框架——**HMAC 签名的工具执行 receipts（LLM 无法伪造）** + 认识论来源分类（pramāṇa：直接工具输出/推理/外部证言/缺失/无根据观点），逐句判定幻觉归属——与 trace-based eval 的"行为证据"范式呼应["https://arxiv.org/html/2603.10060"]
 > - **Verus 路线（PAgE 2026 keynote，09-08）**：LLM agent 随代码发形式证明、由 **Verus（SMT-based Rust verifier）** 验证——仓库级系统代码上"frontier-model-gated yes"；但**规格仍是可信头（TCB）**，agent 只提供证明不提供规格["https://wal.sh/events/pldi-2026/page-2026/keynote-shan-lu/"]
 > - **含义**：① 形式化验证从"语言/框架"进入"策略验证工程"（NVIDIA Z3 实践）——TeamMind 工具策略可先做 Z3 可解建模；② **Vero 量化缺口**说明 agent 自动证明仍是开放问题，但"验证钩子（verification hooks）"已成 codex 等 CLI 标配；③ **NabaOS 的不可伪造 receipts**是"机器可核验证据"的轻量形态——Validation 编译器证据层可参考（成本远低于 Lean 内核证明）
+> **雷达增量（2026-09-26，验证方法论扩展 + 评测基础设施形式化）**：
+> - **Harnessing Code Agents for Automatic Software Verification（arXiv 2607.06341）**：**"脚手架不必要"**——Claude Code/Codex 等通用代码 agent 直接整条 lemma 级证明，优于窄角色（predict a tactic/fill a slot）系统——"agent 自由规划证明路径"比限定角色更有效["https://arxiv.org/html/2607.06341"]
+> - **Event-B Agent（arXiv 2605.17475）**：**LLM agent 综合+修复 Event-B 形式化模型**——自然语言需求→初始模型→用形式验证反馈迭代修复/精化（refinement 简化证明、修复保证每一步健全）["https://arxiv.org/html/2605.17475"]
+> - **BenchShield（2026-09-10）**：**formal model-backed instrumentation 保护 LLM-agent 评测基础设施的奖励完整性**——把形式化模型引入 agent 评测，防 reward hacking（与 SWE-Bench Pro Verified 反 reward hacking 同线的形式化解法）["https://www.semanticscholar.org/paper/BenchShield:-Formal-Model-Backed-Instrumentation-in-Zheng-Di/aa6f64210fa8817ed5925f21a96d6daf0e3b2e3f"]
+> - **Toward Safe LLM Agents Survey（arXiv 2608.14590）**：**specification/verification/enforcement 三阶段综述**——GRADE 表系统盘点 AgentProof/DafnyPro/VeriGuard 等"pre-action verified generation"路线的成熟度（多数 Very Low——领域仍早期）["https://arxiv.org/html/2608.14590v1"]
+> - **含义**：① 方法论翻转——**"通用 agent 自由规划证明 > 窄角色脚手架"**（2607.06341）直接验证 dsh"通用 harness 驱动"路线的正确性；② **评测基础设施本身成为形式化对象**（BenchShield）——与 agentic-benchmarks 卡互证，Vero 缺口 + Survey 的"Very Low"成熟度 = 领域早期但方向确立；③ Event-B 的"验证反馈驱动模型修复"循环与 Validation 编译器"Evidence→Judgment→修正"闭环同构——形式化侧的实现参考再添一个
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策
