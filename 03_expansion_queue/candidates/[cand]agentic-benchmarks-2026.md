@@ -46,6 +46,10 @@
 > - **SWE-Chain（arXiv 2605.14415）**：链式 release 级包升级评测——每次升级构建在先前代码上（持续维护而非单次修复）["https://arxiv.org/html/2605.14415"]
 > - **ProgramBench（SWE-bench 官方，2026-05）**：从零编写有意义软件工件（CodeClash 同门）["https://www.swebench.com/"]
 > - **含义**：① **"超长时域/完整项目"成为评测新前沿**——与 Hyper-τ"agent 建 agent"同向：评测对象从"任务"变为"工程"；② 成本结构剧变（$1k+/任务）使**评测经济性**成为新问题——silver-shield Benchmark Harness 的"分阶段门禁"（先低成本筛选再深度验证）正是对应解法；③ SWE-Marathon 的"对抗性防捷径"延续 Pro Verified 反 reward hacking 主线
+> **雷达增量（2026-09-27，基准版本更替 + 合成环境新方法）**：
+> - **Terminal-Bench 4.0 刷榜失效事件（36kr 09-12 深度分析）**：Gemini 3.8 Flash 在 TB 2.1 上 89.4 分排第 2（182 模型），**换到 08-29 上线的 TB 4.0 仅 19.1 分**——**基准版本更替直接击穿刷榜**（与 SWE-Bench Pro Verified 反 reward hacking 同线的"基准更新即防线"机制）；Meta 被指为刷榜案例["https://36kr.com/p/3980148869184514"]["https://aiwiki.ai/wiki/terminal_bench/raw"]
+> - **Terminal-World（arXiv 2605.20876）**：**用 agent skills 规模化合成终端 agent 训练环境**——把真实任务泛化为 skill 驱动变体，32B 模型 69.3 Avg Pass@1（TB 2.0 上 31.5 Pass@1）——**合成环境从"数据增强"走向"训练侧规模化"**（与 Terminal-Bench Challenges 的评测侧规模化互补）["https://arxiv.org/html/2605.20876"]
+> - **含义**：① **"基准版本更替=防刷榜机制"成为评测基础设施共识**（Pro Verified→TB 4.0）——silver-shield Benchmark Harness 需把"基准版本生命周期"纳入设计（定期更替 + 新旧对照）；② Terminal-World 证明 agent 合成环境可反哺模型训练（Pass@1 显著提升）——"合成数据→训练"闭环对 Tafcm 本地小模型微调（dsh 训练侧）是直接可借鉴路线；③ 厂商自报分（GPT-6 Astra 57.7% TB 4.0）与官方榜脱节仍是纪律红线——引用一律以官方 leaderboard 为准
 
 ## 4. 决策
 - [ ] 晋升 validated

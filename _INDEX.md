@@ -84,6 +84,7 @@
 | [2026-09/2026-09-24_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-24_radar-watch_scan.md) | Personal Tech Radar 第 23 次扫描（Harness 自我演化 + 凭据收割产业化 + MCP Registry 破万） | 📌 |
 | [2026-09/2026-09-25_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-25_radar-watch_scan.md) | Personal Tech Radar 第 24 次扫描（EnSIMem 证据记忆 + Claude for Chrome + Agentic KV Cache 研究爆发） | 📌 |
 | [2026-09/2026-09-26_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-26_radar-watch_scan.md) | Personal Tech Radar 第 25 次扫描（Medicare 政府级入侵 + $25 攻击成本 + OpenClaw 9.6 + 形式化验证方法论翻转） | 📌 |
+| [2026-09/2026-09-27_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-27_radar-watch_scan.md) | Personal Tech Radar 第 26 次扫描（TB4.0 防刷榜 + NVIDIA PAIR 端边协同 + CloudWatch Omni 观测入场） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

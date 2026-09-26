@@ -25,6 +25,12 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 > - **OpenSearch LLM traces（09-01）**：OpenSearch 可观测性直接消费 GenAI semconv（model/token 用量/tool/agent step 标准化 span），GenAI SDK 支持 Strands Agents 等自动插桩["https://dev.to/jon_handler_9bb3e6b4a2fd0/read-your-ai-agents-mind-opensearch-observability-for-llm-traces-2ll"]
 > - **TrueFoundry LLM 网关插桩实践（09-11）**：span kind 约定落地——外部 provider 调用=CLIENT、网关内 guardrail（PII 脱敏/schema 校验）=INTERNAL、根=SERVER["https://www.truefoundry.com/ar/blog/opentelemetry-llm-gateway-instrumentation"]
 > - **含义**：① agent span kind 规则解决"同一 agent 在不同框架 trace 语义不一致"的互操作问题——**Tafcm ADI 接 OTel 时 span kind 决策有标准可依**；② 生产实践（OpenSearch/TrueFoundry/genai-otel-instrument）与 spec 双向往返，标准进入稳定演进期
+> **雷达增量（2026-09-27，大厂 agent 观测环境入场 + 自托管 GA）**：
+> - **AWS CloudWatch Omni（09-23）**：**首个大厂级 AI agent 观测/测试环境**——支持主流 AI 框架、IDE 集成、open inference、OpenTelemetry——**agent 观测从"工具层"升到"云平台原生能力"**["https://awsinsider.net/blogs/awsinsider-release-radar/2026/09/aws-launches-cloudwatch-omni.aspx"]
+> - **OpenObserve v1.0 GA（09-22）**：自托管 AI observability 正式 GA（LLM traces/成本/评测）——自托管路线继 Langfuse/xtrace 后再添成熟选项["https://www.apmdigest.com/openobserve-v10-released"]
+> - **Agentreplay（PyPI 0.1.4，09-24）**：agent 追踪平台（语义搜索 + RAGAS/G-Eval/toxicity evals + **Git-like prompt/response 版本化**）——"trace+eval+版本化"一体化小工具["https://pypi.org/project/agentreplay/"]
+> - **Azure Foundry 外部 agent 观测注册 preview（09-01）**：LangChain 等外部 agent 通过 exporter 接入 Foundry 观测/评测——**跨框架 agent 注册进统一观测面**["https://learn.microsoft.com/en-gb/Azure/foundry/agents/how-to/register-external-agent"]
+> - **含义**：① **AWS 入场 = agent 可观测成为云平台标准能力**（对照 OTel semconv 1.41 的标准化）——Tafcm/TeamMind 选型时"云原生观测（CloudWatch Omni 类）vs 自托管（OpenObserve/Langfuse 类）"成为顶层路线选择；② Agentreplay 的"Git-like 版本化"与 KnowlegeMap/记忆卡的"证据保留"同构——trace 即版本化证据；③ 观测、评测、版本化三者持续一体化——与 trace-based-eval 卡"行为数据层"收敛方向一致
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座

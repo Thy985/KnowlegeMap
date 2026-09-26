@@ -33,6 +33,11 @@
 > - **Qwen3-VL 4B/8B 边缘变体（2026-09-20，阿里官方）**：旗舰视觉语言模型的精简版 4B/8B 参数变体——**多模态 VLM 边缘化加速**（对标 MiniCPM-V 4.6 同赛道）["https://ai-damn.com/alibaba-unveils-compact-qwen3-vl-ai-models-for-edge-devices-1760569585080"]
 > - **ModelBest 开源边缘 agentic 模型（09-08 PRNewswire）**：中国 AI 初创（model best）发布开源模型——**通用 agentic 能力低成本部署到边缘设备**（官方定位"general-purpose agentic capability to edge devices at a lower cost"）["https://www.prnewswire.com/news-releases/chinas-latest-ai-model-brings-general-purpose-agentic-capability-to-edge-devices-at-a-lower-cost-302873367.html"]
 > - **含义**：① "**agentic 定位 + 视觉语言 + 低成本**"成为边缘模型三要素——Tafcm 多模态移动端选型池再扩（Qwen3-VL 4B/8B 官方系 vs MiniCPM-V 4.6 vs Gemma 4 E2B）；② 国内厂商（阿里/OpenBMB/ModelBest）密集下场边缘 agentic，生态竞争白热化——选型需以"官方支持链 + 实测"为准（Gemma 4 的 LiteRT-LM 仍是工程确定性最高）
+> **雷达增量（2026-09-27，边缘协同推理 + 新变体）**：
+> - **NVIDIA PAIR（IFA 2026，09-08）**：**PC 与 RTX Spark 负载分担**（本地 agent 推理一部分在 PC、一部分推给 RTX Spark 设备）——"设备-边缘协同推理"从概念进产品；同场 NVIDIA+Microsoft 简化本地 agent 配置（Hermes Agent/OpenClaw/Perplexity PC 官方支持，推理快 1.9x）["https://la.blogs.nvidia.com/blog/nvidia-acelera-la-ia-local-en-ifa-2026/"]
+> - **Nemotron 3.5 Lightning（09-04 Jetson 部署指南）**：30B 总参 MoE **激活仅 3B/token**——边缘 reasoning/agentic 工作负载（与 Qwen3.8-27B 稠密形成对照）["https://developer.nvidia.com/blog/frontier-reasoning-reaches-the-edge-how-to-deploy-and-optimize-models-on-nvidia-jetson/"]
+> - **LFM2.5-VL-DSpark（09-24）**：Liquid AI 视觉语言边缘变体——**VL 版边缘加速**（LFM2.5-2.6B 文本版之后的多模态扩展）["https://www.liquid.ai/?via=nextoolai"]
+> - **含义**：① **"端-边协同推理"（PAIR）进入产品化**——与 agentic-inference-infra 卡"端边云联合路由"（Unified AI Gateway）在边缘侧同向收敛，Tafcm"本地优先+算力外援"架构有了硬件层参考（PC↔RTX Spark 类设备分担）；② **边缘 MoE**（Nemotron 3.5 Lightning 3B 激活）验证"磁盘流式 MoE/稀疏激活"边缘可行——Tafcm 端侧模型池再添稀疏路线；③ LFM2.5-VL 说明边缘厂商普遍走"文本→VL 扩展"节奏——多模态已成边缘标配
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径
