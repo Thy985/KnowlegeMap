@@ -12,6 +12,7 @@
 | [03_project_landscape.md](00_bootstrap/03_project_landscape.md) | 项目全景（14 公开仓库 + 内库 Hub） | 📌 |
 | [04_top20_expansion.md](00_bootstrap/04_top20_expansion.md) | Top 20 扩展方向（六维评分矩阵） | 📌 |
 | [05_auto_exploration_strategy.md](00_bootstrap/05_auto_exploration_strategy.md) | 未来自动探索策略 | 📌 |
+| [00_starred_reference.md](00_bootstrap/00_starred_reference.md) | GitHub star 基准（35 个星标 = 已知边界；聚类/去重/新信号分级） | 📌 2026-09-26 |
 
 ## 01_known_territory（已知领域边界）📌
 
