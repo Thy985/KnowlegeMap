@@ -34,6 +34,12 @@
 > - **Azure AI Search Agentic Retrieval（09-18）**：**LLM query planning（preview）**多查询管线——复杂问题拆子查询、跨专有/外部内容覆盖，服务 agent-to-agent 工作流——**检索产品化到微软官方**["https://learn.microsoft.com/en-gb/azure/search/agentic-retrieval-overview"]
 > - **AWS Unified KG RAG（09-14，Apache-2.0）**：**GraphRAG + LightRAG 同栈**开源部署（统一知识图谱 RAG 栈）["https://aws.amazon.com/blogs/opensource/unified-knowledge-graph-rag-on-aws-graphrag-and-lightrag-on-one-stack/"]
 > - **含义**：① Agentic GraphRAG 三线并进——**无 anchor 泛化**（AnchorRAG）、**文档结构保持**（DocNavRAG，贴近企业文档场景）、**云厂商检索产品化**（Azure/AWS）——范式全面进入工程可用期；② "验证 agent"仍是共同骨架（对照 Validation 编译器）；③ silver-shield/GrowthOS 的 RAG 选型可对照 Azure 的"query planning 拆子查询"作为多跳检索参考实现
+> **雷达增量（2026-09-28，国内大厂开源 + 记忆×图检索融合）**：
+> - **Tencent Youtu-GraphRAG（09-11 开源，09-27 报道）**：腾讯优图实验室开源 GraphRAG 框架——KG 与 RAG 集成（国内大厂首个开源级 GraphRAG 栈）["https://ai-damn.com/tencent-open-sources-graphrag-framework-youtu-graphrag-1757632545371"]
+> - **Oracle AI Agent Memory Graph-Aware Retrieval（09-23）**：**托管 agent 记忆新增图感知检索 + 图像记忆 + 企业级控制**——"记忆×图检索"进云厂商产品线（与 agent-memory 卡"记忆=图/文件/向量三路线"交叉）["https://blogs.oracle.com/developers/whats-new-in-oracle-ai-agent-memory-graph-aware-retrieval-image-memory-and-enterprise-controls"]
+> - **GRASP（Graph Agentic Search over Propositions，arXiv 2605.16598）**：**依赖感知计划分解多跳查询** + 按问题复杂度动态伸缩子 agent 数——高精度+最低 token 双优化["https://arxiv.org/html/2605.16598"]
+> - **MOSAIC（Query-Aware Exploration Policy Adaptation for GraphRAG）**：**查询感知探索策略自适应**——图检索策略随查询类型动态调整["https://www.semanticscholar.org/paper/MOSAIC:-Query-Aware-Exploration-Policy-Adaptation-Lee-Oh/9652a11a76ca3a163820f258aeb598a9cfe8bb3f"]
+> - **含义**：① **国内大厂（腾讯）+ 云厂商（Oracle）双双进场**——Agentic GraphRAG 完成"研究→产品"闭环的最后一块拼图，GrowthOS 选型可从"自建 vs 采用"双视角评估；② **"记忆×图检索"融合**（Oracle）确认图结构成为 agent 记忆的正式组织形态之一——与 KnowlegeMap 仓库的"结构化索引"路线互证；③ GRASP 的"动态子 agent 伸缩"与 TeamMind 的 fan-out 调度同构——多跳检索的成本-精度权衡有了参考实现
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策

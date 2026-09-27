@@ -30,6 +30,11 @@ A2A（Agent2Agent）v1.0 于 2026-03-12 冻结，是"Agent↔Agent"的事实标�
 > - **AG2 A2A 模块（09-02）**：transport-agnostic——同一 agent 可经 JSON-RPC/HTTP+JSON(REST)/gRPC 三种传输服务，客户端按发布绑定选择["https://docs.ag2.ai/latest/docs/beta/a2a/overview/"]
 > - **Microsoft Foundry A2A 双向打通（09-15）**：A2A 工具 GA（出站连远程 A2A 端点）+ **入站 A2A 端点启用**（Foundry agent 可被外部 agent 调用）——平台级双向互操作["https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/agent-to-agent"]
 > - **含义**：① A2A 生态进入"**13 框架默认集成 + 平台双向打通 + v1.1 演进**"——TeamMind 接入成本进一步下降（Java SDK 1.3.0 + AG2 传输无关可作参考实现）；② v1.1 的 task timeline/事件过滤标准化 = 可观测性规范化（与 otel-genai 卡同向）；③ A2A 从"协议标准"变成"生态默认"，与 MCP 一起构成完整的 Agent 互操作地基
+> **雷达增量（2026-09-28，治理落地 + 经济层新协议）**：
+> - **Agent Payments Protocol（AP2，09-16 官方公告）**：**agent 间支付/计费协议**——A2A 生态新增经济层（x402 支付能力，前身 x402 已见于 A2A agent 目录）——**"agent 互操作"扩展到"agent 交易"**["https://a2a-protocol.org/latest/community/"]
+> - **A2A Extensions（09-09）**：自定义 agent 功能扩展机制（A2A 扩展生态）["https://a2a-protocol.org/latest/community/"]
+> - **Roadmap BiDi Streaming（#1995，09-15 更新）**：双向流式——实时 artifact 更新/角色管理/任务执行中连续多轮消息——与 v1.1 task timeline 配合["https://a2a-protocol.org/latest/roadmap/"]
+> - **含义**：① **A2A 从"互操作协议"演进为"互操作+交易协议"**（AP2 支付层）——"agent 经济"基础设施成形，TeamMind 若做跨组织 agent 协作需预留计费/授权接口；② BiDi Streaming 使长任务实时状态同步成为协议能力——与 TeamMind 团队运行时的"实时状态共享"设计直接对照；③ A2A 一周年（04-09：150+ 组织/22K+ star）后治理（AAIF 托管）+ 经济层（AP2）+ 实时层（BiDi）三线推进——协议栈完整化加速
 
 ## 3. 与我的知识/项目关系
 - **TeamMind（Java 多 Agent 团队运行时）** 直接受益：A2A 提供标准化的 Agent 发现/协作/任务模型，可与 MCP 一起成为 TeamMind 的协议层
