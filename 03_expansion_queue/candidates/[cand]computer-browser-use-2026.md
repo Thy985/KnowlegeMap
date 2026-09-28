@@ -39,6 +39,12 @@
 > **雷达增量（2026-09-25，浏览器内置 agent 再添厂商）**：
 > - **Claude for Chrome（09-24 发布）**：Anthropic **浏览器扩展 AI agent**（research preview，首批 1,000 Max 订阅者 + waitlist）——sidebar 内保持上下文、对话并**代执行浏览器任务（点击/填表）**["https://www.techshotsapp.com/technology/anthropic-introduces-claude-for-chrome--ai-agent-inside-your-browser"]
 > - **含义**：① 浏览器内置 AI agent 从 Google（Gemini Spark）/Perplexity（Comet）扩展到 **Anthropic**——"浏览器=agent 主战场"三巨头齐集，E2E-CLI/campus_order 的"Agent 代操作"可跟随任一生态；② **BragJack 攻击面（09-19）随 Claude for Chrome 扩大**——内置 agent 常驻浏览器 = 默认攻击入口（劫持/数据窃取面），silver-shield 浏览器侧风险检测与 campus_order 部署需把"浏览器 agent 权限边界"前置为设计约束
+> **雷达增量（2026-09-29，browser use 企业 GA + 零配置新入口）**：
+> - **Anthropic Computer Use / Skills / Files APIs 全面 GA（09-18）**：三核心 agent API 升企业级 GA（full SLA）+ **原生 Browser Use 工具发布**（终端编码与实时浏览器执行打通）——"browser use"成为 API 层一等公民["https://aicoder.com/news/news-20260918-anthropic-computer-use-skills-files-api-ga"]
+> - **computer/browser toolsets 上 Google Cloud（09-28）**：computer_toolset_20260801/browser_toolset_20260801 在 GCP 对 Claude 全系可用——**跨云可用性确认**["https://platform.claude.com/docs/en/release-notes/overview"]
+> - **Vercel Agent Browser（09-24）**：LLM **点击/滚动/交互网页**零配置（免 driver/依赖）——"用起来像人"的浏览器交互产品化["https://ai-damn.com/vercel-s-new-tool-lets-ai-actually-use-websites-like-humans-1768345535936"]
+> - **Tencent BrowserSkill（06-2026 开源，MIT）**：DOM 观察+截图混合感知，跑在用户自己浏览器（CLI + Chrome/Edge 扩展）——**国内大厂开源浏览器 agent 桥**["https://aiwiki.ai/wiki/ai_browser_agent"]
+> - **含义**：① **"browser use"完成从实验能力到企业 GA 的跃迁**（Anthropic full SLA + GCP 跨云）——E2E-CLI/campus_order 的浏览器自动化基线可直接对齐官方 API 而非自研；② **Vercel 零配置 + Tencent 开源**提供两条低成本替代（Agent Browser/ BrowserSkill）——Tafcm 若做"用户可见浏览器操作"可先复用；③ browser use 全面产品化 = **攻击面同步扩大**（Vercel/Tencent 工具均可被劫持）——silver-shield 需覆盖"agent 浏览器操作"监测
 
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）

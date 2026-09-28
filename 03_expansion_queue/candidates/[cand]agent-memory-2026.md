@@ -48,6 +48,14 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > **雷达增量（2026-09-25，证据保留型记忆研究）**：
 > - **EnSIMem（arXiv 2609.27279，09-23 提交）**：**实体结构化索引长期记忆**——按实体聚合索引而非有损摘要；agent 从**保留的源证据**（原文片段）生成回答而非从 lossy memory summaries——"证据保留"替代"压缩"成为记忆检索新取向（与 Validation 编译器"Evidence→Judgment"同构、对照 09-04 批判"压缩是 lossy 的"）["https://arxiv.org/abs/2609.27279"]
 > - **含义**：① "记忆=证据库而非摘要库"获得明确方法论表述——**GrowthOS/KnowlegeMap 的"原文优先+结构化索引"路线（与 OKF 同线）再获学术支持**；② EnSIMem 的"实体结构化"可与 MemGraphRAG 三层记忆/Graph-R1 对照——记忆检索从"语义压缩"走向"结构保留+按需聚合"，这是 Tafcm 本地记忆与 silver-shield 证据链检索的设计输入
+> **雷达增量（2026-09-29，记忆研究爆发：联想激活 + 双过程 + 事件溯源）**：
+> - **Synapse（arXiv 2601.02744）**：**扩散激活（spreading activation）统一 episodic-semantic 记忆**——记忆建模为动态图，相关性由激活传播而非预计算相似度涌现；侧抑制 + 时间衰减动态高亮子图过滤干扰；Triple Hybrid Retrieval（几何+语义+图）融合——"图动力学替代向量相似度"["https://arxiv.org/html/2601.02744v1/"]
+> - **REMem（ICLR 2026）**：episodic 推理——记忆"发生了什么/何时/与谁"+**跨事件时间推理**；离线构建 Hybrid Memory Graph（gists + 结构化事实三元组均带时间戳），在线 ReAct 用检索+图遍历工具迭代收集证据["https://en.papernotes.org/ICLR2026/llm_agent/remem_reasoning_with_episodic_memory_in_language_agent/"]
+> - **HeLa-Mem**：**Hebbian 学习 + 联想记忆**——episodic 记忆图（节点=对话轮，含原文/嵌入/时间戳）+ 语义记忆存储双层级，联想巩固动力学["https://www.themoonlight.io/fr/review/hela-mem-hebbian-learning-and-associative-memory-for-llm-agents"]
+> - **SEEM（arXiv 2601.06411）**：**结构化 episodic 事件记忆**——Episodic Event Frames（EEF）+ 图记忆层（关系事实）+ 动态 episodic 层（叙事推进）——**Reverse Provenance Expansion（RPE）**反推重建连贯上下文——与 EnSIMem"证据保留"同向并升级为"事件帧+溯源扩展"["https://arxiv.org/html/2601.06411"]
+> - **Jev-Mem（arXiv 2609.23986）**：**System-One 控制面 agentic 记忆**——专用 System-One 控制器管记忆构建（类型/关系组织）+ 检索（查询路由/检索预算分配/图遍历/候选评分/自适应停止），System-Two 仅做复杂推理与合成——**快慢双系统分工落地到记忆**（与认知双过程同构）["https://www.alphaxiv.org/abs/2609.23986"]
+> - **Dual-Process Memory 实证（arXiv 2605.17625）**：长时域科学 agent——即时 episodic 窗口（10 消息）与长期整合知识（3 tokens/消息）解耦；15,000 消息 × 6 LLM（3 家族）跨模型验证["https://arxiv.org/html/2605.17625"]
+> - **含义**：① **记忆研究一周内新增 5 篇架构论文，三条新主线**——**联想激活**（Synapse/HeLa-Mem，替代静态向量相似度）、**双过程分工**（Jev-Mem/Dual-Process，快慢系统各司其职）、**事件/证据溯源**（SEEM-RPE/REMem，结构化事件帧+provenance 反推）；② **"图+激活动力学"成为记忆主流表述**——与 agentic-graphrag 卡的图记忆（Oracle 图感知检索）交叉，记忆与图检索两线融合加速；③ **SEEM 的 RPE 与 EnSIMem 证据线直接同向**——GrowthOS/KnowlegeMap"原文优先+溯源"路线从"摘要压缩反例"获得完整方法论家族支撑；④ Jev-Mem 的"检索预算分配+自适应停止"是 Tafcm 本地记忆的 token 经济设计直接输入（端侧预算敏感）
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
