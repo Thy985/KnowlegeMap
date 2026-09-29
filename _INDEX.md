@@ -87,6 +87,7 @@
 | [2026-09/2026-09-27_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-27_radar-watch_scan.md) | Personal Tech Radar 第 26 次扫描（TB4.0 防刷榜 + NVIDIA PAIR 端边协同 + CloudWatch Omni 观测入场） | 📌 |
 | [2026-09/2026-09-28_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-28_radar-watch_scan.md) | Personal Tech Radar 第 27 次扫描（OpenAI 二次暂停训练 + AP2 支付协议 + 腾讯 GraphRAG 开源） | 📌 |
 | [2026-09/2026-09-29_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-29_radar-watch_scan.md) | Personal Tech Radar 第 28 次扫描（记忆研究 5 论文爆发 + Anthropic Browser Use GA + MCP stateless 落地） | 📌 |
+| [2026-09/2026-09-30_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-30_radar-watch_scan.md) | Personal Tech Radar 第 29 次扫描（Bedrock AgentCore Harness GA + agentic KV 管理再扩 6 篇） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

@@ -34,6 +34,11 @@
 > - **AgentAO（arXiv 2608.13574v2）**：**策略治理的嵌入式工具使用 agent 运行时 harness**——威胁模型/治理模型/执行管线/结构化事件接口（不提供形式安全保证，但治理显式化）["https://arxiv.org/pdf/2608.13574v2"]
 > - **Harness Engineering via Reusable Tool Primitives（arXiv 2609.01736，09-01）**：agent 原生**可复用工具原语**降低 harness 工程成本["https://arxiv.org/abs/2609.01736"]
 > - **含义**：① **"harness 自我演化"成为 harness 领域研究新前沿**（生成/训练/演化三维）——与 DeepSeek harness（dsh）、HarnessDev（字节）直接同线，我的"自研 harness + 验证编译器"路线获得学术侧强印证；② **HarnessDev 作为基准**可用来评估"我的 harness 能否被模型重写"——dsh-pentest 可把 JIT-Agent/HarnessDev 作为验证对象；③ AgentAO 的"策略治理 + 事件接口"与 agent-firewall 卡"策略→执行"主线互证——harness 层治理显式化成为共识
+> **雷达增量（2026-09-30，托管 harness GA + agent 生命周期治理）**：
+> - **AWS Bedrock AgentCore Harness 全面 GA（09-17 release notes）**：托管 harness——**CreateHarness/InvokeHarness 无编排代码无容器**；GA 默认内置记忆（可自带）、更多模型提供方（LiteLLM/Bedrock Mantle，解锁 GPT-5.5）；**09-29 再更新：MCP 工具结果元数据流式返回**["https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.html"]
+> - **Harness（公司）Agent DLC + Autonomous Worker Agents（06-30/07-31 shipped）**：agent **全生命周期平台**（build/test/store/deploy/operate/govern + AIBOM 物料清单）——pipeline 每步可跑 reasoning agent（scoped credentials + OPA policy + approval gates + audit trails，与人工部署同级治理）["https://www.harness.io/blog?sck=1778014584698_17780141792434"]["https://www.harness.io/blog/shipped-in-june-2026"]
+> - **Tencent Cloud"从 Harness 到自进化 Agent"（09-20 方法论文）**：Phase 3 自进化 Harness 时代——代表 Hermes Agent（自动复盘/自动沉淀经验/自动改进，"你纠正一次它永远记住"）——与 09-24 卡内 HarnessDev/自演化线互证["https://cloud.tencent.com/developer/article/2747237"]
+> - **含义**：① **"托管 harness 即服务"主流化**（AgentCore GA = 无编排代码跑 agent）——自研 harness（dsh/DeepSeek）与托管路线的竞争/互补格局成形，silver-shield 评测 harness 可对照 AgentCore 的"内置记忆+多模型"设计；② **agent 生命周期治理产品化**（Agent DLC/Worker Agents + AIBOM）——"agent 安全"从运行时防护扩展到**全生命周期治理管道**（与 skill-supply-chain 卡的 AIBOM/物料清单互证、EP-002 权限边界获得企业级参考实现）；③ 自进化 harness 从研究（JIT-Agent/HarnessDev）走向方法论共识（Tencent Phase 3）——dsh 的 harness 迭代路线再获外部印证
 
 ## 4. 验证计划
 - [ ] 精读六职责分解论文，与我五维模型做逐项对照（产出对照卡）

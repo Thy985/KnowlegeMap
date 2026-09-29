@@ -30,6 +30,15 @@
 > - **DualPath（arXiv 2602.21548）**：**双路径 KV 缓存加载**——常规 storage→prefill 路径之外，KV 可经 RDMA 从 decode 引擎直传 prefill 引擎，打破 prefill 侧存储带宽瓶颈["https://arxiv.org/html/2602.21548"]
 > - **Astera Labs Leo X 系列（09-15）**：**硬件层 KV cache offload**——智能内存控制器在 GPU/CPU 间加速 KV 迁移（agentic 流量"sub-agent bursts"尖峰特征驱动）["https://www.asteralabs.com/resources/blog/supercharging-agentic-ai-how-leo-x-series-smart-memory-controllers-accelerate-inference-with-kv-cache-offload/"]
 > - **含义**：① **Agentic KV Cache 管理从"路由机制"扩展为"调度/驱逐/剪枝/架构/硬件"全栈研究对象**——Dynamo 之后两个月内 5 篇论文 + 1 硬件方案，该领域进入研究密集期；② "agentic 流量特征"（sub-agent bursts/长会话复用/tool-call 中断）成为推理系统设计一等输入——Tafcm 本地+云混合的 KV 策略可对照 IntentKV（剪枝）与 DualPath（跨引擎迁移）；③ **硬件入场（Astera）**说明 KV offload 从软件优化走向基础设施——dsh 长会话成本测算需纳入 KV 存储/迁移成本模型
+> **雷达增量（2026-09-30，agentic 专用 KV 管理再扩 6 篇：phase/action 感知成主线）**：
+> - **AgentKV（arXiv 2609.14872）**：**phase-aware 驱逐**——agentic 生成违反"recency"假设（think/act/tool 各占不同查询子空间，principal-angle 分析证实），按 phase 维护 query buffer 评分 keys["https://arxiv.org/pdf/2609.14872"]
+> - **ActKV（arXiv 2609.31395，09-25）**：**首个 action-guided KV 压缩框架**——action-oriented 驱逐（稳定 action 访问模式保留关键条目）+ confidence-driven 自适应预算（用 LLM 内在置信度）["https://papers.cool/arxiv/2609.31395"]
+> - **PackServe（arXiv 2609.33224，09-29 更新）**：**SLO-aware 请求调度**——KVC reuse 优先于 packing（丢失 KVC reuse 比 decode 大 batch 更费 GPU）+ 归一化重算预算约束 cache locality 权衡["https://arxiv.org/html/2609.33224v1"]
+> - **UNISON（09-09）**：**near-memory 会话 KV 调度器**——Survival-Penalty Eviction（agent return-gap）+ idle-window DMA tiering 共享实时排序["https://www.semanticscholar.org/paper/UNISON:-A-Co-Designed-Near-Memory-Scheduler-of-KV-He-Li/21273edc97cdf408516d318c8b2825812793356e"]
+> - **Leyline（arXiv 2606.01065）**：**KV cache directives**——声明式 (span, replacement) 4-tuple 编辑缓存内容并保持位置正确性（serving 侧原语）["https://arxiv.org/html/2606.01065"]
+> - **MORI（arXiv 2606.00866）**：**tool-call idle 窗口 offload**——sticky placement（程序留当前层直到容量违规，利用 tool 调用空闲窗口分层 GPU/CPU offload）["https://arxiv.org/html/2606.00866v1"]
+> - **Yandex"KV cache as an agent runtime"（09-05 概念文）**：KV cache = 模型活跃执行状态——推理表示为"演化 cache block 集合"而非单 prompt 序列["https://research.yandex.com/blog/the-kv-cache-as-an-agent-runtime"]
+> - **含义**：① **09-25 后 4 天再添 6 篇**——agentic KV 管理论文总量 11+，"phase/action 感知驱逐 + SLO 调度 + 声明式编辑 + idle 窗口利用"细粒度化——**"KV cache 即 agent runtime"（Yandex）成为统一解释框架**，与 09-25"全栈研究对象"判断吻合且加速；② ActKV 的"置信度自适应预算"与 Jev-Mem 的"检索预算分配"同构——**推理侧与记忆侧的预算机制在 agentic 负载下收敛**；③ MORI 的"tool-call idle 窗口"与 ThunderAgent 的"state-aware pausing"互证——**工具调用中断成为调度一等公民**，Tafcm 端边混合 KV 策略应把"tool 调用窗口 offload"纳入设计
 
 ## 4. 证据与验证计划
 | 项 | 内容 |
