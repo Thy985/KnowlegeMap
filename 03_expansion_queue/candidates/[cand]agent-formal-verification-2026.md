@@ -36,6 +36,14 @@
 > - **BenchShield（2026-09-10）**：**formal model-backed instrumentation 保护 LLM-agent 评测基础设施的奖励完整性**——把形式化模型引入 agent 评测，防 reward hacking（与 SWE-Bench Pro Verified 反 reward hacking 同线的形式化解法）["https://www.semanticscholar.org/paper/BenchShield:-Formal-Model-Backed-Instrumentation-in-Zheng-Di/aa6f64210fa8817ed5925f21a96d6daf0e3b2e3f"]
 > - **Toward Safe LLM Agents Survey（arXiv 2608.14590）**：**specification/verification/enforcement 三阶段综述**——GRADE 表系统盘点 AgentProof/DafnyPro/VeriGuard 等"pre-action verified generation"路线的成熟度（多数 Very Low——领域仍早期）["https://arxiv.org/html/2608.14590v1"]
 > - **含义**：① 方法论翻转——**"通用 agent 自由规划证明 > 窄角色脚手架"**（2607.06341）直接验证 dsh"通用 harness 驱动"路线的正确性；② **评测基础设施本身成为形式化对象**（BenchShield）——与 agentic-benchmarks 卡互证，Vero 缺口 + Survey 的"Very Low"成熟度 = 领域早期但方向确立；③ Event-B 的"验证反馈驱动模型修复"循环与 Validation 编译器"Evidence→Judgment→修正"闭环同构——形式化侧的实现参考再添一个
+> **雷达增量（2026-10-01，验证架构层 + 基准缺口量化 + 标准格式确立）**：
+> - **Verification as an Architectural Layer（arXiv 2609.31937，09-25）**：**V-Model 设计**——specification 从需求下降到单步，每层配专属 verifier，**确定性控制器强制每个判定，只有验证结果写内存**，拒绝可定位到具体层——"验证=架构层而非外围检查"——**与 Validation 编译器（Evidence→Judgment→唯一写入口）直接同构**["https://arxiv.org/abs/2609.31937"]
+> - **AgentGuard（arXiv 2509.23864）**：**agent 运行时验证**——MDP 形式化 agent 决策 + Online Learning + Probabilistic Model Checking——运行时侧概率验证["https://arxiv.org/html/2509.23864"]
+> - **Vero benchmark（08-13）**：首个仓库级**已验证软件合成基准**——43 实例，最强 agent 仅 27/43，最难代码库 0 规格完成——**agent 验证能力缺口系统量化**（Codex CLI verification hooks 为缓解）["https://codex.danielvaughan.com/2026/08/14/vero-benchmark-formally-verified-software-repositories-coding-agents-codex-cli-proof-synthesis-posttooluse-verification/"]
+> - **Claude 形式化费马大定理（Anthropic 09-05）**：Lean 4 完整形式化（编译通过 mathlib）——**Lean 4 确立为 AI 生成形式证明的标准格式**（可确定性验证：lake build 通过与否即判）["https://www.metirai.com/blog/anthropic-claude-fermat-last-theorem-lean-formal-proof-2026"]
+> - **Agentic Model Checking（arXiv 2605.21434）**：**agents propose, solvers verify**——LLM agent 做语义判断（推断规格/选检查/分类反例/审计），每个可改变验证结论的输出过确定性检查（DSL parser/BMC reachability/solver）——**分工范式**["https://arxiv.org/html/2605.21434"]
+> - **ActGov（09-21）**：**policy-constrained validation**——LLM agent 动作经策略约束验证，细粒度授权（与 AgentAO 治理线、silver-shield EP-002 权限边界同向）["https://www.semanticscholar.org/paper/ActGov:-Governing-LLM-Agent-Actions-via-Validation-Zhang-Peng/8d2ca5802bb5670a22d02263c30224dccce03b4e/figure/3"]
+> - **含义**：① **"验证=架构层"（V-Model）与"agents propose, solvers verify"（Agentic Model Checking）双范式确立**——前者直接是 Validation 编译器的学术表述（逐层 verifier+唯一写入口），后者是 dsh harness 的"模型提案+确定性校验"分工印证；② **Vero 量化缺口 + Lean 4 标准格式**——"AI 写证明"已有确定性验收标准（lake build），silver-shield Benchmark Harness 的验证层可借鉴"编译通过即判"；③ ActGov 的"策略约束验证"与 agent-firewall/EP-002 同向——验证与权限治理融合成统一防线
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策
