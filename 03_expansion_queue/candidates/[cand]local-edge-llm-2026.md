@@ -38,6 +38,12 @@
 > - **Nemotron 3.5 Lightning（09-04 Jetson 部署指南）**：30B 总参 MoE **激活仅 3B/token**——边缘 reasoning/agentic 工作负载（与 Qwen3.8-27B 稠密形成对照）["https://developer.nvidia.com/blog/frontier-reasoning-reaches-the-edge-how-to-deploy-and-optimize-models-on-nvidia-jetson/"]
 > - **LFM2.5-VL-DSpark（09-24）**：Liquid AI 视觉语言边缘变体——**VL 版边缘加速**（LFM2.5-2.6B 文本版之后的多模态扩展）["https://www.liquid.ai/?via=nextoolai"]
 > - **含义**：① **"端-边协同推理"（PAIR）进入产品化**——与 agentic-inference-infra 卡"端边云联合路由"（Unified AI Gateway）在边缘侧同向收敛，Tafcm"本地优先+算力外援"架构有了硬件层参考（PC↔RTX Spark 类设备分担）；② **边缘 MoE**（Nemotron 3.5 Lightning 3B 激活）验证"磁盘流式 MoE/稀疏激活"边缘可行——Tafcm 端侧模型池再添稀疏路线；③ LFM2.5-VL 说明边缘厂商普遍走"文本→VL 扩展"节奏——多模态已成边缘标配
+> **雷达增量（2026-10-02，月度回顾：国产双线 + 手机级 + 硬件落地）**：
+> - **GLM-Edge 系列开源（智谱 10-01）**：国产边缘模型系列开源——Qwen3 边缘化之后国产线再扩（GLM 架构的边缘变体，agentic/function-calling 定位）["https://ai-damn.com/zhipu-ai-unveils-open-source-glm-edge-model-series-1733054505178"]
+> - **Liquid AI 手机全本地模型（09-28）**：**纯端上运行、无需云端**的手机模型——Liquid 非线性架构（LFM2.5 线）进一步压缩到手机可用档["https://ai-damn.com/liquid-ai-s-new-model-runs-entirely-on-your-phone-no-cloud-needed-1785970816151"]
+> - **NVIDIA RTX Spark Windows PC 十月上市（IFA 2026，09-03）**：本地 AI 硬件从"设备"扩展为"整机"——PC 出厂预装本地 agent 栈（TensorRT-LLM/FP8 加速），**边缘推理硬件落地十月起进入消费市场**["https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spark/"]
+> - **Microsoft Edge Prompt API（Phi-4-mini 内置 + Aion-1.0 预发布）**：**浏览器内置小模型成边缘入口**——Edge 直接提供本地提示 API，无需安装运行时["https://learn.microsoft.com/zh-cn/microsoft-edge/web-platform/prompt-api"]
+> - **含义**：① **国产（GLM-Edge）+ 美国（Liquid/Phi）双线加速、多模态成标配、浏览器与整机成为新交付形态**——边缘 agentic 模型池持续扩列（Tafcm 选型：GLM-Edge 国产线、Liquid 手机级、Phi 浏览器内置各占一档）；② **十月硬件落地**（RTX Spark 整机）把"边缘算力"从开发者设备推进消费市场——Tafcm"端边混合"的端侧能力基线将随硬件普及抬升；③ 浏览器内置小模型（Prompt API）提示"agent 运行环境"正在浏览器化——与 computer-browser-use 卡（browser 作为 agent 环境）互证，边缘推理的交付面（OS/浏览器/整机）三线展开
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径

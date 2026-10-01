@@ -50,6 +50,12 @@
 > - **Terminal-Bench 4.0 刷榜失效事件（36kr 09-12 深度分析）**：Gemini 3.8 Flash 在 TB 2.1 上 89.4 分排第 2（182 模型），**换到 08-29 上线的 TB 4.0 仅 19.1 分**——**基准版本更替直接击穿刷榜**（与 SWE-Bench Pro Verified 反 reward hacking 同线的"基准更新即防线"机制）；Meta 被指为刷榜案例["https://36kr.com/p/3980148869184514"]["https://aiwiki.ai/wiki/terminal_bench/raw"]
 > - **Terminal-World（arXiv 2605.20876）**：**用 agent skills 规模化合成终端 agent 训练环境**——把真实任务泛化为 skill 驱动变体，32B 模型 69.3 Avg Pass@1（TB 2.0 上 31.5 Pass@1）——**合成环境从"数据增强"走向"训练侧规模化"**（与 Terminal-Bench Challenges 的评测侧规模化互补）["https://arxiv.org/html/2605.20876"]
 > - **含义**：① **"基准版本更替=防刷榜机制"成为评测基础设施共识**（Pro Verified→TB 4.0）——silver-shield Benchmark Harness 需把"基准版本生命周期"纳入设计（定期更替 + 新旧对照）；② Terminal-World 证明 agent 合成环境可反哺模型训练（Pass@1 显著提升）——"合成数据→训练"闭环对 Tafcm 本地小模型微调（dsh 训练侧）是直接可借鉴路线；③ 厂商自报分（GPT-6 Astra 57.7% TB 4.0）与官方榜脱节仍是纪律红线——引用一律以官方 leaderboard 为准
+> **雷达增量（2026-10-02，评测维度三线扩展 + 基准价值批判）**：
+> - **OctoBench（arXiv 2601.10343）**：**scaffold-aware instruction following 仓库级编码基准**——34 环境 217 任务×3 类 scaffold + 7098 条客观 checklist——**"遵守规则"与"完成任务"解耦评分**（自动化轨迹观测+细粒度检查）——**scaffold 成为被评测对象本身**（与 harness 主题交叉）["https://arxiv.org/html/2601.10343v1"]
+> - **HANDBOOK.md（arXiv 2607.25398）**：**长上下文 agentic 指令遵循基准**——30 模型配置×11 提供商统一 OpenHands harness，严格评分（全部 rubric 达标才过）最强仅 **36.2%**——"长上下文+严格门限"下模型能力大幅衰减，任务容器化可复用（Harbor 格式，兼 RL 环境）["https://arxiv.org/html/2607.25398v2"]
+> - **KAMI Agent Merit Index v0.1（arXiv 2511.08042）**：**企业级 agentic 基准标准推动**——55 亿 token 评估量级 + PICARD 抗污染框架 + 多步工具用真实任务环境——"企业相关+防污染"成为基准设计双要求["https://arxiv.org/pdf/2511.08042v1"]
+> - **SWE-bench Is Broken（Octomind 09-15）**：**基准价值批判**——90% 分在 2026 几乎无意义（饱和+污染+评测细节失真的系统性论述）——"刷榜分数"与"实际能力"脱钩的反思进入公共讨论["https://octomind.run/blog/swe-bench-broken"]
+> - **含义**：① **评测维度三线扩展**——"scaffold 意识"（OctoBench：规则遵循与任务完成解耦）、"长上下文严格门限"（HANDBOOK.md：36.2% 暴露衰减）、"企业相关+抗污染"（KAMI）——silver-shield Benchmark Harness 应同时纳入"指令遵循层评测"与"长上下文衰减项"；② **OctoBench 把 scaffold 作为评测对象**——与 agent-harness 卡互证，"harness 质量可测"成独立评测线；③ **SWE-bench 批判 + TB4.0 刷榜失效**——基准版本生命周期 + 官方榜纪律已是评测基础设施必选项（dsh 的 DeepSeek harness 评测需标注基准版本与分数口径）
 
 ## 4. 决策
 - [ ] 晋升 validated

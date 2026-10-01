@@ -42,6 +42,11 @@
 > **雷达增量（2026-09-26，OpenClaw 2026.9.6 发布）**：
 > - **OpenClaw v2026.9.6（09-24/25 release notes）**：**命令面板启动后台任务 + 个人主题 + 实时会议笔记跟随 + Telegram 群历史保留**——操作面（后台任务/会议协作）与个性化（主题）持续补齐["https://docs.openclaw.ai/releases"]
 > - **含义**：① 2026.9.5（团队/插件热重载）→ 2026.9.6（后台任务/会议跟随）——**OpenClaw 从"agent 运行时"扩展为"日常协同工作台"**（会议、群聊、后台任务均为"长时间驻留+异步"场景，与 TeamMind 的"常驻团队运行时"语义同向）；② campus_order 若用 OpenClaw 承载"通知/关注类常驻任务"，2026.9.6 的后台任务与 Telegram 群历史保留直接可用；③ 版本节奏约两周一版（2026.9.4→9.5→9.6），升级评估窗口已缩短——campus_order 需建立"每版权限/信任模型 diff 审查"轻流程
+> **雷达增量（2026-10-02，v2026.9.7 大规模 infra 版 + OpenClaw Enterprise）**：
+> - **OpenClaw v2026.9.7（09-30 发布）**：**518 direct commits / 2,818 PRs / 334 contributors**——规模/可靠性/agent 基础设施为焦点（无单一 headline feature，是基础设施大修版）；appcast 已出 2026.9.7（sparkle 版本 2609000790）["https://undercodenews.com/openclaw-202697-a-massive-release-focused-on-scale-reliability-and-ai-agent-infrastructure-video/"]["http://raw.githubusercontent.com/openclaw/openclaw/main/appcast.xml"]
+> - **OpenClaw Enterprise（09-29 公告）**：**开源 vendor-neutral 平台，管理敏感环境中的持久 agent**——企业版定位（敏感环境持久 agent 管理）["https://openclaw.ai/blog/"]["https://openclaw.ai/"]
+> - **openclaw.academy release impact 分析**：70 条 verified release stories——"升级决策而非 changelog 重述"的第三方版本影响追踪（main 关闭 managed-update 通道等决策被逐条评估）["https://openclaw.academy/releases/"]
+> - **含义**：① **版本节奏加快至 5 天**（9.6 09-24→9.7 09-30）且转为"基础设施大修"模式（334 contributors）——OpenClaw 进入**平台化高密度迭代期**，campus_order 的"每版权限 diff 审查"窗口必须进一步缩短；② **OpenClaw Enterprise = 敏感环境持久 agent 管理平台**——与 silver-shield（敏感/高风险环境）语义直接交叠，其"vendor-neutral 管理持久 agent"的信任模型/隔离设计可作为 silver-shield 的企业侧参考（也提示 OpenClaw 生态正把安全治理做成产品线）；③ 第三方 release-impact 追踪（openclaw.academy）说明 OpenClaw 生态已复杂到需要"升级决策"专业分析——TeamMind 若走 OpenClaw 底座需纳入该评估源
 
 ## 4. 决策
 - [ ] 晋升 validated
