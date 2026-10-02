@@ -31,6 +31,11 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 > - **Agentreplay（PyPI 0.1.4，09-24）**：agent 追踪平台（语义搜索 + RAGAS/G-Eval/toxicity evals + **Git-like prompt/response 版本化**）——"trace+eval+版本化"一体化小工具["https://pypi.org/project/agentreplay/"]
 > - **Azure Foundry 外部 agent 观测注册 preview（09-01）**：LangChain 等外部 agent 通过 exporter 接入 Foundry 观测/评测——**跨框架 agent 注册进统一观测面**["https://learn.microsoft.com/en-gb/Azure/foundry/agents/how-to/register-external-agent"]
 > - **含义**：① **AWS 入场 = agent 可观测成为云平台标准能力**（对照 OTel semconv 1.41 的标准化）——Tafcm/TeamMind 选型时"云原生观测（CloudWatch Omni 类）vs 自托管（OpenObserve/Langfuse 类）"成为顶层路线选择；② Agentreplay 的"Git-like 版本化"与 KnowlegeMap/记忆卡的"证据保留"同构——trace 即版本化证据；③ 观测、评测、版本化三者持续一体化——与 trace-based-eval 卡"行为数据层"收敛方向一致
+> **雷达增量（2026-10-03，平台入局 + 标准进 IETF）**：
+> - **Cloudflare Agents Tracing（10-01 转标准定价）**：agent tracing 免费 beta 结束——Workers Free 200k 日事件/3 天保留，Paid 20M 月事件/7 天保留（$0.60/百万事件增量）——**边缘云厂商把 agent 观测做成计费产品**（agent 观测从"工具"走向"云基础设施计费面"）["https://wasifahmed.dev/cloudflare-agents-tracing-observability/"]
+> - **IETF draft-wnd-opsawg-icon-ps（07-09）**：**GenAI 语义约定进入 IETF 标准化流程**——四域语义（System Context/Token Economics/Vector Retrieval/Agent Reasoning）+ Protocol/Decision/System Events——**agent 观测从 OpenTelemetry 社区约定升级为国际标准流程对象**["https://www.ietf.org/archive/id/draft-wnd-opsawg-icon-ps-00.txt"]
+> - **工具全景（Rework 09-29：13 工具 / AY 09-26 定价对比）**：LLM 专用 span 免费计费（仅 LLM 调用计费）+ Logfire 10M 条/月免费等定价分层——自托管（Langfuse/Phoenix/Opik/OpenLIT）vs 托管（Logfire/AgentOps）格局清晰["https://resources.rework.com/tools/ai-agents/best-ai-agent-observability-tools-2026"]["https://www.ayautomate.com/blog/best-ai-agent-observability-tools"]
+> - **含义**：① **Cloudflare 把 agent 观测纳入 Workers 计费 = "观测即平台默认能力"再确认**（AWS 之后第二家云厂）——Tafcm/TeamMind 的观测选型已无"要不要"只有"选哪家/自托管哪种"；② **IETF draft = 标准从 OTel 社区走向国际标准**——agent 观测语义将成为网络运维标准的一部分（ICON），长期降低多厂商锁定；③ OTel semconv 1.41 + IETF + 双云厂 = **agent 观测标准化三层结构成型**（社区约定→云产品→国际标准）
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座

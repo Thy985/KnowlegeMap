@@ -90,6 +90,7 @@
 | [2026-09/2026-09-30_radar-watch_scan.md](05_scan_logs/2026-09/2026-09-30_radar-watch_scan.md) | Personal Tech Radar 第 29 次扫描（Bedrock AgentCore Harness GA + agentic KV 管理再扩 6 篇） | 📌 |
 | [2026-10/2026-10-01_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-01_radar-watch_scan.md) | Personal Tech Radar 第 30 次扫描（重大事件日 7 量化实证 + V-Model 验证架构层 + star 信号 dsh-memory-evolve 建卡） | 📌 |
 | [2026-10/2026-10-02_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-02_radar-watch_scan.md) | Personal Tech Radar 第 31 次扫描（GLM-Edge/Liquid 边缘月度回顾 + OctoBench/HANDBOOK.md 评测新维 + OpenClaw 9.7/Enterprise） | 📌 |
+| [2026-10/2026-10-03_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-03_radar-watch_scan.md) | Personal Tech Radar 第 32 次扫描（重大事件日 8：50PB/100+ 组织 + Cloudflare Tracing 定价 + Meta CLM 记忆×harness 交叉） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

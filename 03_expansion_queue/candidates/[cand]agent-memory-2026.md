@@ -56,6 +56,13 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Jev-Mem（arXiv 2609.23986）**：**System-One 控制面 agentic 记忆**——专用 System-One 控制器管记忆构建（类型/关系组织）+ 检索（查询路由/检索预算分配/图遍历/候选评分/自适应停止），System-Two 仅做复杂推理与合成——**快慢双系统分工落地到记忆**（与认知双过程同构）["https://www.alphaxiv.org/abs/2609.23986"]
 > - **Dual-Process Memory 实证（arXiv 2605.17625）**：长时域科学 agent——即时 episodic 窗口（10 消息）与长期整合知识（3 tokens/消息）解耦；15,000 消息 × 6 LLM（3 家族）跨模型验证["https://arxiv.org/html/2605.17625"]
 > - **含义**：① **记忆研究一周内新增 5 篇架构论文，三条新主线**——**联想激活**（Synapse/HeLa-Mem，替代静态向量相似度）、**双过程分工**（Jev-Mem/Dual-Process，快慢系统各司其职）、**事件/证据溯源**（SEEM-RPE/REMem，结构化事件帧+provenance 反推）；② **"图+激活动力学"成为记忆主流表述**——与 agentic-graphrag 卡的图记忆（Oracle 图感知检索）交叉，记忆与图检索两线融合加速；③ **SEEM 的 RPE 与 EnSIMem 证据线直接同向**——GrowthOS/KnowlegeMap"原文优先+溯源"路线从"摘要压缩反例"获得完整方法论家族支撑；④ Jev-Mem 的"检索预算分配+自适应停止"是 Tafcm 本地记忆的 token 经济设计直接输入（端侧预算敏感）
+> **雷达增量（2026-10-03，记忆×harness 交叉 + 记忆安全 + 因果效用）**：
+> - **Meta+UW Context Language Models（10-01）**：**agent 自编辑记忆优于固定 harness 且计算成本更低**——CLM 让模型直接读写自身上下文——**"记忆能力进模型" vs "记忆放 harness 外部系统"的路线之争获 Meta 实证**（直接命中 agent-harness 卡与 dsh 的 harness 架构选择）["https://mpost.io/meta-presents-context-language-models-ai-agents-that-edit-their-own-memory-outperform-fixed-harnesses-at-lower-compute-cost/"]
+> - **Mem++（arXiv 2610.02002，10-01）**：**非破坏性版本化记忆**——组织 agent 决策以"新文档"而非"编辑"到达，回答须知道给定时间哪个版本有效——**记忆按版本/时间可回溯**（与 KnowlegeMap 文档历史语义同构）["https://arxiv.org/abs/2610.02002"]
+> - **PersistBench（Semantic Scholar 10-02）**：**持久谄媚基准**——有状态个人 agent 的两类长期记忆风险：**跨域泄露 + 记忆诱导谄媚**——**记忆安全问题开始有专门基准**（与 silver-shield 风险检测线直接相关）["https://www.semanticscholar.org/paper/Agents-Don%27t-Just-Agree,-They-Remember:-Persistent-Mao-Zhao/7d05b3ee75c07f895b3b9751c6d7b9407ec8d937"]
+> - **Causal Memory Policy（10-02）**：随机化检索暴露 + 逆概率加权——**识别每查询的真实记忆效用**（干预检索链路做因果识别）["https://chatpaper.com/chatpaper/paper/354840"]
+> - **MemCodex（arXiv 2609.39765，09-30）**：**自编程分层记忆**——异质访问需求（单跳一条证据 vs 多跳遍历）驱动分层 + 动态代码生成组织["https://arxiv.org/html/2609.39765v1"]
+> - **含义**：① **Meta CLM 是重要路线信号**——"记忆放模型内（CLM）vs 放 harness 外（托管记忆/插件）"的实证对照，dsh 的架构选择（harness 外记忆插件 dsh-memory-evolve vs 未来模型内）需要跟踪该线；② **记忆安全成为独立研究线**（PersistBench 谄媚/跨域泄露）——silver-shield 的"记忆污染/毒化检测"维度获得学术基准支撑；③ **版本化记忆（Mem++）+ 因果效用（CMP）**——"记忆即证据库"（EnSIMem/SEEM）再补"时间回溯"与"效用可识别"两个性质——GrowthOS/KnowlegeMap 原文优先路线的完整性质族成型
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
