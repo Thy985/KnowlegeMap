@@ -40,6 +40,12 @@
 > - **GRASP（Graph Agentic Search over Propositions，arXiv 2605.16598）**：**依赖感知计划分解多跳查询** + 按问题复杂度动态伸缩子 agent 数——高精度+最低 token 双优化["https://arxiv.org/html/2605.16598"]
 > - **MOSAIC（Query-Aware Exploration Policy Adaptation for GraphRAG）**：**查询感知探索策略自适应**——图检索策略随查询类型动态调整["https://www.semanticscholar.org/paper/MOSAIC:-Query-Aware-Exploration-Policy-Adaptation-Lee-Oh/9652a11a76ca3a163820f258aeb598a9cfe8bb3f"]
 > - **含义**：① **国内大厂（腾讯）+ 云厂商（Oracle）双双进场**——Agentic GraphRAG 完成"研究→产品"闭环的最后一块拼图，GrowthOS 选型可从"自建 vs 采用"双视角评估；② **"记忆×图检索"融合**（Oracle）确认图结构成为 agent 记忆的正式组织形态之一——与 KnowlegeMap 仓库的"结构化索引"路线互证；③ GRASP 的"动态子 agent 伸缩"与 TeamMind 的 fan-out 调度同构——多跳检索的成本-精度权衡有了参考实现
+> **雷达增量（2026-10-04，图记忆四新对象：联想记忆 + 溯源三维 + 多模态自演化）**：
+> - **GAAMA（arXiv 2603.27910）**：**图增强联想记忆**——三步流水线（verbatim episode 保留 → LLM 提取原子事实与主题概念节点 → 高阶反思合成）；**四节点五边**（episode/fact/reflection/concept），concept 节点提供跨切面遍历路径避免"megagraph"爆炸——与 Synapse"联想激活"同向的图版本["https://arxiv.org/html/2603.27910"]
+> - **Agent ZeroMemory（arXiv 2608.29606）**：**provenance-aware 长期记忆**——三种 agentic 检索（timeline / typed entity-event graph / documentary memory）都检索"带溯源的结构化记忆"而非原始段落；**agent 控制检索**（时间窗/标签/源/说话人过滤 + 按需开原始源）——与 EnSIMem/SEEM"证据保留"线强交叉["https://arxiv.org/pdf/2608.29606v1"]
+> - **EvoGraph-R1（CVPR 2026）**：**自演化多模态知识超图**——持久超图随查询增量扩展/更新/剪枝，跨模态证据系统推理——图记忆加入"自演化+多模态"两维["https://openaccess.thecvf.com/content/CVPR2026/papers/Lin_EvoGraph-R1_Self-Evolving_Multimodal_Knowledge_Hypergraphs_for_Agentic_Retrieval_CVPR_2026_paper.pdf"]
+> - **Graph-Based Personalized Memory Survey（09-08）**：**图记忆生命周期综述**——representation/evolution/retrieval/evaluation 四阶段组织（图记忆成为独立研究门类）["https://www.semanticscholar.org/paper/Graph-Based-Personalized-Memory-for-LLM-Agents:-and-Nguyen-Qiu/132d394452d495230ade46fd4e25925403836eb3"]
+> - **含义**：① **图记忆研究密集化（一周 4 新对象）**——"联想激活（GAAMA/Synapse）+ 溯源三维（ZeroMemory/SEEM/EnSIMem）+ 自演化多模态（EvoGraph-R1）"构成图记忆三进阶——**KnowlegeMap 仓库的"结构化索引+原文优先"路线获完整学术家族支撑**；② ZeroMemory 的"agent 控制检索+按需开原始源"与 Validation 编译器的"证据可追溯"同构——检索侧的证据纪律与记忆侧的证据保留闭环；③ EvoGraph-R1 的"超图自演化"提示图记忆走向"查询驱动演化"——GrowthOS 经验库若用图组织可参考增量更新/剪枝机制
 ## 5. 验证结果
 <!-- 待回填 -->
 ## 6. 决策

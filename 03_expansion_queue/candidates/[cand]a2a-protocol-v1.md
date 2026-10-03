@@ -35,6 +35,11 @@ A2A（Agent2Agent）v1.0 于 2026-03-12 冻结，是"Agent↔Agent"的事实标�
 > - **A2A Extensions（09-09）**：自定义 agent 功能扩展机制（A2A 扩展生态）["https://a2a-protocol.org/latest/community/"]
 > - **Roadmap BiDi Streaming（#1995，09-15 更新）**：双向流式——实时 artifact 更新/角色管理/任务执行中连续多轮消息——与 v1.1 task timeline 配合["https://a2a-protocol.org/latest/roadmap/"]
 > - **含义**：① **A2A 从"互操作协议"演进为"互操作+交易协议"**（AP2 支付层）——"agent 经济"基础设施成形，TeamMind 若做跨组织 agent 协作需预留计费/授权接口；② BiDi Streaming 使长任务实时状态同步成为协议能力——与 TeamMind 团队运行时的"实时状态共享"设计直接对照；③ A2A 一周年（04-09：150+ 组织/22K+ star）后治理（AAIF 托管）+ 经济层（AP2）+ 实时层（BiDi）三线推进——协议栈完整化加速
+> **雷达增量（2026-10-04，治理迁移确认 + v1.0 正式面）**：
+> - **A2A 正式加入 Agentic AI Foundation（AAIF，08-17 托管，08-25 公告）**：Growth Stage 项目——与 MCP 同归"开放 agentic 栈"——**治理结构再确认**（自 2025-06-23 脱离 Google 运营后 TSC 八席位：Google/Microsoft/Cisco/AWS/Salesforce/ServiceNow/SAP/IBM）["https://a2a-protocol.org/latest/blog/archive/2026/"]["https://nerdleveltech.com/a2a-protocol-joins-agentic-ai-foundation"]
+> - **A2A v1.0 正式规范细节（whats-new-v1）**：**Agent Card 接口重构**（agentCard.url/preferredTransport → supportedInterfaces[].url/protocolBinding + capabilities.extendedAgentCard 扩展卡）；**List Tasks 分页（MEDIUM IMPACT）**——任务列表规模化["https://a2a-protocol.org/latest/whats-new-v1/"]
+> - **Agentverse（arXiv 2606.20570）**：agentic web 基础设施 gap 分析——**A2A v1.0 获 150+ 组织支持**、已集成 AWS/微软/Google 云平台（互操作层事实标准地位确认）["https://arxiv.org/pdf/2606.20570.pdf"]
+> - **含义**：① **治理落定（AAIF）+ v1.0 接口稳定**——A2A 进入"标准平台化"阶段，跨组织 agent 协作的协议选择风险下降，**TeamMind 若接入 A2A 应锚定 v1.0 Agent Card 结构**（supportedInterfaces 而非旧字段）；② List Tasks 分页说明任务规模化管理成为协议关注点——与 AP2 计费、BiDi 实时层配套，"任务全生命周期协议化"成形；③ "MCP vs A2A vs ACP"三协议格局清晰（单 agent 到工具 / agent 到 agent / 商业 agent 通信）——选型时按互操作层级而非知名度判断
 
 ## 3. 与我的知识/项目关系
 - **TeamMind（Java 多 Agent 团队运行时）** 直接受益：A2A 提供标准化的 Agent 发现/协作/任务模型，可与 MCP 一起成为 TeamMind 的协议层
