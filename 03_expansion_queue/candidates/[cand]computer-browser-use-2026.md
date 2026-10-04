@@ -45,6 +45,11 @@
 > - **Vercel Agent Browser（09-24）**：LLM **点击/滚动/交互网页**零配置（免 driver/依赖）——"用起来像人"的浏览器交互产品化["https://ai-damn.com/vercel-s-new-tool-lets-ai-actually-use-websites-like-humans-1768345535936"]
 > - **Tencent BrowserSkill（06-2026 开源，MIT）**：DOM 观察+截图混合感知，跑在用户自己浏览器（CLI + Chrome/Edge 扩展）——**国内大厂开源浏览器 agent 桥**["https://aiwiki.ai/wiki/ai_browser_agent"]
 > - **含义**：① **"browser use"完成从实验能力到企业 GA 的跃迁**（Anthropic full SLA + GCP 跨云）——E2E-CLI/campus_order 的浏览器自动化基线可直接对齐官方 API 而非自研；② **Vercel 零配置 + Tencent 开源**提供两条低成本替代（Agent Browser/ BrowserSkill）——Tafcm 若做"用户可见浏览器操作"可先复用；③ browser use 全面产品化 = **攻击面同步扩大**（Vercel/Tencent 工具均可被劫持）——silver-shield 需覆盖"agent 浏览器操作"监测
+> **雷达增量（2026-10-05，开发者工具链 computer use + AI 浏览器新玩家）**：
+> - **GitHub Copilot computer use（10-01 上线）**：Copilot 可**交互桌面应用**（/computer 命令 + 描述期望结果）——computer use 进入主流开发者工具链（VS Code 生态）["https://github.blog/changelog/2026-10-01-github-copilot-can-now-interact-with-desktop-apps/"]
+> - **Perplexity Comet（09-27 收录）**：**AI-native Chromium 浏览器**——助手跨 tab 读取 + agent 点击/填表完成任务（预订/购物/邮件），**企业版带 admin 控制/审计日志/MDM 部署**——"浏览器即 agent 平台"再添搜索系玩家["https://agenticindex.io/vendors/perplexity-comet"]
+> - **Claude Browser Use GA 技术细节（08-20）**：browser use 读取**页面 accessibility tree、按元素引用点击**（而非猜测屏幕坐标）+ computer use **批量化多动作 turns**——技术路线分化：a11y-tree 引用 vs 像素坐标["https://aitoolsreview.co.uk/insights/claude-computer-use-skills-files-ga"]
+> - **含义**：① **computer use 从"AI 产品功能"进入"开发者工具链"**（GitHub Copilot 桌面应用交互）——E2E-CLI 的"端到端诊断"可借鉴"agent 直接操作被测桌面应用"模式；② **Perplexity Comet 证明"AI 浏览器"品类从消费级走向企业级治理**（admin/audit/MDM）——与 campus_order/OpenClaw 的浏览器操作管理同向；③ **a11y-tree 引用 vs 坐标猜测的技术分化**影响自动化稳定性——自研/选型 browser agent 时优先 a11y-tree 方案（Claude 路线）以规避坐标漂移
 
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）

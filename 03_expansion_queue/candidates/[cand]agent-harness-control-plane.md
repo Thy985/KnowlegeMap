@@ -39,6 +39,11 @@
 > - **Harness（公司）Agent DLC + Autonomous Worker Agents（06-30/07-31 shipped）**：agent **全生命周期平台**（build/test/store/deploy/operate/govern + AIBOM 物料清单）——pipeline 每步可跑 reasoning agent（scoped credentials + OPA policy + approval gates + audit trails，与人工部署同级治理）["https://www.harness.io/blog?sck=1778014584698_17780141792434"]["https://www.harness.io/blog/shipped-in-june-2026"]
 > - **Tencent Cloud"从 Harness 到自进化 Agent"（09-20 方法论文）**：Phase 3 自进化 Harness 时代——代表 Hermes Agent（自动复盘/自动沉淀经验/自动改进，"你纠正一次它永远记住"）——与 09-24 卡内 HarnessDev/自演化线互证["https://cloud.tencent.com/developer/article/2747237"]
 > - **含义**：① **"托管 harness 即服务"主流化**（AgentCore GA = 无编排代码跑 agent）——自研 harness（dsh/DeepSeek）与托管路线的竞争/互补格局成形，silver-shield 评测 harness 可对照 AgentCore 的"内置记忆+多模型"设计；② **agent 生命周期治理产品化**（Agent DLC/Worker Agents + AIBOM）——"agent 安全"从运行时防护扩展到**全生命周期治理管道**（与 skill-supply-chain 卡的 AIBOM/物料清单互证、EP-002 权限边界获得企业级参考实现）；③ 自进化 harness 从研究（JIT-Agent/HarnessDev）走向方法论共识（Tencent Phase 3）——dsh 的 harness 迭代路线再获外部印证
+> **雷达增量（2026-10-05，GPU 厂商进安全基础设施 + 控制平面×成本路由）**：
+> - **NVIDIA Open Agent Safety Platform（09-28 发布）**：**open shell** 提供**模型与 agent harness 之外的强制安全运行时边界**——定位"agent 不应自我监管，控制必须外置"；打包进 AI factory（sandbox/DPU/attestation/audit logs/runtime permissions 成"工业安全护栏"）——**GPU 硬件厂商把 agent 安全做成基础设施层**["https://nvidianews.nvidia.com/news/open-agent-safety-platform"]["https://technology.siften.com/nvidia-pitches-agent-safety-as-infrastructure-not-just-model-behavior-1790644471297"]
+> - **Harness Tokenomics（arXiv 2609.28919）**：**企业 agentic control plane 路由器**——Jev 分类器给每个 prompt 打标（自带 taxonomy）+ **定价驱动路由**（session start/side lanes/subagent launch 三处路由，按价格表计算 mid-task 切换回报）——控制平面加入"成本路由"维度["https://arxiv.org/pdf/2609.28919.pdf"]
+> - **Harness（公司）AI Worker Agents 身份权限（07-16）**：agent 即 pipeline step——**RBAC/OPA 治理继承**（who 可建 + policy 允许什么，控制台/API/agent 同一决策，服务端强制非 UI 假设）["https://www.harness.io/blog/identity-and-permissions-for-ai-worker-agents-in-harness"]
+> - **含义**：① **"控制外置"成硬件级共识**——NVIDIA open shell 与 OWASP agentic/RAMPART"harness 外边界"完全同构，但下沉到 GPU/DPU 层——silver-shield 若做硬件侧 agent 防护可跟踪 NVIDIA 实现；② **控制平面从"策略/审计"扩到"成本路由"**（Tokenomics）——"agent 每步调用都计费+可路由"与 AP2/A2A 经济层呼应，"agent 经济学"成型；③ **权限"服务端强制 + 单一决策源"**（Harness）是 EP-002 的企业级参考——自研权限系统应避免"UI 层校验"，把决策收敛到统一策略引擎
 
 ## 4. 验证计划
 - [ ] 精读六职责分解论文，与我五维模型做逐项对照（产出对照卡）

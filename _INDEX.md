@@ -92,6 +92,7 @@
 | [2026-10/2026-10-02_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-02_radar-watch_scan.md) | Personal Tech Radar 第 31 次扫描（GLM-Edge/Liquid 边缘月度回顾 + OctoBench/HANDBOOK.md 评测新维 + OpenClaw 9.7/Enterprise） | 📌 |
 | [2026-10/2026-10-03_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-03_radar-watch_scan.md) | Personal Tech Radar 第 32 次扫描（重大事件日 8：50PB/100+ 组织 + Cloudflare Tracing 定价 + Meta CLM 记忆×harness 交叉） | 📌 |
 | [2026-10/2026-10-04_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-04_radar-watch_scan.md) | Personal Tech Radar 第 33 次扫描（A2A 入 AAIF 治理落定 + 图记忆四新对象 + OpenAI MCP Events/SEP-2577） | 📌 |
+| [2026-10/2026-10-05_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-05_radar-watch_scan.md) | Personal Tech Radar 第 34 次扫描（重大事件日 9：DIVD 首个全自主 AI 攻击 + Copilot 桌面 CU/Perplexity Comet + NVIDIA open shell/Tokenomics） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
