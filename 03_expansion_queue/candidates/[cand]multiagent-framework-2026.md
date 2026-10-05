@@ -47,6 +47,12 @@
 > - **OpenClaw Enterprise（09-29 公告）**：**开源 vendor-neutral 平台，管理敏感环境中的持久 agent**——企业版定位（敏感环境持久 agent 管理）["https://openclaw.ai/blog/"]["https://openclaw.ai/"]
 > - **openclaw.academy release impact 分析**：70 条 verified release stories——"升级决策而非 changelog 重述"的第三方版本影响追踪（main 关闭 managed-update 通道等决策被逐条评估）["https://openclaw.academy/releases/"]
 > - **含义**：① **版本节奏加快至 5 天**（9.6 09-24→9.7 09-30）且转为"基础设施大修"模式（334 contributors）——OpenClaw 进入**平台化高密度迭代期**，campus_order 的"每版权限 diff 审查"窗口必须进一步缩短；② **OpenClaw Enterprise = 敏感环境持久 agent 管理平台**——与 silver-shield（敏感/高风险环境）语义直接交叠，其"vendor-neutral 管理持久 agent"的信任模型/隔离设计可作为 silver-shield 的企业侧参考（也提示 OpenClaw 生态正把安全治理做成产品线）；③ 第三方 release-impact 追踪（openclaw.academy）说明 OpenClaw 生态已复杂到需要"升级决策"专业分析——TeamMind 若走 OpenClaw 底座需纳入该评估源
+> **雷达增量（2026-10-06，多 agent 状态隔离机制 + 声明式清单 + 版本线补充）**：
+> - **OpenClaw Subagent Workspace Isolation（v2026.5.28 硬化）**：**每 agent 独立工作目录/任务上下文副本/session lock**——并行 agent 不能互相覆写文件或读半成品状态——多 agent **状态隔离的工程化机制**（hook context 保持 prompt-local）["https://openclawai.io/blog/subagent-workspace-isolation-multi-agent-state"]
+> - **v2026.9.5（09-21）**：插件**免重启安装** + **specialist agent 团队**（teams of specialist agents）+ GPT Live 会议/通话——团队编排进核心["https://docs.openclaw.ai/releases"]
+> - **v2026.9.7 补充细节（10-06 release notes）**：**OpenAI Agents API** + **Sign in with ChatGPT（Beta）**——OpenClaw 接入 OpenAI 原生 agent 通道["https://docs.openclaw.ai/releases"]
+> - **NVIDIA NeMoClaw（06-22）**：LangChain Deep Agents Code harness + **agents.yaml 声明式多 agent 清单** + 实时 agents apply 调和 + 非交互 passthrough——**声明式多 agent 编排进企业工具链**["https://docs.nvidia.com/nemoclaw/user-guide/deepagents/release-notes/2026/6/22"]
+> - **含义**：① **多 agent 运行时收敛到"隔离+清单"两原语**——OpenClaw 工作区隔离（cwd/上下文/锁）与 TeamMind 的"共享状态设计"形成对照（隔离派 vs 共享派），TeamMind 需明确取舍并给隔离方案；② **声明式 agents.yaml（NeMoClaw）**使多 agent 拓扑可版本化/可 diff——与 campus_order"每版权限 diff 审查"同构，声明式清单是权限审计的前提；③ OpenClaw 接入 OpenAI Agents API + ChatGPT 登录——**开放底座反向打通闭源通道**，版本影响面扩大（升级审查更需 openclaw.academy 类第三方源）
 
 ## 4. 决策
 - [ ] 晋升 validated
