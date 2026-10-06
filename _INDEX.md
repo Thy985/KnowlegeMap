@@ -94,6 +94,7 @@
 | [2026-10/2026-10-04_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-04_radar-watch_scan.md) | Personal Tech Radar 第 33 次扫描（A2A 入 AAIF 治理落定 + 图记忆四新对象 + OpenAI MCP Events/SEP-2577） | 📌 |
 | [2026-10/2026-10-05_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-05_radar-watch_scan.md) | Personal Tech Radar 第 34 次扫描（重大事件日 9：DIVD 首个全自主 AI 攻击 + Copilot 桌面 CU/Perplexity Comet + NVIDIA open shell/Tokenomics） | 📌 |
 | [2026-10/2026-10-06_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-06_radar-watch_scan.md) | Personal Tech Radar 第 35 次扫描（阿里云 KVCacheStore 产品化 + VeriHarness/AgentVerify/Specula + OpenClaw 隔离/NeMoClaw 清单） | 📌 |
+| [2026-10/2026-10-07_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-07_radar-watch_scan.md) | Personal Tech Radar 第 36 次扫描（重大事件日 10：澳听证会/反取证 + 记忆基准批判/BEAM + OWASP AST10 v2/AIVSS/ACS） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

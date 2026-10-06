@@ -63,6 +63,12 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Causal Memory Policy（10-02）**：随机化检索暴露 + 逆概率加权——**识别每查询的真实记忆效用**（干预检索链路做因果识别）["https://chatpaper.com/chatpaper/paper/354840"]
 > - **MemCodex（arXiv 2609.39765，09-30）**：**自编程分层记忆**——异质访问需求（单跳一条证据 vs 多跳遍历）驱动分层 + 动态代码生成组织["https://arxiv.org/html/2609.39765v1"]
 > - **含义**：① **Meta CLM 是重要路线信号**——"记忆放模型内（CLM）vs 放 harness 外（托管记忆/插件）"的实证对照，dsh 的架构选择（harness 外记忆插件 dsh-memory-evolve vs 未来模型内）需要跟踪该线；② **记忆安全成为独立研究线**（PersistBench 谄媚/跨域泄露）——silver-shield 的"记忆污染/毒化检测"维度获得学术基准支撑；③ **版本化记忆（Mem++）+ 因果效用（CMP）**——"记忆即证据库"（EnSIMem/SEEM）再补"时间回溯"与"效用可识别"两个性质——GrowthOS/KnowlegeMap 原文优先路线的完整性质族成型
+> **雷达增量（2026-10-07，记忆基准分层 + 真实效用批判 + 记忆×KV 交叉）**：
+> - **DyadMem（arXiv 2610.03020，10-02）**：**长期记忆基准新定义 URAM**（User-conditioned Relational Agent Memory）——用户侧记忆与关系记忆沿同一多会话轨迹双标注——**3065 episodes / 50961 sessions / 61210 QA**——记忆评测从"单侧事实"走向"用户×关系双维"["https://arxiv.org/abs/2610.03020"]
+> - **past.dev Frontier Memory（10-05/06）**：**BEAM（ICLR 2026）最大公开记忆基准第 1 名**——100K tokens 92.08%（前最佳 86.2%）/ 500K 89.63% / **10M 85.03%（BEAM10M，跨 100 倍上下文仅掉 7 分）**——记忆基准商业化（对比 Exabase M-1 68.0%/mem0/Hindsight）["https://www.prnewswire.com/news-releases/pastdev-introduces-frontier-memory-for-ai-agents-1-on-beam-the-largest-public-memory-benchmark-302899770.html"]
+> - **RealCompanion 审计（10-05）**：**120 天真实对话审计暴露合成基准问题**——**基础 recency 窗口满足 95.9% 用户交互；96% 的记忆增益来自无需历史证据的查询**——"合成基准显著夸大记忆效用"批判（对照 BEAM/长程基准）["https://www.aicoder.com/news/news-20261005-realcompanion-longitudinal-conversations-agent-memory"]
+> - **Agent Memory Below the Prompt（arXiv 2603.04428）**：**KV state block pool 记忆**——量化 + 持久化 KV——Gemma 3 12B 上冷 TTFT **172096→1264ms（32K 上下文 136×）**——记忆与 KV 缓存交叉（对照 KVCacheStore 产品线）["https://memorypapers.org/"]
+> - **含义**：① **记忆基准进入"合成 vs 真实"分层**——BEAM 类测上限、RealCompanion 类测真实收益——dsh 记忆投入判断应以"真实对话收益"为准绳（recency 窗口先满足再谈长期记忆）；② **DyadMem 的用户×关系双维**提示记忆评测要覆盖"与用户的关系状态"（dsh-memory-evolve 做用户侧记忆时参考）；③ **KV 记忆交叉**（Below-the-Prompt 136×）——记忆持久化与 KV 缓存是同一存储问题的两面，Tafcm 本地记忆与推理共享存储层设计
 
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
