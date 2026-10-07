@@ -44,6 +44,13 @@
 > - **NVIDIA RTX Spark Windows PC 十月上市（IFA 2026，09-03）**：本地 AI 硬件从"设备"扩展为"整机"——PC 出厂预装本地 agent 栈（TensorRT-LLM/FP8 加速），**边缘推理硬件落地十月起进入消费市场**["https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spark/"]
 > - **Microsoft Edge Prompt API（Phi-4-mini 内置 + Aion-1.0 预发布）**：**浏览器内置小模型成边缘入口**——Edge 直接提供本地提示 API，无需安装运行时["https://learn.microsoft.com/zh-cn/microsoft-edge/web-platform/prompt-api"]
 > - **含义**：① **国产（GLM-Edge）+ 美国（Liquid/Phi）双线加速、多模态成标配、浏览器与整机成为新交付形态**——边缘 agentic 模型池持续扩列（Tafcm 选型：GLM-Edge 国产线、Liquid 手机级、Phi 浏览器内置各占一档）；② **十月硬件落地**（RTX Spark 整机）把"边缘算力"从开发者设备推进消费市场——Tafcm"端边混合"的端侧能力基线将随硬件普及抬升；③ 浏览器内置小模型（Prompt API）提示"agent 运行环境"正在浏览器化——与 computer-browser-use 卡（browser 作为 agent 环境）互证，边缘推理的交付面（OS/浏览器/整机）三线展开
+> **雷达增量（2026-10-08，本地 embedding 产品化 + MoE 新档 + 边缘特定模型 + 月度榜单）**：
+> - **Google EmbeddingGemma 2（10-06）**：**740M 多模态 embedding 模型（Apache-2.0）**——本地 AI 搜索覆盖 text/code/image/video/audio——模块化编码器按需加载 + 量化后 **191MB（纯文本）/567MB（全模态）**——**本地检索基础设施产品化**（Tafcm 本地 RAG 的 embedding 层选型）["https://www.zeniteq.com/google-launches-embeddinggemma-2-for-local-ai-search-mizx6m"]
+> - **Kolibri 1（Aleph Alpha 10-03，Apache-2.0）**：**78B 总参 MoE（3.46B/token 激活）**德+英双语——36GB（2-bit）/64GB（4-bit）可跑 Mac——**大模型 MoE 的本地新档**（欧洲系）["https://modelfit.io/blog/"]
+> - **NVIDIA E2B/E4B + 26B/31B（RTX AI Garage）**：**Jetson Nano 近零延迟完全离线** 的 E2B/E4B 边缘推理模型 + 26B/31B 代理式 AI 任务优化档——**边缘特定模型家族化**（从设备级到代理级）["https://blogs.nvidia.cn/blog/tag/rtx-ai-garage/feed/"]
+> - **LLMCheck 十月榜单（10-05）+ Qwen3.8 线**：**小型 MoE 登顶**成趋势；Qwen3.8 四层（Max/Plus/Flash/27B open-weight，Apsara 09-22 公布，仍在训练）——**国产线 27B 开放档预告**["https://llmcheck.net/blog/state-of-open-source-local-llms-october-2026/"]
+> - **Meta Muse Glimmer（08-10）**：**单消费 GPU 本地模型**（Mac/PC）——Meta 正式进消费级本地线（agent/编码/自动化工具全端上）["https://technewsvision.co.uk/meta-unveils-local-ai-model-that-runs-on-consumer-hardware/"]
+> - **含义**：① **本地 embedding（EmbeddingGemma 2）补齐边缘栈的检索层**——Tafcm 离线优先的"本地检索"有了 191MB 级官方量化方案（替代云端 embedding 依赖）；② **MoE 本地化加速**（Kolibri 78B/3.46B + 小型 MoE 登顶）——"参数量虚高、激活量决定"成本地选型新准则；③ **边缘模型家族化**（NVIDIA 设备级→代理级 + Meta 消费级 + Qwen3.8 27B 开放预告）——Tafcm 边缘选型池已可覆盖"检索/对话/代理"三档，月度榜单（LLMCheck）可作为选型复核源
 
 ## 2. 与我的知识/项目关系
 - **Tafcm**（Dart 移动端、离线优先）：llama.cpp FFI / ONNX Runtime 跨平台打包，或 WebGPU（若走 Web）；移动端嵌入是明确路径

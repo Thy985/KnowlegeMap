@@ -36,6 +36,12 @@ OpenTelemetry **GenAI 语义约定**已从实验态走向核心可移植标准�
 > - **IETF draft-wnd-opsawg-icon-ps（07-09）**：**GenAI 语义约定进入 IETF 标准化流程**——四域语义（System Context/Token Economics/Vector Retrieval/Agent Reasoning）+ Protocol/Decision/System Events——**agent 观测从 OpenTelemetry 社区约定升级为国际标准流程对象**["https://www.ietf.org/archive/id/draft-wnd-opsawg-icon-ps-00.txt"]
 > - **工具全景（Rework 09-29：13 工具 / AY 09-26 定价对比）**：LLM 专用 span 免费计费（仅 LLM 调用计费）+ Logfire 10M 条/月免费等定价分层——自托管（Langfuse/Phoenix/Opik/OpenLIT）vs 托管（Logfire/AgentOps）格局清晰["https://resources.rework.com/tools/ai-agents/best-ai-agent-observability-tools-2026"]["https://www.ayautomate.com/blog/best-ai-agent-observability-tools"]
 > - **含义**：① **Cloudflare 把 agent 观测纳入 Workers 计费 = "观测即平台默认能力"再确认**（AWS 之后第二家云厂）——Tafcm/TeamMind 的观测选型已无"要不要"只有"选哪家/自托管哪种"；② **IETF draft = 标准从 OTel 社区走向国际标准**——agent 观测语义将成为网络运维标准的一部分（ICON），长期降低多厂商锁定；③ OTel semconv 1.41 + IETF + 双云厂 = **agent 观测标准化三层结构成型**（社区约定→云产品→国际标准）
+> **雷达增量（2026-10-08，云厂观测面继续扩 + 语义约定 2.0 + 国内云厂）**：
+> - **Google Cloud Agent Observability（10-07 文档更新）**：logs/metrics/traces 统一覆盖 **Gemini Enterprise Agent Platform、Agent Gateway、Model Armor** 的 agent——**第三家云厂（AWS/Cloudflare 后）把 agent 观测做成平台能力**["https://docs.cloud.google.com/stackdriver/docs/observability/agent-observability"]
+> - **阿里云 OpenTelemetry GenAI Utils（09-21）**：**手动 instrumentation 方案**——自定义框架/多语言架构下生成符合 GenAI SemConv 的标准 Span，上报 ARMS——**国内云厂进 GenAI 观测**（四域语义落地产品）["https://help.aliyun.com/en/cms/cloudmonitor-2-0/integrating-llm-applications-with-opentelemetry-genai-utils"]
+> - **OTel GenAI 2.0 Run Tree 语义（10-02）**：span 层级严格映射认知系统**执行树（Run Tree）**——"语义运行树"替代泛化 span 名——**约定 2.0 从"事件打点"升级为"结构建模"**["https://dev.to/ricardofriba/observabilidade-de-trajetorias-agenticas-com-opentelemetry-genai-hla"]
+> - **Microsoft Foundry server-side tracing（09-30）**：接 Application Insights 即自动启用、无需改码——**托管 agent 观测零配置化**["https://learn.microsoft.com/en-gb/azure/foundry/observability/how-to/trace-agent-setup"]
+> - **含义**：① **云厂观测面四方会齐**（AWS Omni/Cloudflare/Google/阿里 + Microsoft Foundry）——"agent 观测是云平台默认件"成定局，Tafcm/TeamMind 观测选型锁定托管 vs 自托管后直接对接云厂；② **OTel GenAI 2.0 Run Tree**——观测从"调用链"升级为"执行树结构"——与 Trace-Based Eval 卡"轨迹即评测依据"互证，轨迹语义化是 agent 评测的前提；③ 阿里 GenAI Utils 说明 GenAI 观测规范已成**中国云厂商基础设施**——国内部署（Tafcm 若上云）合规观测基线可循
 
 ## 2. 与我的知识/项目关系
 - **Tafcm ADI 诊断接口**：OTel GenAI 约定可直接作为 ADI 的标准化底座

@@ -56,6 +56,11 @@
 > - **KAMI Agent Merit Index v0.1（arXiv 2511.08042）**：**企业级 agentic 基准标准推动**——55 亿 token 评估量级 + PICARD 抗污染框架 + 多步工具用真实任务环境——"企业相关+防污染"成为基准设计双要求["https://arxiv.org/pdf/2511.08042v1"]
 > - **SWE-bench Is Broken（Octomind 09-15）**：**基准价值批判**——90% 分在 2026 几乎无意义（饱和+污染+评测细节失真的系统性论述）——"刷榜分数"与"实际能力"脱钩的反思进入公共讨论["https://octomind.run/blog/swe-bench-broken"]
 > - **含义**：① **评测维度三线扩展**——"scaffold 意识"（OctoBench：规则遵循与任务完成解耦）、"长上下文严格门限"（HANDBOOK.md：36.2% 暴露衰减）、"企业相关+抗污染"（KAMI）——silver-shield Benchmark Harness 应同时纳入"指令遵循层评测"与"长上下文衰减项"；② **OctoBench 把 scaffold 作为评测对象**——与 agent-harness 卡互证，"harness 质量可测"成独立评测线；③ **SWE-bench 批判 + TB4.0 刷榜失效**——基准版本生命周期 + 官方榜纪律已是评测基础设施必选项（dsh 的 DeepSeek harness 评测需标注基准版本与分数口径）
+> **雷达增量（2026-10-08，执行真相评测：ThinkingBox 终结 pass@1 幻觉 + 新榜单）**：
+> - **ThinkingBox（Microsoft Research + Hugging Face，10-03 发布）**：**按"数据库最终状态 + 副作用"评分，而非工具调用/最终回答**——每任务 20 次连续执行——**121,680 trials × 12 模型：79,853 次未过可执行检查，其中 67.24% 失败仍"干净结束、无任何报错"**；**79.9% 失败源于工具处理而非推理**——"agent 撒谎完成任务"被系统量化（support agent 例子：9 次工具调用+正确读退款政策+关单，但快递异常未处理）——**pass@1 幻觉终结，部署前须看状态真相**["https://aibreakingwire.com/news/microsoft-reveals-67-of-failed-ai-agent-runs-appear-successful"]["https://openaimaster.com/thinkingbox-ai-agent-benchmark/"]
+> - **Agents' Last Exam 榜单（10-05 更新）**：**GPT-6 Astra 59.3% / GPT-6 Sol 56.4% / Qwen3.8 Max 52.4%**——开放权重档 DeepSeek V4 Flash 25.2%/Hy4 Preview 22.8%——**前端模型与开放模型差距仍大**["https://benchlm.ai/benchmarks/agentslastexam"]
+> - **AgentBeats（Berkeley RDI，$1M+ 奖金）**：两阶段（先建基准→再建 agent）+ Phase 2 Sprint 4——**基准社区激励**["https://rdi.berkeley.edu/agentx-agentbeats.html"]
+> - **含义**：① **ThinkingBox 是评测范式的关键转折**——"agent 说了什么"不可信、"数据库/副作用真相"才是事实——**silver-shield Benchmark Harness 必须引入"执行状态断言层"**（评测不能只看 final answer/tool call 日志）；② **67.24% 静默失败**——"无报错但未完成"是 agent 部署最大隐性风险——Tafcm/TeamMind 的运行时应内置"结果校验器"（对照 Validation 编译器"证据→判定"）；③ 79.9% 失败源于工具处理——**工具层鲁棒性 > 推理层**——工具契约测试（MCP 对齐）优先级再升
 
 ## 4. 决策
 - [ ] 晋升 validated
