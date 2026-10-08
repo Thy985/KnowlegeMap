@@ -124,26 +124,28 @@
 | 目录 | 内容 | 状态 |
 |---|---|---|
 | [README.md](08_agent_centric/README.md) | 本层定位 + 最小闭环数据流 | 📌 |
-| [capabilities/](08_agent_centric/capabilities/README.md) | 能力注册表（26 能力，含前置/工具候选/证据） | 📌 引擎导出 |
+| [domains/](08_agent_centric/domains/README.md) | Domain Tree（领域树，3 根域） | 📌 v2 引擎导出 |
+| [capabilities/](08_agent_centric/capabilities/README.md) | 能力注册表（26 能力） | 📌 引擎导出 |
+| [capabilities/graph.md](08_agent_centric/capabilities/graph.md) | Capability Graph（跨域复用/依赖） | 📌 v2 引擎导出 |
 | [tools/](08_agent_centric/tools/README.md) | 工具卡 | ⬜ |
-| [skills/](08_agent_centric/skills/README.md) | 技能卡 | ⬜ |
+| [skills/](08_agent_centric/skills/README.md) | 技能库（8 Skills，How 层） | 📌 v2 引擎导出 |
 | [agents/](08_agent_centric/agents/README.md) | Agent 档案（demo: pen-test-agent） | 📌 1 份 |
 | [tasks/](08_agent_centric/tasks/README.md) | Agent Task 卡（demo: task-demo-security） | 📌 1 份 |
-| [workflows/](08_agent_centric/workflows/README.md) | 工作流卡（demo: security-assessment v1） | 📌 1 份 |
+| [workflows/](08_agent_centric/workflows/README.md) | 工作流卡（demo: security-assessment 版本化） | 📌 |
 | [evaluations/](08_agent_centric/evaluations/README.md) | 评估卡 | ⬜ |
 | [memory/](08_agent_centric/memory/README.md) | Agent Operational Memory（JSON） | 📌 1 份 |
-| [docs/](08_agent_centric/docs/README.md) | 架构文档（Gap Report / Domain Model） | 📌 2 份 |
+| [docs/](08_agent_centric/docs/README.md) | 架构文档（Gap Report / Domain Model / Tree+Graph） | 📌 3 份 |
 
 ## 09_agent_engine（Agent-Centric Engine）📌 2026-10-08
 
-> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（14 用例全通过）。
-> 链路：Task → Capability → Gap → Discovery → Composition → Workflow → Evaluation → Memory。
+> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（**17 用例全通过**）。
+> 链路：Task → Capability Tree（JIT）→ Gap → Discovery → Composition → Workflow → Evaluation → Memory。
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 设计要点 | 📌 |
-| [engine/](09_agent_engine/engine/) | domain / knowledge / discovery / composition / workflow / evaluation / memory / pipeline / store | 📌 9 模块 |
-| [tests/](09_agent_engine/tests/) | Scenario A-F 端到端测试 | 📌 14 用例通过 |
+| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 树图分工 | 📌 |
+| [engine/](09_agent_engine/engine/) | domain / knowledge / **trees** / **capability_graph** / discovery / composition / workflow / evaluation / memory / pipeline / store | 📌 11 模块 |
+| [tests/](09_agent_engine/tests/) | Test 1-5 端到端测试 | 📌 17 用例通过 |
 | [cli.py](09_agent_engine/cli.py) | CLI：`demo` / `run`（写资产到 08_agent_centric） | 📌 |
 
 [End of file.]

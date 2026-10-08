@@ -92,7 +92,11 @@ def main() -> None:
         p2 = asset.save_workflow(result.workflow, task.task_type) if result.workflow else None
         p3 = asset.save_agent_profile(agent)
         p4 = asset.export_capability_registry()
-        print(f"\n[assets] {p1}\n[assets] {p2}\n[assets] {p3}\n[assets] {p4}")
+        p5 = asset.export_domain_tree()
+        p6 = asset.export_capability_graph(result)
+        p7 = asset.export_skills()
+        print(f"\n[assets] {p1}\n[assets] {p2}\n[assets] {p3}\n[assets] {p4}"
+              f"\n[assets] {p5}\n[assets] {p6}\n[assets] {p7}")
 
 
 if __name__ == "__main__":

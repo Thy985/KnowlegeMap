@@ -1,0 +1,53 @@
+# Domain Tree（领域树 · 静态组织）
+
+> 组织领域由什么组成；任务空间见各 Capability Tree。
+
+- **Cybersecurity**
+  - Web Security
+    - Reconnaissance
+    - Web Mapping
+    - Vulnerability Assessment
+    - Validation
+    - Evidence
+    - Reporting
+  - API Security
+    - Api Discovery
+    - Api Testing
+  - Red Teaming
+    - Reconnaissance
+    - Vulnerability Assessment
+  - Defensive Security
+    - Runtime Defense
+    - Monitoring
+- **AI Agent Engineering**
+  - Agent Runtime
+    - State Persistence
+    - Scheduling
+    - Failure Recovery
+  - Agent Memory
+    - Long Term Memory
+    - Agent Memory
+  - Agent Evaluation
+    - Agent Evaluation
+    - Assertion
+  - Orchestration
+    - Multi Agent Orchestration
+  - Observability
+    - Monitoring
+    - Observability
+  - Governance
+    - Security Governance
+    - Privacy Guard
+  - Capability & Skills
+    - Self Improvement
+    - Agent Evaluation
+- **Software Engineering**
+  - Testing
+    - Api Testing
+    - Browser Interaction
+  - Automation
+    - Http Interaction
+    - Browser Interaction
+  - Developer Tools
+    - Sandbox Execution
+    - Protocol Interop

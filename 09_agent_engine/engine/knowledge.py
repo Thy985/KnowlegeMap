@@ -526,6 +526,225 @@ STAR_SIGNAL_NOTE = (
 )
 
 
+# ============================================================
+# Domain Tree（v2 · 静态领域组织）
+# ============================================================
+DOMAIN_TREE: Dict[str, Any] = {
+    "cybersecurity": {
+        "name": "Cybersecurity",
+        "children": {
+            "web-security": {
+                "name": "Web Security",
+                "children": ["reconnaissance", "web-mapping", "vulnerability-assessment",
+                             "validation", "evidence", "reporting"],
+            },
+            "api-security": {"name": "API Security", "children": ["api-discovery", "api-testing"]},
+            "red-teaming": {"name": "Red Teaming", "children": ["reconnaissance", "vulnerability-assessment"]},
+            "defensive-security": {"name": "Defensive Security", "children": ["runtime-defense", "monitoring"]},
+        },
+    },
+    "ai-agent-engineering": {
+        "name": "AI Agent Engineering",
+        "children": {
+            "runtime": {"name": "Agent Runtime", "children": ["state-persistence", "scheduling", "failure-recovery"]},
+            "memory": {"name": "Agent Memory", "children": ["long-term-memory", "agent-memory"]},
+            "evaluation": {"name": "Agent Evaluation", "children": ["agent-evaluation", "assertion"]},
+            "orchestration": {"name": "Orchestration", "children": ["multi-agent-orchestration"]},
+            "observability": {"name": "Observability", "children": ["monitoring", "observability"]},
+            "governance": {"name": "Governance", "children": ["security-governance", "privacy-guard"]},
+            "capability": {"name": "Capability & Skills", "children": ["self-improvement", "agent-evaluation"]},
+        },
+    },
+    "software-engineering": {
+        "name": "Software Engineering",
+        "children": {
+            "testing": {"name": "Testing", "children": ["api-testing", "browser-interaction"]},
+            "automation": {"name": "Automation", "children": ["http-interaction", "browser-interaction"]},
+            "developer-tools": {"name": "Developer Tools", "children": ["sandbox-execution", "protocol-interop"]},
+        },
+    },
+}
+
+# ============================================================
+# Capability Tree Templates（v2 · 任务动态实例化）
+# ============================================================
+def _branch(bid, name, maps_to, children=None, tags=None):
+    return {"id": bid, "name": name, "maps_to": maps_to,
+            "children": children or [], "leaf_tags": tags or []}
+
+
+CAPABILITY_TREE_TEMPLATES: Dict[str, Any] = {
+    "security-assessment": {
+        "root_name": "Web Security Assessment",
+        "branches": [
+            _branch("reconnaissance", "Reconnaissance", "reconnaissance", [
+                _branch("asset-discovery", "Asset Discovery", "reconnaissance", tags=["asset", "recon"]),
+                _branch("subdomain-discovery", "Subdomain Discovery", "reconnaissance", tags=["subdomain"]),
+                _branch("service-discovery", "Service Discovery", "reconnaissance", tags=["service", "port"]),
+                _branch("technology-fingerprinting", "Technology Fingerprinting", "reconnaissance", tags=["fingerprint"]),
+            ]),
+            _branch("web-mapping", "Web Mapping", "endpoint-discovery", [
+                _branch("url-discovery", "URL Discovery", "endpoint-discovery", tags=["url", "crawl"]),
+                _branch("endpoint-discovery", "Endpoint Discovery", "endpoint-discovery", tags=["endpoint"]),
+                _branch("api-discovery", "API Discovery", "endpoint-discovery", tags=["api", "openapi"]),
+                _branch("javascript-analysis", "JavaScript Analysis", "endpoint-discovery", tags=["javascript", "js"]),
+            ]),
+            _branch("vulnerability-assessment", "Vulnerability Assessment", "vulnerability-detection", [
+                _branch("injection", "Injection", "vulnerability-detection", tags=["injection", "sqlmap"]),
+                _branch("authentication", "Authentication", "vulnerability-detection", tags=["authentication", "auth"]),
+                _branch("authorization", "Authorization", "vulnerability-detection", tags=["authorization", "authz"]),
+                _branch("xss", "XSS", "vulnerability-detection", tags=["xss"]),
+                _branch("ssrf", "SSRF", "vulnerability-detection", tags=["ssrf"]),
+            ]),
+            _branch("validation", "Validation", "request-replay", [
+                _branch("request-construction", "Request Construction", "http-interaction", tags=["request", "http"]),
+                _branch("payload-generation", "Payload Generation", "vulnerability-detection", tags=["payload"]),
+                _branch("reproduction", "Reproduction", "request-replay", tags=["replay", "reproduce"]),
+                _branch("impact-verification", "Impact Verification", "request-replay", tags=["impact"]),
+            ]),
+            _branch("evidence", "Evidence", "evidence-collection", [
+                _branch("request-response-capture", "Request/Response Capture", "evidence-collection", tags=["capture", "trace"]),
+                _branch("reproduction-artifact", "Reproduction Artifact", "evidence-collection", tags=["artifact"]),
+                _branch("evidence-linking", "Evidence Linking", "evidence-collection", tags=["linking"]),
+            ]),
+            _branch("reporting", "Reporting", "reporting", [
+                _branch("finding-classification", "Finding Classification", "reporting", tags=["classification"]),
+                _branch("risk-assessment", "Risk Assessment", "reporting", tags=["risk"]),
+                _branch("remediation", "Remediation", "reporting", tags=["remediation"]),
+            ]),
+        ],
+    },
+    "e2e-web-testing": {
+        "root_name": "End-to-End Web Testing",
+        "branches": [
+            _branch("browser-interaction", "Browser Interaction", "browser-interaction", [
+                _branch("navigation", "Navigation", "browser-interaction", tags=["navigate"]),
+                _branch("action-automation", "Action Automation", "browser-interaction", tags=["action", "click"]),
+                _branch("assertion", "Assertion", "assertion", tags=["assert", "expect"]),
+            ]),
+            _branch("http-interaction", "HTTP Interaction", "http-interaction", [
+                _branch("api-calls", "API Calls", "http-interaction", tags=["api", "request"]),
+            ]),
+            _branch("result-aggregation", "Result Aggregation", "result-aggregation", [
+                _branch("reporting", "Reporting", "reporting", tags=["report"]),
+            ]),
+        ],
+    },
+    "long-running-autonomous-agent": {
+        "root_name": "Long-Running Autonomous Agent",
+        "branches": [
+            _branch("scheduling", "Scheduling", "scheduling", [
+                _branch("task-decomposition", "Task Decomposition", "multi-agent-orchestration", tags=["decompose"]),
+            ]),
+            _branch("state-persistence", "Persistent State", "state-persistence", [
+                _branch("checkpointing", "Checkpointing", "state-persistence", tags=["checkpoint"]),
+            ]),
+            _branch("long-term-memory", "Long-Term Memory", "long-term-memory", [
+                _branch("agent-memory", "Agent Memory", "agent-memory", tags=["memory"]),
+            ]),
+            _branch("failure-recovery", "Failure Recovery", "failure-recovery", [
+                _branch("monitoring", "Monitoring", "monitoring", tags=["monitor"]),
+            ]),
+            _branch("agent-evaluation", "Evaluation", "agent-evaluation", [
+                _branch("self-improvement", "Self Improvement", "self-improvement", tags=["improve"]),
+            ]),
+        ],
+    },
+    "agent-eval-harness": {
+        "root_name": "Agent Evaluation Harness",
+        "branches": [
+            _branch("agent-evaluation", "Agent Evaluation", "agent-evaluation", [
+                _branch("assertion", "Assertion", "assertion", tags=["assert"]),
+                _branch("evidence-collection", "Evidence Collection", "evidence-collection", tags=["evidence"]),
+            ]),
+            _branch("reporting", "Reporting", "reporting", [
+                _branch("result-aggregation", "Result Aggregation", "result-aggregation", tags=["aggregate"]),
+            ]),
+        ],
+    },
+}
+
+# ============================================================
+# Skills（v2 · Capability → Skill → Tool 分层）
+# ============================================================
+SKILLS: Dict[str, Dict[str, Any]] = {
+    "endpoint-discovery": {
+        "name": "Endpoint Discovery Procedure",
+        "purpose": "从目标中发现并确认有效端点/API",
+        "trigger": "需要枚举 URL / API / 端点",
+        "capability": "endpoint-discovery",
+        "procedure": ["crawl 与被动收集 URL", "normalize 归一化路径",
+                      "deduplicate 去重", "validate 探测有效性"],
+        "required_tools": ["browser-use", "playwright"],
+        "prerequisites": ["http-interaction"],
+    },
+    "vulnerability-detection": {
+        "name": "Vulnerability Detection Procedure",
+        "purpose": "检测漏洞并排除 false-positive",
+        "trigger": "需要发现注入/越权/配置类漏洞",
+        "capability": "vulnerability-detection",
+        "procedure": ["加载授权测试基线", "运行检测器",
+                      "标记 candidate finding", "重放验证 false-positive"],
+        "required_tools": ["garak", "playwright"],
+        "prerequisites": ["http-interaction"],
+    },
+    "reconnaissance": {
+        "name": "Reconnaissance Procedure",
+        "purpose": "测绘目标资产与暴露面",
+        "trigger": "需要了解目标资产/服务/技术栈",
+        "capability": "reconnaissance",
+        "procedure": ["资产枚举", "子域/服务发现", "技术指纹识别"],
+        "required_tools": ["garak", "browser-use"],
+        "prerequisites": [],
+    },
+    "http-interaction": {
+        "name": "HTTP Interaction Procedure",
+        "purpose": "构造并执行 HTTP 会话",
+        "trigger": "需要发请求/构造会话",
+        "capability": "http-interaction",
+        "procedure": ["构造请求", "建立会话", "执行并捕获响应"],
+        "required_tools": ["playwright", "mcp"],
+        "prerequisites": [],
+    },
+    "request-replay": {
+        "name": "Request Replay Procedure",
+        "purpose": "重放请求验证漏洞可复现性",
+        "trigger": "需要复现/验证影响",
+        "capability": "request-replay",
+        "procedure": ["构造重放请求", "注入 payload 重放", "验证可复现与影响"],
+        "required_tools": ["playwright"],
+        "prerequisites": ["http-interaction"],
+    },
+    "evidence-collection": {
+        "name": "Evidence Collection Procedure",
+        "purpose": "收集并链接证据链",
+        "trigger": "需要请求/响应/复现证据",
+        "capability": "evidence-collection",
+        "procedure": ["捕获请求/响应", "保存复现产物", "链接到 finding"],
+        "required_tools": ["otel-genai", "promptfoo"],
+        "prerequisites": [],
+    },
+    "reporting": {
+        "name": "Reporting Procedure",
+        "purpose": "生成可追溯评估报告",
+        "trigger": "需要输出结论",
+        "capability": "reporting",
+        "procedure": ["finding 分类", "风险评级", "给出修复建议"],
+        "required_tools": ["promptfoo"],
+        "prerequisites": ["evidence-collection"],
+    },
+    "agent-memory": {
+        "name": "Agent Memory Procedure",
+        "purpose": "沉淀任务经验供未来复用",
+        "trigger": "任务完成后需要记忆",
+        "capability": "agent-memory",
+        "procedure": ["记录工具统计", "提炼成功/失败模式", "归档工作流版本"],
+        "required_tools": ["mem0"],
+        "prerequisites": [],
+    },
+}
+
+
 def get_capability(cap_id: str) -> dict:
     return CAPABILITIES[cap_id]
 

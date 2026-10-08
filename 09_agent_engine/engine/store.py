@@ -16,7 +16,8 @@ from .pipeline import PipelineResult
 class AssetStore:
     def __init__(self, base_dir: str):
         self.base = base_dir
-        for sub in ("tasks", "workflows", "capabilities", "agents", "evaluations"):
+        for sub in ("tasks", "workflows", "capabilities", "agents",
+                    "evaluations", "skills", "domains"):
             os.makedirs(os.path.join(self.base, sub), exist_ok=True)
 
     # ---- TaskRun → tasks/ ----
@@ -89,6 +90,57 @@ class AssetStore:
             f"- task_history: {len(agent.task_history)}",
             "",
         ]
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        return path
+
+    # ---- Domain Tree → domains/（v2）----
+    def export_domain_tree(self) -> str:
+        from .trees import build_domain_tree
+        nodes = build_domain_tree()
+        path = os.path.join(self.base, "domains", "README.md")
+        lines = ["# Domain Tree（领域树 · 静态组织）", "",
+                 "> 组织领域由什么组成；任务空间见各 Capability Tree。", ""]
+        roots = [n for n in nodes.values() if n.parent is None]
+        for r in roots:
+            lines.append(f"- **{r.name}**")
+            for c in r.children:
+                child = nodes.get(c)
+                cname = child.name if child else c
+                grandchildren = child.children if child else []
+                if grandchildren:
+                    lines.append(f"  - {cname}")
+                    for gc in grandchildren:
+                        gnode = nodes.get(gc)
+                        lines.append(f"    - {gnode.name if gnode else gc}")
+                else:
+                    lines.append(f"  - {cname}")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        return path
+
+    # ---- Capability Graph → capabilities/graph.md（v2）----
+    def export_capability_graph(self, result: PipelineResult) -> str:
+        path = os.path.join(self.base, "capabilities", "graph.md")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(result.capability_graph.render() + "\n")
+        return path
+
+    # ---- Skills → skills/（v2 · Capability→Skill→Tool 分层）----
+    def export_skills(self) -> str:
+        path = os.path.join(self.base, "skills", "README.md")
+        lines = ["# Skills（技能库 · How 层）", "",
+                 "> Capability=What / Skill=How / Tool=With what / Project=来源。",
+                 ""]
+        for sid, sk in knowledge.SKILLS.items():
+            lines.append(f"## {sk['name']}（{sid}）")
+            lines.append(f"- purpose: {sk['purpose']}")
+            lines.append(f"- trigger: {sk['trigger']}")
+            lines.append(f"- capability: {sk['capability']}")
+            lines.append(f"- procedure: " + " → ".join(sk["procedure"]))
+            lines.append(f"- required_tools: {', '.join(sk['required_tools'])}")
+            lines.append(f"- prerequisites: {', '.join(sk['prerequisites']) or '-'}")
+            lines.append("")
         with open(path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
         return path

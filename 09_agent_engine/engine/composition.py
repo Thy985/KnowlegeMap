@@ -126,6 +126,23 @@ def fit_score(reason: SelectionReason) -> float:
     )
 
 
+def _fallback(cap: str, tool_names: List[str], task: Task,
+              required_caps: List[str], env: Optional[Dict[str, str]],
+              blocked: set) -> Optional[str]:
+    """互斥裁决后，为能力回退到次优候选（排除 blocked 工具）。"""
+    cands = [n for n in tool_names
+             if cap in knowledge.get_tool(n)["capabilities"] and n not in blocked]
+    if not cands:
+        return None
+    scored = []
+    for n in cands:
+        t = _tool(n)
+        r = evaluate_candidate(t, task, required_caps, env)
+        scored.append((fit_score(r), n))
+    scored.sort(key=lambda x: -x[0])
+    return scored[0][1]
+
+
 def compose(tool_names: List[str], task: Task, required_caps: List[str],
             env: Optional[Dict[str, str]] = None) -> ComposedChain:
     """Candidate Tools → Tool Composition（组合理由 + 有向链 + 并行/互斥/前置）。
@@ -157,6 +174,7 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
         chain.reasons.setdefault(best[2].name, best[1])
 
     # 2. 互斥裁决
+    excluded_names: set = set()
     for grp in _MUTUAL_EXCLUSION:
         hit = [n for n in used.values() if n in grp]
         if len(hit) > 1:
@@ -165,14 +183,25 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
             for other in hit:
                 if other != keep:
                     chain.excluded.append(other)
+                    excluded_names.add(other)
                     chain.excluded_reasons[other] = (
                         f"与 {keep} 语义重叠（互斥组 {sorted(grp)}），"
                         f"fit {fit_score(chain.reasons[other])} < {fit_score(chain.reasons[keep])}"
                     )
-                    # 从 used 中剔除（保持唯一）
+                    # 从 used 中剔除，并为该能力回退次优候选
+                    # （排除已排除工具 + 同互斥组其余成员，避免再次冲突）
+                    blocked = excluded_names | (grp - {keep})
                     for k, v in list(used.items()):
                         if v == other:
-                            del used[k]
+                            fb = _fallback(k, tool_names, task,
+                                           required_caps, env, blocked)
+                            if fb:
+                                used[k] = fb
+                                chain.reasons.setdefault(
+                                    fb, evaluate_candidate(
+                                        _tool(fb), task, required_caps, env))
+                            else:
+                                del used[k]
 
     # 3. 按能力依赖序构链
     ordered = []

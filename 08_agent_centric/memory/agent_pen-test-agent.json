@@ -2,27 +2,35 @@
   "agent_id": "pen-test-agent",
   "tool_stats": {
     "garak": {
-      "usage_count": 2,
-      "success_count": 2,
+      "usage_count": 4,
+      "success_count": 4,
       "success_rate": 1.0,
       "failure_modes": {},
-      "last_used": "2026-10-08 11:06:29",
+      "last_used": "2026-10-08 11:27:21",
       "best_workflow_version": 1
     },
     "playwright": {
-      "usage_count": 2,
-      "success_count": 2,
+      "usage_count": 4,
+      "success_count": 4,
       "success_rate": 1.0,
       "failure_modes": {},
-      "last_used": "2026-10-08 11:06:29",
+      "last_used": "2026-10-08 11:27:21",
       "best_workflow_version": 1
     },
     "promptfoo": {
-      "usage_count": 2,
-      "success_count": 2,
+      "usage_count": 4,
+      "success_count": 4,
       "success_rate": 1.0,
       "failure_modes": {},
-      "last_used": "2026-10-08 11:06:29",
+      "last_used": "2026-10-08 11:27:21",
+      "best_workflow_version": 1
+    },
+    "mcp": {
+      "usage_count": 1,
+      "success_count": 1,
+      "success_rate": 1.0,
+      "failure_modes": {},
+      "last_used": "2026-10-08 11:27:21",
       "best_workflow_version": 1
     }
   },
@@ -255,6 +263,237 @@
             ]
           }
         ]
+      },
+      {
+        "goal": "对一个合法授权的网站执行安全测试，产出漏洞清单与证据链",
+        "version": 3,
+        "evolution_reason": "v1→v3",
+        "tools": [
+          "garak",
+          "playwright",
+          "promptfoo"
+        ],
+        "checkpoints": [
+          "检查点：目标测绘与暴露面识别 产出物完整",
+          "检查点：端点/路径发现 产出物完整",
+          "检查点：HTTP 会话构造与请求执行 产出物完整",
+          "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+          "检查点：请求重放与回归验证 产出物完整",
+          "检查点：多工具结果归一化聚合 产出物完整",
+          "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+          "检查点：生成可追溯报告 产出物完整"
+        ],
+        "stages": [
+          {
+            "stage_id": "stage-1",
+            "goal": "目标测绘与暴露面识别",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：目标测绘与暴露面识别 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": []
+          },
+          {
+            "stage_id": "stage-2",
+            "goal": "端点/路径发现",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：端点/路径发现 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-1"
+            ]
+          },
+          {
+            "stage_id": "stage-3",
+            "goal": "HTTP 会话构造与请求执行",
+            "tools": [],
+            "checkpoint": "检查点：HTTP 会话构造与请求执行 产出物完整",
+            "failure_recovery": "连接失败 → 指数退避重试 ≤3 次；会话过期 → 重建会话",
+            "depends_on": [
+              "stage-2"
+            ]
+          },
+          {
+            "stage_id": "stage-4",
+            "goal": "漏洞检测（注入/越权/配置）",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+            "failure_recovery": "失败 → 缩小范围重试；标记 false-positive 候选待人工确认",
+            "depends_on": [
+              "stage-3"
+            ]
+          },
+          {
+            "stage_id": "stage-5",
+            "goal": "请求重放与回归验证",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：请求重放与回归验证 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-4"
+            ]
+          },
+          {
+            "stage_id": "stage-6",
+            "goal": "多工具结果归一化聚合",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：多工具结果归一化聚合 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-5"
+            ]
+          },
+          {
+            "stage_id": "stage-7",
+            "goal": "证据链收集（请求/响应/轨迹）",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+            "failure_recovery": "证据缺失 → 标记判定为低置信并请求重放",
+            "depends_on": [
+              "stage-6"
+            ]
+          },
+          {
+            "stage_id": "stage-8",
+            "goal": "生成可追溯报告",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：生成可追溯报告 产出物完整",
+            "failure_recovery": "生成失败 → 保留结构化中间结果",
+            "depends_on": [
+              "stage-7"
+            ]
+          }
+        ]
+      },
+      {
+        "goal": "对一个合法授权的网站执行安全测试，产出漏洞清单与证据链",
+        "version": 4,
+        "evolution_reason": "v1→v4",
+        "tools": [
+          "garak",
+          "playwright",
+          "mcp",
+          "promptfoo"
+        ],
+        "checkpoints": [
+          "检查点：目标测绘与暴露面识别 产出物完整",
+          "检查点：端点/路径发现 产出物完整",
+          "检查点：HTTP 会话构造与请求执行 产出物完整",
+          "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+          "检查点：请求重放与回归验证 产出物完整",
+          "检查点：多工具结果归一化聚合 产出物完整",
+          "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+          "检查点：生成可追溯报告 产出物完整"
+        ],
+        "stages": [
+          {
+            "stage_id": "stage-1",
+            "goal": "目标测绘与暴露面识别",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：目标测绘与暴露面识别 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": []
+          },
+          {
+            "stage_id": "stage-2",
+            "goal": "端点/路径发现",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：端点/路径发现 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-1"
+            ]
+          },
+          {
+            "stage_id": "stage-3",
+            "goal": "HTTP 会话构造与请求执行",
+            "tools": [
+              "mcp"
+            ],
+            "checkpoint": "检查点：HTTP 会话构造与请求执行 产出物完整",
+            "failure_recovery": "连接失败 → 指数退避重试 ≤3 次；会话过期 → 重建会话",
+            "depends_on": [
+              "stage-2"
+            ]
+          },
+          {
+            "stage_id": "stage-4",
+            "goal": "漏洞检测（注入/越权/配置）",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+            "failure_recovery": "失败 → 缩小范围重试；标记 false-positive 候选待人工确认",
+            "depends_on": [
+              "stage-3"
+            ]
+          },
+          {
+            "stage_id": "stage-5",
+            "goal": "请求重放与回归验证",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：请求重放与回归验证 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-4"
+            ]
+          },
+          {
+            "stage_id": "stage-6",
+            "goal": "多工具结果归一化聚合",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：多工具结果归一化聚合 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-5"
+            ]
+          },
+          {
+            "stage_id": "stage-7",
+            "goal": "证据链收集（请求/响应/轨迹）",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+            "failure_recovery": "证据缺失 → 标记判定为低置信并请求重放",
+            "depends_on": [
+              "stage-6"
+            ]
+          },
+          {
+            "stage_id": "stage-8",
+            "goal": "生成可追溯报告",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：生成可追溯报告 产出物完整",
+            "failure_recovery": "生成失败 → 保留结构化中间结果",
+            "depends_on": [
+              "stage-7"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -325,13 +564,81 @@
       ],
       "result_summary": "[false-positive-rate:2 个 false-positive 候选] ",
       "ran_at": "2026-10-08 11:06:29",
+      "evaluation_score": null
+    },
+    {
+      "run_id": "task-demo-security-3",
+      "task_id": "task-demo-security",
+      "task_type": "security-assessment",
+      "objective": "对一个合法授权的网站执行安全测试，产出漏洞清单与证据链",
+      "required_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "http-interaction",
+        "vulnerability-detection",
+        "request-replay",
+        "result-aggregation",
+        "evidence-collection",
+        "reporting"
+      ],
+      "missing_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "vulnerability-detection",
+        "request-replay",
+        "http-interaction",
+        "evidence-collection",
+        "reporting"
+      ],
+      "toolchain": [
+        "garak",
+        "playwright",
+        "promptfoo"
+      ],
+      "result_summary": "[false-positive-rate:2 个 false-positive 候选] ",
+      "ran_at": "2026-10-08 11:23:59",
+      "evaluation_score": null
+    },
+    {
+      "run_id": "task-demo-security-4",
+      "task_id": "task-demo-security",
+      "task_type": "security-assessment",
+      "objective": "对一个合法授权的网站执行安全测试，产出漏洞清单与证据链",
+      "required_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "http-interaction",
+        "vulnerability-detection",
+        "request-replay",
+        "result-aggregation",
+        "evidence-collection",
+        "reporting"
+      ],
+      "missing_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "vulnerability-detection",
+        "request-replay",
+        "http-interaction",
+        "evidence-collection",
+        "reporting"
+      ],
+      "toolchain": [
+        "garak",
+        "playwright",
+        "mcp",
+        "promptfoo"
+      ],
+      "result_summary": "[false-positive-rate:2 个 false-positive 候选] ",
+      "ran_at": "2026-10-08 11:27:21",
       "evaluation_score": 0.887
     }
   ],
   "success_patterns": [
-    "security-assessment: ['garak', 'playwright', 'promptfoo']"
+    "security-assessment: ['garak', 'playwright', 'promptfoo']",
+    "security-assessment: ['garak', 'playwright', 'mcp', 'promptfoo']"
   ],
   "failure_patterns": [],
   "environment_failures": [],
-  "updated_at": "2026-10-08 11:06:29"
+  "updated_at": "2026-10-08 11:27:21"
 }

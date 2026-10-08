@@ -10,12 +10,17 @@ from __future__ import annotations
 from typing import Callable, Dict, List, Optional
 
 from . import knowledge
+from .capability_graph import CapabilityGraph
 from .composition import ComposedChain, compose, evaluate_candidate, fit_score
 from .discovery import decompose_task, discover_for_capability, gap_analysis
-from .domain import Agent, AgentMemory, Evidence, SelectionReason, Task, TaskRun
+from .domain import (Agent, AgentMemory, CapabilityNode, Evidence,
+                     SelectionReason, Task, TaskRun)
 from .evaluation import evaluate_run, update_agent_capabilities
 from .memory import (MemoryStore, apply_post_task_learning, evolve_workflow,
                      reuse_historical_workflow)
+from .trees import (annotate_selections, discover_tools_for_tree,
+                    instantiate_capability_tree, jit_expand,
+                    missing_capabilities as tree_missing, render_tree)
 from .workflow import synthesize_workflow
 
 
@@ -29,6 +34,8 @@ class PipelineResult:
         self.unknown_capabilities: List[str] = []
         self.missing_capabilities: List[str] = []
         self.discovered_tools: Dict[str, List[str]] = {}
+        self.tree_nodes: Dict[str, CapabilityNode] = {}
+        self.capability_graph: CapabilityGraph = CapabilityGraph()
         self.chain: Optional[ComposedChain] = None
         self.workflow = None
         self.run: Optional[TaskRun] = None
@@ -51,6 +58,11 @@ class PipelineResult:
         lines.append("")
         lines.append("## 2. Capability Gap（已有 vs 需求）")
         lines.append("missing: " + ", ".join(self.missing_capabilities) or "(none)")
+        lines.append("")
+        lines.append("## 2.1 Capability Tree（任务动态实例化 · JIT 展开）")
+        lines.append("```")
+        lines.append(render_tree(self.tree_nodes) if self.tree_nodes else "(none)")
+        lines.append("```")
         lines.append("")
         lines.append("## 3. Tool Discovery（能力驱动，非关键词驱动）")
         for cap, tools in self.discovered_tools.items():
@@ -126,15 +138,18 @@ def run_agent_task(
         # 全自主 agent 遇高风险任务也强制 approval 门槛
         result.approval_required = True
 
-    # --- 1. Task → Capability Extraction ---
+    # --- 1. Task → Capability Extraction（扁平，供组合/工作流/记忆）---
     result.required_capabilities = decompose_task(task)
     from .discovery import discover_unknown_capabilities
     result.unknown_capabilities = discover_unknown_capabilities(task.objective)
 
-    # --- 2. Capability Gap Analysis ---
-    result.missing_capabilities = gap_analysis(agent, result.required_capabilities)
+    # --- 2. Capability Tree 实例化 + JIT 展开（按 agent 状态剪枝）---
+    result.tree_nodes = instantiate_capability_tree(task.task_type)
+    jit_expand(result.tree_nodes, agent)
+    result.missing_capabilities = tree_missing(result.tree_nodes)
 
-    # --- 3. Capability → Tool/Project Discovery ---
+    # --- 3. 节点级工具发现（能力驱动）+ 扁平汇总（兼容组合/工作流）---
+    discover_tools_for_tree(result.tree_nodes)
     for cap in result.required_capabilities:
         result.discovered_tools[cap] = discover_for_capability(cap)
 
@@ -148,6 +163,8 @@ def run_agent_task(
         result.chain = compose(all_cands, task, result.required_capabilities, agent.environment)
         # 组合理由补 note（为什么选 A 不选 B——互斥场景）
         _annotate_reasons(result.chain, result.required_capabilities)
+        # 把组合选择回填到树节点 selected_tool
+        annotate_selections(result.tree_nodes, result.chain.capability_tool_map)
 
     # --- 5. Workflow Synthesis（相似任务 → 复用历史）---
     mem = memory or (store.load_agent_memory(agent.agent_id) if store else None)

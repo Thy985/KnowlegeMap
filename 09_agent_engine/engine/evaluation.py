@@ -19,16 +19,17 @@ def evaluate_run(run: TaskRun, criteria: List[str],
     """
     obs = observations or {}
     scores = []
+    crit_evidences: List[Evidence] = []
     for crit in criteria:
         o = obs.get(crit, {})
         score = float(o.get("score", 0.0))
         failure = o.get("failure", "")
-        evidence = Evidence(
-            source=o.get("evidence", "engine-simulated"),
-            type="EXPERIMENT",
-            confidence=0.8,
-            supporting_observation=f"criterion={crit} failure={failure or 'none'}",
-        )
+        raw_ev = o.get("evidence", "engine-simulated")
+        crit_evidences.append(Evidence(
+            source=raw_ev, type="EXPERIMENT", confidence=0.8,
+            supporting_observation=(
+                f"{raw_ev} | criterion={crit} score={score} "
+                f"failure={failure or 'none'}")))
         scores.append(score)
         if failure:
             run.result_summary += f"[{crit}:{failure}] "
@@ -36,8 +37,9 @@ def evaluate_run(run: TaskRun, criteria: List[str],
     ev = Eval(
         criterion="; ".join(criteria),
         score=overall,
-        evidence=[Evidence(source="task-run", type="EXPERIMENT", confidence=0.8,
-                           supporting_observation=run.result_summary or "no observations")],
+        evidence=crit_evidences + [
+            Evidence(source="task-run", type="EXPERIMENT", confidence=0.8,
+                     supporting_observation=run.result_summary or "no observations")],
         failure=run.result_summary.strip() or "",
         reproducibility=0.7,
     )

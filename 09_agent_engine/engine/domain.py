@@ -39,6 +39,46 @@ class Capability:
     evidence: List[Evidence] = field(default_factory=list)
     evaluation_history: List["Evaluation"] = field(default_factory=list)
 
+
+# ------------------------------------------------- Tree nodes（v2）
+
+@dataclass
+class CapabilityNode:
+    """Capability Tree 节点（任务动态实例化）。
+
+    树表达"完成这个任务需要什么能力层级"；节点运行时携带
+    current_state / gap / candidate_tools / selected_tool 的统一视图。
+    叶子节点通过 maps_to 映射到扁平能力库（knowledge.CAPABILITIES），
+    工具发现与 Gap 判定复用该映射。
+    """
+    id: str                      # 点分路径，如 reconnaissance.asset-discovery
+    name: str
+    parent: Optional[str] = None
+    children: List[str] = field(default_factory=list)
+    maps_to: str = ""            # 映射到扁平 capability id
+    leaf_tags: List[str] = field(default_factory=list)  # 叶子工具发现关键词
+    # 运行时状态（JIT 展开后填充）
+    expanded: bool = False
+    current_state: float = 0.0
+    gap: bool = False
+    candidate_tools: List[str] = field(default_factory=list)
+    selected_tool: Optional[str] = None
+    selection_reason: Optional["SelectionReason"] = None
+    evidence: List[str] = field(default_factory=list)
+
+    def is_leaf(self) -> bool:
+        return not self.children
+
+
+@dataclass
+class DomainNode:
+    """Domain Tree 节点：静态组织领域知识（领域由什么组成）。"""
+    id: str
+    name: str
+    parent: Optional[str] = None
+    children: List[str] = field(default_factory=list)
+    description: str = ""
+
 # ---------------------------------------------------------------- Tool
 
 @dataclass
