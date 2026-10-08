@@ -103,6 +103,13 @@
 |---|---|---|
 | [README.md](06_expansion_index/README.md) | Expansion Index：全对象清单 + 生命周期 + 去重基准 | 📌 37 条 |
 
+## 07_radar_watch（Personal Tech Radar 运行规范）📌 2026-10-08
+
+| 文件 | 内容 | 状态 |
+|---|---|---|
+| [README.md](07_radar_watch/README.md) | 雷达执行契约 + **一周一域 + 每日分工节奏** | 📌 |
+| [current_focus.md](07_radar_watch/current_focus.md) | 当前聚焦领域与本周进度（首域 Evaluation，自 2026-10-12） | 📌 |
+
 ## 99_templates（模板）📌
 
 | 文件 | 内容 | 状态 |
