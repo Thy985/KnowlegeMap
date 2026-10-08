@@ -2,16 +2,16 @@
 
 > **定位**：KnowlegeMap 的 Mode B 执行引擎——纯 Python 标准库，无第三方依赖。
 > 链路：**Task → Capability Tree（JIT）→ Capability Gap → Tool/Project Discovery
-> → Tool Composition（带理由）→ Workflow → Evaluation → Agent Operational Memory → Capability Evolution**。
+> → Tool Composition（带理由 + 历史先验）→ Workflow → Evaluation → Memory → Skill Evolution → 回灌 compose**。
 > 原则：Agent 一等公民；"需要什么"先于"推荐什么"；Tree 组织层级、Graph 跨域复用；
-> Star 仅弱信号；高风险任务强制 approval 前置（EP-002）。
+> 演进结果回灌未来选择；Star 仅弱信号；高风险任务强制 approval 前置（EP-002）。
 
 ## 运行
 
 ```bash
 cd 09_agent_engine
 
-# 端到端测试（Test 1-5 + v3 Skill Evolution，24 用例）
+# 端到端测试（Test 1-5 + v3 Skill Evolution + v4 历史回灌，31 用例）
 python3 -m unittest discover -s tests
 
 # CLI 最小闭环（安全测试演示：能力树→JIT→组合→工作流→评估→记忆→资产落盘）
@@ -31,7 +31,7 @@ python3 cli.py run --task-type e2e-web-testing \
 | `engine/trees.py` | **v2**：Domain Tree 构建 + Capability Tree 任务动态实例化 + JIT 展开 + 节点级发现/回填/渲染 |
 | `engine/capability_graph.py` | **v2**：Capability Graph（跨域 membership + 依赖边；shared/removal_impact 查询） |
 | `engine/discovery.py` | Task 分解 / Gap 分析（前置传递闭包）/ 能力驱动工具发现 / 未知能力发现 |
-| `engine/composition.py` | 多维评分 → 互斥裁决（**含回退 _fallback**）→ 数据流兼容 → 有向链 + 理由 |
+| `engine/composition.py` | 多维评分 → 互斥裁决（**含回退**）→ 数据流兼容 → 有向链；**v4 HistoryPrior 回灌**（成功率校准/历史失败惩罚/唯一提供者保留） |
 | `engine/workflow.py` | 阶段化工作流（checkpoint / failure_recovery / 角色 / 依赖序） |
 | `engine/evaluation.py` | criterion 打分（**每 criterion 证据保留**）+ 能力 confidence 回写 |
 | `engine/memory.py` | Agent Operational Memory（JSON 持久化；post-task learning；历史工作流复用；版本演进） |
@@ -50,7 +50,7 @@ python3 cli.py run --task-type e2e-web-testing \
 
 详见 `08_agent_centric/docs/03_tree_graph_architecture.md`。
 
-## 测试场景（Test 1-5 + v3，24 用例）
+## 测试场景（Test 1-5 + v3 + v4，31 用例）
 
 | 场景 | 输入 | 输出 |
 |---|---|---|
@@ -60,6 +60,7 @@ python3 cli.py run --task-type e2e-web-testing \
 | Test 4 Agent Memory | 两次相似任务 | 复用历史 Workflow，演进 v2 |
 | Test 5 Capability Evolution | unknown→validated | 置信提升 + Evidence；失败塑形；JIT 剪枝；Graph 跨域 |
 | v3 Skill Evolution | 多次任务 tool_stats | 失败工具剔除/重排/插检查；版本递增；持久化；pipeline 触发 |
+| v4 历史回灌 | 含历史失败 memory 的新任务 | 失败工具降权/互斥排除；唯一提供者保留+警告；回升解除；无历史不回归 |
 
 ## Skill Evolution（v3 核心）
 
@@ -72,6 +73,19 @@ python3 cli.py run --task-type e2e-web-testing \
 - 版本化，演进理由引用真实成功率（非 LLM 生成）；
   样本不足或表现稳定不产生新版本（防膨胀）。
 - 版本存 Agent Memory，未来相似任务用 `latest_skill` 复用，不重新从零。
+
+## 历史回灌（v4 核心 · 闭合"演进→影响未来选择"）
+
+compose 前用 `build_history_prior(memory)` 构造 `HistoryPrior`：
+
+- **可靠性校准**：样本≥3 的工具，用真实 success_rate 校准静态 reliability；
+- **历史失败惩罚**：被最新 skill 剔除且未恢复的工具 fit 减 0.12，
+  有替代时自然落选/互斥排除（理由含真实成功率与"历史失败"）；
+- **唯一提供者保留**：某能力只有历史失败工具一个候选时仍保留（不丢能力），
+  记入 `chain.history_warnings`（需改进/人工确认）；
+- **恢复解除**：工具成功率回升 ≥0.5 后惩罚解除。
+
+至此形成完整自学习闭环：执行 → 评估 → 记忆 → 演进 → 回灌 → 改变下一次选择。
 
 ## 运行结果示例（demo）
 

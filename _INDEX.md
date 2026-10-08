@@ -139,14 +139,14 @@
 
 ## 09_agent_engine（Agent-Centric Engine）📌 2026-10-08
 
-> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（**24 用例全通过**）。
-> 链路：Task → Capability Tree（JIT）→ Gap → Discovery → Composition → Workflow → Evaluation → Memory → Skill Evolution。
+> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（**31 用例全通过**）。
+> 链路：Task → Capability Tree（JIT）→ Gap → Discovery → Composition（历史先验）→ Workflow → Evaluation → Memory → Skill Evolution → 回灌。
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 树图分工 / Skill Evolution | 📌 |
+| [README.md](09_agent_engine/README.md) | 引擎说明 / 树图分工 / Skill Evolution / 历史回灌 | 📌 |
 | [engine/](09_agent_engine/engine/) | domain / knowledge / **trees** / **capability_graph** / discovery / composition / workflow / evaluation / memory / **skill_evolution** / pipeline / store | 📌 12 模块 |
-| [tests/](09_agent_engine/tests/) | Test 1-5 + v3 Skill Evolution 端到端测试 | 📌 24 用例通过 |
+| [tests/](09_agent_engine/tests/) | Test 1-5 + v3 Skill Evolution + v4 历史回灌 | 📌 31 用例通过 |
 | [cli.py](09_agent_engine/cli.py) | CLI：`demo` / `run`（写资产到 08_agent_centric） | 📌 |
 
 [End of file.]

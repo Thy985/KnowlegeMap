@@ -9,7 +9,47 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
 from . import knowledge
-from .domain import SelectionReason, Task, Tool
+from .domain import SelectionReason, Task, Tool, ToolStat
+
+
+@dataclass
+class HistoryPrior:
+    """历史先验（v4 · 演进结果回灌 compose）。
+
+    - 可靠性校准：样本足够时用真实 success_rate 校准静态 reliability；
+    - 历史失败淘汰：被最新 skill 剔除且未恢复的工具施加 fit 惩罚。
+    """
+    tool_stats: Dict[str, ToolStat] = field(default_factory=dict)
+    removed: Dict[str, str] = field(default_factory=dict)  # tool -> "skill(sr=..)"
+    min_samples: int = 3
+    drop_rate: float = 0.5
+    reliability_blend: float = 0.5
+    remove_penalty: float = 0.12
+
+    def adjustment(self, tool: str, static_reliability: float) -> float:
+        delta = 0.0
+        st = self.tool_stats.get(tool)
+        if st and st.usage_count >= self.min_samples:
+            # 真实成功率校准 reliability 维度
+            delta += (_WEIGHTS["reliability"] * self.reliability_blend
+                      * (st.success_rate - static_reliability))
+        if tool in self.removed:
+            delta -= self.remove_penalty
+        return round(delta, 3)
+
+
+def build_history_prior(memory) -> HistoryPrior:
+    """从 Agent Memory 构造历史先验；剔除工具若成功率回升则解除。"""
+    removed: Dict[str, str] = {}
+    for sid, versions in memory.skill_versions.items():
+        latest = versions[-1]
+        for t in latest.removed_tools:
+            st = memory.tool_stats.get(t)
+            sr = st.success_rate if st else 0.0
+            # 未恢复（无统计，或样本足够且仍 < 阈值）
+            if not st or (st.usage_count >= 3 and sr < 0.5):
+                removed[t] = f"{sid}(sr={sr:.2f})"
+    return HistoryPrior(tool_stats=dict(memory.tool_stats), removed=removed)
 
 
 @dataclass
@@ -20,6 +60,7 @@ class ComposedChain:
     parallel_groups: List[List[str]] = field(default_factory=list)
     excluded: List[str] = field(default_factory=list)        # 被排除候选 + 原因
     excluded_reasons: Dict[str, str] = field(default_factory=dict)
+    history_warnings: Dict[str, str] = field(default_factory=dict)  # 历史失败但无替代
 
     def summary(self) -> str:
         return " -> ".join(self.chain) if self.chain else "(empty)"
@@ -128,7 +169,7 @@ def fit_score(reason: SelectionReason) -> float:
 
 def _fallback(cap: str, tool_names: List[str], task: Task,
               required_caps: List[str], env: Optional[Dict[str, str]],
-              blocked: set) -> Optional[str]:
+              blocked: set, history: Optional[HistoryPrior] = None) -> Optional[str]:
     """互斥裁决后，为能力回退到次优候选（排除 blocked 工具）。"""
     cands = [n for n in tool_names
              if cap in knowledge.get_tool(n)["capabilities"] and n not in blocked]
@@ -138,27 +179,34 @@ def _fallback(cap: str, tool_names: List[str], task: Task,
     for n in cands:
         t = _tool(n)
         r = evaluate_candidate(t, task, required_caps, env)
-        scored.append((fit_score(r), n))
+        base = fit_score(r)
+        adj = round(base + history.adjustment(n, t.reliability), 3) if history else base
+        scored.append((adj, n))
     scored.sort(key=lambda x: -x[0])
     return scored[0][1]
 
 
 def compose(tool_names: List[str], task: Task, required_caps: List[str],
-            env: Optional[Dict[str, str]] = None) -> ComposedChain:
+            env: Optional[Dict[str, str]] = None,
+            history: Optional[HistoryPrior] = None) -> ComposedChain:
     """Candidate Tools → Tool Composition（组合理由 + 有向链 + 并行/互斥/前置）。
 
     算法：
-    1. 逐能力挑最佳工具（fit_score），同能力覆盖者合并；
-    2. 互斥组裁决：同组只保留 fit 最高者，被淘汰者记录 excluded_reasons；
+    1. 逐能力挑最佳工具（fit + 历史先验 adjustment），同能力覆盖者合并；
+    2. 互斥组裁决：同组只保留调整后 fit 最高者，被淘汰者记录 excluded_reasons；
     3. 按能力依赖序（required_caps 顺序）排序形成数据流链；
     4. 检查 input/output 格式兼容；不兼容则尝试插入转换环节并记录；
     5. 并行组：互不依赖且不同阶段可并行者归组。
+
+    history（v4）：真实成功率校准可靠性、历史失败工具受惩罚；某能力只有
+    历史失败工具一个候选时仍保留（不丢能力），记入 history_warnings。
     """
     env = env or {}
     chain = ComposedChain()
 
     # 1. 每能力选最佳
     used: Dict[str, str] = {}
+    adjfit: Dict[str, float] = {}
     for cap in required_caps:
         cands = [n for n in tool_names if cap in knowledge.get_tool(n)["capabilities"]]
         if not cands:
@@ -167,7 +215,10 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
         for n in cands:
             t = _tool(n)
             r = evaluate_candidate(t, task, required_caps, env)
-            scored.append((fit_score(r), r, t))
+            base = fit_score(r)
+            adj = round(base + history.adjustment(n, t.reliability), 3) if history else base
+            adjfit[n] = adj
+            scored.append((adj, r, t))
         scored.sort(key=lambda x: -x[0])
         best = scored[0]
         used[cap] = best[2].name
@@ -178,15 +229,16 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
     for grp in _MUTUAL_EXCLUSION:
         hit = [n for n in used.values() if n in grp]
         if len(hit) > 1:
-            # 保留 fit 最高者
-            keep = max(hit, key=lambda n: fit_score(chain.reasons.get(n, SelectionReason(n))))
+            # 保留调整后 fit 最高者
+            keep = max(hit, key=lambda n: adjfit.get(n, fit_score(chain.reasons.get(n, SelectionReason(n)))))
             for other in hit:
                 if other != keep:
                     chain.excluded.append(other)
                     excluded_names.add(other)
+                    hist = f"；历史失败 {history.removed[other]}" if history and other in history.removed else ""
                     chain.excluded_reasons[other] = (
                         f"与 {keep} 语义重叠（互斥组 {sorted(grp)}），"
-                        f"fit {fit_score(chain.reasons[other])} < {fit_score(chain.reasons[keep])}"
+                        f"fit {adjfit.get(other)} < {adjfit.get(keep)}{hist}"
                     )
                     # 从 used 中剔除，并为该能力回退次优候选
                     # （排除已排除工具 + 同互斥组其余成员，避免再次冲突）
@@ -194,12 +246,14 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
                     for k, v in list(used.items()):
                         if v == other:
                             fb = _fallback(k, tool_names, task,
-                                           required_caps, env, blocked)
+                                           required_caps, env, blocked, history)
                             if fb:
                                 used[k] = fb
-                                chain.reasons.setdefault(
-                                    fb, evaluate_candidate(
-                                        _tool(fb), task, required_caps, env))
+                                tfb = _tool(fb)
+                                rfb = evaluate_candidate(tfb, task, required_caps, env)
+                                chain.reasons.setdefault(fb, rfb)
+                                adjfit[fb] = round(
+                                    fit_score(rfb) + (history.adjustment(fb, tfb.reliability) if history else 0.0), 3)
                             else:
                                 del used[k]
 
@@ -210,6 +264,14 @@ def compose(tool_names: List[str], task: Task, required_caps: List[str],
             ordered.append(used[cap])
     chain.chain = ordered
     chain.capability_tool_map = dict(used)
+
+    # 历史失败但仍被保留（无替代）→ 警告
+    if history:
+        for n in ordered:
+            if n in history.removed:
+                chain.history_warnings[n] = (
+                    f"历史失败 {history.removed[n]}，但无替代工具，暂保留"
+                    "（需改进/人工确认）")
 
     # 4. 格式兼容检查（在 ordered 相邻之间）
     for i in range(len(ordered) - 1):

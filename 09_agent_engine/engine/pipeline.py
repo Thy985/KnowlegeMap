@@ -11,7 +11,8 @@ from typing import Callable, Dict, List, Optional
 
 from . import knowledge
 from .capability_graph import CapabilityGraph
-from .composition import ComposedChain, compose, evaluate_candidate, fit_score
+from .composition import (ComposedChain, HistoryPrior, build_history_prior,
+                          compose, evaluate_candidate, fit_score)
 from .discovery import decompose_task, discover_for_capability, gap_analysis
 from .domain import (Agent, AgentMemory, CapabilityNode, Evidence,
                      SelectionReason, Task, TaskRun)
@@ -169,23 +170,26 @@ def run_agent_task(
     for cap in result.required_capabilities:
         result.discovered_tools[cap] = discover_for_capability(cap)
 
-    # --- 4. Tool Composition（含组合理由）---
+    # --- 4. Tool Composition（含组合理由；v4 历史先验回灌）---
+    # memory 提前加载，供 compose 使用历史演进先验
+    mem = memory or (store.load_agent_memory(agent.agent_id) if store else None)
+    if mem is None:
+        mem = AgentMemory(agent_id=agent.agent_id)
+    history = build_history_prior(mem)
     all_cands: List[str] = []
     for tools in result.discovered_tools.values():
         for t in tools:
             if t not in all_cands:
                 all_cands.append(t)
     if all_cands:
-        result.chain = compose(all_cands, task, result.required_capabilities, agent.environment)
+        result.chain = compose(all_cands, task, result.required_capabilities,
+                               agent.environment, history=history)
         # 组合理由补 note（为什么选 A 不选 B——互斥场景）
         _annotate_reasons(result.chain, result.required_capabilities)
         # 把组合选择回填到树节点 selected_tool
         annotate_selections(result.tree_nodes, result.chain.capability_tool_map)
 
     # --- 5. Workflow Synthesis（相似任务 → 复用历史）---
-    mem = memory or (store.load_agent_memory(agent.agent_id) if store else None)
-    if mem is None:
-        mem = AgentMemory(agent_id=agent.agent_id)
     if result.chain:
         prev = reuse_historical_workflow(mem, task, result.required_capabilities)
         wf = synthesize_workflow(task, result.required_capabilities,

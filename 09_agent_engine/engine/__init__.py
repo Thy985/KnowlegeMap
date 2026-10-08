@@ -1,5 +1,6 @@
 """KnowlegeMap Agent-Centric Engine 包入口。"""
 from .capability_graph import CapabilityGraph
+from .composition import HistoryPrior, build_history_prior
 from .domain import (Agent, AgentMemory, Capability, CapabilityNode,
                      DomainNode, Evaluation, Evidence, SelectionReason, Skill,
                      SkillVersion, Task, TaskRun, Tool, Workflow, WorkflowStage)
@@ -13,6 +14,7 @@ __all__ = [
     "Evaluation", "Evidence", "SelectionReason", "Skill", "SkillVersion",
     "Task", "TaskRun", "Tool", "Workflow", "WorkflowStage", "PipelineResult",
     "run_agent_task", "analyze_tool_loss", "CapabilityGraph",
+    "HistoryPrior", "build_history_prior",
     "build_domain_tree", "instantiate_capability_tree", "render_tree",
     "evolve_skill", "evolve_skills_for_caps", "latest_skill",
 ]

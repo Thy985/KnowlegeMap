@@ -56,14 +56,15 @@ KnowlegeMap/
 | 共享 | 证据纪律（FACT 优先）、Discovery/Evaluation/Memory、开源知识 | 同左 |
 
 - Human 层：`00_bootstrap → 06_expansion_index`（既有流程未改）。
-- Agent 层：`09_agent_engine/`（`python3 -m unittest discover -s tests`，**24 用例**）→ 资产落 `08_agent_centric/`。
+- Agent 层：`09_agent_engine/`（`python3 -m unittest discover -s tests`，**31 用例**）→ 资产落 `08_agent_centric/`。
 - **v2 树图分工**：Domain Tree 静态组织领域；Capability Tree 任务动态实例化（不同 Task 不同树、JIT 按 agent 状态剪枝）；Capability Graph 表达跨域复用（http-interaction 属 4 领域）；Capability→Skill→Tool→Project 分层。
 - **v3 Skill Evolution**：tool_stats（usage/success_rate/failure_modes）驱动 Skill 版本演进——重排工具、剔除持续失败工具、插入失败检查步骤；演进理由引用真实成功率，样本不足/稳定不产生新版本。
+- **v4 历史回灌**：compose 用历史先验（成功率校准可靠性、历史失败惩罚、唯一提供者保留+警告、恢复解除），闭合"演进→影响未来选择"。
 - 原则：**"需要什么"先于"推荐什么"**；Tool Composition 必须解释组合理由；Star 仅弱信号；Agent-Centric ≠ 无限自治（高风险任务强制 approval，EP-002）。
 
 ---
 
-## 当前状态（Bootstrap 完成 · Mode B v1/v2/v3 升级 2026-10-08）
+## 当前状态（Bootstrap 完成 · Mode B v1-v4 升级 2026-10-08）
 
 - ✅ 第一阶段：飞书知识库分析完成（7 个知识空间，约 400+ 文档节点）
 - ✅ 第二阶段：GitHub 分析完成（14 个公开仓库 + 内库项目 Hub）
@@ -72,7 +73,8 @@ KnowlegeMap/
 - ✅ 第五阶段：本仓库目录与索引初始化
 - ✅ Mode B v1：双扩展模式 + Agent Domain Model + 可运行引擎（14 测试）
 - ✅ Mode B v2：Domain Tree + Capability Tree（JIT）+ Capability Graph + Skill 分层（17 测试）
-- ✅ Mode B v3：tool_stats 驱动 Skill 版本演进 + 记忆持久化（24 测试全通过）
+- ✅ Mode B v3：tool_stats 驱动 Skill 版本演进 + 记忆持久化（24 测试）
+- ✅ Mode B v4：历史先验回灌 compose（31 测试全通过，自学习闭环完成）
 - ⏭ 下一步：按 `00_bootstrap/05_auto_exploration_strategy.md` 持续扫描；按需用 `09_agent_engine/cli.py` 驱动任务级能力发现
 
 ---
