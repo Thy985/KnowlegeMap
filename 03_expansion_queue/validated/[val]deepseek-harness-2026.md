@@ -48,6 +48,10 @@ DeepSeek 于 2026-08-13 开源的 Agent Harness 开发者预览版（`deepseek-a
 > - **v0.1.5-alpha.1（09-08/09 发布，跳过 0.1.4）**：**动态系统提示词**（运行时可更新且**不破坏 KV Cache**，避免热更新丢缓存）+ 实验性 Sidebar + 多标签/分栏/全屏 + 历史会话迁移升级（Codex 0.153.4 / Claude Code 2.1.263）["https://www.iesdouyin.com/share/video/7683387405353699438"]["https://technode.com/2026/09/10/deepseek-releases-harness-0-1-5-with-v4-1-flash-support-file-uploads-and-sidebar-previews/"]
 > - **36kr《DeepSeek "推倒重来"》（09-14）**："先有模型、后有 Harness"的行业常规被打破——**模型与 Harness 联合训练**成为 DeepSeek 新范式（V4.1 Flash × dsh v0.1.5 同步发布实证）["https://36kr.com/p/3983071485843079"]
 > - **含义**：① "动态系统提示词 + KV Cache 保留"是 harness 层关键工程点（提示词更新≠上下文重建）——TeamMind 的会话层可借鉴；② 模型-harness 联合训练被媒体正式定性为范式转变，dsh 作为"运行时主战场"的地位再确认
+> **雷达增量（2026-10-09，Changed · 兜底扫描）**：
+> - **版本跃迁 v0.2.1-alpha.1（2026-10-03 14:42 发布）**：加入**实验性 Claude Code Mods 兼容层**——官方明确"现阶段只是验证 Claude Code Mods API 的能力是 dsh 插件体系的子集，并非完整移植"；延续"Everything is a plugin"架构["https://gitea.milesward.dev/mward4/deepseek-harness/releases"]["https://codegangsta.io/coding/deepseek-harness-v0-2-1-alpha/"]["https://blog.csdn.net/u010467643/article/details/167122493"]
+> - **桥接对象 Claude Code Mods（Anthropic 10-01 发布）**：用 TypeScript 小函数定制 Claude Code 行为/外观的新扩展机制；dsh 借此验证其插件 API 的表达力上限["https://claude.com/blog/claude-code-mods"]
+> - **含义**：① dsh 进入 0.2 阶段，插件生态开始向"跨 harness 互通"演进（与 Claude Code 插件模型对齐）——TeamMind 设计插件接口时可参考"API 子集验证"这种兼容策略；② 但仍是 alpha 预发布、非实用兼容，不宜现在投入集成；③ Claude Code Mods 作为新扩展机制，留待 Harness 深耕周再深入，本次不单独建卡
 ## 6. 决策
 - [x] 晋升 validated（源码级验证通过，可作 TeamMind 架构参考）
 - [ ] 维持观察
