@@ -108,5 +108,42 @@
 | 文件 | 内容 | 状态 |
 |---|---|---|
 | [README.md](99_templates/README.md) | 模板使用说明 | 📌 |
-| [candidate_card.md](99_templates/candidate_card.md) | 候选对象证据卡模板 | 📌 |
+| [candidate_card.md](99_templates/candidate_card.md) | 候选对象证据卡模板（Human 层） | 📌 |
 | [scan_log.md](99_templates/scan_log.md) | 扫描日志模板 | 📌 |
+| [agent_task_card.md](99_templates/agent_task_card.md) | Agent Task 卡模板（Mode B 全链路） | 📌 2026-10-08 |
+| [capability_card.md](99_templates/capability_card.md) | 能力卡模板（发现单位） | 📌 2026-10-08 |
+| [tool_card.md](99_templates/tool_card.md) | 工具卡模板（多维 Selection Reason） | 📌 2026-10-08 |
+| [workflow_card.md](99_templates/workflow_card.md) | 工作流卡模板（版本化+演进理由） | 📌 2026-10-08 |
+| [evaluation_card.md](99_templates/evaluation_card.md) | 评估卡模板 | 📌 2026-10-08 |
+| [agent_profile_card.md](99_templates/agent_profile_card.md) | Agent 档案模板 | 📌 2026-10-08 |
+
+## 08_agent_centric（Agent-Centric 资产层 · Mode B）📌 2026-10-08
+
+> 第二主体资产层：**Agent 是一等公民**。与 00-07（Human 层）平行，共享证据纪律但不互相覆盖。
+
+| 目录 | 内容 | 状态 |
+|---|---|---|
+| [README.md](08_agent_centric/README.md) | 本层定位 + 最小闭环数据流 | 📌 |
+| [capabilities/](08_agent_centric/capabilities/README.md) | 能力注册表（26 能力，含前置/工具候选/证据） | 📌 引擎导出 |
+| [tools/](08_agent_centric/tools/README.md) | 工具卡 | ⬜ |
+| [skills/](08_agent_centric/skills/README.md) | 技能卡 | ⬜ |
+| [agents/](08_agent_centric/agents/README.md) | Agent 档案（demo: pen-test-agent） | 📌 1 份 |
+| [tasks/](08_agent_centric/tasks/README.md) | Agent Task 卡（demo: task-demo-security） | 📌 1 份 |
+| [workflows/](08_agent_centric/workflows/README.md) | 工作流卡（demo: security-assessment v1） | 📌 1 份 |
+| [evaluations/](08_agent_centric/evaluations/README.md) | 评估卡 | ⬜ |
+| [memory/](08_agent_centric/memory/README.md) | Agent Operational Memory（JSON） | 📌 1 份 |
+| [docs/](08_agent_centric/docs/README.md) | 架构文档（Gap Report / Domain Model） | 📌 2 份 |
+
+## 09_agent_engine（Agent-Centric Engine）📌 2026-10-08
+
+> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（14 用例全通过）。
+> 链路：Task → Capability → Gap → Discovery → Composition → Workflow → Evaluation → Memory。
+
+| 目录 | 内容 | 状态 |
+|---|---|---|
+| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 设计要点 | 📌 |
+| [engine/](09_agent_engine/engine/) | domain / knowledge / discovery / composition / workflow / evaluation / memory / pipeline / store | 📌 9 模块 |
+| [tests/](09_agent_engine/tests/) | Scenario A-F 端到端测试 | 📌 14 用例通过 |
+| [cli.py](09_agent_engine/cli.py) | CLI：`demo` / `run`（写资产到 08_agent_centric） | 📌 |
+
+[End of file.]
