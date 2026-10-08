@@ -18,6 +18,7 @@ from .domain import (Agent, AgentMemory, CapabilityNode, Evidence,
 from .evaluation import evaluate_run, update_agent_capabilities
 from .memory import (MemoryStore, apply_post_task_learning, evolve_workflow,
                      reuse_historical_workflow)
+from .skill_evolution import evolve_skills_for_caps
 from .trees import (annotate_selections, discover_tools_for_tree,
                     instantiate_capability_tree, jit_expand,
                     missing_capabilities as tree_missing, render_tree)
@@ -43,6 +44,7 @@ class PipelineResult:
         self.approval_required: bool = False
         self.history_reused: bool = False
         self.history_source: Optional[str] = None
+        self.evolved_skills: List = []
 
     def render_report(self) -> str:
         """人读报告：完整回答"为什么选这些工具/删掉 X 会损失什么"。"""
@@ -111,6 +113,17 @@ class PipelineResult:
         lines.append(f"run_id={self.run.run_id if self.run else 'n/a'}；"
                      "工具统计/工作流版本/失败模式已回写 Agent Operational Memory")
         lines.append("")
+        lines.append("## 7.1 Skill Evolution（tool_stats 数据驱动）")
+        if self.evolved_skills:
+            for sv in self.evolved_skills:
+                lines.append(f"- **{sv.skill_id}** → v{sv.version}：{sv.evolution_reason}")
+                if sv.removed_tools:
+                    lines.append(f"  - 剔除：{', '.join(sv.removed_tools)}")
+                if sv.required_tools:
+                    lines.append(f"  - 工具（重排后）：{', '.join(sv.required_tools)}")
+        else:
+            lines.append("(本次无显著演进：工具样本不足或表现稳定)")
+        lines.append("")
         lines.append("---")
         lines.append(f"证据纪律：所有工具/能力锚点见 03_expansion_queue/candidates + "
                      "00_bootstrap/00_starred_reference.md（FACT 优先）。")
@@ -124,11 +137,14 @@ def run_agent_task(
     store: Optional[MemoryStore] = None,
     tool_observer: Optional[Callable[[str, str], dict]] = None,
     observations: Optional[Dict[str, dict]] = None,
+    tool_results: Optional[Dict[str, dict]] = None,
 ) -> PipelineResult:
     """最小闭环主入口。
 
     tool_observer：真实执行挂钩（未提供时用模拟观察值，测试可注入）。
     observations：Evaluation 观察值 {criterion: {score, evidence, failure}}。
+    tool_results：per-tool 执行结果 {tool: {success, failure_mode}}（真实执行器
+        产出；未提供时 post-task learning 退化为按整体评估判定各工具）。
     """
     result = PipelineResult(task, agent)
 
@@ -200,7 +216,9 @@ def run_agent_task(
         update_agent_capabilities(agent, run)
 
     # --- 8. Memory（Post-task Learning）---
-    apply_post_task_learning(agent, mem, run, observations)
+    apply_post_task_learning(agent, mem, run, tool_results or observations)
+    # --- 8.1 Skill Evolution（tool_stats 真实数据驱动）---
+    result.evolved_skills = evolve_skills_for_caps(mem, result.required_capabilities)
     if store:
         store.save_agent_memory(mem)
     agent.memory = mem

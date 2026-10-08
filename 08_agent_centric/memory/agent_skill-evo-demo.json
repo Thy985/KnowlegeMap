@@ -1,0 +1,581 @@
+{
+  "agent_id": "skill-evo-demo",
+  "tool_stats": {
+    "garak": {
+      "usage_count": 3,
+      "success_count": 3,
+      "success_rate": 1.0,
+      "failure_modes": {},
+      "last_used": "2026-10-08 11:55:10",
+      "best_workflow_version": 1
+    },
+    "playwright": {
+      "usage_count": 3,
+      "success_count": 3,
+      "success_rate": 1.0,
+      "failure_modes": {},
+      "last_used": "2026-10-08 11:55:10",
+      "best_workflow_version": 1
+    },
+    "mcp": {
+      "usage_count": 3,
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failure_modes": {
+        "timeout": 3
+      },
+      "last_used": "2026-10-08 11:55:10",
+      "best_workflow_version": 1
+    },
+    "promptfoo": {
+      "usage_count": 3,
+      "success_count": 3,
+      "success_rate": 1.0,
+      "failure_modes": {},
+      "last_used": "2026-10-08 11:55:10",
+      "best_workflow_version": 1
+    }
+  },
+  "workflow_versions": {
+    "security-assessment": [
+      {
+        "goal": "对授权站点做安全测试",
+        "version": 1,
+        "evolution_reason": "",
+        "tools": [
+          "garak",
+          "playwright",
+          "mcp",
+          "promptfoo"
+        ],
+        "checkpoints": [
+          "检查点：目标测绘与暴露面识别 产出物完整",
+          "检查点：端点/路径发现 产出物完整",
+          "检查点：HTTP 会话构造与请求执行 产出物完整",
+          "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+          "检查点：请求重放与回归验证 产出物完整",
+          "检查点：多工具结果归一化聚合 产出物完整",
+          "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+          "检查点：生成可追溯报告 产出物完整"
+        ],
+        "stages": [
+          {
+            "stage_id": "stage-1",
+            "goal": "目标测绘与暴露面识别",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：目标测绘与暴露面识别 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": []
+          },
+          {
+            "stage_id": "stage-2",
+            "goal": "端点/路径发现",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：端点/路径发现 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-1"
+            ]
+          },
+          {
+            "stage_id": "stage-3",
+            "goal": "HTTP 会话构造与请求执行",
+            "tools": [
+              "mcp"
+            ],
+            "checkpoint": "检查点：HTTP 会话构造与请求执行 产出物完整",
+            "failure_recovery": "连接失败 → 指数退避重试 ≤3 次；会话过期 → 重建会话",
+            "depends_on": [
+              "stage-2"
+            ]
+          },
+          {
+            "stage_id": "stage-4",
+            "goal": "漏洞检测（注入/越权/配置）",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+            "failure_recovery": "失败 → 缩小范围重试；标记 false-positive 候选待人工确认",
+            "depends_on": [
+              "stage-3"
+            ]
+          },
+          {
+            "stage_id": "stage-5",
+            "goal": "请求重放与回归验证",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：请求重放与回归验证 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-4"
+            ]
+          },
+          {
+            "stage_id": "stage-6",
+            "goal": "多工具结果归一化聚合",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：多工具结果归一化聚合 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-5"
+            ]
+          },
+          {
+            "stage_id": "stage-7",
+            "goal": "证据链收集（请求/响应/轨迹）",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+            "failure_recovery": "证据缺失 → 标记判定为低置信并请求重放",
+            "depends_on": [
+              "stage-6"
+            ]
+          },
+          {
+            "stage_id": "stage-8",
+            "goal": "生成可追溯报告",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：生成可追溯报告 产出物完整",
+            "failure_recovery": "生成失败 → 保留结构化中间结果",
+            "depends_on": [
+              "stage-7"
+            ]
+          }
+        ]
+      },
+      {
+        "goal": "对授权站点做安全测试",
+        "version": 2,
+        "evolution_reason": "v1→v2",
+        "tools": [
+          "garak",
+          "playwright",
+          "mcp",
+          "promptfoo"
+        ],
+        "checkpoints": [
+          "检查点：目标测绘与暴露面识别 产出物完整",
+          "检查点：端点/路径发现 产出物完整",
+          "检查点：HTTP 会话构造与请求执行 产出物完整",
+          "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+          "检查点：请求重放与回归验证 产出物完整",
+          "检查点：多工具结果归一化聚合 产出物完整",
+          "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+          "检查点：生成可追溯报告 产出物完整"
+        ],
+        "stages": [
+          {
+            "stage_id": "stage-1",
+            "goal": "目标测绘与暴露面识别",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：目标测绘与暴露面识别 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": []
+          },
+          {
+            "stage_id": "stage-2",
+            "goal": "端点/路径发现",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：端点/路径发现 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-1"
+            ]
+          },
+          {
+            "stage_id": "stage-3",
+            "goal": "HTTP 会话构造与请求执行",
+            "tools": [
+              "mcp"
+            ],
+            "checkpoint": "检查点：HTTP 会话构造与请求执行 产出物完整",
+            "failure_recovery": "连接失败 → 指数退避重试 ≤3 次；会话过期 → 重建会话",
+            "depends_on": [
+              "stage-2"
+            ]
+          },
+          {
+            "stage_id": "stage-4",
+            "goal": "漏洞检测（注入/越权/配置）",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+            "failure_recovery": "失败 → 缩小范围重试；标记 false-positive 候选待人工确认",
+            "depends_on": [
+              "stage-3"
+            ]
+          },
+          {
+            "stage_id": "stage-5",
+            "goal": "请求重放与回归验证",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：请求重放与回归验证 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-4"
+            ]
+          },
+          {
+            "stage_id": "stage-6",
+            "goal": "多工具结果归一化聚合",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：多工具结果归一化聚合 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-5"
+            ]
+          },
+          {
+            "stage_id": "stage-7",
+            "goal": "证据链收集（请求/响应/轨迹）",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+            "failure_recovery": "证据缺失 → 标记判定为低置信并请求重放",
+            "depends_on": [
+              "stage-6"
+            ]
+          },
+          {
+            "stage_id": "stage-8",
+            "goal": "生成可追溯报告",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：生成可追溯报告 产出物完整",
+            "failure_recovery": "生成失败 → 保留结构化中间结果",
+            "depends_on": [
+              "stage-7"
+            ]
+          }
+        ]
+      },
+      {
+        "goal": "对授权站点做安全测试",
+        "version": 3,
+        "evolution_reason": "v1→v3",
+        "tools": [
+          "garak",
+          "playwright",
+          "mcp",
+          "promptfoo"
+        ],
+        "checkpoints": [
+          "检查点：目标测绘与暴露面识别 产出物完整",
+          "检查点：端点/路径发现 产出物完整",
+          "检查点：HTTP 会话构造与请求执行 产出物完整",
+          "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+          "检查点：请求重放与回归验证 产出物完整",
+          "检查点：多工具结果归一化聚合 产出物完整",
+          "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+          "检查点：生成可追溯报告 产出物完整"
+        ],
+        "stages": [
+          {
+            "stage_id": "stage-1",
+            "goal": "目标测绘与暴露面识别",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：目标测绘与暴露面识别 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": []
+          },
+          {
+            "stage_id": "stage-2",
+            "goal": "端点/路径发现",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：端点/路径发现 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-1"
+            ]
+          },
+          {
+            "stage_id": "stage-3",
+            "goal": "HTTP 会话构造与请求执行",
+            "tools": [
+              "mcp"
+            ],
+            "checkpoint": "检查点：HTTP 会话构造与请求执行 产出物完整",
+            "failure_recovery": "连接失败 → 指数退避重试 ≤3 次；会话过期 → 重建会话",
+            "depends_on": [
+              "stage-2"
+            ]
+          },
+          {
+            "stage_id": "stage-4",
+            "goal": "漏洞检测（注入/越权/配置）",
+            "tools": [
+              "garak"
+            ],
+            "checkpoint": "检查点：漏洞检测（注入/越权/配置） 产出物完整",
+            "failure_recovery": "失败 → 缩小范围重试；标记 false-positive 候选待人工确认",
+            "depends_on": [
+              "stage-3"
+            ]
+          },
+          {
+            "stage_id": "stage-5",
+            "goal": "请求重放与回归验证",
+            "tools": [
+              "playwright"
+            ],
+            "checkpoint": "检查点：请求重放与回归验证 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-4"
+            ]
+          },
+          {
+            "stage_id": "stage-6",
+            "goal": "多工具结果归一化聚合",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：多工具结果归一化聚合 产出物完整",
+            "failure_recovery": "记录失败模式并继续",
+            "depends_on": [
+              "stage-5"
+            ]
+          },
+          {
+            "stage_id": "stage-7",
+            "goal": "证据链收集（请求/响应/轨迹）",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：证据链收集（请求/响应/轨迹） 产出物完整",
+            "failure_recovery": "证据缺失 → 标记判定为低置信并请求重放",
+            "depends_on": [
+              "stage-6"
+            ]
+          },
+          {
+            "stage_id": "stage-8",
+            "goal": "生成可追溯报告",
+            "tools": [
+              "promptfoo"
+            ],
+            "checkpoint": "检查点：生成可追溯报告 产出物完整",
+            "failure_recovery": "生成失败 → 保留结构化中间结果",
+            "depends_on": [
+              "stage-7"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "skill_versions": {
+    "endpoint-discovery": [
+      {
+        "skill_id": "endpoint-discovery",
+        "version": 1,
+        "capability": "endpoint-discovery",
+        "procedure": [
+          "crawl 与被动收集 URL",
+          "normalize 归一化路径",
+          "deduplicate 去重",
+          "validate 探测有效性"
+        ],
+        "required_tools": [
+          "playwright",
+          "browser-use"
+        ],
+        "tool_success": {
+          "playwright": 1.0
+        },
+        "removed_tools": [],
+        "inserted_steps": [],
+        "evolution_reason": "v1 基于工具实测（样本≥3）；工具按成功率重排",
+        "created_at": "2026-10-08 11:55:10"
+      }
+    ],
+    "http-interaction": [
+      {
+        "skill_id": "http-interaction",
+        "version": 1,
+        "capability": "http-interaction",
+        "procedure": [
+          "构造请求",
+          "建立会话",
+          "执行并捕获响应",
+          "为该步骤设置超时与重试上限（mcp: timeout）"
+        ],
+        "required_tools": [
+          "playwright"
+        ],
+        "tool_success": {
+          "playwright": 1.0,
+          "mcp": 0.0
+        },
+        "removed_tools": [
+          "mcp"
+        ],
+        "inserted_steps": [
+          "为该步骤设置超时与重试上限（mcp: timeout）"
+        ],
+        "evolution_reason": "v1 基于工具实测（样本≥3）；剔除 mcp(sr=0.00)；补 1 个失败检查步骤",
+        "created_at": "2026-10-08 11:55:10"
+      }
+    ],
+    "evidence-collection": [
+      {
+        "skill_id": "evidence-collection",
+        "version": 1,
+        "capability": "evidence-collection",
+        "procedure": [
+          "捕获请求/响应",
+          "保存复现产物",
+          "链接到 finding"
+        ],
+        "required_tools": [
+          "promptfoo",
+          "otel-genai"
+        ],
+        "tool_success": {
+          "promptfoo": 1.0
+        },
+        "removed_tools": [],
+        "inserted_steps": [],
+        "evolution_reason": "v1 基于工具实测（样本≥3）；工具按成功率重排",
+        "created_at": "2026-10-08 11:55:10"
+      }
+    ]
+  },
+  "task_log": [
+    {
+      "run_id": "sevo-0-1",
+      "task_id": "sevo-0",
+      "task_type": "security-assessment",
+      "objective": "对授权站点做安全测试",
+      "required_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "http-interaction",
+        "vulnerability-detection",
+        "request-replay",
+        "result-aggregation",
+        "evidence-collection",
+        "reporting"
+      ],
+      "missing_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "vulnerability-detection",
+        "request-replay",
+        "http-interaction",
+        "evidence-collection",
+        "reporting"
+      ],
+      "toolchain": [
+        "garak",
+        "playwright",
+        "mcp",
+        "promptfoo"
+      ],
+      "result_summary": "",
+      "ran_at": "2026-10-08 11:55:10",
+      "evaluation_score": 0.887
+    },
+    {
+      "run_id": "sevo-1-2",
+      "task_id": "sevo-1",
+      "task_type": "security-assessment",
+      "objective": "对授权站点做安全测试",
+      "required_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "http-interaction",
+        "vulnerability-detection",
+        "request-replay",
+        "result-aggregation",
+        "evidence-collection",
+        "reporting"
+      ],
+      "missing_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "vulnerability-detection",
+        "request-replay",
+        "http-interaction",
+        "evidence-collection",
+        "reporting"
+      ],
+      "toolchain": [
+        "garak",
+        "playwright",
+        "mcp",
+        "promptfoo"
+      ],
+      "result_summary": "",
+      "ran_at": "2026-10-08 11:55:10",
+      "evaluation_score": 0.887
+    },
+    {
+      "run_id": "sevo-2-3",
+      "task_id": "sevo-2",
+      "task_type": "security-assessment",
+      "objective": "对授权站点做安全测试",
+      "required_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "http-interaction",
+        "vulnerability-detection",
+        "request-replay",
+        "result-aggregation",
+        "evidence-collection",
+        "reporting"
+      ],
+      "missing_capabilities": [
+        "reconnaissance",
+        "endpoint-discovery",
+        "vulnerability-detection",
+        "request-replay",
+        "http-interaction",
+        "evidence-collection",
+        "reporting"
+      ],
+      "toolchain": [
+        "garak",
+        "playwright",
+        "mcp",
+        "promptfoo"
+      ],
+      "result_summary": "",
+      "ran_at": "2026-10-08 11:55:10",
+      "evaluation_score": 0.887
+    }
+  ],
+  "success_patterns": [
+    "security-assessment: ['garak', 'playwright', 'mcp', 'promptfoo']"
+  ],
+  "failure_patterns": [],
+  "environment_failures": [],
+  "updated_at": "2026-10-08 11:55:10"
+}

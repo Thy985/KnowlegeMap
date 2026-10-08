@@ -129,6 +129,7 @@
 | [capabilities/graph.md](08_agent_centric/capabilities/graph.md) | Capability Graph（跨域复用/依赖） | 📌 v2 引擎导出 |
 | [tools/](08_agent_centric/tools/README.md) | 工具卡 | ⬜ |
 | [skills/](08_agent_centric/skills/README.md) | 技能库（8 Skills，How 层） | 📌 v2 引擎导出 |
+| [skills/versions.md](08_agent_centric/skills/versions.md) | Skill 版本演进（tool_stats 驱动） | 📌 v3 引擎导出 |
 | [agents/](08_agent_centric/agents/README.md) | Agent 档案（demo: pen-test-agent） | 📌 1 份 |
 | [tasks/](08_agent_centric/tasks/README.md) | Agent Task 卡（demo: task-demo-security） | 📌 1 份 |
 | [workflows/](08_agent_centric/workflows/README.md) | 工作流卡（demo: security-assessment 版本化） | 📌 |
@@ -138,14 +139,14 @@
 
 ## 09_agent_engine（Agent-Centric Engine）📌 2026-10-08
 
-> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（**17 用例全通过**）。
-> 链路：Task → Capability Tree（JIT）→ Gap → Discovery → Composition → Workflow → Evaluation → Memory。
+> 可运行最小闭环：纯 Python 标准库，`python3 -m unittest discover -s tests`（**24 用例全通过**）。
+> 链路：Task → Capability Tree（JIT）→ Gap → Discovery → Composition → Workflow → Evaluation → Memory → Skill Evolution。
 
 | 目录 | 内容 | 状态 |
 |---|---|---|
-| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 树图分工 | 📌 |
-| [engine/](09_agent_engine/engine/) | domain / knowledge / **trees** / **capability_graph** / discovery / composition / workflow / evaluation / memory / pipeline / store | 📌 11 模块 |
-| [tests/](09_agent_engine/tests/) | Test 1-5 端到端测试 | 📌 17 用例通过 |
+| [README.md](09_agent_engine/README.md) | 引擎说明 / 运行方式 / 树图分工 / Skill Evolution | 📌 |
+| [engine/](09_agent_engine/engine/) | domain / knowledge / **trees** / **capability_graph** / discovery / composition / workflow / evaluation / memory / **skill_evolution** / pipeline / store | 📌 12 模块 |
+| [tests/](09_agent_engine/tests/) | Test 1-5 + v3 Skill Evolution 端到端测试 | 📌 24 用例通过 |
 | [cli.py](09_agent_engine/cli.py) | CLI：`demo` / `run`（写资产到 08_agent_centric） | 📌 |
 
 [End of file.]

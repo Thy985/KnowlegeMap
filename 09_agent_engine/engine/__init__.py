@@ -2,15 +2,17 @@
 from .capability_graph import CapabilityGraph
 from .domain import (Agent, AgentMemory, Capability, CapabilityNode,
                      DomainNode, Evaluation, Evidence, SelectionReason, Skill,
-                     Task, TaskRun, Tool, Workflow, WorkflowStage)
+                     SkillVersion, Task, TaskRun, Tool, Workflow, WorkflowStage)
 from .pipeline import PipelineResult, analyze_tool_loss, run_agent_task
+from .skill_evolution import (evolve_skill, evolve_skills_for_caps, latest_skill)
 from .trees import (build_domain_tree, instantiate_capability_tree,
                     render_tree)
 
 __all__ = [
     "Agent", "AgentMemory", "Capability", "CapabilityNode", "DomainNode",
-    "Evaluation", "Evidence", "SelectionReason", "Skill", "Task", "TaskRun",
-    "Tool", "Workflow", "WorkflowStage", "PipelineResult", "run_agent_task",
-    "analyze_tool_loss", "CapabilityGraph", "build_domain_tree",
-    "instantiate_capability_tree", "render_tree",
+    "Evaluation", "Evidence", "SelectionReason", "Skill", "SkillVersion",
+    "Task", "TaskRun", "Tool", "Workflow", "WorkflowStage", "PipelineResult",
+    "run_agent_task", "analyze_tool_loss", "CapabilityGraph",
+    "build_domain_tree", "instantiate_capability_tree", "render_tree",
+    "evolve_skill", "evolve_skills_for_caps", "latest_skill",
 ]

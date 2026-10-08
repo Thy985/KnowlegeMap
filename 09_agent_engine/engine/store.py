@@ -144,3 +144,32 @@ class AssetStore:
         with open(path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
         return path
+
+    # ---- Skill Versions → skills/versions.md（v3 · 数据驱动演进）----
+    def export_skill_versions(self, result: PipelineResult) -> str:
+        path = os.path.join(self.base, "skills", "versions.md")
+        lines = ["# Skill Versions（tool_stats 数据驱动演进）", "",
+                 "> 每次演进基于真实 usage_count / success_rate / failure_modes；"
+                 "样本不足或表现稳定不产生新版本。", ""]
+        mem = result.agent.memory
+        sv_map = mem.skill_versions if mem else {}
+        if not sv_map:
+            lines.append("(暂无演进版本)")
+        for sid, versions in sv_map.items():
+            lines.append(f"## {sid}")
+            for sv in versions:
+                lines.append(f"### v{sv.version}")
+                lines.append(f"- 演进理由：{sv.evolution_reason}")
+                if sv.tool_success:
+                    lines.append("- 工具成功率：" + ", ".join(
+                        f"{t}={r:.2f}" for t, r in sv.tool_success.items()))
+                if sv.removed_tools:
+                    lines.append(f"- 剔除：{', '.join(sv.removed_tools)}")
+                if sv.required_tools:
+                    lines.append(f"- 工具（重排后）：{', '.join(sv.required_tools)}")
+                if sv.procedure:
+                    lines.append("- procedure: " + " → ".join(sv.procedure))
+                lines.append("")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        return path

@@ -13,7 +13,8 @@ import os
 from typing import Dict, List, Optional
 
 from . import knowledge
-from .domain import Agent, AgentMemory, Task, TaskRun, ToolStat, Workflow
+from .domain import (Agent, AgentMemory, SkillVersion, Task, TaskRun, ToolStat,
+                     Workflow)
 
 
 class MemoryStore:
@@ -31,6 +32,8 @@ class MemoryStore:
             "tool_stats": {k: _stat_dict(v) for k, v in memory.tool_stats.items()},
             "workflow_versions": {k: [_wf_dict(w) for w in versions]
                                   for k, versions in memory.workflow_versions.items()},
+            "skill_versions": {k: [_sv_dict(s) for s in versions]
+                               for k, versions in memory.skill_versions.items()},
             "task_log": [_run_dict(r) for r in memory.task_log],
             "success_patterns": memory.success_patterns,
             "failure_patterns": memory.failure_patterns,
@@ -51,6 +54,8 @@ class MemoryStore:
         m.tool_stats = {k: ToolStat(**v) for k, v in payload.get("tool_stats", {}).items()}
         m.workflow_versions = {k: [_wf_from_dict(w) for w in v]
                                for k, v in payload.get("workflow_versions", {}).items()}
+        m.skill_versions = {k: [SkillVersion(**s) for s in v]
+                            for k, v in payload.get("skill_versions", {}).items()}
         m.task_log = [_run_from_dict(r) for r in payload.get("task_log", [])]
         m.success_patterns = payload.get("success_patterns", [])
         m.failure_patterns = payload.get("failure_patterns", [])
@@ -133,6 +138,14 @@ def _stat_dict(s: ToolStat) -> dict:
     return {"usage_count": s.usage_count, "success_count": s.success_count,
             "success_rate": s.success_rate, "failure_modes": s.failure_modes,
             "last_used": s.last_used, "best_workflow_version": s.best_workflow_version}
+
+
+def _sv_dict(s: SkillVersion) -> dict:
+    return {"skill_id": s.skill_id, "version": s.version, "capability": s.capability,
+            "procedure": s.procedure, "required_tools": s.required_tools,
+            "tool_success": s.tool_success, "removed_tools": s.removed_tools,
+            "inserted_steps": s.inserted_steps, "evolution_reason": s.evolution_reason,
+            "created_at": s.created_at}
 
 
 def _wf_dict(w: Workflow) -> dict:

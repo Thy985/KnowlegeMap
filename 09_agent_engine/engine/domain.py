@@ -118,6 +118,21 @@ class Skill:
     success_rate: float = 0.0
     last_used: Optional[str] = None
 
+
+@dataclass
+class SkillVersion:
+    """Skill 的版本化资产（由 tool_stats 真实数据驱动演进）。"""
+    skill_id: str
+    version: int
+    capability: str = ""
+    procedure: List[str] = field(default_factory=list)
+    required_tools: List[str] = field(default_factory=list)   # 按成功率重排
+    tool_success: Dict[str, float] = field(default_factory=dict)
+    removed_tools: List[str] = field(default_factory=list)   # 持续失败被降级
+    inserted_steps: List[str] = field(default_factory=list)  # 针对失败插入
+    evolution_reason: str = ""
+    created_at: str = field(default_factory=_now)
+
 # ---------------------------------------------------------------- Workflow
 
 @dataclass
@@ -254,6 +269,7 @@ class AgentMemory:
     agent_id: str
     tool_stats: Dict[str, ToolStat] = field(default_factory=dict)
     workflow_versions: Dict[str, List[Workflow]] = field(default_factory=dict)  # task_type -> [v1, v2...]
+    skill_versions: Dict[str, List["SkillVersion"]] = field(default_factory=dict)  # skill_id -> [v1, v2...]
     task_log: List[TaskRun] = field(default_factory=list)
     success_patterns: List[str] = field(default_factory=list)   # 有效组合经验
     failure_patterns: List[str] = field(default_factory=list)   # 高频失败模式
