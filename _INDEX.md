@@ -97,6 +97,7 @@
 | [2026-10/2026-10-07_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-07_radar-watch_scan.md) | Personal Tech Radar 第 36 次扫描（重大事件日 10：澳听证会/反取证 + 记忆基准批判/BEAM + OWASP AST10 v2/AIVSS/ACS） | 📌 |
 | [2026-10/2026-10-08_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-08_radar-watch_scan.md) | Personal Tech Radar 第 37 次扫描（ThinkingBox 执行真相评测 + EmbeddingGemma 2/Kolibri 边缘 + Google/阿里 agent 观测） | 📌 |
 | [2026-10/2026-10-09_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-09_radar-fallback_scan.md) | 通用兜底扫描（DeepSeek Harness v0.2.1-alpha.1 桥接 Claude Code Mods） | 📌 |
+| [2026-10/2026-10-10_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-10_radar-watch_scan.md) | Personal Tech Radar 第 38 次扫描（AgentJudgeBench 建卡 + Flutter 本地 agent 生态增量 + AgentSeer/HAL 记日志） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

@@ -27,6 +27,9 @@
 > - 新增 `llx_flutter`（Flutter FFI 插件跑 GGUF via llama.cpp，Dart 拥有 app-facing API + 生命周期，原生层管 model loading/context/token，示例含 bundle GGUF）["https://github.com/gmarzjr/llx_flutter"]、`flutter_native_ai`（统一 API 封装 Apple Foundation Models + Gemini Nano）["https://github.com/bowvie/flutter_native_ai"]、`Flutter Local AI`（三端统一 API：Android ML Kit GenAI / iOS FoundationModels / Windows AI APIs，零模型下载）["https://pub.dev/documentation/flutter_local_ai/latest/"]
 > - 平台格局已收敛为**三派**：系统原生（Apple Core AI / LiteRT-LM / Windows AI）｜ Flutter 官方（ai_edge v0.1.0 on MediaPipe GenAI）｜ 开源 GGUF（llama.cpp 系：llx_flutter/Llamafu/llama_flutter_android）["https://aicoding.csdn.net/6a68693f10ee7a33f29343f1.html"]
 > - **含义**：Tafcm 选型可从 3 派各取一实测（推荐 flutter_litert_lm 或 flutter_local_ai 作为零下载系统原生派代表 + llx_flutter 作为可控 GGUF 派代表）
+> **雷达增量（2026-10-10，Changed）**：
+> - **Flutter 本地 agent 框架新生态**（Tafcm 可整包复用的 agentic 能力）：**dart_agent_core 2.0.4**（2026-06-27，mobile-first local-first Dart 库：完整 agentic loop + tool use + 状态持久化 + 多轮记忆 + skill system + 上下文压缩 + **agent evals**，连 OpenAI/Gemini/Claude/OpenAI 兼容）["https://pub.dev/packages/dart_agent_core"]；**flutter_agentic**（Flutter AI agent SDK：7 家 provider 统一 API + ReAct 循环 + on-device Gemma/GGUF，2026-07 活跃）["https://pub-web-s2.flutter-io.cn/documentation/flutter_agentic/latest/"]；**flutter_local_agent_kit 1.0.2**（offline-first：llamadart 本地推理 + 私有 RAG + ReAct agents + Material 3 Chat UI，无云无 key）["https://pub.dev/packages/flutter_local_agent_kit"]
+> - **含义**：① Flutter 侧"本地推理→本地 agent"的最后一层已补齐（不仅跑模型，还能跑完整 agent 循环）——Tafcm 加"本地小模型助手"可直接选 flutter_local_agent_kit 或 dart_agent_core 起步；② dart_agent_core 自带 agent evals，与 Evaluation 周（10-12 起）直接相关，可在 Tafcm demo 中一并验证评测能力；③ 三派格局从"推理引擎"升级为"推理 + agentic 运行时"
 <!-- 待回填 -->
 ## 6. 决策
 - [ ] 晋升 validated
