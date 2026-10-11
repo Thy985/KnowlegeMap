@@ -99,6 +99,7 @@
 | [2026-10/2026-10-09_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-09_radar-fallback_scan.md) | 通用兜底扫描（DeepSeek Harness v0.2.1-alpha.1 桥接 Claude Code Mods） | 📌 |
 | [2026-10/2026-10-10_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-10_radar-watch_scan.md) | Personal Tech Radar 第 38 次扫描（AgentJudgeBench 建卡 + Flutter 本地 agent 生态增量 + AgentSeer/HAL 记日志） | 📌 |
 | [2026-10/2026-10-11_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-11_radar-watch_scan.md) | Personal Tech Radar 第 39 次扫描（Anthropic 评测隔离重大事件日 11 + ACP v2 记日志，过渡期收尾） | 📌 |
+| [2026-10/2026-10-12_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-12_radar-watch_scan.md) | Personal Tech Radar 第 40 次扫描（Evaluation 周 Day1：建领域能力树/基线 agent-evaluation.md，状态 active） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

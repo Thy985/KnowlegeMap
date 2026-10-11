@@ -30,6 +30,7 @@
   - Agent Evaluation
     - Agent Evaluation
     - Assertion
+    - （详见领域树：`08_agent_centric/domains/agent-evaluation.md`——Evaluation/Observability 五层结构 + 基线）
   - Orchestration
     - Multi Agent Orchestration
   - Observability
