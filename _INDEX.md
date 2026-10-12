@@ -101,6 +101,7 @@
 | [2026-10/2026-10-11_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-11_radar-watch_scan.md) | Personal Tech Radar 第 39 次扫描（Anthropic 评测隔离重大事件日 11 + ACP v2 记日志，过渡期收尾） | 📌 |
 | [2026-10/2026-10-12_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-12_radar-watch_scan.md) | Personal Tech Radar 第 40 次扫描（Evaluation 周 Day1：建领域能力树/基线 agent-evaluation.md，状态 active） | 📌 |
 | [2026-10/2026-10-13_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-13_radar-watch_scan.md) | Personal Tech Radar 第 41 次扫描（Evaluation 周 Day2：Transect 建卡 A 级，候选卡 39→40） | 📌 |
+| [2026-10/2026-10-13_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-13_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（Protocol Pivoting 建卡 A 级，MCP 跨协议信任攻击，候选卡 40→41） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
