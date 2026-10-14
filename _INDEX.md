@@ -105,6 +105,7 @@
 | [2026-10/2026-10-14_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-14_radar-watch_scan.md) | Personal Tech Radar 第 42 次扫描（Evaluation 周 Day3：求索 4.0 与 ReviewBench 建卡 A 级，候选卡 41→43） | 📌 |
 | [2026-10/2026-10-14_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-14_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（Microsoft Execution Containers 建卡 A 级，OS 级 agent 隔离层 GA，候选卡 43→44） | 📌 |
 | [2026-10/2026-10-15_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-15_radar-watch_scan.md) | Personal Tech Radar 第 43 次扫描（Evaluation 周 Day4：TestJack 与 LiveMACE 建卡，候选卡 44→46） | 📌 |
+| [2026-10/2026-10-15_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-15_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（ToFu 建卡 A 级，MCP 工具信任边界 fuzzing 框架/253 漏洞，候选卡 46→47） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
