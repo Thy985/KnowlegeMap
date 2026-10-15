@@ -22,11 +22,15 @@
 | 验证方式 | 精读全文 → 提取难度分层/ground-truth 条件设计 → 对照引擎 evaluation 层设计 judge 校准实验（计划纳入 Evaluation 周） |
 | 预期完成时间 | 2026-10-13 前（Evaluation 周周二/周三） |
 ## 5. 验证结果
-<!-- 验证后回填 -->
+> **周五验证（2026-10-16，三环对比核验 + 引擎 eval 层对照）**：
+> - **三环对比成立**：AgentJudgeBench（judge 侧）/ Transect（评测者/transcript 审计侧）/ TestJack（补丁/测试侧）构成"评测可信度三环"——三者分别量化了 agent 评测的三个失真源：judge 对齐崩塌（随难度下降、无 GT 退化 1.5x、喂 GT 反损）、评测者推断不可审计（1300 万 token 案例）、固定测试被 hack（34.4% 判正确 trial 违规、resolution 50.6%→33.2%）
+> - **对引擎 evaluation 层结论**：① 现有 criterion 打分（单 LLM judge）无校准约束——**关键结论不依赖单一 LLM 打分**，程序化断言优先，LLM-judge 仅作次级信号；② 难度分层时 judge 可靠性预期下降，hard 任务需配套程序化验证/证据保留；③ 喂 judge 更多信息（ground-truth）可能反损对齐——评测设计不是"信息越多越好"，证据注入需受控
+> - **遗留**：全文精读（难度分层/GT 条件设计细节）留待周六回灌时补；三环对比结论已闭环
 > **雷达增量（2026-10-10，Changed）**：
 > - 同周线确认：dev.to 10-08 agent 工程 digest 将其列为本周重点（AgentJudgeBench + AgentSeer 可观测框架 + HAL 标准化 harness 三连）——"评测者可靠性 + 评测可观测 + 评测基础设施"成 2026 Q4 评估主线
 > - 相邻对象记日志不建卡：**AgentSeer**（arXiv 2509.04802，可观测框架把执行 span 转知识图谱追踪漏洞——Evaluation 周素材）、**HAL Holistic Agent Leaderboard**（Princeton Sayash Kapoor，数百 VM 并行评估 harness，模型×scaffold×基准三维分析——Evaluation 周素材）
+
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察（纳入 Evaluation 周验证计划）
+- [ ] 晋升 validated（≥2 条独立证据；已有 arXiv 全文 + 多站转述，但缺代码/复现）
+- [x] 维持观察（对比结论闭环；全文细节周六回灌补充）
 - [ ] 拒绝（原因）

@@ -30,9 +30,15 @@
 | 预期完成时间 | 2026-10-16（Evaluation 周周五验证窗口，与 AgentJudgeBench 精读并列） |
 
 ## 5. 验证结果
-<!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+> **周五验证（2026-10-16，arXiv v2 摘要精读核验）**：
+> - **版本核验**：arXiv 2610.08364 v1（10-06）→ v2（10-08，修正通讯作者地址 typo），27 页 5 图，CC-BY 4.0；作者四人（Toby D. Pilditch 等）
+> - **Inspect Scout 生态确认**：摘要原文"open source package built on Inspect Scout"——UK AISI Inspect 官方扩展轨道背书（MIT）
+> - **方法确认**：evaluation-family configuration（任务上下文+行为词汇表复用）→ judge 模型与分析设置分离提供 → 可导航报告（事件/token/子代理活动/行为标签对齐到统一回合时间线）→ 标签/事件追溯源头回合 → 导出数据表跨运行分析
+> - **演示案例核验**：AI R&D eval 近 1300 万 token；行为阶段划分显示"集中于运营工作与手稿生产、缺乏持续假设生成阶段"
+> - **对引擎 eval 层结论**：① 证据链可升级为"回合时间线 + 标签可追溯"数据模型（Validation 编译器 Claim→Evidence→Judgment 同构）；② "评测结论可复现"需要 judge/分析设置与任务上下文分离的资产结构；③ 未定位到公开仓库 URL，未达 validated 门槛（工具可复现性待验证）
+> - **三环对比定位**：评测者/transcript 审计环（vs AgentJudgeBench judge 侧 / TestJack 补丁侧）
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察
+- [ ] 晋升 validated（缺公开仓库复现验证）
+- [x] 维持观察（数据模型已验证可借鉴，工具复现留待后续）
 - [ ] 拒绝（原因）

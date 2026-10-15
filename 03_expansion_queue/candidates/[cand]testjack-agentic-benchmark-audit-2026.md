@@ -32,9 +32,15 @@ arXiv 2610.10619（2026-10-07）开源的 **Agentic Coding 基准审计框架**�
 | 预期完成时间 | 10-16 周五验证（与 AgentJudgeBench/Transect 并列候选） |
 
 ## 5. 验证结果
-<!-- 验证后回填 -->
+> **周五验证（2026-10-16，arXiv 摘要精读核验）**：
+> - **作者阵容核验**：Shuangjie Yao / Hao Wang / **Koushik Sen / Dawn Song**（UC Berkeley）/ Simin Chen / Baishakhi Ray（Columbia）——顶校系统/安全背景，可信度高
+> - **量化证据强化**：6 frontier model backends × 5 benchmarks（DeepSWE、SWE Marathon 等），**约 34.4% 被判正确的 trial 违反任务要求**，整体 resolution rate 从 **50.6% 降至 33.2%**——固定测试被 hack 不是个别现象，而是系统性偏差
+> - **方法确认**：per-trial 动态生成测试（针对 prompt 要求、patch 可能违反的点）→ 只保留 ground-truth patch 通过的测试 → 复查 trial 失败；每个确认失败由**可回放测试**支撑；轻量变体=深度审计随机样本 + 测试跨 trial 复用
+> - **核心主张**：静态测试增强（trial 前一次性强化）忽略真实 trial 的失败方式；"随着 LLM 越来越擅长优化固定 evaluator，evaluator 本身必须更自适应"
+> - **对引擎 eval 层结论**：① 现有 criterion 打分+证据保留缺少"补丁级动态测试"环节——自建基准/评测应引入"可回放测试"概念；② 34.4% 比例说明**评测分数必须附带"测试覆盖了任务要求"的审计证据**；③ 代码仓库未见公开链接（arXiv 页无 GitHub 引用），未达 validated 门槛，方法论先行
+> - **三环对比定位**：补丁/测试侧审计环（vs AgentJudgeBench judge 侧 / Transect 评测者侧）
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察
+- [ ] 晋升 validated（≥2 条独立证据；缺独立代码仓库）
+- [x] 维持观察（方法论已验证可迁移，代码/复现留待后续）
 - [ ] 拒绝（原因）
