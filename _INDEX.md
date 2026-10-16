@@ -108,6 +108,7 @@
 | [2026-10/2026-10-15_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-15_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（ToFu 建卡 A 级，MCP 工具信任边界 fuzzing 框架/253 漏洞，候选卡 46→47） | 📌 |
 | [2026-10/2026-10-16_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-16_radar-watch_scan.md) | Personal Tech Radar 周五验证（Evaluation 周 Day5：评测可信度三环对比闭环，3 卡回填，引擎 eval 建议 5 条） | 📌 |
 | [2026-10/2026-10-16_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-16_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：全命中已覆盖；GHOSTJACKING 政府 advisory 记日志不建卡） | 📌 |
+| [2026-10/2026-10-17_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-17_radar-watch_scan.md) | Personal Tech Radar 周六回灌（Evaluation 周 Day6：三环方法论→能力树 A3/C3/D1/B2，评测隔离 C1/C4，graph 补 5 边，connections 增 6 条） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

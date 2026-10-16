@@ -32,3 +32,12 @@
 - runtime-defense: monitoring, runtime-defense
 - web-automation: browser-interaction, http-interaction, result-aggregation, sandbox-execution
 - web-security: browser-interaction, endpoint-discovery, evidence-collection, http-interaction, reconnaissance, reporting, request-replay, vulnerability-detection
+
+## 2026-10-17 回灌：Evaluation 周新增跨域边
+> 来源：评测可信度三环（AgentJudgeBench / Transect / TestJack）验证结论 → 引擎 evaluation 层落地建议。
+
+- **judge-calibration** → agent-evaluation（D1/D3），e2e-testing（assertion 校准参照）
+- **replayable-tests** → agent-evaluation（C3），e2e-testing（动态测试生成），web-security（测试注入复用）
+- **eval-isolation** → agent-evaluation（C1/C4），runtime-defense（sandbox 复用），developer-tools（fail-closed 网络策略）
+- **evidence-chain** → agent-evaluation（B2/B4），web-security（evidence-collection 同构），agent-memory（标签溯源复用）
+- **eval-feedback** → agent-evaluation（E1/E2），agent-runtime（self-improvement 回灌），observability（drift 监测）

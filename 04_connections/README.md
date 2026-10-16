@@ -96,6 +96,16 @@
 |---|---|---|---|---|
 | **Agentic Inference Infra（NVIDIA Dynamo/AWS prefix-aware/HyperPod Gateway/vLLM KV offload/Unified AI Gateway）** | **Tafcm**（端-边-云联合路由=本地优先架构参考）/ **TeamMind**（multi-agent fan-out 推理模式）/ **dsh**（coding agent 长 prefill+tool call 循环优化）/ E2E-CLI（长链路推理） | AI Infra × Agent（G3/G5 空白区）/ Context Engineering（前缀复用=缓存预算）/ Harness 六职责 control 侧面 | 🟡 已出候选卡 | [agentic-inference-infra-2026](../03_expansion_queue/candidates/[cand]agentic-inference-infra-2026.md) |
 
+## 2026-10-17 回灌：Evaluation 周（10-12~10-16）新增连接（6 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **AgentJudgeBench（LLM-as-Judge 可靠性）** | **Validation 编译器**（judge 校准约束）/ 引擎 evaluation 层（程序化断言优先）/ silver-shield（风险判定不依赖单一 LLM） | Agent 评测方法论（S2 核心）/ judge 对齐度 / GT 依赖管理 | 🟡 已出候选卡（三环验证完成，维持观察） | [agentjudge-bench-2026](../03_expansion_queue/candidates/[cand]agentjudge-bench-2026.md) |
+| **Transect（transcript 可审计分析）** | **Validation 编译器**（证据链数据模型：回合时间线+标签溯源，与 Claim→Evidence→Judgment 同构）/ TeamMind（长时程 agent 可观测）/ silver-shield（审计链） | 评测者可审计性（B2/B4）/ Inspect Scout 生态 / 可复现评测 | 🟡 已出候选卡（三环验证完成，维持观察） | [transect-agent-eval-observability-2026](../03_expansion_queue/candidates/[cand]transect-agent-eval-observability-2026.md) |
+| **TestJack（Agentic Coding 基准审计）** | **Validation 编译器**（可回放测试概念）/ 引擎 evaluation 层（动态测试生成）/ E2E-CLI（测试注入复用） | 补丁/测试侧审计（C3）/ 34.4% 判正确违规 / evaluator 自适应 | 🟡 已出候选卡（三环验证完成，维持观察） | [testjack-agentic-benchmark-audit-2026](../03_expansion_queue/candidates/[cand]testjack-agentic-benchmark-audit-2026.md) |
+| **求索 4.0（国内 AI 评测基准）** | silver-shield（Benchmark Harness 参照）/ Tafcm（本地模型评测）/ 引擎 evaluation 层 | 国内评测体系（A2/A4）/ 全产业链基准 / 真实负载 | 🟡 已出候选卡 | [qiusuo-benchmark-2026](../03_expansion_queue/candidates/[cand]qiusuo-benchmark-2026.md) |
+| **LiveMACE（动态市场持久评测）** | TeamMind（多 agent 持续评测）/ Memory 周（动态测试床方法论先行参照）/ 引擎 evaluation 层（outcome-capability gap） | 动态 vs 静态评测设计 / 过程感知评估 / 30 天连续评测 | 🟡 已出候选卡（B+，留待 Memory 周验证） | [livemace-process-aware-eval-2026](../03_expansion_queue/candidates/[cand]livemace-process-aware-eval-2026.md) |
+| **评测隔离设计（10-11 事件：Anthropic 切断 eval live internet）** | **DeepSeek Harness**（运行时隔离 vs eval 层隔离对照）/ 引擎 evaluation 层（fail-closed 网络策略）/ dsh-pentest（测试环境隔离） | 评测环境隔离（C1/C4）/ 网络/凭据/外部目标三隔离 / eval 默认不出网 | ✅ 已回灌能力树（C1/C4 落地检查完成） | 事件记录见 10-11 日志 + agent-evaluation.md §6.2 |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。
