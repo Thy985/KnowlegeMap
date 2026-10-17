@@ -2,36 +2,36 @@
 
 > 定时任务每次运行先读本文件，确定当前领域与本周进度。换域后更新本文件。
 
-## 当前领域：Evaluation / Observability（评估与可信验证）
+## 当前领域：Harness / 治理（Agent 执行环境与治理）
 
-- **周起始日**：2026-10-12（周一）
-- **状态**：active（2026-10-12 起按每日分工执行；10-09~10-11 维持通用全量扫描已结束）
-- **为什么先做它**：横向能力，TeamMind / silver-shield / agent-attention / 引擎自身都需要；命中"高效、可信、可控"；已有 validated 锚点，能从已知向相邻空白扩展。
+- **周起始日**：2026-10-19（周一）
+- **状态**：scheduled（2026-10-19 起按每日分工执行；上一领域 Evaluation/Observability 已闭环换域）
+- **为什么先做它**：领域顺序建议的下一站；评测隔离设计（eval 层 fail-closed 网络策略）是治理的一部分，与上周 Evaluation 周天然衔接；命中"高效、可信、可控"的 Control 维度；与用户项目 TeamMind（多 Agent 运行时）、Tafcm（本地执行）、campus_order（OpenClaw 智能体）、silver-shield（反诈骗判定）直接相关。
 
 ## 目标
-- 建立 Agent Evaluation 领域能力树/基线（已知 vs 缺口 vs 相邻未覆盖）✅ 2026-10-12
-- 发现并验证 2-3 个高价值评估/可观测工具或方法（验证计划：AgentJudgeBench 精读 / 评测隔离设计落地检查 / promptfoo Agent Evals 扩展实测）
+- 建立 Agent Harness / 治理能力树/基线（已知 vs 缺口 vs 相邻未覆盖）
+- 发现并验证 2-3 个高价值 harness/治理工具或方法（候选方向：评测隔离落地、DeepSeek Harness 已 validated 对照、MXC 治理策略验证、MCP 安全/治理周素材）
 - 闭环：候选 → 验证 → 回灌 index/connections/能力树
 
 ## 已知锚点（不重复收集）
-- promptfoo（S，validated）
-- DeepSeek Harness（S，validated）
-- 引擎内 evaluation 层（criterion 打分 + 证据保留）
+- DeepSeek Harness（S，validated——sandbox/approval/permission-presets/credentials seam/session-telemetry）
+- Microsoft Execution Containers / MXC（A 候选卡，2026-10-07 GA——OS 级 agent 策略隔离层，候选卡 44）
+- 引擎内 evaluation 层 + security-assessment 能力树模板（已有）
+- 评测隔离设计（C1/C4 落地检查结论：eval 层需 fail-closed 网络策略+凭据注入白名单）
 
 ## 本周进度（每日分工）
-- [x] 周一（10-12）：建能力树/基线，更新本文件 → **能力树已建：08_agent_centric/domains/agent-evaluation.md**（领域树 A-E 五层 + 基线三表 + 周五验证计划）
-- [x] 周二（10-13）：增量扫描，写候选卡
-- [x] 周三（10-14）：增量扫描，写候选卡 → **求索 4.0（A）+ ReviewBench（A），候选卡 41→43；记日志：OTel GenAI 生态增量/MCP 可观测性增量/Jaeger 演进**
-- [x] 周四（10-15）：增量扫描，写候选卡 → **TestJack（A）+ LiveMACE（B+），候选卡 44→46；评测可信度双环→三环；记日志：CloudWatch Omni/LangSmith AI Search/阿里 AgentLoop 等**
-- [x] 周五（10-16）：实际验证/对比 2-3 个候选 → **三环对比完成（AgentJudgeBench judge 侧 / Transect 评测者侧 / TestJack 补丁侧），TestJack 核验 34.4% 判正确 trial 违规 / 50.6%→33.2%；引擎 eval 层落地建议 5 条；候选卡验证结果已回填，均维持观察**（日志：05_scan_logs/2026-10/2026-10-16_radar-watch_scan.md）
-- [x] 周六（10-17）：回灌 index/connections/能力树 → **三环方法论已落入能力树 A3/C3/D1/B2；评测隔离 C1/C4 落地检查完成（运行时隔离已有，eval 层需 fail-closed 网络策略）；引擎 eval 层建议 5 条；capabilities/graph.md 补 5 条跨域边；04_connections 新增 6 条连接；候选决策：3 维持观察 / 5 保留待后续周 / 0 dropped**（日志：05_scan_logs/2026-10/2026-10-17_radar-watch_scan.md）
-- [ ] 周日（10-18）：本周小结，判断是否换域（候选：Harness/治理；待验证素材：求索 4.0 参照系、评测隔离设计）
+- [ ] 周一（10-19）：建能力树/基线，更新本文件
+- [ ] 周二~周四（10-20~10-22）：增量扫描，写候选卡（S/A/B）
+- [ ] 周五（10-23）：实际验证/对比 2-3 个高价值候选
+- [ ] 周六（10-24）：验证结果回灌 index/connections/能力树
+- [ ] 周日（10-25）：本周小结，判断是否换域（候选：Runtime，接 TeamMind）
 
 ## 换域规则
 - 一周是最小驻留，不是硬切换；闭环未完成可延长到第二周。
-- 下一领域（候选）：Harness / 治理 → Runtime（接 TeamMind）。
+- 下一领域（候选）：Runtime（接 TeamMind）→ Memory → Computer Use / Browser → AI Infra / 本地边缘（接 Tafcm）。
 
 ## 历史聚焦记录
 | 领域 | 周起始 | 状态 | 产出 |
 |---|---|---|---|
-| Evaluation / Observability | 2026-10-12 | active | 能力树/基线：08_agent_centric/domains/agent-evaluation.md（10-12）｜ 待：增量→验证→回灌 |
+| Evaluation / Observability | 2026-10-12 | ✅ 已闭环（10-18 换域） | 能力树 agent-evaluation.md（A-E 五层+§六回灌）｜候选卡：AgentJudgeBench/Transect/求索 4.0/ReviewBench/TestJack/LiveMACE｜三环方法论+评测隔离 C1/C4+引擎 eval 建议 5 条｜graph 5 边+connections 6 条 |
+| Harness / 治理 | 2026-10-19 | scheduled | 待建能力树（周一 10-19） |
