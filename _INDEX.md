@@ -112,6 +112,7 @@
 | [2026-10/2026-10-17_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-17_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：安全线全命中已覆盖；Anchor Action Index B 级记日志留待 Computer Use 周） | 📌 |
 | [2026-10/2026-10-18_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-18_radar-watch_scan.md) | Personal Tech Radar 周日小结（Evaluation 周 Day7：闭环收官，换域 Harness/治理，10-19 周一起） | 📌 |
 | [2026-10/2026-10-18_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-18_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：CVE-2026-96620 已修复 3 个月滞后披露+MS Agent Framework 1.0，移交 Harness 周） | 📌 |
+| [2026-10/2026-10-19_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-19_radar-watch_scan.md) | Personal Tech Radar 深耕 Day1（Harness/治理 周：建能力树 agent-harness-governance.md A-F 六层基线，领域 active） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
