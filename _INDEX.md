@@ -115,6 +115,7 @@
 | [2026-10/2026-10-19_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-19_radar-watch_scan.md) | Personal Tech Radar 深耕 Day1（Harness/治理 周：建能力树 agent-harness-governance.md A-F 六层基线，领域 active） | 📌 |
 | [2026-10/2026-10-19_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-19_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：越权/沙箱逃逸事件集群×3 全属 Harness 领域内移交深耕；领域外仅 B 级模型发布） | 📌 |
 | [2026-10/2026-10-20_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-20_radar-watch_scan.md) | Personal Tech Radar 深耕 Day2（Harness 周增量：新卡 Strands Box A / 越权事件集群 A / agent-aegis B，周五计划升级双对照） | 📌 |
+| [2026-10/2026-10-20_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-20_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 Dapr Agents A 级，CNCF Dapr×NVIDIA 分布式 Agent 运行时，Runtime 周锚点；Archon CVE-2026-111322 等领域内移交 Day3） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

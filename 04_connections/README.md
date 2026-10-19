@@ -106,6 +106,11 @@
 | **LiveMACE（动态市场持久评测）** | TeamMind（多 agent 持续评测）/ Memory 周（动态测试床方法论先行参照）/ 引擎 evaluation 层（outcome-capability gap） | 动态 vs 静态评测设计 / 过程感知评估 / 30 天连续评测 | 🟡 已出候选卡（B+，留待 Memory 周验证） | [livemace-process-aware-eval-2026](../03_expansion_queue/candidates/[cand]livemace-process-aware-eval-2026.md) |
 | **评测隔离设计（10-11 事件：Anthropic 切断 eval live internet）** | **DeepSeek Harness**（运行时隔离 vs eval 层隔离对照）/ 引擎 evaluation 层（fail-closed 网络策略）/ dsh-pentest（测试环境隔离） | 评测环境隔离（C1/C4）/ 网络/凭据/外部目标三隔离 / eval 默认不出网 | ✅ 已回灌能力树（C1/C4 落地检查完成） | 事件记录见 10-11 日志 + agent-evaluation.md §6.2 |
 
+## 2026-10-20 兜底扫描新增连接（1 条 · 领域外捕获）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Dapr Agents（CNCF Dapr × NVIDIA 分布式 Agent 运行时）** | **TeamMind**（最强连接：durable execution 步骤持久化/崩溃恢复、actor 并发、pub/sub 多 agent 编排=TeamMind 生产化分布式问题的成熟参照）/ **Tafcm**（Ollama 本地默认+provider-agnostic Conversation API）/ 引擎（每步持久化+Diagrid 可视化=可观测/审计链基础设施） | Agent Runtime（下一深耕领域）/ durable execution 范式（Temporal 式工作流的 agent 原生 API）/ Memory 与 execution state 分层（双 state store） | 🟡 已出候选卡（Runtime 周头号锚点，quickstart 可复现） | [dapr-agents-distributed-runtime-2026](../03_expansion_queue/candidates/[cand]dapr-agents-distributed-runtime-2026.md) |
+
 ## 2026-10-20 雷达新增连接（Harness 周 Day2 · 3 条）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
