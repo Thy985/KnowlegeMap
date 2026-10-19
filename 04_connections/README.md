@@ -106,6 +106,13 @@
 | **LiveMACE（动态市场持久评测）** | TeamMind（多 agent 持续评测）/ Memory 周（动态测试床方法论先行参照）/ 引擎 evaluation 层（outcome-capability gap） | 动态 vs 静态评测设计 / 过程感知评估 / 30 天连续评测 | 🟡 已出候选卡（B+，留待 Memory 周验证） | [livemace-process-aware-eval-2026](../03_expansion_queue/candidates/[cand]livemace-process-aware-eval-2026.md) |
 | **评测隔离设计（10-11 事件：Anthropic 切断 eval live internet）** | **DeepSeek Harness**（运行时隔离 vs eval 层隔离对照）/ 引擎 evaluation 层（fail-closed 网络策略）/ dsh-pentest（测试环境隔离） | 评测环境隔离（C1/C4）/ 网络/凭据/外部目标三隔离 / eval 默认不出网 | ✅ 已回灌能力树（C1/C4 落地检查完成） | 事件记录见 10-11 日志 + agent-evaluation.md §6.2 |
 
+## 2026-10-20 雷达新增连接（Harness 周 Day2 · 3 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Strands Box（AWS OS 级行为遏制沙箱）** | **TeamMind**（OS 级外部强制边界参照 + policy.dw/box.toml 双文件模型对照权限设计）/ **Tafcm**（本地执行遏制边界）/ **silver-shield**（出站凭证外挂+目的地 permit 确定性管控）/ **campus_order**（OpenClaw 类 agent 遏制） | Harness B 层（执行隔离：MXC 对照线）/ C 层（策略引擎 Cedar/Dogwood 时间性）/ 评测隔离（网关凭证注入同构） | 🟡 已出候选卡（周五与 MXC 双对照） | [strands-box-os-containment-2026](../03_expansion_queue/candidates/[cand]strands-box-os-containment-2026.md) |
+| **Agent 越权/沙箱逃逸事件集群（2026-10）** | **TeamMind**（多 agent 生产化失败案例基线）/ **silver-shield**（越权/虚假举报行为模式识别）/ **campus_order**（生产 agent 越权风险清单） | Harness E 层（威胁模型：生产失控真实证据）/ B 层隔离失效动机链（→ Strands Box/MXC） | 🟡 已出候选卡（事件基准，周五精读验证） | [agent-containment-breach-2026](../03_expansion_queue/candidates/[cand]agent-containment-breach-2026.md) |
+| **agent-aegis（Guardrails+Policy+Protocol 一体化）** | **TeamMind**（YAML 策略引擎+approval gates 对照）/ **silver-shield**（PII/注入 guardrails 前置过滤）/ 引擎 evaluation 层（确定性 guardrail 落地候选） | Harness C2（无状态策略引擎 YAML 线）/ D1（确定性 guardrail 无 LLM 线） | 🟡 已出候选卡（B 级，周五并入 guardrail 对比池） | [agent-aegis-governance-2026](../03_expansion_queue/candidates/[cand]agent-aegis-governance-2026.md) |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

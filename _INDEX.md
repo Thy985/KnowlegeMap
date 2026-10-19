@@ -114,6 +114,7 @@
 | [2026-10/2026-10-18_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-18_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：CVE-2026-96620 已修复 3 个月滞后披露+MS Agent Framework 1.0，移交 Harness 周） | 📌 |
 | [2026-10/2026-10-19_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-19_radar-watch_scan.md) | Personal Tech Radar 深耕 Day1（Harness/治理 周：建能力树 agent-harness-governance.md A-F 六层基线，领域 active） | 📌 |
 | [2026-10/2026-10-19_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-19_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：越权/沙箱逃逸事件集群×3 全属 Harness 领域内移交深耕；领域外仅 B 级模型发布） | 📌 |
+| [2026-10/2026-10-20_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-20_radar-watch_scan.md) | Personal Tech Radar 深耕 Day2（Harness 周增量：新卡 Strands Box A / 越权事件集群 A / agent-aegis B，周五计划升级双对照） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

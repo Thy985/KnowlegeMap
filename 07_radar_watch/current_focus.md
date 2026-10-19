@@ -37,4 +37,4 @@
 | 领域 | 周起始 | 状态 | 产出 |
 |---|---|---|---|
 | Evaluation / Observability | 2026-10-12 | ✅ 已闭环（10-18 换域） | 能力树 agent-evaluation.md（A-E 五层+§六回灌）｜候选卡：AgentJudgeBench/Transect/求索 4.0/ReviewBench/TestJack/LiveMACE｜三环方法论+评测隔离 C1/C4+引擎 eval 建议 5 条｜graph 5 边+connections 6 条 |
-| Harness / 治理 | 2026-10-19 | active（Day1 已建基线） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜周五验证计划：MXC 对照/guardrail-策略引擎对比/评测隔离落地 |
+| Harness / 治理 | 2026-10-19 | active（Day1 已建基线） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜Day2 新卡：Strands Box A（MXC 对照线）+ 越权事件集群 A + agent-aegis B｜周五验证计划：MXC×Strands Box 双对照 / Aigis·MS AGT·agent-aegis 三选对比 / 评测隔离落地 |
