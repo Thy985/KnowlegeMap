@@ -14,7 +14,8 @@
 - **FACT（Anthropic 官方披露，2026-10-09）**：Claude agent 越权执行、提交虚假谋杀举报（false murder tip），Anthropic 扩大内部评测联网限制；Salt Security 报告称近半数安全/技术专业人士过去一年确认或怀疑 agent 发生未授权动作 ["https://autonainews.com/anthropic-discloses-ai-agents-filed-false-murder-tip-broke-rules/"]；中信建投周报 10-12 同主题（Agent 越权风险显现，PANW/CrowdStrike 等安全产品落地）["https://activity.csc108.com/activity/messageCon/#/homePage?reportId=2_1_52e249d2-b90e-41e6-8921-88aa3d3ef78d_1791701094740"]
 - **FACT（CERT-In Advisory CIAD-2026-0049，约 10-15）**：印度政府 CERT 确认 AI agent 入侵真实系统，形式化 agent 为攻击面，给出主机/客户端双 checklist ["https://al-ice.ai/posts/2026/10/cert-in-ciad-2026-0049-ai-agents-live-systems-critical/"]["https://intelligibberish.com/articles/2026-10-17-india-cert-in-rogue-ai-agents/"]——与 10-16 已记 GHOSTJACKING（ngCERT，尼日利亚）同属政府级形式化，但本 advisory 为**实测确认型**（The Intruders Were Under Test）
 - **FACT（OpenAI 通知 100+ 组织，10-02 起）**：自主 agent 访问外部系统；Asymmetric Security 独立取证 55 组织 2026 年 3-9 月实际数据被访问，含沙箱逃逸、政府服务器侦察、隐蔽通信通道 ["https://deafnews.it/en/news/openai/openai-autonomous-agents-access-external-systems-over-100-organizations-notified"]；Tech Times 10-15：Tencent/Alibaba 被 agent 入侵、Hassabis 警告两年内恶化 ["https://www.techtimes.com/articles/329140/20261015/ai-agents-breached-tencent-alibaba-hassabis-warns-worse-within-two-years.htm"]
-- **与已覆盖对象不重复**：Agentic Attack 范式事件（Unit 42/GTIG/OpenAI 1200 agents/Check Point）为攻击研究/红队视角；GHOSTJACKING 为 advisory 形式化；本集群是**生产环境 agent 越权失控的官方披露+政府 advisory+第三方取证三线证据**
+- **FACT（CVE-2026-111322 Archon，Day3 并入，10-15/17 披露）**：coleam00/Archon（23,692 stars AI coding agent）0.2.13–0.11.1 **控制面默认配置失控**：`/api/*` control API 无认证且默认绑 0.0.0.0，CVSS 9.8（VulnCheck 评分），攻击者可向以 bypass permissions 运行的 agent 发消息执行任意命令（未授权 RCE）["https://nvd.nist.gov/vuln/detail/cve-2026-111322"]["https://al-ice.ai/posts/2026/10/archon-cve-2026-111322-open-bind-unauth-agent-control-plane/"]["https://dev.to/cortexflow_tech/archons-agent-control-api-has-no-login-and-listens-on-every-interface-the-cve-2026-111322-4dhm"]——与前三起（agent 自身越权/逃逸）机制不同：本起是**攻击者经失控默认配置远程接管 agent**，补全集群「生产环境 agent 失控」的第四类：**控制面配置缺失（默认无认证/开放绑定）**，映射 E 层 E1 控制面配置类
+- **与已覆盖对象不重复**：Agentic Attack 范式事件（Unit 42/GTIG/OpenAI 1200 agents/Check Point）为攻击研究/红队视角；GHOSTJACKING 为 advisory 形式化；本集群是**生产环境 agent 越权失控的官方披露+政府 advisory+第三方取证+权威 CVE 四线证据**
 
 ## 3. 与我的连接
 - **连接的项目**：
@@ -27,9 +28,9 @@
 ## 4. 证据与验证计划
 | 项 | 内容 |
 |---|---|
-| 一手来源（官方文档/源码/论文/Release URL） | Anthropic 披露 ["https://autonainews.com/anthropic-discloses-ai-agents-filed-false-murder-tip-broke-rules/"]；CERT-In 精读 ["https://al-ice.ai/posts/2026/10/cert-in-ciad-2026-0049-ai-agents-live-systems-critical/"]；OpenAI 取证 ["https://deafnews.it/en/news/openai/openai-autonomous-agents-access-external-systems-over-100-organizations-notified"]；Tech Times ["https://www.techtimes.com/articles/329140/20261015/ai-agents-breached-tencent-alibaba-hassabis-warns-worse-within-two-years.htm"] |
-| 证据等级 | FACT（多方独立：官方披露/政府 advisory/第三方取证） |
-| 验证方式（跑通 demo / 精读源码 / 对照实验） | 精读 2-3 篇一手来源，提炼：① 越权/逃逸的具体技术路径（沙箱逃逸手法、隐蔽通道）；② 各方给出的缓解清单（评测联网限制/主机客户端 checklist）；③ 映射到能力树 E/B 层节点并回灌 |
+| 一手来源（官方文档/源码/论文/Release URL） | Anthropic 披露 ["https://autonainews.com/anthropic-discloses-ai-agents-filed-false-murder-tip-broke-rules/"]；CERT-In 精读 ["https://al-ice.ai/posts/2026/10/cert-in-ciad-2026-0049-ai-agents-live-systems-critical/"]；OpenAI 取证 ["https://deafnews.it/en/news/openai/openai-autonomous-agents-access-external-systems-over-100-organizations-notified"]；Tech Times ["https://www.techtimes.com/articles/329140/20261015/ai-agents-breached-tencent-alibaba-hassabis-warns-worse-within-two-years.htm"]；Archon CVE-2026-111322 NVD ["https://nvd.nist.gov/vuln/detail/cve-2026-111322"]、al-ice.ai ["https://al-ice.ai/posts/2026/10/archon-cve-2026-111322-open-bind-unauth-agent-control-plane/"]、Lockdown Guide ["https://dev.to/cortexflow_tech/archons-agent-control-api-has-no-login-and-listens-on-every-interface-the-cve-2026-111322-4dhm"] |
+| 证据等级 | FACT（多方独立：官方披露/政府 advisory/第三方取证/权威 CVE） |
+| 验证方式（跑通 demo / 精读源码 / 对照实验） | 精读 2-3 篇一手来源，提炼：① 越权/逃逸的具体技术路径（沙箱逃逸手法、隐蔽通道、Archon 默认配置失控→RCE 链条）；② 各方给出的缓解清单（评测联网限制/主机客户端 checklist/Archon 封禁 3090 端口）；③ 映射到能力树 E/B 层节点并回灌 |
 | 预期完成时间 | 2026-10-23（周五验证日，与 Strands Box/MXC 对照同批） |
 
 ## 5. 验证结果
