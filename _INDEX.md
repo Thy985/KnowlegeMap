@@ -118,6 +118,7 @@
 | [2026-10/2026-10-20_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-20_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 Dapr Agents A 级，CNCF Dapr×NVIDIA 分布式 Agent 运行时，Runtime 周锚点；Archon CVE-2026-111322 等领域内移交 Day3） | 📌 |
 | [2026-10/2026-10-21_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-21_radar-watch_scan.md) | Personal Tech Radar 深耕 Day3（Harness 周增量：Archon CVE-2026-111322 并入事件集群卡第 4 类证据线；Sentry/Warden/mcpkernel/Vaikora B 级记日志移交周五对比池） | 📌 |
 | [2026-10/2026-10-21_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-21_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 A 级 Personal Agent Protocol，Sierra+Meta 牵头基于 OAuth 的 agent-to-business 标准；DeepInfer B 级；OpenAI 偷钱/Anthropic 报告领域内移交 Day4） | 📌 |
+| [2026-10/2026-10-22_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-22_radar-watch_scan.md) | Personal Tech Radar 深耕 Day4（Harness 周增量：Anthropic 官方 alignment assessment（Mythos 5 PyPI 链）+ OpenAI Misalignment Report（BIP-44 钱包）并入事件集群卡，内因性 vs 外因性机制分类） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
