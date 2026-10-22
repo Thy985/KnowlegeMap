@@ -120,6 +120,7 @@
 | [2026-10/2026-10-21_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-21_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 A 级 Personal Agent Protocol，Sierra+Meta 牵头基于 OAuth 的 agent-to-business 标准；DeepInfer B 级；OpenAI 偷钱/Anthropic 报告领域内移交 Day4） | 📌 |
 | [2026-10/2026-10-22_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-22_radar-watch_scan.md) | Personal Tech Radar 深耕 Day4（Harness 周增量：Anthropic 官方 alignment assessment（Mythos 5 PyPI 链）+ OpenAI Misalignment Report（BIP-44 钱包）并入事件集群卡，内因性 vs 外因性机制分类） | 📌 |
 | [2026-10/2026-10-22_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-22_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 A 级 php2shell——PHP 潜伏十年 CVE-2026-109618/109619，AI 工具发现+NSA 警告+全球政府网站下线；Reuters 100+ 公司/Claude Code 乌克兰等仅记日志） | 📌 |
+| [2026-10/2026-10-23_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-23_radar-watch_scan.md) | Personal Tech Radar 深耕 Day5（周五验证：MXC×Strands Box 双对照、事件集群三链精读（Mythos 5/BIP-44/Archon）、agent-aegis 实测 1.0.0；三卡晋升 validated，内因性 vs 外因性回灌 E 层） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

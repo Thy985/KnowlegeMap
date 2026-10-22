@@ -46,8 +46,25 @@
 
 ## 6. 验证结果
 <!-- 验证后回填 -->
+**2026-10-23（周五验证日）——Windows Developer Blog 官方 GA 公告全文精读，机制全部落实（FACT 确认）**：
+
+### ✅ 一手证据核验
+- **GA 状态确认**：10-07 GA 公告（Logan Iyer），"agent 不能是自身安全权威"核心命题原文确认
+- **五类策略域确认**：Containment / Process / File system（可写/只读/不可见）/ Network（含 loopback 出入站）/ UI（桌面交互）
+- **三运行模式确认**：Enforcement（阻断无报告）/ Learning（阻断+JSON 活动报告）/ Permissive（放行+记录，供最小权限起草）——活动报告仅 Windows process container 产出
+- **后端谱系确认**：Process container（Win11/macOS/Linux：AppContainer/Seatbelt/Bubblewrap）/ Session container（Win11 独有：独立账户+会话+隔离桌面/剪贴板/UI/输入）/ WSLc（Win11）/ MicroVM（Win11/Linux 实验性，硬件支撑）
+- **双层策略确认**：workload 声明 + Intune 组织管理策略（soon），同一 agent 可运行在不同企业边界
+- **生态确认（官方伙伴矩阵）**：已接入 GitHub Copilot、OpenClaw、OpenAI Codex、Replit、LM Studio、Unsloth AI；即将支持 Anthropic Claude Code、Box、Egnyte、Heidi Health、Hermes（Nous）、Manus、Perplexity、Raycast、Simular；**NVIDIA OpenShell 已集成**（文件/推理服务访问控制+网络控制+凭据管理+OCSF 审计）；Windows 365 Cloud PC GA
+- **Identity 归因确认**：Entra agent 身份区分（coming soon），安全控制可只针对 agent 不影响员工
+
+### 📊 MXC × Strands Box 双对照（见 Strands Box 卡 §5）
+**MXC 侧结论**：平台级治理强（多后端谱系/组织策略/三模式/身份归因），细粒度策略表达弱于 Box（JSON 无时间算子，凭证处理依赖 OpenShell 集成补位）；"Learning→Permissive→Enforcement"渐进打磨流程是生产落地最小权限的最佳实践模板。
+
+### 遗留问题
+- 本机为 Linux，Session/WSLc 后端不可测；Bubblewrap 后端具体 schema 未逐项对照
+- Entra agent 身份归因为 coming soon，未落地可验证
 
 ## 7. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察
+- [x] 晋升 validated（≥2 条独立证据：微软官方 GA 公告全文 + 生态矩阵/后端谱系逐项核对）
+- [ ] 维持观察
 - [ ] 拒绝（原因）

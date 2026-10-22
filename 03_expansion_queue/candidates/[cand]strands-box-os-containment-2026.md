@@ -40,8 +40,38 @@ AWS 2026-10-07 发布的**开源（Apache 2.0）OS 级 Agent 行为遏制沙箱*
 
 ## 5. 验证结果
 <!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+**2026-10-23（周五验证日）——AWS 官方博客全文精读 + 与 MXC 官方博客双对照完成**：
+
+### ✅ 一手证据核验（FACT 确认，独立来源×2）
+- AWS Open Source Blog《Introducing Strands Box: AI agent sandboxes powered by Dogwood》全文精读，机制全部落实：
+  - **双层架构**确认：containment（macOS Seatbelt 起步）+ policy（Dogwood Local Engine 内嵌）；"OS-level containment 建立硬边界 + 拦截点策略强制"为 AWS 明确设计立场
+  - **enforcement points 确认**：egress gateway（全部出站流量代理）+ Python interpreter + Shell interpreter + MCP broker（运行在 Box 自身进程外，agent 以普通 bash/python3/MCP 命令经本地 socket 触达）
+  - **统一事件语义确认**：跨工具归一（shell 读与 python 读同报 `fs:read`；curl 与 python HTTP 同报 `http:request`）——支持"读了 customer-data 后禁出站 HTTP"式跨工具规则
+  - **时间性策略确认**：Dogwood temporal 算子（`formerly within 10m` + `count for (t: Timepoint)`），Slack 10 分钟限 3 帖示例完整；拒绝回执 = HTTP 403 + rule `@id` + `@description`（agent 自纠而非静默失败）
+  - **凭证外挂网关确认**：5 种注入方式（Bearer token / Custom header / HTTP Basic / Query parameter / AWS SigV4）；agent 只见 placeholder，真实密钥永不进入 agent 环境；`secret.inject = "always"` 模式确认
+  - **配置形态确认**：`box.toml`（环境/命令/工作目录/直接文件访问/工具/MCP 服务器/凭证绑定）+ `policy.dw`（Dogwood 规则，Cedar 语法 `permit`/`forbid` + `when`）；`box run --config box.toml` 启动
+- 路线图确认：扩 OS（当前 macOS）、CLI 自动探测已装 harness 生成 box.toml+基线策略、部署至 Bedrock AgentCore/ECS/K8s、Dogwood 扩展 liveness（"必须最终发生"义务检测）
+
+### 📊 MXC × Strands Box 双对照（周五验证计划①产出）
+| 维度 | Strands Box（AWS，dev preview，Apache 2.0） | MXC（Microsoft，GA 10-07） |
+|---|---|---|
+| 定位 | 开源 OS 级行为遏制沙箱（开发者侧） | 平台级（OS）执行边界原语（平台/企业侧） |
+| 策略语言 | Dogwood（**Cedar 语法** permit/forbid+when） | **统一 JSON schema** + 多语言 SDK |
+| 时间性策略 | ✅ 原生支持（count/cooldown/ordering + history） | ❌ 未见（三模式 Learning/Permissive 记录活动，非策略时间算子） |
+| 凭证处理 | ✅ 出站凭证外挂网关（placeholder→真实密钥，SigV4） | ⚠️ 部分（经 OpenShell 集成补凭据管理；自身未见同构网关） |
+| 模式 | 逐点放行/拒绝（403+rule id） | Enforcement/Learning/Permissive 三运行模式（先观察后强制） |
+| 策略双层 | 单层（box.toml+policy.dw） | 双层（workload 声明 + 组织 Intune 管理策略） |
+| 隔离后端 | 当前 macOS Seatbelt（多 OS 计划中） | 多后端谱系（AppContainer/Seatbelt/Bubblewrap/Session/WSLc/MicroVM） |
+| 生态 | harness agnostic（Strands/LangChain/Claude Agent SDK） | Copilot/Codex/Replit/OpenClaw/LM Studio/Unsloth 已接入；Claude Code 等排队 |
+| 归属 | AWS 开源线（同 NVIDIA OpenShell 同向） | Microsoft 平台能力（含 Entra agent 身份归因 coming soon） |
+
+**对照结论**：两者是同一问题域（"agent 不能是自身安全权威"）的两大云厂商官方答案，且能力互补——**Box 胜在细粒度策略语言+时间性约束+凭证网关**（更贴近引擎 eval 层"凭据注入白名单+fail-closed"的设计同构），**MXC 胜在平台级多后端+组织策略+三模式渐进打磨**（更贴近生产治理落地）。对引擎 eval 层的参考：Box 网关模式 = 凭据注入白名单的可运行实现；MXC Learning→Permissive→Enforcement = 最小权限策略打磨流程模板。
+
+### 遗留问题
+- 未跑通本机 demo（Linux 环境，Box 当前仅 macOS）；验证为源码/文档级（官方博客全文+机制逐项核对）
+- Agent Mesh 身份层（MXC Entra agent attribution）为 coming soon，未落地可验证
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
+- [x] 晋升 validated（≥2 条独立证据：AWS 官方博客 + MXC 官方博客双来源互证，机制逐项核对通过）
 - [ ] 维持观察
 - [ ] 拒绝（原因）

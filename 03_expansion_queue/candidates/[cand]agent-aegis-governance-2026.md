@@ -33,8 +33,27 @@ PyPI 开源 AI 治理框架 **agent-aegis**（0.4.0，2026-10-15 更新）：`ae
 
 ## 5. 验证结果
 <!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+**2026-10-23（周五验证日）——pip 实测 + PyPI 0.4.0/1.0.0 页面精读完成**：
+
+### ✅ 实测结果（Changed：版本已升至 1.0.0）
+- `pip install agent-aegis` 成功；`import aegis` 成功，**当前版本 1.0.0**（卡上 0.4.0 已过时，周内连续发版，活跃度高）
+- 核心 API 实测：`aegis.init()` 可运行（返回 Aegis 实例）；`aegis.patch_openai()` / `aegis.patch_anthropic()` 均存在——**零代码接入能力属实**（patch 式钩子，非空头声明）
+- PyPI 页面全文确认三大支柱：① Runtime guardrails（PII masking/injection blocking）；② Policy Engine（YAML 规则 + EVALUATE→APPROVE→EXECUTE→VERIFY→AUDIT 完整治理 pipeline + 4-tier risk model + approval gates：CLI/Slack/Discord/Telegram/Webhook/Email/Auto/Custom）；③ Open standards（AGEF：7 事件类型 hash 链 JSON schema；AGP：agent↔治理系统通信协议，"MCP 管 CAN、AGP 管 MUST NOT"）
+- **AGEF/AGP 仍为厂商自述**（"The SARIF of AI governance" 为营销措辞），无独立采用/第三方验证证据 → 维持 B 级
+
+### 📊 guardrail-策略引擎对比（周五验证计划②：agent-aegis 为第三候选）
+| 维度 | agent-aegis（实测 1.0.0） | Aigis（已覆盖品类） | MXC/Box 侧参照 |
+|---|---|---|---|
+| 形态 | 一体化开源框架（pip 即装） | 确定性防火墙 | OS/策略层 |
+| 策略引擎 | ✅ YAML+approval gates+审计链 | 部分（品类内） | Dogwood/JSON 平台级 |
+| 部署成本 | 零服务器（patch 式，进程内） | 待查 | 平台级 |
+| 独立证据 | ⚠️ 仅 PyPI 自述 | 品类卡已有 | 官方博客（已 validated） |
+**结论**：作为"确定性 guardrail+策略引擎一体化"的轻量级选项成立，但 B 级上限不变（无第三方验证）；真正平台级对照仍以 Strands Box/MXC 为准。
+
+### 遗留问题
+- 未做注入/PII 拦截的实际效果测试（需构造对抗样本，留待引擎 eval 落地阶段）
 
 ## 6. 决策
 - [ ] 晋升 validated（≥2 条独立证据）
-- [ ] 维持观察
+- [x] 维持观察（实测可用但缺独立第三方验证；版本活跃度上升为正面信号）
 - [ ] 拒绝（原因）
