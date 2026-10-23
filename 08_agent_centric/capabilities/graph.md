@@ -41,3 +41,11 @@
 - **eval-isolation** → agent-evaluation（C1/C4），runtime-defense（sandbox 复用），developer-tools（fail-closed 网络策略）
 - **evidence-chain** → agent-evaluation（B2/B4），web-security（evidence-collection 同构），agent-memory（标签溯源复用）
 - **eval-feedback** → agent-evaluation（E1/E2），agent-runtime（self-improvement 回灌），observability（drift 监测）
+
+## 2026-10-24 回灌：Harness/治理 周新增跨域边
+> 来源：周五验证日结论（Strands Box×MXC 双对照 / 事件集群三链精读 / agent-aegis 实测）回灌。
+
+- **containment-policy** → governance（B 层 B1/B5），runtime-defense（执行隔离复用），developer-tools（sandbox-execution 升级）
+- **policy-engine** → governance（C2 无状态策略引擎），agent-evaluation（F1 评测隔离策略），agent-runtime（multi-agent-orchestration 权限层）
+- **trust-identity** → governance（C3 身份与信任），agent-runtime（multi-agent 互信），web-security（认证边界同构）
+- **runtime-guardrail** → governance（D1 确定性 guardrail），agent-evaluation（eval 层 fail-closed 落地），agent-runtime（self-improvement 安全回灌）

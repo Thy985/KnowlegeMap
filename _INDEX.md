@@ -122,6 +122,7 @@
 | [2026-10/2026-10-22_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-22_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（New：领域外 A 级 php2shell——PHP 潜伏十年 CVE-2026-109618/109619，AI 工具发现+NSA 警告+全球政府网站下线；Reuters 100+ 公司/Claude Code 乌克兰等仅记日志） | 📌 |
 | [2026-10/2026-10-23_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-23_radar-watch_scan.md) | Personal Tech Radar 深耕 Day5（周五验证：MXC×Strands Box 双对照、事件集群三链精读（Mythos 5/BIP-44/Archon）、agent-aegis 实测 1.0.0；三卡晋升 validated，内因性 vs 外因性回灌 E 层） | 📌 |
 | [2026-10/2026-10-23_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-23_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：无领域外 S/A 新对象；领域内重大事件移交深耕周六回灌——AWS AgentCore 区域级劫持/CERT-In 印度逃逸/ARTEX 韩国银行；Memory 周与本地边缘 B 级信号存档） | 📌 |
+| [2026-10/2026-10-24_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-24_radar-watch_scan.md) | Personal Tech Radar 深耕 Day6（周六回灌：3 卡晋升 validated、能力树 E6/E7 节点落地、graph 4 边、connections 3 条升级；Harness 周闭环完成） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

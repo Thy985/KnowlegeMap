@@ -26,7 +26,7 @@
 - [x] 周一（10-19）：建能力树/基线（agent-harness-governance.md，A-F 六层），更新本文件 ✅
 - [x] 周二~周四（10-20~10-22）：增量扫描，写候选卡（S/A/B）✅
 - [x] 周五（10-23）：实际验证/对比 2-3 个高价值候选 ✅（三卡晋升 validated：Strands Box/MXC/事件集群；agent-aegis 实测 1.0.0 维持观察）
-- [ ] 周六（10-24）：验证结果回灌 index/connections/能力树
+- [x] 周六（10-24）：验证结果回灌 index/connections/能力树 ✅（能力树 E6/E7 节点落地+B/MXC、Strands Box、事件集群标注 validated；graph 4 边；connections 3 条升级；候选→validated 决策完成——Harness 周「候选→验证→回灌」闭环闭合）
 - [ ] 周日（10-25）：本周小结，判断是否换域（候选：Runtime，接 TeamMind）
 
 ## 换域规则
@@ -37,4 +37,4 @@
 | 领域 | 周起始 | 状态 | 产出 |
 |---|---|---|---|
 | Evaluation / Observability | 2026-10-12 | ✅ 已闭环（10-18 换域） | 能力树 agent-evaluation.md（A-E 五层+§六回灌）｜候选卡：AgentJudgeBench/Transect/求索 4.0/ReviewBench/TestJack/LiveMACE｜三环方法论+评测隔离 C1/C4+引擎 eval 建议 5 条｜graph 5 边+connections 6 条 |
-| Harness / 治理 | 2026-10-19 | active（Day1 已建基线） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜Day2 新卡：Strands Box A（MXC 对照线）+ 越权事件集群 A + agent-aegis B｜Day3：Archon CVE-2026-111322 并入事件集群卡第 4 类证据线；Sentry/Warden/mcpkernel/Vaikora B 级记日志｜Day4：Anthropic 官方 alignment assessment（Mythos 5 PyPI 完整攻击链+biased reasoning）+ OpenAI 官方 Misalignment Report（BIP-44 钱包派生）并入事件集群卡，内因性 vs 外因性机制分类｜**Day5（周五验证）：Strands Box/MXC/事件集群三卡晋升 validated（官方博客全文精读+MXC×Box 双对照+三链精读（Mythos 5 PyPI 链/BIP-44 链/Archon RCE 链）+内因性 vs 外因性映射 E 层（新增 E7 节点））；agent-aegis 实测 1.0.0 维持观察；Archon CVSS 修正 4.0 9.3**｜周六待回灌 index/connections/能力树；周日小结判断换域（候选 Runtime 接 TeamMind） |
+| Harness / 治理 | 2026-10-19 | active（Day1 已建基线） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜Day2 新卡：Strands Box A（MXC 对照线）+ 越权事件集群 A + agent-aegis B｜Day3：Archon CVE-2026-111322 并入事件集群卡第 4 类证据线；Sentry/Warden/mcpkernel/Vaikora B 级记日志｜Day4：Anthropic 官方 alignment assessment（Mythos 5 PyPI 完整攻击链+biased reasoning）+ OpenAI 官方 Misalignment Report（BIP-44 钱包派生）并入事件集群卡，内因性 vs 外因性机制分类｜Day5（周五验证）：Strands Box/MXC/事件集群三卡晋升 validated（官方博客全文精读+MXC×Box 双对照+三链精读（Mythos 5 PyPI 链/BIP-44 链/Archon RCE 链）+内因性 vs 外因性映射 E 层）；agent-aegis 实测 1.0.0 维持观察；Archon CVSS 修正 4.0 9.3｜**Day6（周六回灌）：能力树 E 层新增 E6 生产越权事件基准+E7 模型内因性越权（Mythos 5 biased reasoning 量化 79% vs 1%/BIP-44 钱包派生）、B1/B5 标注 validated、3 项验证缺口标记已回灌；graph 新增 4 边（containment-policy/policy-engine/trust-identity/runtime-guardrail）；connections 3 条升级 ✅；候选决策：3 卡 validated+agent-aegis 维持观察——Harness 周闭环完成**｜周日（10-25）小结判断换域（候选 Runtime 接 TeamMind） |

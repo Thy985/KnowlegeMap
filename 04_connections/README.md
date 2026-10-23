@@ -114,9 +114,15 @@
 ## 2026-10-20 雷达新增连接（Harness 周 Day2 · 3 条）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
-| **Strands Box（AWS OS 级行为遏制沙箱）** | **TeamMind**（OS 级外部强制边界参照 + policy.dw/box.toml 双文件模型对照权限设计）/ **Tafcm**（本地执行遏制边界）/ **silver-shield**（出站凭证外挂+目的地 permit 确定性管控）/ **campus_order**（OpenClaw 类 agent 遏制） | Harness B 层（执行隔离：MXC 对照线）/ C 层（策略引擎 Cedar/Dogwood 时间性）/ 评测隔离（网关凭证注入同构） | 🟡 已出候选卡（周五与 MXC 双对照） | [strands-box-os-containment-2026](../03_expansion_queue/candidates/[cand]strands-box-os-containment-2026.md) |
-| **Agent 越权/沙箱逃逸事件集群（2026-10）** | **TeamMind**（多 agent 生产化失败案例基线）/ **silver-shield**（越权/虚假举报行为模式识别）/ **campus_order**（生产 agent 越权风险清单） | Harness E 层（威胁模型：生产失控真实证据）/ B 层隔离失效动机链（→ Strands Box/MXC） | 🟡 已出候选卡（事件基准，周五精读验证） | [agent-containment-breach-2026](../03_expansion_queue/candidates/[cand]agent-containment-breach-2026.md) |
-| **agent-aegis（Guardrails+Policy+Protocol 一体化）** | **TeamMind**（YAML 策略引擎+approval gates 对照）/ **silver-shield**（PII/注入 guardrails 前置过滤）/ 引擎 evaluation 层（确定性 guardrail 落地候选） | Harness C2（无状态策略引擎 YAML 线）/ D1（确定性 guardrail 无 LLM 线） | 🟡 已出候选卡（B 级，周五并入 guardrail 对比池） | [agent-aegis-governance-2026](../03_expansion_queue/candidates/[cand]agent-aegis-governance-2026.md) |
+| **Strands Box（AWS OS 级行为遏制沙箱）** | **TeamMind**（OS 级外部强制边界参照 + policy.dw/box.toml 双文件模型对照权限设计）/ **Tafcm**（本地执行遏制边界）/ **silver-shield**（出站凭证外挂+目的地 permit 确定性管控）/ **campus_order**（OpenClaw 类 agent 遏制） | Harness B 层（执行隔离：MXC 对照线）/ C 层（策略引擎 Cedar/Dogwood 时间性）/ 评测隔离（网关凭证注入同构） | ✅ 已验证（10-23 双对照，10-24 回灌） | [strands-box-os-containment-2026](../03_expansion_queue/candidates/[cand]strands-box-os-containment-2026.md) |
+| **Agent 越权/沙箱逃逸事件集群（2026-10）** | **TeamMind**（多 agent 生产化失败案例基线）/ **silver-shield**（越权/虚假举报行为模式识别）/ **campus_order**（生产 agent 越权风险清单） | Harness E 层（威胁模型：生产失控真实证据）/ B 层隔离失效动机链（→ Strands Box/MXC）/ **E7 模型内因性越权新节点** | ✅ 已验证（10-23 三链精读，10-24 回灌） | [agent-containment-breach-2026](../03_expansion_queue/candidates/[cand]agent-containment-breach-2026.md) |
+| **agent-aegis（Guardrails+Policy+Protocol 一体化）** | **TeamMind**（YAML 策略引擎+approval gates 对照）/ **silver-shield**（PII/注入 guardrails 前置过滤）/ 引擎 evaluation 层（确定性 guardrail 落地候选） | Harness C2（无状态策略引擎 YAML 线）/ D1（确定性 guardrail 无 LLM 线） | 🟡 已出候选卡（B 级，10-23 实测 1.0.0 通过，维持观察） | [agent-aegis-governance-2026](../03_expansion_queue/candidates/[cand]agent-aegis-governance-2026.md) |
+
+## 2026-10-24 回灌：Harness 周验证结论回灌（3 条升级 + 2 条补充）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Microsoft Execution Containers / MXC** | **TeamMind**（平台级执行边界原语参照）/ **campus_order**（OpenClaw 已接入 MXC 生态）/ **Tafcm**（本地策略隔离） | Harness B1（五策略域×四后端）/ B3 双层策略 / B4 三模式渐进 | ✅ 已验证（10-23 GA 公告精读，10-24 回灌） | [microsoft-execution-containers-2026](../03_expansion_queue/candidates/[cand]microsoft-execution-containers-2026.md) |
+| **内因性 vs 外因性越权分类** | **silver-shield**（模型合理化行为=判定信号）/ **TeamMind**（harness 不解决内因性，需模型倾向+评测隔离双线） | Harness E7（模型内因性越权）/ E1 强化（控制面 fail-closed）/ F1 评测隔离互证 | ✅ 已回灌能力树（E6/E7 节点落地 10-24） | 事件集群卡 §5 分类表 |
 
 ## 规则
 
