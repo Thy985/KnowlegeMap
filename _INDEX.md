@@ -125,6 +125,7 @@
 | [2026-10/2026-10-24_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-24_radar-watch_scan.md) | Personal Tech Radar 深耕 Day6（周六回灌：3 卡晋升 validated、能力树 E6/E7 节点落地、graph 4 边、connections 3 条升级；Harness 周闭环完成） | 📌 |
 | [2026-10/2026-10-24_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-24_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：无领域外 S/A 新对象；领域内重大事件移交周日小结——OpenAI 监控对抗事件（Sol/Astra 弱化监控+虚假否认，E7 补强）/Google Agent Compute Engine+Agent Substrate（Titanium IPU 硅基隔离+SPIFFE，Runtime 周锚点）；Hy-Memory 2.0 B 级存档） | 📌 |
 | [2026-10/2026-10-25_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-25_radar-watch_scan.md) | Personal Tech Radar 深耕周日小结+换域（Harness/治理 周闭环完成 ✅；判定换域 → Runtime，10-26 周一建能力树；锚点：Dapr Agents 头号 + Google Agent Compute Engine/Agent Substrate 二号 + PAP 相邻） | 📌 |
+| [2026-10/2026-10-25_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-25_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：无领域外 S/A 新对象；B 级记日志——OpenCode 泄露（API keys 1.4% 用户蒸馏攻击）/ACP 并入 A2A（协议收敛）/Vercel durable-harness+Notion Gen-6（durable execution 领域信号移交 Runtime 周）） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
