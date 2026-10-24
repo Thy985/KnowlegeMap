@@ -2,39 +2,39 @@
 
 > 定时任务每次运行先读本文件，确定当前领域与本周进度。换域后更新本文件。
 
-## 当前领域：Harness / 治理（Agent 执行环境与治理）
+## 当前领域：Runtime（Agent 执行运行时 / 分布式运行时）
 
-- **周起始日**：2026-10-19（周一）
-- **状态**：active（10-19 Day1 能力树/基线已建；上一领域 Evaluation/Observability 已闭环换域）
-- **为什么先做它**：领域顺序建议的下一站；评测隔离设计（eval 层 fail-closed 网络策略）是治理的一部分，与上周 Evaluation 周天然衔接；命中"高效、可信、可控"的 Control 维度；与用户项目 TeamMind（多 Agent 运行时）、Tafcm（本地执行）、campus_order（OpenClaw 智能体）、silver-shield（反诈骗判定）直接相关。
+- **周起始日**：2026-10-26（周一）
+- **状态**：pending（10-25 周日小结换域决定已作出；10-26 周一 Day1 建能力树/基线）
+- **为什么现在做它**：领域顺序 Evaluation→Harness→Runtime 的下一站；上一领域 Harness/治理 已于 10-24 周六闭环（候选→验证→回灌闭合）；Runtime 与用户项目 **TeamMind（多 Agent 运行时）** 直接相关；Harness 周已验证的执行隔离/身份/凭据外注证据（MXC/Strands Box/Google 侧印证）为 Runtime 提供相邻对照基础。
 
 ## 目标
-- 建立 Agent Harness / 治理能力树/基线（已知 vs 缺口 vs 相邻未覆盖）
-- 发现并验证 2-3 个高价值 harness/治理工具或方法（候选方向：评测隔离落地、DeepSeek Harness 已 validated 对照、MXC 治理策略验证、MCP 安全/治理周素材）
+- 建立 Agent Runtime 能力树/基线（已知 vs 缺口 vs 相邻未覆盖）：durable execution / 分布式多 agent 编排 / 状态持久化 / 资源隔离与密度 / 运行时身份与网络策略 / 生命周期（suspend-resume-checkpoint）
+- 发现并验证 2-3 个高价值 runtime 工具或方法（候选方向：Dapr Agents 实测、Google Agent Substrate 开源对照、PAP 协议/身份层相邻、durable execution 品类）
 - 闭环：候选 → 验证 → 回灌 index/connections/能力树
 
 ## 已知锚点（不重复收集）
-- DeepSeek Harness（S，validated——sandbox/approval/permission-presets/credentials seam/session-telemetry）
-- Microsoft Execution Containers / MXC（A 候选卡，2026-10-07 GA——OS 级 agent 策略隔离层，候选卡 44）
-- Harness/Control Plane 范式（S 候选卡——Omnigent/MS Agent Framework/六职责/HarnessDev/AgentCore GA/NVIDIA Open Shell）
-- Agent 防火墙/运行时防御品类（A 候选卡——Aigis/ClawKeeper/AgentGuard/Pipelock/MS AGT/Proof-of-Guardrail/Falcon Guardian）
+- **Dapr Agents**（A 候选卡，2026-10-16 CNCF×NVIDIA launch——DurableAgent 步骤持久化+双 state store+崩溃恢复+pub/sub 多 agent 编排；**头号锚点**，仓库 github.com/dapr/dapr-agents，验证 quickstart `03_durable_agent_http.py`）
+- **Google Agent Compute Engine + Agent Substrate**（2026-10-22 官方发布，10-24 兜底精读移交——Titanium IPU 硅基隔离 microVM+短时凭据+egress 外注服务凭据+Hyperdisk 持久化+copy-on-write/fast checkpoint；Agent Substrate 开源 K8s 零信任：10x 密度/20 万 agent 基准 500 activations/sec/<500ms suspend-resume/SPIFFE 身份+egress 代理；**二号锚点**，开源满足 validated 门槛）
+- Personal Agent Protocol / PAP（A 候选卡——agent-to-business 身份授权开放标准，协议/身份层相邻素材）
+- 已验证相邻证据（供对照）：DeepSeek Harness validated（sandbox/approval/credentials seam/session-telemetry）、MXC/Strands Box validated（OS 级隔离+凭证外挂网关=Google egress 外注模式的微软/AWS 侧印证）、Agent Executor（Google 开源 runtime 标准，2026-05-21，旧闻已覆盖）
 - 引擎内 evaluation 层 + security-assessment 能力树模板（已有）
-- 评测隔离设计（C1/C4 落地检查结论：eval 层需 fail-closed 网络策略+凭据注入白名单）
-- 10-18 兜底移交线索：CVE-2026-96620（argv→--mcp-config 注入，补丁 7 月已发）、MS Agent Framework 1.0 GA
 
 ## 本周进度（每日分工）
-- [x] 周一（10-19）：建能力树/基线（agent-harness-governance.md，A-F 六层），更新本文件 ✅
-- [x] 周二~周四（10-20~10-22）：增量扫描，写候选卡（S/A/B）✅
-- [x] 周五（10-23）：实际验证/对比 2-3 个高价值候选 ✅（三卡晋升 validated：Strands Box/MXC/事件集群；agent-aegis 实测 1.0.0 维持观察）
-- [x] 周六（10-24）：验证结果回灌 index/connections/能力树 ✅（能力树 E6/E7 节点落地+B/MXC、Strands Box、事件集群标注 validated；graph 4 边；connections 3 条升级；候选→validated 决策完成——Harness 周「候选→验证→回灌」闭环闭合）
-- [ ] 周日（10-25）：本周小结，判断是否换域（候选：Runtime，接 TeamMind）
+- [x] 周日（10-25）：Harness 周小结完成，**判定换域 → Runtime**（本周历史见下表；新领域周起始 10-26）✅
+- [ ] 周一（10-26）：建能力树/基线（agent-runtime.md），更新本文件
+- [ ] 周二~周四（10-27~10-29）：增量扫描，写候选卡（S/A/B）
+- [ ] 周五（10-30）：实际验证/对比 2-3 个高价值候选（Dapr Agents quickstart 实测优先）
+- [ ] 周六（10-31）：验证结果回灌 index/connections/能力树
+- [ ] 周日（11-01）：本周小结，判断是否换域
 
 ## 换域规则
 - 一周是最小驻留，不是硬切换；闭环未完成可延长到第二周。
-- 下一领域（候选）：Runtime（接 TeamMind）→ Memory → Computer Use / Browser → AI Infra / 本地边缘（接 Tafcm）。
+- 下一领域（候选）：Memory → Computer Use / Browser → AI Infra / 本地边缘（接 Tafcm）。
 
 ## 历史聚焦记录
 | 领域 | 周起始 | 状态 | 产出 |
 |---|---|---|---|
 | Evaluation / Observability | 2026-10-12 | ✅ 已闭环（10-18 换域） | 能力树 agent-evaluation.md（A-E 五层+§六回灌）｜候选卡：AgentJudgeBench/Transect/求索 4.0/ReviewBench/TestJack/LiveMACE｜三环方法论+评测隔离 C1/C4+引擎 eval 建议 5 条｜graph 5 边+connections 6 条 |
-| Harness / 治理 | 2026-10-19 | active（Day1 已建基线） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜Day2 新卡：Strands Box A（MXC 对照线）+ 越权事件集群 A + agent-aegis B｜Day3：Archon CVE-2026-111322 并入事件集群卡第 4 类证据线；Sentry/Warden/mcpkernel/Vaikora B 级记日志｜Day4：Anthropic 官方 alignment assessment（Mythos 5 PyPI 完整攻击链+biased reasoning）+ OpenAI 官方 Misalignment Report（BIP-44 钱包派生）并入事件集群卡，内因性 vs 外因性机制分类｜Day5（周五验证）：Strands Box/MXC/事件集群三卡晋升 validated（官方博客全文精读+MXC×Box 双对照+三链精读（Mythos 5 PyPI 链/BIP-44 链/Archon RCE 链）+内因性 vs 外因性映射 E 层）；agent-aegis 实测 1.0.0 维持观察；Archon CVSS 修正 4.0 9.3｜**Day6（周六回灌）：能力树 E 层新增 E6 生产越权事件基准+E7 模型内因性越权（Mythos 5 biased reasoning 量化 79% vs 1%/BIP-44 钱包派生）、B1/B5 标注 validated、3 项验证缺口标记已回灌；graph 新增 4 边（containment-policy/policy-engine/trust-identity/runtime-guardrail）；connections 3 条升级 ✅；候选决策：3 卡 validated+agent-aegis 维持观察——Harness 周闭环完成**｜周日（10-25）小结判断换域（候选 Runtime 接 TeamMind） |
+| Harness / 治理 | 2026-10-19 | ✅ 已闭环（10-25 换域） | 能力树 agent-harness-governance.md（A-F 六层：Harness 架构/执行隔离/权限策略/运行时防御/威胁模型/评测闭环）｜已知锚点：dsh validated + Harness-ControlPlane S 卡 + MXC A 卡 + Agent 防火墙 A 卡｜Day2 新卡：Strands Box A（MXC 对照线）+ 越权事件集群 A + agent-aegis B｜Day3：Archon CVE-2026-111322 并入事件集群卡第 4 类证据线；Sentry/Warden/mcpkernel/Vaikora B 级记日志｜Day4：Anthropic 官方 alignment assessment（Mythos 5 PyPI 完整攻击链+biased reasoning）+ OpenAI 官方 Misalignment Report（BIP-44 钱包派生）并入事件集群卡，内因性 vs 外因性机制分类｜Day5（周五验证）：Strands Box/MXC/事件集群三卡晋升 validated（官方博客全文精读+MXC×Box 双对照+三链精读（Mythos 5 PyPI 链/BIP-44 链/Archon RCE 链）+内因性 vs 外因性映射 E 层）；agent-aegis 实测 1.0.0 维持观察；Archon CVSS 修正 4.0 9.3｜**Day6（周六回灌）：能力树 E 层新增 E6 生产越权事件基准+E7 模型内因性越权（Mythos 5 biased reasoning 量化 79% vs 1%/BIP-44 钱包派生）、B1/B5 标注 validated、3 项验证缺口标记已回灌；graph 新增 4 边（containment-policy/policy-engine/trust-identity/runtime-guardrail）；connections 3 条升级 ✅；候选决策：3 卡 validated+agent-aegis 维持观察——Harness 周闭环完成**｜**周日（10-25）小结：闭环完整（候选→验证→回灌闭合），判定换域 → Runtime（接 TeamMind）；兜底移交领域内重大事件并入参考——OpenAI 监控对抗事件（Sol/Astra 弱化监控+虚假否认，E7 第三种形态补强）/Google Agent Compute Engine+Agent Substrate（Titanium IPU 硅基隔离+SPIFFE，Runtime 周二号锚点）；php2shell 验证计划待 Runtime 周内跟进** |
+| Runtime | 2026-10-26 | active（10-25 换域决定，10-26 Day1 建基线） | 锚点：Dapr Agents（A 卡，头号）+ Google Agent Compute Engine/Agent Substrate（二号，官方博客一手精读）+ PAP（协议/身份层相邻）+ dsh/MXC/Strands Box 已验证对照｜验证目标：Dapr quickstart 实测、Agent Substrate 开源复现对照、durable execution 品类横向｜待办：Day1 建 agent-runtime.md 能力树 |
