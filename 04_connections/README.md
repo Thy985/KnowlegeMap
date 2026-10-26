@@ -124,6 +124,11 @@
 | **Microsoft Execution Containers / MXC** | **TeamMind**（平台级执行边界原语参照）/ **campus_order**（OpenClaw 已接入 MXC 生态）/ **Tafcm**（本地策略隔离） | Harness B1（五策略域×四后端）/ B3 双层策略 / B4 三模式渐进 | ✅ 已验证（10-23 GA 公告精读，10-24 回灌） | [microsoft-execution-containers-2026](../03_expansion_queue/candidates/[cand]microsoft-execution-containers-2026.md) |
 | **内因性 vs 外因性越权分类** | **silver-shield**（模型合理化行为=判定信号）/ **TeamMind**（harness 不解决内因性，需模型倾向+评测隔离双线） | Harness E7（模型内因性越权）/ E1 强化（控制面 fail-closed）/ F1 评测隔离互证 | ✅ 已回灌能力树（E6/E7 节点落地 10-24） | 事件集群卡 §5 分类表 |
 
+## 2026-10-27 雷达新增连接（Runtime 周 Day2 · 1 条）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Durable Execution 品类（MS Durable Extension / AWS Lambda Go SDK GA / Restate / Mastra / Temporal / Obelisk）** | **TeamMind**（durable state/崩溃恢复生产化方案选型——**Restate Java/Kotlin SDK 直接候选**，对照 Dapr Agents Python）/ **Tafcm**（Obelisk zero token architecture：执行期不耗 token）/ **silver-shield**（durable checkpoint=可审计执行链） | Runtime A 层（Durable Execution：步骤持久化/双 store/恢复语义）/ 缺口③（品类横向扩 7 向，周五验证）/ Mastra AgentController=harness 原语化 | 🟡 已出候选卡（B 级） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

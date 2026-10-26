@@ -127,6 +127,7 @@
 | [2026-10/2026-10-25_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-25_radar-watch_scan.md) | Personal Tech Radar 深耕周日小结+换域（Harness/治理 周闭环完成 ✅；判定换域 → Runtime，10-26 周一建能力树；锚点：Dapr Agents 头号 + Google Agent Compute Engine/Agent Substrate 二号 + PAP 相邻） | 📌 |
 | [2026-10/2026-10-25_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-25_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：无领域外 S/A 新对象；B 级记日志——OpenCode 泄露（API keys 1.4% 用户蒸馏攻击）/ACP 并入 A2A（协议收敛）/Vercel durable-harness+Notion Gen-6（durable execution 领域信号移交 Runtime 周）） | 📌 |
 | [2026-10/2026-10-26_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-26_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day1（建能力树/基线 agent-runtime.md：A-F 六层+8 已知锚点+5 缺口；Dapr Agents 头号+Google ACE/Substrate 二号；周五验证计划：Dapr quickstart 实测+Substrate 开源对照+durable 三向横向） | 📌 |
+| [2026-10/2026-10-27_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-27_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day2（增量扫描：durable execution 品类主流化 B 级新卡——MS Durable Extension/AWS Lambda Go SDK GA/Restate+Replit/Mastra 1.78/Temporal/Obelisk；缺口③扩 7 向横向；MCP 2.0 落地记日志） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
