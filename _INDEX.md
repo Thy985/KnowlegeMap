@@ -129,6 +129,7 @@
 | [2026-10/2026-10-26_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-26_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day1（建能力树/基线 agent-runtime.md：A-F 六层+8 已知锚点+5 缺口；Dapr Agents 头号+Google ACE/Substrate 二号；周五验证计划：Dapr quickstart 实测+Substrate 开源对照+durable 三向横向） | 📌 |
 | [2026-10/2026-10-27_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-27_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day2（增量扫描：durable execution 品类主流化 B 级新卡——MS Durable Extension/AWS Lambda Go SDK GA/Restate+Replit/Mastra 1.78/Temporal/Obelisk；缺口③扩 7 向横向；MCP 2.0 落地记日志） | 📌 |
 | [2026-10/2026-10-27_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-27_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级：LiteLLM 双重供应链投毒建卡——v1.107.0 wheel 植入 stealer+后门，微软/DataDog 双取证，10-22 第二起独立攻击；ARTEX 国家级战役并入 Agentic Attack 范式；OpenCode sign-in MCP RCE 记日志） | 📌 |
+| [2026-10/2026-10-28_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-28_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day3（增量扫描：无新对象写卡；durable 品类卡并入 4 条 B 级增量——Dapr v1.19/Diagrid agent-integrations wrapper/DBOS 第 8 向/Mastra 1.79 snapshot 优化） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
