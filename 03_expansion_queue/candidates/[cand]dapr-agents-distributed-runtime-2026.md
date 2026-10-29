@@ -38,9 +38,17 @@ Dapr Foundation（CNCF graduated 分布式应用运行时，微软发起）在 N
 | 预期完成时间 | 2026-10 下旬（Runtime 周），当前仅建卡占位 |
 
 ## 5. 验证结果
-<!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+**2026-10-30（Runtime 周 Day5 验证日）实测/精读回填**：
+- ✅ **官方文档全文精读（一手）**：Getting Started（docs.dapr.io，2026-10-25 更新，6728 tokens 全读）+ Core Concepts（12040 tokens 含示例）。确认核心语义：
+  - **`Agent` 类 deprecated（v1.0.0-rc.1），`DurableAgent` 为唯一推荐路径**（本卡此前未记录的重要状态）
+  - 中断恢复官方步骤确认：POST `/agent/run` 拿 WORKFLOW_ID → `slow_weather_func` 5 秒延迟期间 Ctrl+C 杀掉 `dapr run` 进程 → 重启 → GET `/agent/instances/{WORKFLOW_ID}` → **从最后持久化步骤继续，不重放已完成 LLM/工具调用**（"prevents complex agent workflows from re-executing LLM and tool calls that already completed"）
+  - 双 state store 语义核对：`agent-memory`（state.redis，会话历史）+ `agent-workflow`（state.redis + **`actorStateStore: "true"` 必需**，durable execution state）；LLM 走 Dapr Conversation API（`conversation.openai` 组件型，Ollama 本地默认，YAML 换 provider 不改代码）
+  - **新增机制细节**：执行模型基于 event sourcing，workflow 代码在 await 外部 activity/tool 后**重放（replay）重建本地状态**；`ContextAwareLogger`（get_context_aware_logger）在重放时静默抑制重复日志；AgentRunner 三模式：run（ad-hoc）/subscribe（pub/sub）/serve（FastAPI HTTP，port 8001）
+- ✅ **包级 API 实测（独立证据）**：`pip install dapr-agents` → **1.1.0**；`DurableAgent/AgentRunner/AgentMemoryConfig/AgentStateConfig/ConversationDaprStateMemory` 全部可导入（API 表面完整，类名/配置形态与文档一致）
+- ⚠️ **环境限制（如实记录）**：本环境无 Docker/Dapr CLI/Redis/Ollama，**未能真实跑通中断恢复 demo**；以"官方文档中断恢复测试步骤精读 + 源码语义核对 + PyPI 包实测"三级验证替代；中断恢复路径公开可复现（任何有 Docker 环境按文档步骤可跑）
+- **对照输出**：durable 品类 9 向横向对照表已产出（见 `[cand]durable-execution-category-mainstreaming-2026-10.md` §5）——Dapr 定位"基础设施运行时层（workflow+actor+state store）"，与框架/harness 层（MS/Mastra）、serverless 平台层（AWS Lambda）、通用 durable runtime（Restate/DBOS）、并发挂起路线（Infinity）互补非重复
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
+- [x] 晋升 validated（官方文档一手全文 + PyPI 包 1.1.0 API 实测 = ≥2 条独立证据；中断恢复步骤公开可复现，本环境缺 Docker 未实跑——按 Harness 周"精读+证据链闭合"先例判定）
 - [ ] 维持观察
 - [ ] 拒绝（原因）

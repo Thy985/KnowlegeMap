@@ -35,9 +35,13 @@
 | 预期完成时间 | 2026-10-30（周五验证日）或延后至第二周；本卡先占位 |
 
 ## 5. 验证结果
-<!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+**2026-10-30（Runtime 周 Day5 验证日）对照回填**：
+- ✅ 官方博客全文精读完成（Day4 建卡时）：slice 生命周期、serverless step 模式、synthetic tool calls（`receive_event__injected`）、spawn_thread/report_to_parent 机制均已确认
+- ✅ **三路线设计对照产出**（详见 `[cand]durable-execution-category-mainstreaming-2026-10.md` §5 9 向表）：Infinity 与 Dapr Agents/Restate 属**不同恢复语义派**——Infinity 是**挂起恢复**（slice 有界执行+serverless 卸载，等待零计算，挂起 agent 只占 history 内存）vs Dapr/Restate/DBOS 是**步骤持久化恢复**（重放不重执行）；二者互补：步骤持久化保证失败后不重复已完成调用，挂起模型保证等待期间零资源占用
+- ⚠️ 仓库 clone/demo 未跑（GitHub 网页 robots 限制 + 本环境无容器运行时；research early release 非生产 GA 工具，判定维持观察合理）
+- **对 TeamMind 的启示**：Infinity 的 actor-style 线程模型（每会话独立 input queue、线程间仅消息、FIFO 串行化免锁）与 slice 有界执行单元是 TeamMind 并发/长时间任务设计的直接参考；但 research 阶段不宜直接选型
 
 ## 6. 决策
 - [ ] 晋升 validated（≥2 条独立证据）
-- [ ] 维持观察
+- [x] 维持观察（research early release；博客一手精读+对照完成，缺仓库级复现）
 - [ ] 拒绝（原因）

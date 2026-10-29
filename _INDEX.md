@@ -132,6 +132,7 @@
 | [2026-10/2026-10-28_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-28_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day3（增量扫描：无新对象写卡；durable 品类卡并入 4 条 B 级增量——Dapr v1.19/Diagrid agent-integrations wrapper/DBOS 第 8 向/Mastra 1.79 snapshot 优化） | 📌 |
 | [2026-10/2026-10-29_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-29_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day4（增量扫描：建卡 1 张 B 级——AWS Infinity（10-23，AWS×UC Berkeley Hydro 项目，stackless coroutine 式 agent 挂起，slice+step 模式，75k 并发/8GB）；Vercel durable-harness/Azure Agent bindings/Pi Durable/Cloudflare SDK 均去重或不写） | 📌 |
 | [2026-10/2026-10-29_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-29_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 2 起建卡：①CoreBreak——Black Hat 2026 三大 agent 栈（Bedrock AgentCore/Google ADK/Vercel AI SDK）结构性缺陷，caller-authored tool call+伪造 HITL 审批，CVE×4，修复收敛 OBPE；②AAIF 四项目托管——Linux Foundation 基金 3→10，Agent Skills/Open Responses/OpenEnv/OpenSandbox 入 vendor-neutral 治理；Lasso 6 CVE 批量记日志） | 📌 |
+| [2026-10/2026-10-30_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-30_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day5 验证日（Dapr Agents 晋升 validated——官方文档全文+Agent deprecated/DurableAgent 唯一推荐+中断恢复步骤确认+event sourcing 重放，pip 实测 dapr-agents 1.1.0；durable 品类 9 向横向对照表产出；Infinity 对照完成维持观察） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

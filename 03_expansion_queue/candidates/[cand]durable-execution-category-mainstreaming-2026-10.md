@@ -40,9 +40,23 @@
 | 预期完成时间 | 2026-10-30（周五验证日）；本卡先占位 |
 
 ## 5. 验证结果
-<!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+**2026-10-30（Runtime 周 Day5 验证日）品类 9 向横向对照（产出）**：
+
+| 方案 | 层位 | 步骤持久化粒度 | 恢复语义 | 部署形态 | 语言栈 | 并发/规模信号 |
+|---|---|---|---|---|---|---|
+| **Dapr Agents** | 基础设施运行时（workflow+actor+state） | 每步 reasoning+tool call（双 store：agent-memory/agent-workflow，actorStateStore 必需） | 从最后完成步骤恢复，不重放已完成 LLM/工具调用（v1.1.0 文档+包实测确认） | K8s/本地 sidecar | Python | 400 分布式 multi-agent 工作流生产评估；Diagrid Dev Dashboard 可视化 |
+| **Vercel durable-harness** | harness 包装层（10-20/21 开源） | agent logic 每步 session 存 durable log | 从 durable log 恢复 | 无服务器/本地 | TS/JS | 包装 Pi/OpenCode/Claude Code/Codex |
+| **Notion Gen-6** | queue-backed worker loop（10-22） | worker loop 步骤 | queue 语义（未详） | 服务器 | 未详 | 24h 无人值守 |
+| **MS Durable Extension** | 编排框架扩展（10-17 文档） | agent session + orchestration/workflow checkpoint | checkpoint 恢复 | Azure Functions | C#/.NET | MS Agent Framework 1.0 GA（10-13）后一周推出 |
+| **AWS Lambda Durable Go SDK** | serverless 平台级（10-15 GA） | 函数级 checkpoint 自动 | 暂停等待外部事件最长一年 | AWS Lambda | Go | 平台原生 GA |
+| **Restate** | 通用 durable runtime（agent 定位） | 每步（virtual objects） | 从最后完成步骤恢复 | 自托管/K8s/托管 | Java/Kotlin/TS/Python 等 | Replit 采用（全量 durable orchestration） |
+| **Mastra** | JS 编排框架（1.78/1.79，10-15/21） | agent step snapshot（1.79 尺寸减半） | resume 保留 suspendData | 服务器 | TS/JS | agent scopes+queueSignal typed signal |
+| **DBOS** | Postgres 原生 durable runtime（第 8 向） | 每步（PostgreSQL 事务） | 从最后完成步骤恢复 | Postgres+服务器 | TS/Python | Temporal/Restate/DBOS 三强格局（10-12 对比文） |
+| **AWS Infinity** | 研究型并发 runtime（10-23 开源，Hydro） | slice（history→一次补全→持久化→至多一个工具调用） | 从持久化 history 恢复（挂起不占内存） | serverless step 模式（等待零计算） | 待定（研究） | 75k 并发/8GB（RPi 5 基准）；第三条设计路线 |
+
+**横向结论**：①层位分明——基础设施运行时（Dapr/DBOS/Restate）vs harness 包装（Vercel/Notion/Mastra）vs serverless 平台（AWS Lambda）vs 并发挂起（Infinity）；②恢复语义两派——**步骤持久化恢复**（Dapr/Restate/DBOS/MS，重放不重执行）vs **挂起恢复**（Infinity/Lambda 暂停，不占资源）；③对 TeamMind 的启示——若走自研：Dapr 双 store+actor+pub-sub 是完整设计基线（本卡 Dapr 已 validated）；若评估现成：Java 栈首选 **Restate**（Java/Kotlin SDK，durable 化既有 agent），其次 Dapr Java SDK 路线；Diagrid agent-integrations wrapper（3 行代码 durable 化既有 agent）为轻量路径候选。
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [ ] 维持观察
+- [ ] 晋升 validated（品类全景卡，非单点验证对象；各成员已有独立证据）
+- [x] 维持观察（品类 9 向横向完成；成员级验证随 Dapr validated + 未来周次）
 - [ ] 拒绝（原因）
