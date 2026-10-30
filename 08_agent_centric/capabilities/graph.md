@@ -49,3 +49,10 @@
 - **policy-engine** → governance（C2 无状态策略引擎），agent-evaluation（F1 评测隔离策略），agent-runtime（multi-agent-orchestration 权限层）
 - **trust-identity** → governance（C3 身份与信任），agent-runtime（multi-agent 互信），web-security（认证边界同构）
 - **runtime-guardrail** → governance（D1 确定性 guardrail），agent-evaluation（eval 层 fail-closed 落地），agent-runtime（self-improvement 安全回灌）
+
+## 2026-10-31 回灌：Runtime 周验证结论回灌（Dapr validated / durable 品类 / 挂起恢复线）
+> 来源：周五验证日结论（Dapr Agents 官方文档全文+包实测晋升 validated / durable 品类 9 向横向对照 / Infinity 对照维持观察）回灌。
+
+- **durable-state** → agent-runtime（A 层 Durable Execution：步骤持久化+双 store+恢复语义），agent-memory（agent-workflow 执行状态 vs agent-memory 会话记忆分层），developer-tools（Diagrid wrapper：durable 化既有 agent 框架）
+- **checkpoint-recovery** → agent-runtime（F 层生命周期：suspend-resume/crash recovery），governance（durable checkpoint=可审计执行链，E 层证据），observability（每步持久化=Diagrid 可视化/审计基础设施）
+- **suspend-resume** → agent-runtime（F1/F3：<500ms 挂起/恢复、slice 有界执行），agent-evaluation（长时程 agent 过程感知评测——LiveMACE 跨域），web-automation（挂起等待零计算=serverless step 模式）

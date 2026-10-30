@@ -50,7 +50,7 @@ Agent Runtime（Agent 执行运行时）
 ### 已知（系统已覆盖，不重复收集）
 | 锚点 | 状态 | 说明 |
 |---|---|---|
-| Dapr Agents（CNCF × NVIDIA） | [cand] **A**（头号锚点） | 开源分布式 Agent 运行时（github.com/dapr/dapr-agents）：DurableAgent 步骤持久化 + 双 state store + actor + pub/sub；**验证计划：quickstart `03_durable_agent_http.py` 中断恢复实测**（卡内 §4 已定） |
+| Dapr Agents（CNCF × NVIDIA） | **validated** ✅（A，10-30 验证） | 开源分布式 Agent 运行时（github.com/dapr/dapr-agents）：DurableAgent 步骤持久化 + 双 state store + actor + pub/sub；**10-30 验证结论**：官方 Getting Started/Core Concepts 全文精读（`Agent` deprecated 仅 `DurableAgent` 推荐；event sourcing 重放+ContextAwareLogger；中断恢复五步确认）+ pip 实测 dapr-agents 1.1.0 API 表面完整；环境缺 Docker 未实跑中断 demo（公开可复现，按 Harness 周先例判定） |
 | Google Agent Compute Engine + Agent Substrate | 官方一手精读（10-24 兜底移交，**二号锚点**） | Titanium IPU 硅基隔离 microVM + 短时凭据 + egress 外注 + Hyperdisk + copy-on-write/fast checkpoint；Agent Substrate 开源 K8s 零信任（10x 密度/500 activations/sec/<500ms suspend-resume/SPIFFE+egress 代理），开源满足 validated 门槛 |
 | Personal Agent Protocol / PAP | [cand] A（协议/身份层相邻） | OAuth-based agent-to-business 身份授权（poppy.json 发现+agent 自标识+客户授权）；v0.1 规范 10 月内交付 |
 | DeepSeek Harness (dsh) | **validated**（S） | credentials seam/sandbox/approval/session-telemetry——Runtime 相邻对照（seam 迁移参考） |
@@ -61,13 +61,13 @@ Agent Runtime（Agent 执行运行时）
 | Vercel durable-harness + durable agent state stack（10-20/21 开源）｜Notion Gen-6（10-22） | 兜底 10-25 B 级移交 | durable execution 主流化信号：agent logic/execution environment/persistence 三层分离（Vercel）；queue-backed worker loop 24h 无人值守（Notion）——**周五验证对照池** |
 
 ### 缺口（本领域内未覆盖，Runtime 周重点）
-| 缺口 | 证据 | 优先级 |
-|---|---|---|
-| Dapr Agents 实际验证（quickstart 中断恢复 demo 跑通 + 双 state store 语义核对） | Dapr 卡 §4 验证计划 | **A（周五 10-30 优先）** |
-| Agent Substrate 开源复现对照（K8s 部署/SPIFFE/egress 代理/密度基准是否可复现） | 官方博客一手；开源仓库待 clone | A（周五候选） |
-| durable execution 品类横向（Dapr vs Vercel durable-harness vs Notion Gen-6：步骤持久化粒度/恢复语义/部署形态） | 10-25 兜底移交信号 | A（周五对照池） |
-| TeamMind 权限模型 vs dsh/MXC 对照（Harness 周遗留 B 缺口） | 03_project_landscape；Harness 能力树缺口节 | B（Runtime 周内顺带） |
-| Agent Mesh 身份层落地（Harness C3 缺口：MXC Entra coming soon 未落地） | Harness 能力树缺口节 | B（Runtime 侧 SPIFFE 是候选答案，Agent Substrate 可对照） |
+| 缺口 | 证据 | 优先级 | 状态（10-31 回灌） |
+|---|---|---|---|
+| Dapr Agents 实际验证（quickstart 中断恢复 demo 跑通 + 双 state store 语义核对） | Dapr 卡 §4 验证计划 | **A（周五 10-30 优先）** | ✅ **已闭环（10-30）**：官方文档全文精读（中断恢复步骤/双 store 语义/event sourcing 重放）+ pip 实测 dapr-agents 1.1.0；环境缺 Docker 未实跑 demo，Dapr 已晋升 validated |
+| Agent Substrate 开源复现对照（K8s 部署/SPIFFE/egress 代理/密度基准是否可复现） | 官方博客一手；开源仓库待 clone | A（周五候选） | ⬜ 未执行（验证日 3 项选为 Dapr/品类横向/Infinity 对照）；Google Agent Compute Engine+Substrate 为二号锚点，开源仓库满足 validated 门槛，clone/复现留待后续（可延长第二周） |
+| durable execution 品类横向（Dapr vs Vercel durable-harness vs Notion Gen-6：步骤持久化粒度/恢复语义/部署形态） | 10-25 兜底移交信号 | A（周五对照池） | ✅ **已闭环（10-30）**：9 向横向对照表产出（四层位+恢复语义两派+TeamMind 启示），见 durable 品类卡 §5；品类卡维持观察 |
+| TeamMind 权限模型 vs dsh/MXC 对照（Harness 周遗留 B 缺口） | 03_project_landscape；Harness 能力树缺口节 | B（Runtime 周内顺带） | ⬜ 未执行（B 级遗留，可延长） |
+| Agent Mesh 身份层落地（Harness C3 缺口：MXC Entra coming soon 未落地） | Harness 能力树缺口节 | B（Runtime 侧 SPIFFE 是候选答案，Agent Substrate 可对照） | ⬜ 未执行（B 级遗留；Runtime 侧证据线：Agent Substrate SPIFFE/短时凭据/egress 外注已入锚点表） |
 
 ### 相邻未覆盖（本领域外、可外推）
 | 相邻方向 | 与 Runtime 的连接 | 归属周 |
@@ -78,15 +78,17 @@ Agent Runtime（Agent 执行运行时）
 | Agent Evaluation / Observability | Runtime 可观测（tracing/OTel 语义约定）回灌评测隔离 C1/C4 | 已闭环（Evaluation 周） |
 
 ## 三、本周验证计划（周五 10-30 用，2-3 个高价值候选）
-1. **Dapr Agents quickstart 实测**（`03_durable_agent_http.py`）：杀进程→重启→验中断恢复不重放已完成调用；核对双 state store 配置（agent-memory vs agent-workflow）
-2. **Agent Substrate 开源对照**：clone/文档级核对架构（SPIFFE/egress 代理/密度基准），判断本地 K8s 复现可行性
-3. **durable execution 品类横向**：Dapr Agents vs Vercel durable-harness vs Notion Gen-6 三向对照（步骤持久化粒度/恢复语义/部署形态/适用场景）
+1. **Dapr Agents quickstart 实测**（`03_durable_agent_http.py`）：杀进程→重启→验中断恢复不重放已完成调用；核对双 state store 配置（agent-memory vs agent-workflow）→ **10-30 执行：quickstart 直链 raw.githubusercontent 已死（link dead）+ 环境无 Docker/Dapr CLI/Redis/Ollama → 改走官方文档全文精读 + pip 包级实测（dapr-agents 1.1.0 API 表面完整）；中断恢复步骤官方文档确认；Dapr 晋升 validated** ✅
+2. **Agent Substrate 开源对照**：clone/文档级核对架构（SPIFFE/egress 代理/密度基准），判断本地 K8s 复现可行性 → **未执行**（验证日选 Dapr/品类横向/Infinity 三项）；留待后续
+3. **durable execution 品类横向**：Dapr Agents vs Vercel durable-harness vs Notion Gen-6 三向对照 → **10-30 执行：扩为 9 向横向对照表产出**（+MS/AWS Lambda/Restate/Mastra/DBOS/Infinity；四层位+恢复语义两派+TeamMind 启示：Java 首选 Restate）✅
 
 ## 四、任务视图（Capability Tree 动态实例化锚点）
 - 任务类型 `agent-runtime-task` → 实例化本领域树，JIT 只展开缺失分支
 - 引擎映射：graph.md 已登记 agent-runtime 领域能力（agent-memory / failure-recovery / multi-agent-orchestration / protocol-interop / scheduling / self-improvement / state-persistence）
 
-## 五、回灌目标（周六 10-31）
-- 更新 `08_agent_centric/capabilities/graph.md`（runtime 相关跨域边：durable-state / runtime-identity / lifecycle-management 等）
-- 更新 `04_connections/README.md`（Dapr Agents → TeamMind 等连接升级）
-- 候选决策：Dapr Agents → validated？（验证完成后）；Agent Substrate → 建卡/升卡；durable-harness 品类 → 决策
+## 五、回灌目标（周六 10-31）✅ 已执行
+- 更新 `08_agent_centric/capabilities/graph.md`（runtime 相关跨域边：durable-state / lifecycle-management / checkpoint-recovery 等）✅
+- 更新 `04_connections/README.md`（Dapr Agents → TeamMind 连接升级 validated；durable 品类连接补 9 向结论；Infinity 补连接行）✅
+- 候选决策：**Dapr Agents → validated**（10-30 完成，卡 §6 已勾选）✅；Agent Substrate → 未验证留待后续；durable-harness 品类 → 9 向对照完成，品类卡维持观察 ✅
+- 能力树本身：锚点表 Dapr 改 validated、缺口①②③ 状态回填 ✅
+- 待周日（11-01）小结并判断是否换域

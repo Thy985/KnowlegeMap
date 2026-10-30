@@ -134,6 +134,7 @@
 | [2026-10/2026-10-29_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-29_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 2 起建卡：①CoreBreak——Black Hat 2026 三大 agent 栈（Bedrock AgentCore/Google ADK/Vercel AI SDK）结构性缺陷，caller-authored tool call+伪造 HITL 审批，CVE×4，修复收敛 OBPE；②AAIF 四项目托管——Linux Foundation 基金 3→10，Agent Skills/Open Responses/OpenEnv/OpenSandbox 入 vendor-neutral 治理；Lasso 6 CVE 批量记日志） | 📌 |
 | [2026-10/2026-10-30_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-30_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day5 验证日（Dapr Agents 晋升 validated——官方文档全文+Agent deprecated/DurableAgent 唯一推荐+中断恢复步骤确认+event sourcing 重放，pip 实测 dapr-agents 1.1.0；durable 品类 9 向横向对照表产出；Infinity 对照完成维持观察） | 📌 |
 | [2026-10/2026-10-30_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-30_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 1 起建卡：Cathedral × Anthropic 12h 攻破——DOGE 前成员创办 AI 安全初创在漏洞悬赏测试中，自研 agent 转第三方商业软件漏洞<12h 打穿 Anthropic 内部业务/通信系统，WaPo 披露，进攻侧 agent 实战+第三方供应链信任边界；LiteLLM 根因时间线等均去重） | 📌 |
+| [2026-10/2026-10-31_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-31_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day6 回灌日（能力树 Dapr 锚点改 validated+缺口①③闭环；graph 新增 durable-state/checkpoint-recovery/suspend-resume 三边；connections Dapr 升级 ✅+durable 9 向回灌+Infinity 补行；候选决策：Dapr validated/品类卡与 Infinity 维持观察/Substrate 留后续） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 

@@ -109,7 +109,7 @@
 ## 2026-10-20 兜底扫描新增连接（1 条 · 领域外捕获）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
-| **Dapr Agents（CNCF Dapr × NVIDIA 分布式 Agent 运行时）** | **TeamMind**（最强连接：durable execution 步骤持久化/崩溃恢复、actor 并发、pub/sub 多 agent 编排=TeamMind 生产化分布式问题的成熟参照）/ **Tafcm**（Ollama 本地默认+provider-agnostic Conversation API）/ 引擎（每步持久化+Diagrid 可视化=可观测/审计链基础设施） | Agent Runtime（下一深耕领域）/ durable execution 范式（Temporal 式工作流的 agent 原生 API）/ Memory 与 execution state 分层（双 state store） | 🟡 已出候选卡（Runtime 周头号锚点，quickstart 可复现） | [dapr-agents-distributed-runtime-2026](../03_expansion_queue/candidates/[cand]dapr-agents-distributed-runtime-2026.md) |
+| **Dapr Agents（CNCF Dapr × NVIDIA 分布式 Agent 运行时）** | **TeamMind**（最强连接：durable execution 步骤持久化/崩溃恢复、actor 并发、pub/sub 多 agent 编排=TeamMind 生产化分布式问题的成熟参照）/ **Tafcm**（Ollama 本地默认+provider-agnostic Conversation API）/ 引擎（每步持久化+Diagrid 可视化=可观测/审计链基础设施） | Agent Runtime（下一深耕领域）/ durable execution 范式（Temporal 式工作流的 agent 原生 API）/ Memory 与 execution state 分层（双 state store） | ✅ **已验证（10-30 文档全文+包实测，晋升 validated）** | [dapr-agents-distributed-runtime-2026](../03_expansion_queue/candidates/[cand]dapr-agents-distributed-runtime-2026.md) |
 
 ## 2026-10-20 雷达新增连接（Harness 周 Day2 · 3 条）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
@@ -127,7 +127,14 @@
 ## 2026-10-27 雷达新增连接（Runtime 周 Day2 · 1 条）
 | 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
 |---|---|---|---|---|
-| **Durable Execution 品类（MS Durable Extension / AWS Lambda Go SDK GA / Restate / Mastra / Temporal / Obelisk）** | **TeamMind**（durable state/崩溃恢复生产化方案选型——**Restate Java/Kotlin SDK 直接候选**，对照 Dapr Agents Python）/ **Tafcm**（Obelisk zero token architecture：执行期不耗 token）/ **silver-shield**（durable checkpoint=可审计执行链） | Runtime A 层（Durable Execution：步骤持久化/双 store/恢复语义）/ 缺口③（品类横向扩 7 向，周五验证）/ Mastra AgentController=harness 原语化 | 🟡 已出候选卡（B 级） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
+| **Durable Execution 品类（MS Durable Extension / AWS Lambda Go SDK GA / Restate / Mastra / Temporal / Obelisk）** | **TeamMind**（durable state/崩溃恢复生产化方案选型——**Restate Java/Kotlin SDK 直接候选**，对照 Dapr Agents Python）/ **Tafcm**（Obelisk zero token architecture：执行期不耗 token）/ **silver-shield**（durable checkpoint=可审计执行链） | Runtime A 层（Durable Execution：步骤持久化/双 store/恢复语义）/ 缺口③（品类横向扩 7 向，周五验证）/ Mastra AgentController=harness 原语化 | 🟡 已出候选卡（B 级；10-30 §5 产出 **9 向横向对照表**，品类卡维持观察） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
+
+## 2026-10-31 回灌：Runtime 周验证结论回灌（1 条升级 + 2 条新增）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Dapr Agents（CNCF Dapr × NVIDIA）** | **TeamMind**（durable execution/actor/pub-sub 生产化设计基线）/ **Tafcm**（Conversation API provider-agnostic：Ollama 默认本地）/ 引擎（每步持久化=审计链） | Runtime A/B/C/F 层（DurableAgent 唯一推荐路径：`Agent` deprecated；event sourcing 重放+ContextAwareLogger；双 store+actorStateStore；AgentRunner 三模式） | ✅ **已验证（10-30 文档全文+包实测 1.1.0，晋升 validated）** | [dapr-agents-distributed-runtime-2026](../03_expansion_queue/candidates/[cand]dapr-agents-distributed-runtime-2026.md) |
+| **Durable Execution 品类 9 向对照（验证结论）** | **TeamMind**（选型矩阵：基础设施运行时 Dapr/DBOS/Restate vs harness 包装 Vercel/Notion/Mastra vs serverless 平台 AWS Lambda vs 并发挂起 Infinity；恢复语义两派；Java 首选 Restate） | Runtime A 层（步骤持久化粒度/恢复语义/部署形态四层位） | ✅ 已回灌能力树（缺口①③已闭环；graph durable-state/checkpoint-recovery/suspend-resume 三边） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
+| **AWS Infinity（并发挂起 runtime，10-23 开源）** | **TeamMind**（第三条设计路线对照：stackless coroutine 式挂起/恢复 vs 步骤持久化互补）/ 引擎（slice 有界执行+synthetic tool call 语义） | Runtime A/F 层（挂起恢复派：slice（history→一次补全→至多一个工具调用）/serverless step 模式/75k 并发 8GB） | 🟡 已出候选卡（B 级；10-30 对照完成，research early release 维持观察） | [aws-infinity-agent-runtime-2026-10](../03_expansion_queue/candidates/[cand]aws-infinity-agent-runtime-2026-10.md) |
 
 ## 规则
 
