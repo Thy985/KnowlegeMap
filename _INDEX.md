@@ -136,6 +136,7 @@
 | [2026-10/2026-10-30_radar-fallback_scan.md](05_scan_logs/2026-10/2026-10-30_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 1 起建卡：Cathedral × Anthropic 12h 攻破——DOGE 前成员创办 AI 安全初创在漏洞悬赏测试中，自研 agent 转第三方商业软件漏洞<12h 打穿 Anthropic 内部业务/通信系统，WaPo 披露，进攻侧 agent 实战+第三方供应链信任边界；LiteLLM 根因时间线等均去重） | 📌 |
 | [2026-10/2026-10-31_radar-watch_scan.md](05_scan_logs/2026-10/2026-10-31_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day6 回灌日（能力树 Dapr 锚点改 validated+缺口①③闭环；graph 新增 durable-state/checkpoint-recovery/suspend-resume 三边；connections Dapr 升级 ✅+durable 9 向回灌+Infinity 补行；候选决策：Dapr validated/品类卡与 Infinity 维持观察/Substrate 留后续） | 📌 |
 | [2026-11/2026-11-01_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-01_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周 Day7 周日小结（闭环主体完成：Dapr validated/品类卡与 Infinity 维持观察；缺口①③闭环、② Substrate 复现未执行、④⑤ B 级遗留；**判定延长第二周** 11-02~11-08，头号任务 Agent Substrate 复现验证；下一领域候选 Memory） | 📌 |
+| [2026-11/2026-11-01_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-01_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 2 张建卡：Wiz Black October——10 月 9 个 AI 开发平台遭入侵/环境变量密钥窃取 30 分钟转售/LLMJacking 单案 170 万次 Bedrock 调用；OpenAI DevDay 2026——Agents API public beta+Dots always-on agents+Decisions API，「持续 agent」产品化拐点；Swarmcha.se 高德事件 B 级不写；其余去重） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
