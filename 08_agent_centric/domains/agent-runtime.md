@@ -92,3 +92,20 @@ Agent Runtime（Agent 执行运行时）
 - 候选决策：**Dapr Agents → validated**（10-30 完成，卡 §6 已勾选）✅；Agent Substrate → 未验证留待后续；durable-harness 品类 → 9 向对照完成，品类卡维持观察 ✅
 - 能力树本身：锚点表 Dapr 改 validated、缺口①②③ 状态回填 ✅
 - 待周日（11-01）小结并判断是否换域
+
+## 六、第二周计划（11-02~11-08，延长周）——周一 11-02 补记
+> 11-01 周日小结判定延长第二周：闭环主体完成（Dapr validated、9 向对照、graph/connections 回灌），缺口② Agent Substrate 复现未执行 → 第二周聚焦该验证+缺口④⑤。换域规则不变（一周最小驻留非硬切换）。
+
+### 第二周重点任务清单
+| 任务 | 内容 | 计划日期 | 状态 |
+|---|---|---|---|
+| **Agent Substrate 复现验证（头号任务）** | clone `google/agent-substrate` 仓库 + 官方文档精读 + K8s 零信任模型核对（SPIFFE 身份/egress 代理/密度基准 20 万 agent·500 activations/sec·<500ms suspend-resume）；满足 validated 门槛则晋升（二号锚点，开源） | 周五 11-07 | ⬜ 未执行 |
+| 缺口④ TeamMind 权限模型 vs dsh/MXC 对照 | Harness 周遗留 B 缺口：TeamMind 权限模型与已验证的 credentials seam（dsh）/凭证外挂网关（MXC/Strands Box）对照 | 视进度（周五后） | ⬜ 未执行 |
+| 缺口⑤ Agent Mesh 身份层（SPIFFE） | Harness C3 缺口 MXC Entra 未落地；Runtime 侧候选答案=Agent Substrate SPIFFE/短时凭据/egress 外注证据线 | 视进度（周五后） | ⬜ 未执行 |
+
+### 第二周节奏
+- 周一（11-02）：能力树补记第二周重点（本小节）✅
+- 周二~周四（11-03~11-05）：只追增量（durable/编排运行时新 release、Infinity 后续、Restate/DBOS 新动态），不重复收集
+- 周五（11-07）：Agent Substrate 复现验证（头号任务）+ 缺口④⑤ 视进度
+- 周六（11-08）：验证结果回灌 index/connections/能力树
+- 周日（11-09）：第二周小结，判断换域（下一领域候选：Memory → Computer Use/Browser → AI Infra/本地边缘）
