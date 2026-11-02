@@ -56,6 +56,11 @@
 
 **横向结论**：①层位分明——基础设施运行时（Dapr/DBOS/Restate）vs harness 包装（Vercel/Notion/Mastra）vs serverless 平台（AWS Lambda）vs 并发挂起（Infinity）；②恢复语义两派——**步骤持久化恢复**（Dapr/Restate/DBOS/MS，重放不重执行）vs **挂起恢复**（Infinity/Lambda 暂停，不占资源）；③对 TeamMind 的启示——若走自研：Dapr 双 store+actor+pub-sub 是完整设计基线（本卡 Dapr 已 validated）；若评估现成：Java 栈首选 **Restate**（Java/Kotlin SDK，durable 化既有 agent），其次 Dapr Java SDK 路线；Diagrid agent-integrations wrapper（3 行代码 durable 化既有 agent）为轻量路径候选。
 
+**第二周 Day2 增量（2026-11-03）**：
+- **FACT（durare v0.5.0，crates.io，~10-09 更新）**：DBOS 兼容的 Rust durable execution SDK——普通 async 代码每步 checkpoint 到 Postgres 或 SQLite，崩溃后从最后位置精确恢复；durable 品类**第 10 向**，Rust 语言栈补齐（DBOS 生态向 Rust 扩展；轻量嵌入路线候选）["https://crates.io/keywords/orchestration?page=6"]
+- **FACT（semarun，PyPI 2026-10-21 更新）**："Semantic checkpointing runtime"——Python 长运行 agent 的**语义检查点**：暂停数小时/跨崩溃与部署存活，换模型或工具结果后继续，不重做已完成工作、不损坏意图；恢复语义从「步骤重放 vs 挂起恢复」两派扩展出**第三派候选（语义状态恢复）**，观察位（生态未明，PyPI 自述）["https://pypi.org/project/semarun/"]
+- **普通增量记日志**：AWS Bedrock AgentCore Runtime 实例支持最长 14 天持久性会话+GPU 加速实例+容量提供者（release notes 10-21 更新）——平台托管运行时能力扩展，不单独建卡。
+
 ## 6. 决策
 - [ ] 晋升 validated（品类全景卡，非单点验证对象；各成员已有独立证据）
 - [x] 维持观察（品类 9 向横向完成；成员级验证随 Dapr validated + 未来周次）

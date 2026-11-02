@@ -139,6 +139,7 @@
 | [2026-11/2026-11-01_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-01_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 2 张建卡：Wiz Black October——10 月 9 个 AI 开发平台遭入侵/环境变量密钥窃取 30 分钟转售/LLMJacking 单案 170 万次 Bedrock 调用；OpenAI DevDay 2026——Agents API public beta+Dots always-on agents+Decisions API，「持续 agent」产品化拐点；Swarmcha.se 高德事件 B 级不写；其余去重） | 📌 |
 | [2026-11/2026-11-02_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-02_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day1 周一（能力树补记第二周重点：agent-runtime.md 新增 §六——Agent Substrate 复现 11-07 头号任务+缺口④ TeamMind 权限对照+缺口⑤ Agent Mesh 身份层清单与节奏；current_focus 勾选 ✅；无新候选卡） | 📌 |
 | [2026-11/2026-11-02_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-02_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（领域外 A 级 1 张建卡：埃森哲员工私接 Claude Code 进五角大楼——个人 AI 账号入 DoD 网络运行两月才被发现/凭据疑似外泄，影子 AI+凭据治理双缺口，10 月 AI 安全四方图景之治理维；CSA 平台链攻击并入 LiteLLM 卡；Aoki 窃取 coding 凭据 B 级记日志；其余旧闻去重） | 📌 |
+| [2026-11/2026-11-03_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-03_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day2 周二（只追增量：durable 品类卡并入 2 项 B 级增量——durare v0.5.0 DBOS 兼容 Rust SDK 品类第 10 向；semarun Python 语义检查点恢复语义第三派观察；AgentCore 14 天持久会话记日志；无新候选卡） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
