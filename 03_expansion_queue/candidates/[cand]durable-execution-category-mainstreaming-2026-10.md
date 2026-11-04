@@ -61,6 +61,10 @@
 - **FACT（semarun，PyPI 2026-10-21 更新）**："Semantic checkpointing runtime"——Python 长运行 agent 的**语义检查点**：暂停数小时/跨崩溃与部署存活，换模型或工具结果后继续，不重做已完成工作、不损坏意图；恢复语义从「步骤重放 vs 挂起恢复」两派扩展出**第三派候选（语义状态恢复）**，观察位（生态未明，PyPI 自述）["https://pypi.org/project/semarun/"]
 - **普通增量记日志**：AWS Bedrock AgentCore Runtime 实例支持最长 14 天持久性会话+GPU 加速实例+容量提供者（release notes 10-21 更新）——平台托管运行时能力扩展，不单独建卡。
 
+**第二周 Day4 增量（2026-11-05）**：
+- **FACT（DBOS 官方 10-29 blog）**：DBOS Transact 开源库新工具+分布式执行可靠性提升；**Postgres-backed durable workflows 横向扩展至 100 万 workflows/秒**（10 月里程碑）——DBOS 行能力数据点更新（扩展性维度，选型参考）["https://www.dbos.dev/blog/whats-new-in-dbos-october-2026"]
+- **FACT（Dapr docs 首页 10-31 更新）**：宣传语升级为 "durable, **verifiable** execution"——workflow 执行历史**加密签名、可审计防篡改**（tamper-evident）——Dapr 已验证卡事实更新（可验证执行卖点），不改变已 validated 状态。
+
 ## 6. 决策
 - [ ] 晋升 validated（品类全景卡，非单点验证对象；各成员已有独立证据）
 - [x] 维持观察（品类 9 向横向完成；成员级验证随 Dapr validated + 未来周次）
