@@ -1,6 +1,6 @@
 # 候选对象证据卡
 
-> 状态：`[cand]` ｜ 关联方向：Top20 #07（Agent Runtime）｜ 日期：2026-11-05
+> 状态：`[val]` ｜ 关联方向：Top20 #07（Agent Runtime）｜ 日期：2026-11-05（11-06 validated）
 
 ## 一句话定位
 K8s 生态的 Agent 沙箱生命周期管理（suspend/resume/checkpoint）开始成品类：OpenKruise Agents v0.6.0 提供 CheckpointRestore + 自动暂停/恢复，Genspark SB-Box 提供商业 freeze/resume，平台侧 AgentCore 提供 maxLifetime checkpoint 操作——正对 Runtime 能力树 F 层（生命周期 suspend-resume-checkpoint），与 11-07 Agent Substrate 验证的 <500ms suspend-resume 基准直接对照。
@@ -28,10 +28,21 @@ K8s 生态的 Agent 沙箱生命周期管理（suspend/resume/checkpoint）开�
 | 验证方式（跑通 demo / 精读源码 / 对照实验） | 11-07 周五验证日并入 Agent Substrate 对照：精读 Substrate 的 suspend-resume 机制 vs 本卡三侧实现；OpenKruise 文档精读核对 CheckpointRestore 语义 |
 | 预期完成时间 | 11-07 周五验证日 |
 
-## 5. 验证结果
-<!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
+## 5. 验证结果（2026-11-06 周五验证日）
+**结论：晋升 validated。** 两条独立证据（CNCF 官方 blog + 上游源码/CRD 代码级核对）+ Agent Substrate 开源实现对照。
+
+- **OpenKruise Agents v0.6.0（源码核对，clone `github.com/openkruise/agents`，最新 commit 11-05）**：`api/v1alpha1/` 实存 `checkpoint_types.go`/`commit_types.go`/`trafficpolicy_types.go`/`securityprofile_types.go`/`poolautoscaler_types.go`/`sandboxupdateops_types.go`。CHANGELOG 逐条确认：
+  - `CheckpointControl`（#508）+ `CheckpointRestore` 升级策略（#670）+ 文件系统级 `PersistentContents`（#674，代码枚举 = podInfo/memory/filesystem/**gpuMemory**）；
+  - `PauseStrategy` 代码枚举 = **Stop（直接删 Pod）/ Hibernate（保留 rootfs+内存）**；blog 转述的 Snapshot/CloudDisk 与代码不一致，**以代码为准**（事实修正）；
+  - `SandboxUpdateOps` 两阶段升级暂停沙箱（#710/#750）+ 成功后清除升级策略（#785），支撑「休眠 fleet 批量升级不唤醒」；
+  - `Commit` CRD（#502/#533）+ nerdctl commit/push；resume 原子性（#435）+ 恢复后重新初始化/CSI 重挂（#416）；
+  - **Security Identity Provider**（#324 等）：sandbox access token 签发/传播，**resume/clone/CSI re-mount 时重签**（#633/#637/#638/#639/#671）+ 主动轮换（#475/#742）；
+  - `SecurityProfile` 含 **MCP 工具访问控制**（#614）、header 操纵/令牌变换（#829/#859）、E2B L7 网络规则（#838）——安全面超出单纯生命周期。
+- **Agent Substrate 对照（11-06）**：`agent-substrate/substrate` `go build ./cmd/...` 通过（go 1.27.3）；gRPC `SuspendActor`（"running actor is checkpointed to a new snapshot"）/`ResumeActor`（from latest snapshot）；沙箱 = gVisor 或 Cloud Hypervisor microVM（`ateworker-gvisor`/`ateworker-microvm` 双实现）；request parking（park budget 5s、1024 槽位、指数退避、不取消已提交 restore）；每 actor 短时 SPIFFE X.509 + egress gateway per-actor JWT，actor 零凭据。
+- **限制**：环境无 Docker/K8s/kubectl，未跑集群级 freeze/resume 与密度基准；以上为「代码可编译 + API/CRD/文档」级验证（与 Dapr 10-30、Strands Box 先例同级）。
+- **回灌含义（11-07 周六）**：品类三向（K8s CRD 生命周期 / 商业 VM freeze / 平台 microVM checkpoint）+ 开源基础设施实现（Substrate）足以支撑 F 层「生命周期」从缺口转为已覆盖。
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察（三侧实现均为早期/beta/操作文，等待周五 Substrate 对照后定级）
+- [x] 晋升 validated（2 条独立证据：CNCF 官方 blog 2026-11-03 + 上游源码/CRD 2026-11-05；集群实测受限已注明）
+- [ ] 维持观察
 - [ ] 拒绝（原因）

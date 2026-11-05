@@ -142,6 +142,7 @@
 | [2026-11/2026-11-03_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-03_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day2 周二（只追增量：durable 品类卡并入 2 项 B 级增量——durare v0.5.0 DBOS 兼容 Rust SDK 品类第 10 向；semarun Python 语义检查点恢复语义第三派观察；AgentCore 14 天持久会话记日志；无新候选卡） | 📌 |
 | [2026-11/2026-11-04_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-04_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day3 周三（只追增量：无新卡/无品类卡并入——B 级 2 项记日志：Restate BYOC 托管自有 VPC 选项；IEEE SPIFFE×AI Agent 零信任论文入缺口⑤素材供 11-07 验证日对照；其余去重） | 📌 |
 | [2026-11/2026-11-05_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-05_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day4 周四（只追增量：新候选卡 1 张 B 级 sandbox-lifecycle-suspend-resume——OpenKruise Agents v0.6.0 CNCF 11-03 对照 Genspark SB-Box+AgentCore maxLifetime，正对 F 层生命周期；durable 品类卡并入 DBOS 100 万 wf/s+Dapr verifiable 执行） | 📌 |
+| [2026-11/2026-11-06_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-06_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周周五验证日（Agent Substrate → validated：仓库 clone+go build 通过/15 二进制/gRPC Suspend-Resume/SPIFFE+egress 外注/request parking；事实修正 Titanium IPU 属 ACE；OpenKruise Agents v0.6.0 源码核对 → sandbox-lifecycle 卡 validated；缺口②闭环、⑤部分闭环） | 📌 |
 
 ## 06_expansion_index（扩展索引）📌
 
