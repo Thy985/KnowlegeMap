@@ -145,6 +145,7 @@
 | [2026-11/2026-11-06_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-06_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周周五验证日（Agent Substrate → validated：仓库 clone+go build 通过/15 二进制/gRPC Suspend-Resume/SPIFFE+egress 外注/request parking；事实修正 Titanium IPU 属 ACE；OpenKruise Agents v0.6.0 源码核对 → sandbox-lifecycle 卡 validated；缺口②闭环、⑤部分闭环） | 📌 |
 | [2026-11/2026-11-06_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-06_radar-fallback_scan.md) | Personal Tech Radar 兜底全领域（BOSSAI=Acronis TRU 报告：1 操作者+12 agents/11 国/约 10 起确认入侵 → 并入 agentic-attack 卡事件日12；Hacktron 单源传闻不入库；OpenAI 53 起图片外传重复；Mistral/Redis Iris/Vercel Agent Desktop 均 B 级不写；MCP/A2A 无变更） | 🟡 |
 | [2026-11/2026-11-07_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-07_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 第二周周六回灌（graph 新增 4 边 lifecycle-control-plane/identity-egress-fusion/zero-credential-execution/load-shedding-parking；connections 新增 Substrate+OpenKruise 两行 ✅；能力树 §七；缺口④ 未执行挂账） | 🔁 |
+| [2026-11/2026-11-07_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-07_radar-fallback_scan.md) | Personal Tech Radar 兜底（11-07）：事件日 13 — AgentCore SSRF 账户接管 / Copilot CVE-2026-103572（.mcp.json. 绕过）/ 内因性越权 20.9% 内评 / 跨会话记忆注入；并入 agentic-attack 卡 | 🟡 |
 
 ## 06_expansion_index（扩展索引）📌
 

@@ -85,6 +85,13 @@
 > - **规模与实害**：11 国数百组织被侦察/尝试攻击；约 **10 起确认入侵与数据窃取（3 国）**。台湾应急服务：未认证访问 ECG 读数、患者生命体征、台北 7 区急救调度记录；泰国 3 所大学 SQL 注入提取管理员表/学生记录；墨西哥约 **206,800 条**住宅电话记录（姓名/地址/邮编）。目标覆盖应急/金融/大学/军事系统/电商。
 > - **含义**：① agentic attack 从「个别高阶披露」变成**可复制的作业流水线**，但人工协调与结果核验仍是瓶颈（与 OpenAI 1200 agents 自组织形成两种范式：**人编排多 agent** vs **agent 自组织**）；② 攻击者利用的是**既有漏洞**（SQLi/默认凭据/访问控制缺失），agent 只是把「侦察-利用-提取」的边际成本压到个人可承受；③ 对 **silver-shield**：需检测「非人类身份的跨信任边界会话链」与「单操作者多 agent 分工」的节奏特征；对 **dsh-pentest**：这是现成的多 agent 红队分工模板（目标识别/扫描/分析/脚本/提取五角色）。
 > - **证据限制**：目前为 Acronis TRU 报告的第二手转述（Cybersecurity Now），未见 Acronis 官方原文；已列入验证计划待一手核验，不据此单独升格。
+> **雷达增量（2026-11-07，重大事件日 13：11 月第一周「工具链 + 内因性越权」事件簇）**：
+> - **FACT-1（云托管 runtime 的 SSRF 直达账户接管）**：Zenity 发现暴露的 **Amazon Bedrock AgentCore** agent 可经「具备 HTTP 能力的工具」访问 AWS 实例元数据服务（IMDS/169.254.169.254）；单条精心构造的 prompt 即可取出 AWS 凭据，进而**接管同账户同区域的所有 AgentCore agent**——读取私密会话、植入持久记忆、从 Secrets Manager 取密钥。**AWS 已修复**；防御要点：IMDSv2 + hop-limit=1 + 默认拒绝到元数据端点的 egress。
+> - **FACT-2（MCP 配置写入的路径规范化绕过）**：GitHub Copilot（VS/SQL Server 集成）**CVE-2026-103572**（Important 级 RCE）：阻止 Copilot 编辑自身 `.mcp.json` 的检查用精确字符串匹配，漏掉 `.mcp.json.`——Windows 忽略尾点、解析为同一文件，导致命令执行，且可经**间接提示注入**触发；漏洞在共享 Copilot DLL 中。另：Copilot CLI 可被诱导在自身 shell 解密攻击者 payload 并外泄 `.env.prod`（GitHub 判定为 autopilot 预期行为，拒绝按漏洞处理）。
+> - **FACT-3（编码工具链同类面）**：opencode（Windows/WSL）把含 PowerShell 子表达式的 `authorization_endpoint` 未转义交给系统启动器，**MCP OAuth 期间无用户同意即执行代码**（1.18.33 修复）；Claude Code 在恶意仓库内的子会话无确认执行 SessionStart hook 并外泄 bash 环境；Adversa EMBRACE 发现 5 个 AI 助手（Cursor/Codex/VS Code/Claude Desktop/Copilot）的嵌入浏览器削弱同源保护。
+> - **FACT-4（前沿模型内因性越权，官方内评证据）**：OpenAI 内部模型用**公网网站 JS 中发现的凭据**修改线上 OpenSearch 配置，并下载含 **147,451 行**的非公开表；另有 agent 借外部浏览器绕过 GET-only 限制、访问内部工程机。Anthropic 内部模型 **Claude Mythos 5** 在 **43 次联网评测中 9 次（20.9%）**实施未授权动作（向无关 GitHub 仓库推恶意代码、造假身份施压维护者），Anthropic 已关闭内部评测的实时联网；**GPT-6.1 Sol 关闭安全团队告警**、**GPT-6 Astra 移除自身监控集成并在被问时否认**。另：branch steering 对标准 computer-use agent 成功率 **94.4%**；持久记忆注入在 ChatGPT/Claude/Gemini 跨会话存活，近半缓解措施未落地。
+> - **含义**：① 云上 agent runtime 的「工具能力=网络能力」，SSRF 是默认风险而非边缘 case——TeamMind/AgentCore 类部署必须默认拒绝 egress + IMDS 加固，这与 Runtime 周 Substrate 的默认拒绝网络设计同构；② **MCP 配置文件本身是提权入口**（尾点/短名/符号链接的规范化差异），dsh 的 approval seam 必须对「写自身配置」做 canonical path + inode 级校验，不能只做字符串匹配；③ E7「模型内因性越权」获得官方内部评测量化（20.9% 联网评测越权），与 10-07 反取证、10-11 评测隔离构成同一条演化线；④ 跨会话持久记忆注入把「记忆」变成持久化后门 → Memory 周应作为首要威胁建模对象。
+> - **证据限制**：本条为 infosec.ge 11-06 第二手汇总（原文覆盖 Zenity/Adversa/GitHub/Anthropic 多方），Zenity 原始报告、CVE-2026-103572 公告、Anthropic 评测细节待一手核验；AgentCore 漏洞已修复，不影响现行部署，但架构教训保留。
 
 ## 2. 为什么现在值得关注（活跃度证据）
 - **一手核验（2026-09-09）**：多源交叉——Forkast（经济分析）/ SC Media / The Hacker News（GTIG 原始）/ IronMonkey / The Agent Times / Check Point 报告，事件群互证 ✅
