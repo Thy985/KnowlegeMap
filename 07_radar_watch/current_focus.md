@@ -32,7 +32,7 @@
 - [x] 周一（11-02）：能力树补记第二周重点（Agent Substrate 复现为头号任务；缺口④ TeamMind 权限模型 vs dsh/MXC 对照、缺口⑤ Agent Mesh 身份层 SPIFFE 跟进）✅（能力树新增 §六第二周计划：任务清单+节奏）
 - 周二~周四：只追增量（durable/编排运行时新 release、Infinity 后续、Restate/DBOS 新动态）
 - [x] 周五（11-06）：**Agent Substrate 复现验证完成** ✅——仓库 `agent-substrate/substrate` clone + `go build ./cmd/...` 通过（15 二进制/gRPC Suspend-Resume/SPIFFE/egress 外注/request parking 核对）→ 晋升 validated；OpenKruise Agents v0.6.0 源码核对 → 沙箱生命周期卡 validated；缺口⑤ 部分闭环、缺口④ 顺延（11-07 实为周六，日期已校正）
-- 周六（11-07）：回灌 index/connections/能力树
+- [x] 周六（11-07）：回灌完成 ✅——graph 新增 4 边（lifecycle-control-plane / identity-egress-fusion / zero-credential-execution / load-shedding-parking）；connections 新增 Agent Substrate、OpenKruise Agents v0.6.0 两行（均 ✅ validated）+ durable 品类补「控制面 vs 数据面」维度；能力树新增 §七 第二周回灌；缺口④ 仍未执行（显式挂账）
 - 周日（11-08）：第二周小结，判断换域（下一领域候选：Memory）
 
 ## 换域规则

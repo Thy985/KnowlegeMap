@@ -86,7 +86,7 @@ Agent Runtime（Agent 执行运行时）
 - 任务类型 `agent-runtime-task` → 实例化本领域树，JIT 只展开缺失分支
 - 引擎映射：graph.md 已登记 agent-runtime 领域能力（agent-memory / failure-recovery / multi-agent-orchestration / protocol-interop / scheduling / self-improvement / state-persistence）
 
-## 五、回灌目标（周六 10-31）✅ 已执行
+## 五、回灌目标（周六 10-31）✅ 已执行（第二周回灌见 §七）
 - 更新 `08_agent_centric/capabilities/graph.md`（runtime 相关跨域边：durable-state / lifecycle-management / checkpoint-recovery 等）✅
 - 更新 `04_connections/README.md`（Dapr Agents → TeamMind 连接升级 validated；durable 品类连接补 9 向结论；Infinity 补连接行）✅
 - 候选决策：**Dapr Agents → validated**（10-30 完成，卡 §6 已勾选）✅；Agent Substrate → 未验证留待后续；durable-harness 品类 → 9 向对照完成，品类卡维持观察 ✅
@@ -111,3 +111,23 @@ Agent Runtime（Agent 执行运行时）
 - 周日（11-08）：第二周小结，判断换域（下一领域候选：Memory → Computer Use/Browser → AI Infra/本地边缘）
 
 > **日期校正（11-06）**：11-02 为周一 → 周五=11-06、周六=11-07、周日=11-08；此前「周五 11-07」记录错误，已按实际星期修正。
+
+## 七、第二周回灌（11-07 周六）✅ 已执行
+> 来源：11-06 验证日结论。与 §五（10-31，Dapr + durable 品类）分开记账，避免把两周证据混成一条时间线。
+
+### 7.1 graph 新增 4 条跨域边
+- `lifecycle-control-plane`：agent-runtime（F1/F2）+ governance（生命周期审计）+ observability（状态迁移/park 队列）
+- `identity-egress-fusion`：agent-runtime（D/E）+ governance（C3）+ web-security（egress PEP）
+- `zero-credential-execution`：governance（最小权限）+ agent-runtime（D 层隔离）+ developer-tools（credential-provider）
+- `load-shedding-parking`：agent-runtime（F3 过载）+ observability（容量指标）+ agent-evaluation（过载语义基线）
+
+### 7.2 connections 更新
+- 新增 **Agent Substrate** 连接行（✅ validated；TeamMind 控制面基线 / silver-shield 零凭据 / Tafcm 反面参照）。
+- 新增 **OpenKruise Agents v0.6.0** 连接行（✅ validated；K8s 原生生命周期原语 + 恢复重签）。
+- durable 品类卡补「控制面 vs 数据面」维度，维持 🟡 观察。
+
+### 7.3 本轮未回灌项（如实记录）
+- 缺口④ TeamMind 权限模型 vs dsh/MXC：**仍未执行**（B 级），不因回灌日而假装闭环；顺延至 11-08 小结或第三周。
+- 集群级实测（Substrate 密度/<500ms、OpenKruise freeze/resume）：环境无 Docker/K8s，维持「未实测」标注，不以官方口径冒充实测。
+- 缺口⑤ 维持 🟡：Substrate 开源侧已确认，MXC Entra 托管侧仍未落地。
+

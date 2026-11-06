@@ -136,6 +136,14 @@
 | **Durable Execution 品类 9 向对照（验证结论）** | **TeamMind**（选型矩阵：基础设施运行时 Dapr/DBOS/Restate vs harness 包装 Vercel/Notion/Mastra vs serverless 平台 AWS Lambda vs 并发挂起 Infinity；恢复语义两派；Java 首选 Restate） | Runtime A 层（步骤持久化粒度/恢复语义/部署形态四层位） | ✅ 已回灌能力树（缺口①③已闭环；graph durable-state/checkpoint-recovery/suspend-resume 三边） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
 | **AWS Infinity（并发挂起 runtime，10-23 开源）** | **TeamMind**（第三条设计路线对照：stackless coroutine 式挂起/恢复 vs 步骤持久化互补）/ 引擎（slice 有界执行+synthetic tool call 语义） | Runtime A/F 层（挂起恢复派：slice（history→一次补全→至多一个工具调用）/serverless step 模式/75k 并发 8GB） | 🟡 已出候选卡（B 级；10-30 对照完成，research early release 维持观察） | [aws-infinity-agent-runtime-2026-10](../03_expansion_queue/candidates/[cand]aws-infinity-agent-runtime-2026-10.md) |
 
+
+## 2026-11-07 回灌：Runtime 第二周验证结论（2 条新增 + 1 条补充）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Google Agent Substrate（开源，agent-substrate/substrate）** | **TeamMind**（生命周期控制面设计基线：SuspendActor/ResumeActor + warm worker 解耦 K8s 调度；身份-egress 一体化可直接借用）/ **silver-shield**（actor 零凭据=被攻陷 agent 无可外泄对象；egress PEP 可挂 DLP/注入检测）/ **Tafcm**（反面参照：K8s 集群依赖重，离线优先不适用） | Runtime D/E/F 层（gVisor/microVM 双沙箱、短时 SPIFFE+per-actor JWT、credential provider 外注、request parking 过载语义、10x 密度/<500ms resume 官方口径） | ✅ **已验证（11-06 代码级：go build 通过+API/组件/文档核对；集群实测受限）** | 见能力树锚点表（无独立卡，二号锚点直接入树） |
+| **OpenKruise Agents v0.6.0（CNCF，K8s 原生 agent 沙箱）** | **TeamMind**（若走 K8s 路线：CheckpointRestore 升级策略+PauseStrategy 两档+Commit CRD 即生产级生命周期原语）/ **silver-shield**（Security Identity Provider 在 resume/clone/CSI 重挂时重签 token，防旧身份复用） | Runtime F 层（Stop=删 Pod vs Hibernate=保留 rootfs/内存；PersistentContents 含 gpuMemory；两阶段 SandboxUpdateOps；SecurityProfile 含 MCP 工具访问控制） | ✅ **已验证（11-06 源码级：CRD/CHANGELOG 核对；PauseStrategy 以代码为准修正 blog 转述）** | [sandbox-lifecycle-suspend-resume-2026-11](../03_expansion_queue/candidates/[cand]sandbox-lifecycle-suspend-resume-2026-11.md) |
+| **Durable Execution 品类卡（补充）** | **TeamMind**（新增判定：生命周期 API 应与 sandbox 实现解耦——Substrate/OpenKruise 两条实现佐证「控制面独立」优于把 checkpoint 绑死单一实现） | Runtime A/F 层（恢复语义两派之外补「控制面 vs 数据面」维度） | 🟡 维持观察（§5 补 2 条实现佐证，不升格） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

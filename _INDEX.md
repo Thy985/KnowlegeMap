@@ -144,6 +144,7 @@
 | [2026-11/2026-11-05_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-05_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周 Day4 周四（只追增量：新候选卡 1 张 B 级 sandbox-lifecycle-suspend-resume——OpenKruise Agents v0.6.0 CNCF 11-03 对照 Genspark SB-Box+AgentCore maxLifetime，正对 F 层生命周期；durable 品类卡并入 DBOS 100 万 wf/s+Dapr verifiable 执行） | 📌 |
 | [2026-11/2026-11-06_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-06_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 周第二周周五验证日（Agent Substrate → validated：仓库 clone+go build 通过/15 二进制/gRPC Suspend-Resume/SPIFFE+egress 外注/request parking；事实修正 Titanium IPU 属 ACE；OpenKruise Agents v0.6.0 源码核对 → sandbox-lifecycle 卡 validated；缺口②闭环、⑤部分闭环） | 📌 |
 | [2026-11/2026-11-06_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-06_radar-fallback_scan.md) | Personal Tech Radar 兜底全领域（BOSSAI=Acronis TRU 报告：1 操作者+12 agents/11 国/约 10 起确认入侵 → 并入 agentic-attack 卡事件日12；Hacktron 单源传闻不入库；OpenAI 53 起图片外传重复；Mistral/Redis Iris/Vercel Agent Desktop 均 B 级不写；MCP/A2A 无变更） | 🟡 |
+| [2026-11/2026-11-07_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-07_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 第二周周六回灌（graph 新增 4 边 lifecycle-control-plane/identity-egress-fusion/zero-credential-execution/load-shedding-parking；connections 新增 Substrate+OpenKruise 两行 ✅；能力树 §七；缺口④ 未执行挂账） | 🔁 |
 
 ## 06_expansion_index（扩展索引）📌
 

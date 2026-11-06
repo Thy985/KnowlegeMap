@@ -56,3 +56,12 @@
 - **durable-state** → agent-runtime（A 层 Durable Execution：步骤持久化+双 store+恢复语义），agent-memory（agent-workflow 执行状态 vs agent-memory 会话记忆分层），developer-tools（Diagrid wrapper：durable 化既有 agent 框架）
 - **checkpoint-recovery** → agent-runtime（F 层生命周期：suspend-resume/crash recovery），governance（durable checkpoint=可审计执行链，E 层证据），observability（每步持久化=Diagrid 可视化/审计基础设施）
 - **suspend-resume** → agent-runtime（F1/F3：<500ms 挂起/恢复、slice 有界执行），agent-evaluation（长时程 agent 过程感知评测——LiveMACE 跨域），web-automation（挂起等待零计算=serverless step 模式）
+
+## 2026-11-07 回灌：Runtime 第二周验证结论（Substrate validated / sandbox-lifecycle validated）
+> 来源：11-06 验证日（Agent Substrate 代码级验证晋升 validated / OpenKruise Agents v0.6.0 源码核对晋升 validated）回灌。区分于 10-31「Dapr + durable 品类」线，本轮补的是**生命周期控制面**与**身份-出口一体化**两类边。
+
+- **lifecycle-control-plane** → agent-runtime（F1/F2：SuspendActor/ResumeActor 作为显式控制面，checkpoint 到新 snapshot/from latest snapshot），governance（每次 suspend/resume=可审计生命周期事件），observability（状态迁移点与 park 队列=容量/健康信号）
+- **identity-egress-fusion** → agent-runtime（D/E 层：每 actor 短时 SPIFFE X.509 + egress gateway per-actor JWT，身份与出站策略在同一策略点裁决），governance（C3 身份与信任：MXC Entra 托管侧缺口的开源参照），web-security（egress PEP 与认证边界同构）
+- **zero-credential-execution** → governance（凭据外注=最小权限的可执行形态：actor 仅持 placeholder header），agent-runtime（D 层隔离：被攻陷 agent 无可外泄 secret），developer-tools（credential-provider 作为可插拔组件）
+- **load-shedding-parking** → agent-runtime（F3 伸缩/过载：park budget 5s、parking lot 1024、指数退避，已提交 restore 不取消），observability（park 深度/等待时长=调度容量指标），agent-evaluation（长时程评测的过载语义基线）
+
