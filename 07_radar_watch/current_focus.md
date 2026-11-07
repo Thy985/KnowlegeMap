@@ -34,7 +34,7 @@
 
 ## 换域规则
 - 一周是最小驻留，不是硬切换；闭环未完成可延长到第二周。
-- 下一领域（候选）：Memory → Computer Use / Browser → AI Infra / 本地边缘（接 Tafcm）。
+- 当前领域：**Memory**（2026-11-09 起）→ 下一候选：Computer Use / Browser → AI Infra / 本地边缘（接 Tafcm）。
 
 ## 历史聚焦记录
 | 领域 | 周起始 | 状态 | 产出 |
