@@ -51,7 +51,7 @@ Agent Runtime（Agent 执行运行时）
 | 锚点 | 状态 | 说明 |
 |---|---|---|
 | Dapr Agents（CNCF × NVIDIA） | **validated** ✅（A，10-30 验证） | 开源分布式 Agent 运行时（github.com/dapr/dapr-agents）：DurableAgent 步骤持久化 + 双 state store + actor + pub/sub；**10-30 验证结论**：官方 Getting Started/Core Concepts 全文精读（`Agent` deprecated 仅 `DurableAgent` 推荐；event sourcing 重放+ContextAwareLogger；中断恢复五步确认）+ pip 实测 dapr-agents 1.1.0 API 表面完整；环境缺 Docker 未实跑中断 demo（公开可复现，按 Harness 周先例判定） |
-| Google Agent Compute Engine + Agent Substrate | **validated** ✅（A，11-06 代码级验证，**二号锚点**） | **托管服务 ACE**：Titanium IPU 硅基隔离 microVM + 短时凭据 + egress 外注 + Hyperdisk + copy-on-write/fast checkpoint。**开源 Agent Substrate（11-06 验证）**：仓库 `agent-substrate/substrate`（Apache-2.0，最新 commit 11-05）——`go build ./cmd/...` 通过（go 1.27.3），15 个二进制（ateapi/atecontroller/atelet/atenet/ate-idp-server/ateworker-gvisor/ateworker-microvm/kubectl-ate/credential-provider 等）；gRPC `SuspendActor`/`ResumeActor`（"running actor is checkpointed to a new snapshot"）；sandbox=gVisor 或 Cloud Hypervisor microVM；每 actor 默认短时 SPIFFE X.509 + egress gateway 按策略铸造 per-actor JWT；actor 零凭据，仅持 placeholder header，由 credential provider 在沙箱外替换；request parking（park budget 5s/1024 槽位/指数退避）解决池饱和瞬时 503。**修正**：gVisor/microVM 属开源 Substrate，Titanium IPU 属 ACE 托管侧（此前混述）。README 指标：10x 密度、<500ms resume、>500 activations/s；benchmarking/locust 套件在仓库，集群实测未跑（环境无 Docker/K8s） |
+| Google Agent Compute Engine + Agent Substrate | **validated** ✅（A，11-06 代码级验证，**二号锚点**） | **托管服务 ACE**：Titanium IPU 硅基隔离 microVM + 短时凭据 + egress 外注 + Hyperdisk + copy-on-write/fast checkpoint。**开源 Agent Substrate（11-06 验证）**：仓库 `agent-substrate/substrate`（Apache-2.0，最新 commit 11-05）——`go build ./cmd/...` 通过（go 1.27.3），14 个二进制（ateapi/atecontroller/atelet/atenet/ate-idp-server/ateworker-gvisor/ateworker-microvm/kubectl-ate/credential-provider 等）；gRPC `SuspendActor`/`ResumeActor`（"running actor is checkpointed to a new snapshot"）；sandbox=gVisor 或 Cloud Hypervisor microVM；每 actor 默认短时 SPIFFE X.509 + egress gateway 按策略铸造 per-actor JWT；actor 零凭据，仅持 placeholder header，由 credential provider 在沙箱外替换；request parking（park budget 5s/1024 槽位/指数退避）解决池饱和瞬时 503。**修正**：gVisor/microVM 属开源 Substrate，Titanium IPU 属 ACE 托管侧（此前混述）。README 指标：10x 密度、<500ms resume、>500 activations/s；benchmarking/locust 套件在仓库，集群实测未跑（环境无 Docker/K8s） |
 | Personal Agent Protocol / PAP | [cand] A（协议/身份层相邻） | OAuth-based agent-to-business 身份授权（poppy.json 发现+agent 自标识+客户授权）；v0.1 规范 10 月内交付 |
 | DeepSeek Harness (dsh) | **validated**（S） | credentials seam/sandbox/approval/session-telemetry——Runtime 相邻对照（seam 迁移参考） |
 | Microsoft Execution Containers / MXC | **validated**（A） | OS 级执行隔离（AppContainer/Seatbelt/Bubblewrap/MicroVM 四后端）——运行时隔离对照 |
@@ -64,7 +64,7 @@ Agent Runtime（Agent 执行运行时）
 | 缺口 | 证据 | 优先级 | 状态（10-31 回灌） |
 |---|---|---|---|
 | Dapr Agents 实际验证（quickstart 中断恢复 demo 跑通 + 双 state store 语义核对） | Dapr 卡 §4 验证计划 | **A（周五 10-30 优先）** | ✅ **已闭环（10-30）**：官方文档全文精读（中断恢复步骤/双 store 语义/event sourcing 重放）+ pip 实测 dapr-agents 1.1.0；环境缺 Docker 未实跑 demo，Dapr 已晋升 validated |
-| Agent Substrate 开源复现对照（K8s 部署/SPIFFE/egress 代理/密度基准是否可复现） | 官方博客一手；开源仓库待 clone | A（周五候选） | ✅ **已闭环（11-06）**：仓库 clone（`agent-substrate/substrate`，非 google org）+ `go build ./cmd/...` 通过 + 架构/request-parking/egress 文档精读 + gRPC API/15 二进制/SPIFFE 组件核对；**限制**：无 Docker/K8s，集群密度与 <500ms 实测未跑，基准套件（locust/nighthawk）在仓库可复现 |
+| Agent Substrate 开源复现对照（K8s 部署/SPIFFE/egress 代理/密度基准是否可复现） | 官方博客一手；开源仓库待 clone | A（周五候选） | ✅ **已闭环（11-06）**：仓库 clone（`agent-substrate/substrate`，非 google org）+ `go build ./cmd/...` 通过 + 架构/request-parking/egress 文档精读 + gRPC API/14 二进制/SPIFFE 组件核对；**限制**：无 Docker/K8s，集群密度与 <500ms 实测未跑，基准套件（locust/nighthawk）在仓库可复现 |
 | durable execution 品类横向（Dapr vs Vercel durable-harness vs Notion Gen-6：步骤持久化粒度/恢复语义/部署形态） | 10-25 兜底移交信号 | A（周五对照池） | ✅ **已闭环（10-30）**：9 向横向对照表产出（四层位+恢复语义两派+TeamMind 启示），见 durable 品类卡 §5；品类卡维持观察 |
 | TeamMind 权限模型 vs dsh/MXC 对照（Harness 周遗留 B 缺口） | 03_project_landscape；Harness 能力树缺口节 | B（Runtime 周内顺带） | ⬜ 未执行（B 级遗留，可延长） |
 | Agent Mesh 身份层落地（Harness C3 缺口：MXC Entra coming soon 未落地） | Harness 能力树缺口节 | B（Runtime 侧 SPIFFE 是候选答案，Agent Substrate 可对照） | 🟡 **部分闭环（11-06）**：Substrate 身份模型代码级确认——每 active actor 默认短时 SPIFFE X.509（含 actor identity+atespace，可联邦外部 IdP）、egress gateway 按策略铸造 per-actor JWT、`ate-idp-server` + `podcertcontroller` 组件落地、token 轮换/恢复重签；与 11-04 IEEE 论文（SPIRE 1h TTL/50% 轮换）形成「开源实现 vs 学术验证」对照；Harness C3 的托管侧落地仍待 MXC Entra |
@@ -79,7 +79,7 @@ Agent Runtime（Agent 执行运行时）
 
 ## 三、本周验证计划（周五 10-30 用，2-3 个高价值候选）
 1. **Dapr Agents quickstart 实测**（`03_durable_agent_http.py`）：杀进程→重启→验中断恢复不重放已完成调用；核对双 state store 配置（agent-memory vs agent-workflow）→ **10-30 执行：quickstart 直链 raw.githubusercontent 已死（link dead）+ 环境无 Docker/Dapr CLI/Redis/Ollama → 改走官方文档全文精读 + pip 包级实测（dapr-agents 1.1.0 API 表面完整）；中断恢复步骤官方文档确认；Dapr 晋升 validated** ✅
-2. **Agent Substrate 开源对照**：clone/文档级核对架构（SPIFFE/egress 代理/密度基准），判断本地 K8s 复现可行性 → **11-06 执行（第二周周五）**：仓库 `agent-substrate/substrate` clone 成功，`go build ./cmd/...` 通过，15 二进制 + gRPC Suspend/Resume + SPIFFE/egress 外注/request parking 文档与实现核对；无 Docker/K8s 未跑集群基准 → **晋升 validated**（代码可编译+API/机制可核验，按 Dapr 先例）✅
+2. **Agent Substrate 开源对照**：clone/文档级核对架构（SPIFFE/egress 代理/密度基准），判断本地 K8s 复现可行性 → **11-06 执行（第二周周五）**：仓库 `agent-substrate/substrate` clone 成功，`go build ./cmd/...` 通过，14 二进制 + gRPC Suspend/Resume + SPIFFE/egress 外注/request parking 文档与实现核对；无 Docker/K8s 未跑集群基准 → **晋升 validated**（代码可编译+API/机制可核验，按 Dapr 先例）✅
 3. **durable execution 品类横向**：Dapr Agents vs Vercel durable-harness vs Notion Gen-6 三向对照 → **10-30 执行：扩为 9 向横向对照表产出**（+MS/AWS Lambda/Restate/Mastra/DBOS/Infinity；四层位+恢复语义两派+TeamMind 启示：Java 首选 Restate）✅
 
 ## 四、任务视图（Capability Tree 动态实例化锚点）
@@ -99,7 +99,7 @@ Agent Runtime（Agent 执行运行时）
 ### 第二周重点任务清单
 | 任务 | 内容 | 计划日期 | 状态 |
 |---|---|---|---|
-| **Agent Substrate 复现验证（头号任务）** | clone `agent-substrate/substrate` 仓库 + 官方文档精读 + K8s 零信任模型核对（SPIFFE 身份/egress 代理/密度基准）；满足 validated 门槛则晋升（二号锚点，开源） | 周五 11-06（原误记 11-07，11-07 实为周六） | ✅ **已完成（11-06）**：`go build ./cmd/...` 通过；15 二进制；gRPC Suspend/Resume；SPIFFE/egress 外注/request parking 核对；晋升 validated（集群实测受限） |
+| **Agent Substrate 复现验证（头号任务）** | clone `agent-substrate/substrate` 仓库 + 官方文档精读 + K8s 零信任模型核对（SPIFFE 身份/egress 代理/密度基准）；满足 validated 门槛则晋升（二号锚点，开源） | 周五 11-06（原误记 11-07，11-07 实为周六） | ✅ **已完成（11-06）**：`go build ./cmd/...` 通过；14 二进制；gRPC Suspend/Resume；SPIFFE/egress 外注/request parking 核对；晋升 validated（集群实测受限） |
 | 缺口④ TeamMind 权限模型 vs dsh/MXC 对照 | Harness 周遗留 B 缺口：TeamMind 权限模型与已验证的 credentials seam（dsh）/凭证外挂网关（MXC/Strands Box）对照 | 视进度（周五后） | ⬜ 未执行（B 级遗留，顺延至周六/或第三周） |
 | 缺口⑤ Agent Mesh 身份层（SPIFFE） | Harness C3 缺口 MXC Entra 未落地；Runtime 侧候选答案=Agent Substrate SPIFFE/短时凭据/egress 外注证据线 | 视进度（周五后） | 🟡 部分完成（11-06）：Substrate 身份模型代码级确认（短时 SPIFFE X.509+per-actor JWT+ate-idp-server+恢复重签），与 IEEE 论文对照；托管侧 MXC Entra 仍缺 |
 
@@ -131,3 +131,39 @@ Agent Runtime（Agent 执行运行时）
 - 集群级实测（Substrate 密度/<500ms、OpenKruise freeze/resume）：环境无 Docker/K8s，维持「未实测」标注，不以官方口径冒充实测。
 - 缺口⑤ 维持 🟡：Substrate 开源侧已确认，MXC Entra 托管侧仍未落地。
 
+## 八、第二周小结（11-08 周日）✅ + 换域判定
+
+> 记账原则：第一周（10-26~11-01）证据见 §五；第二周（11-02~11-08）证据见 §七。本节只做审计与判定，不重复罗列。
+
+### 8.1 两周产出（分周记账）
+| 周 | 候选 | 验证 | 回灌 | 净产出 |
+|---|---|---|---|---|
+| 第一周（10-26~11-01） | durable 品类 B 卡（9 向）、AWS Infinity B 卡 | Dapr Agents **validated**（10-30）；durable 9 向横向 | graph 3 边、connections 回灌（10-31） | 1 个 validated 锚点 + 1 张品类卡 + 3 边 |
+| 第二周（11-02~11-08） | sandbox-lifecycle B 卡（11-05） | Agent Substrate **validated**（11-06，代码级）；sandbox-lifecycle **validated**（11-06，上游源码） | graph 4 边、connections 2 行（11-07） | 2 个 validated（锚点 + 品类卡）+ 4 边 |
+
+### 8.2 缺口闭环审计
+| 缺口 | 结论 | 证据位置 |
+|---|---|---|
+| ① Dapr 实测 | ✅ 闭环（10-30） | §二锚点表 / Dapr 卡 §5 |
+| ② Substrate 复现 | ✅ 闭环（11-06）：clone + `go build ./cmd/...` exit 0 + gRPC/文档/组件核对 | §七 / 11-06 日志 |
+| ③ durable 品类横向 | ✅ 闭环（10-30）：9 向对照（+11-03 补 2 向观察） | 品类卡 §5 |
+| ④ TeamMind 权限 vs dsh/MXC | ❌ **未执行**（B 级），显式挂账，随 Memory 周携带 | §7.3 |
+| ⑤ Agent Mesh 身份层 | 🟡 部分闭环：开源侧（Substrate SPIFFE/per-actor JWT/恢复重签）已确认；托管侧 MXC Entra 仍缺 | §二缺口表 |
+
+### 8.3 未完成与限制（不粉饰）
+- **集群级实测未做**：环境无 Docker/kubectl/K8s。Substrate 的 10x 密度 / <500ms resume / >500 activations/s 与 OpenKruise 的 freeze-resume 均为**官方口径或代码推断，非实测**。仓库内 `benchmarking/locust`、`nighthawk-*` 可复现，是有环境后的第一动作。
+- **缺口④ 未执行**：TeamMind 权限模型至今未与 dsh credentials seam / MXC 容器隔离做逐项对照。换域不等于该问题消失，已转挂 Memory 周（记忆作用域与权限同源）。
+- **事实修正已落地**：`cmd/` 二进制数为 **14**（此前多处写 15，已全库修正）；Titanium IPU 属 ACE 托管侧（11-06 已修正）。
+
+### 8.4 换域判定：Runtime → Memory（2026-11-09 周一起）
+判定依据（按 README 换域规则，唯一标准是闭环）：
+1. 三环闭合：候选（Dapr/Substrate/sandbox-lifecycle）→ 验证（10-30/11-06）→ 回灌（10-31/11-07）两周内完成，无「只收集不验证」的悬挂候选。
+2. 高价值锚点双落地：Dapr Agents（开源分布式运行时）+ Agent Substrate（K8s 零信任运行时）均 validated，且两者构成本领域「步骤持久化 vs 挂起恢复」两派的可对照基线。
+3. 剩余缺口不阻塞换域：④ B 级（已挂账）、⑤ 托管侧超出当前可验证范围（环境与账号限制），继续留在 Runtime 周也无法推进。
+> 下一领域：**Memory**（README 顺序建议的下一站）。携带输入：Runtime 已确认「执行状态（workflow store/snapshot）≠ 会话记忆（memory store）」的分层；11-07 兜底事件日 13 的「跨会话持久记忆注入跨 ChatGPT/Claude/Gemini 存活、近半缓解未落地」作为 Memory 周首要威胁素材。
+
+### 8.5 遗留清单（跨周携带）
+- 缺口④ TeamMind 权限对照（B）→ Memory 周内以「记忆作用域/租户隔离」视角执行。
+- 集群实测（Substrate/OpenKruise）→ 待有 K8s 环境，非待办承诺。
+- 缺口⑤ 托管侧 MXC Entra → 持续观察，不设期限。
+- Infinity / durable 品类卡 → 维持 🟡 观察，不占下周带宽。

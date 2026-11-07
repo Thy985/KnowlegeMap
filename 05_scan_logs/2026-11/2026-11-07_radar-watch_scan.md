@@ -3,7 +3,7 @@
 > 领域：Runtime，第二周（11-02~11-08）。当天分工：**把 11-06 验证日结论回灌 index / connections / 能力树**。不新增扫描，不引入新候选。
 
 ## 回灌输入（11-06 已验证结论）
-1. **Agent Substrate → validated**（`agent-substrate/substrate`；`go build ./cmd/...` 通过；15 二进制；gRPC `SuspendActor`/`ResumeActor`；gVisor/microVM；短时 SPIFFE X.509 + per-actor JWT；actor 零凭据 + credential provider 外注；request parking 5s/1024；官方口径 10x 密度/<500ms resume/>500 activations/s，集群未实测）。
+1. **Agent Substrate → validated**（`agent-substrate/substrate`；`go build ./cmd/...` 通过；14 二进制；gRPC `SuspendActor`/`ResumeActor`；gVisor/microVM；短时 SPIFFE X.509 + per-actor JWT；actor 零凭据 + credential provider 外注；request parking 5s/1024；官方口径 10x 密度/<500ms resume/>500 activations/s，集群未实测）。
 2. **`[val]sandbox-lifecycle-suspend-resume-2026-11.md` → validated**（OpenKruise Agents v0.6.0：CheckpointControl/CheckpointRestore/PersistentContents（含 gpuMemory）/PauseStrategy=Stop|Hibernate/Commit CRD/SandboxUpdateOps 两阶段/Security Identity Provider 恢复重签/SecurityProfile 含 MCP 工具管控）。
 
 ## 回灌动作

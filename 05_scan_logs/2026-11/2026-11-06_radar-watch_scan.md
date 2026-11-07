@@ -9,7 +9,7 @@
 ## 验证 1：Google Agent Substrate（二号锚点，头号任务）
 - **仓库地址修正**：官方仓库为 `https://github.com/agent-substrate/substrate`（不在 google org；`google/ax` 是构建其上的上层编排器 AX/Agent Executor）。首轮 clone `google/agent-substrate` 失败（Repository not found），已按官方 README 交叉链接纠正。
 - **构建验证**：`go build ./cmd/...` **通过（exit 0）**，go 1.27.3 linux/amd64。
-- **产物核对**：`cmd/` 下 **15 个二进制**——`ateapi`（控制面 gRPC）、`atecontroller`、`atelet`（节点代理）、`atenet`（网络/路由）、`ate-idp-server`（身份提供方）、`ateworker-gvisor` / `ateworker-microvm`（双沙箱实现）、`ate-setup`、`credential-provider`、`objectstore-plugin`、`podcertcontroller`、`kubectl-ate`、`dataplane`、`benchmarking`。
+- **产物核对**：`cmd/` 下 **14 个二进制**——`ateapi`（控制面 gRPC）、`atecontroller`、`atelet`（节点代理）、`atenet`（网络/路由）、`ate-idp-server`（身份提供方）、`ateworker-gvisor` / `ateworker-microvm`（双沙箱实现）、`ate-setup`、`credential-provider`、`objectstore-plugin`、`podcertcontroller`、`kubectl-ate`、`dataplane`、`benchmarking`。
 - **生命周期语义（代码级）**：`api/ateapi/v1/ateapi.proto` 暴露 `SuspendActor`（"A running actor is checkpointed to a new snapshot"）与 `ResumeActor`（"Resume an actor from its latest snapshot"）——与能力树 F1 suspend-resume 直接对应。
 - **隔离/身份/网络（文档级 + 组件级）**：
   - 沙箱必须是 gVisor（runsc）或 Cloud Hypervisor microVM，**不支持普通 Linux 容器**；
