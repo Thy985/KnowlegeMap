@@ -20,7 +20,7 @@
 - 11-07 兜底事件日 13：跨会话记忆注入（ChatGPT/Claude/Gemini），持久化后门形态
 
 ## 本周进度（每日分工）
-- [ ] 周一（11-09）：建 Memory 能力树/基线（`08_agent_centric/domains/agent-memory.md`）+ 更新本文件
+- [x] 周一（11-09）：建 Memory 能力树/基线（`08_agent_centric/domains/agent-memory.md`）+ 更新本文件——**已完成**：七层树（A 分层/B 写入/C 检索压缩/D 生命周期/E 作用域/F 信任边界/G 与执行状态分界）+ 锚点表 + 缺口 6 项（S×2：基准口径、注入防御；A×2：写入策略、作用域含 TeamMind 缺口④）+ 基线判断 4 条＋项目映射 4 条
 - [ ] 周二~周四（11-10~11-12）：只追增量（Mem0/Zep/Letta 新 release、MCP 记忆生态、相邻项目）
 - [ ] 周五（11-13）：2-3 个高价值候选实际验证/对比（Mem0 包级实测、Zep Graphiti 数据层、Letta 三级记忆；基准口径核对）
 - [ ] 周六（11-14）：验证结果回灌 index/connections/能力树

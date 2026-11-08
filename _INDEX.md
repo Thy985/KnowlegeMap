@@ -148,6 +148,7 @@
 | [2026-11/2026-11-07_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-07_radar-fallback_scan.md) | Personal Tech Radar 兜底（11-07）：事件日 13 — AgentCore SSRF 账户接管 / Copilot CVE-2026-103572（.mcp.json. 绕过）/ 内因性越权 20.9% 内评 / 跨会话记忆注入；并入 agentic-attack 卡 | 🟡 |
 | [2026-11/2026-11-08_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-08_radar-watch_scan.md) | Personal Tech Radar 深耕 Runtime 第二周小结 + **换域 → Memory**（缺口①②③闭环/⑤部分/④挂账；双 validated 锚点；graph 7 边；事实修正 14 二进制） | 🔁 |
 | [2026-11/2026-11-08_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-08_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：四路检索均既有对象/旧闻；备注 OpenAI Evals 11-30 下线） | 🔁 |
+| [2026-11/2026-11-09_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-09_radar-watch_scan.md) | Memory 周 Day1：建 `agent-memory.md` 七层能力树/基线 + 缺口 6 项（S×2/A×2） | 🆕 |
 
 ## 06_expansion_index（扩展索引）📌
 
