@@ -21,7 +21,8 @@
 
 ## 本周进度（每日分工）
 - [x] 周一（11-09）：建 Memory 能力树/基线（`08_agent_centric/domains/agent-memory.md`）+ 更新本文件——**已完成**：七层树（A 分层/B 写入/C 检索压缩/D 生命周期/E 作用域/F 信任边界/G 与执行状态分界）+ 锚点表 + 缺口 6 项（S×2：基准口径、注入防御；A×2：写入策略、作用域含 TeamMind 缺口④）+ 基线判断 4 条＋项目映射 4 条
-- [ ] 周二~周四（11-10~11-12）：只追增量（Mem0/Zep/Letta 新 release、MCP 记忆生态、相邻项目）
+- [x] 周二（11-10）：只追增量——**已完成**：新升 A 级锚点 **腾讯 Hy-Memory 2.0**（三层开源：30B-A3B 记忆专用模型 + 框架 + MemHub 10 工具共享记忆；自报 LoCoMo 72.6% 开源第一，口径不可与 Mem0 横比）+ **Zep Community Edition 开源**（10-29，周五改为读 CE 源码）+ 研究三则（MemMachine/MINDSET/Curation+Consolidation）+ Mem0 spaCy 实体子集合实现细节 + **基准批判第 4 条**（LoCoMo 94%/LongMemEval 85% 题只需 ≤2 会话 → 命题错位）。
+- [ ] 周三~周四（11-11~11-12）：只追增量（MCP 记忆生态、相邻项目）
 - [ ] 周五（11-13）：2-3 个高价值候选实际验证/对比（Mem0 包级实测、Zep Graphiti 数据层、Letta 三级记忆；基准口径核对）
 - [ ] 周六（11-14）：验证结果回灌 index/connections/能力树
 - [ ] 周日（11-15）：本周小结 + 换域判断（下一候选 Computer Use / Browser）

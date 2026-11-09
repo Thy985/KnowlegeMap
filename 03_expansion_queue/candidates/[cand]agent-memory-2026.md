@@ -70,6 +70,14 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **Agent Memory Below the Prompt（arXiv 2603.04428）**：**KV state block pool 记忆**——量化 + 持久化 KV——Gemma 3 12B 上冷 TTFT **172096→1264ms（32K 上下文 136×）**——记忆与 KV 缓存交叉（对照 KVCacheStore 产品线）["https://memorypapers.org/"]
 > - **含义**：① **记忆基准进入"合成 vs 真实"分层**——BEAM 类测上限、RealCompanion 类测真实收益——dsh 记忆投入判断应以"真实对话收益"为准绳（recency 窗口先满足再谈长期记忆）；② **DyadMem 的用户×关系双维**提示记忆评测要覆盖"与用户的关系状态"（dsh-memory-evolve 做用户侧记忆时参考）；③ **KV 记忆交叉**（Below-the-Prompt 136×）——记忆持久化与 KV 缓存是同一存储问题的两面，Tafcm 本地记忆与推理共享存储层设计
 
+> **雷达增量（2026-11-10，Memory 周 Day2：新锚点 + 基准口径补强）**：
+> - **A｜腾讯混元 Hy-Memory 2.0（2026-10-16，三层全开源）**：Hy-Memory-30B-A3B（Apache-2.0，约 3B 激活，专训记忆读写策略，可接入 Mem0/MemOS 置换其写入模型）+ Hy-Memory 框架 SDK + MemHub 应用（**10 个 AI 工具共享一份个人记忆**：Cursor/Codex/Claude Code/OpenCode/OpenClaw/Qwen Code/DeepSeek Harness 等）。**自称首个提出工作记忆 + 代码记忆**：工作记忆记任务目标/已定做法/阶段结果/可复用经验及**适用条件**；代码记忆记「为什么这样改」。**自报成绩**：LoCoMo 72.6%（开源框架第一，1527 道非 adversarial 题）、MemoryArena 55.31（+10.2pt）、CodeMemoryBench 64.2/35.6、SWE-ContextBench 28.3；存储占用 6.06%；腾讯自选股（多跳召回 50→90、冲突消解 67→83）、iWiki、腾讯新闻已生产接入。**口径警示**：全部厂商自报、无独立复测，且题目子集/裁判模型与 Mem0 的 92.5 不同，**不可直接横比**。→ 升 A 级锚点：直接覆盖 B 层（写入策略变成可托管/可检查的模型工件）与 A2/A4（工作与程序性记忆）；MemHub 是 E 层跨工具共享记忆的现成样本。
+> - **A−｜Zep Community Edition 开源（2026-10-29）**：首个基于知识图谱的 Zep 产品开源（Context Graph 双时间线：事实何时为真 + 何时入库）。→ 周五验证由「读文档」改为「读 CE 源码 + 本地起服务」，可部分绕开 Zep 云端口径不可复现的问题。
+> - **B｜研究三则**：**MemMachine**（arXiv 2604.04853，ground-truth-preserving：存原始 episode、少做 LLM 抽取、邻域上下文扩展检索——正对 C4 证据保留）；**MINDSET**（arXiv 2610.08586，能量式记忆演化，控制器跨 benchmark 迁移性受质疑）；**Complementary Curation and Consolidation**（arXiv 2610.39790，离线合并冗余/移除冲突过期——正对 D3 巩固）。
+> - **B｜Mem0 实现细节（Memory Atlas 11-01 核对）**：实体链接用 spaCy（`mem0ai[nlp]`），实体写入平行向量子集合 `{collection}_entities`，检索将实体匹配分并入 dense+keyword 排序；2026 年已移除 Neo4j/Memgraph/Kuzu/AGE/Neptune 外部图库——与「v3 去图」一致，作为周五源码核对点。
+> - **基准批判第 4 条（新增）**：LoCoMo **94%** 的问题只需 ≤2 个历史 session 即可作答，LongMemEval **85%**，主要基准平均约 **1 个 session**；LongMemEval 最多允许 2 次知识更新。即名义测「长期记忆」，实际多在测「单/双会话检索」，与 agent 真实长程任务（数十至数百会话、持续改写）错位——这解释了为何 recency 窗口与小上下文即可高分，是周五口径核对的第一优先假设。
+
+
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
 - **GrowthOS**（个人经验管理）与 **TeamMind**（跨会话状态）直接可接

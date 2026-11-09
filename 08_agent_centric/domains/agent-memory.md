@@ -55,14 +55,15 @@ Agent Memory
 | 锚点 | 状态 | 关键事实（含口径警示） |
 |---|---|---|
 | **Mem0** | [cand] S，周五验证 | v3 单遍 ADD-only 抽取 + 多信号检索；**已移除图存储**；README 92.5 LoCoMo / 94.4 LongMemEval **注明反映托管平台**，开源 SDK 拿不到；v3 相对 v2：LoCoMo 71.4→91.6、LongMemEval 67.8→93.4，成本降 3-4x |
-| **Zep / Graphiti** | [cand] S，周五验证 | 时序知识图谱 + 双时间事实 + ABAC/保留/审计；自报 DMR 94.8%；**原 LoCoMo 84% 被独立复测更正为 58%** |
+| **Zep / Graphiti** | [cand] S，周五验证 | 时序知识图谱 + 双时间事实 + ABAC/保留/审计；自报 DMR 94.8%；**原 LoCoMo 84% 被独立复测更正为 58%**；**增量（10-29）：Community Edition 开源**（首个图驱动 Zep 产品），周五改为读 CE 源码/本地服务验证 |
+| **Hy-Memory 2.0（腾讯混元）** | **A，本周新升锚点**（10-19 曾仅记日志） | 三层全开源：Hy-Memory-30B-A3B（Apache-2.0，记忆读写专用，可换装到 Mem0/MemOS）+ 框架 SDK + MemHub（10 工具共享记忆）。自称首个「工作记忆 + 代码记忆」框架；**自报** LoCoMo 72.6%（开源框架第一，1527 题）/ MemoryArena 55.31 / CodeMemoryBench 64.2·35.6；存储占用 6.06%；腾讯三条业务线生产接入。**口径警示：厂商自报、子集与 Mem0 不同，不可横比** |
 | **Letta** | [cand] S，周五验证 | Core-Recall-Archival 自编辑；2026-03 转 memory-first harness；Context Constitution / Context Repositories（git 式版本化）；Letta Code（Apache-2.0） |
 | **A-MEM** | [cand] 观察 | Zettelkasten 动态组织 + 链接，NeurIPS 2025，研究向 |
 | **MemEval（ProsusAI）** | [cand] 观察 | 独立排名：Memory-R1 0.389 / SimpleMem 0.358 / Mem0 0.344 / MemU 0.299 F1 |
 | **平台内置记忆** | 已记日志 | Anthropic Managed Agents `/mnt/memory/` 文本目录（public beta）；AgentCore Memory 短/长时分离 + `IngestData` 直投；MS AF `agent-framework-azure-cosmos-memory`；Vercel eve 文件记忆 + 可插拔存储；Grok Build markdown notes |
 | **文件/Git-native 路线** | 已记日志 | OKF Agent Memory（Markdown+YAML frontmatter，本地 BM25）与 KnowlegeMap 仓库同构；Mem0 × dsh 原生插件（跨会话 memory bank） |
-| **学术新线（2026-09~10）** | 已记日志 | EnSIMem（证据保留）/ SEEM（事件帧+RPE 溯源）/ Synapse（激活扩散）/ Jev-Mem（双过程+检索预算）/ Mem++（版本化）/ DyadMem（用户×关系双维）/ RealCompanion（真实对话审计）/ Below-the-Prompt（KV 作为记忆，136× 冷 TTFT） |
-| **基准批判三条** | FACT（二手分析） | ① 长上下文模型碾压记忆管线（LoCoMo +35.2pp / LongMemEval +33.4pp）；② LoCoMo 1540 题中 99 处得分污染（6.4%）；③ RealCompanion：recency 窗口已满足 95.9% 交互，96% 增益来自无需历史的查询 |
+| **学术新线（2026-09~11）** | 已记日志 | EnSIMem（证据保留）/ SEEM（事件帧+RPE 溯源）/ Synapse（激活扩散）/ Jev-Mem（双过程+检索预算）/ Mem++（版本化）/ DyadMem（用户×关系双维）/ RealCompanion（真实对话审计）/ Below-the-Prompt（KV 作为记忆，136× 冷 TTFT）/ MemMachine（2604.04853，ground-truth-preserving）/ MINDSET（2610.08586，能量式演化）/ Curation+Consolidation（2610.39790，离线巩固） |
+| **基准批判四条** | FACT（二手分析） | ① 长上下文模型碾压记忆管线（LoCoMo +35.2pp / LongMemEval +33.4pp）；② LoCoMo 1540 题中 99 处得分污染（6.4%）；③ RealCompanion：recency 窗口已满足 95.9% 交互，96% 增益来自无需历史的查询；④ **命题错位**（11-10 新增）：LoCoMo 94% 题只需 ≤2 个 session、LongMemEval 85%，平均约 1 个 session，LongMemEval 最多 2 次知识更新——名义「长期记忆」实际测「单/双会话检索」 |
 
 ### 缺口（本领域内、本周重点）
 | 缺口 | 证据 | 优先级 |
