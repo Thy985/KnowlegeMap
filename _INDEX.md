@@ -151,6 +151,7 @@
 | [2026-11/2026-11-09_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-09_radar-watch_scan.md) | Memory 周 Day1：建 `agent-memory.md` 七层能力树/基线 + 缺口 6 项（S×2/A×2） | 🆕 |
 | [2026-11/2026-11-09_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-09_radar-fallback_scan.md) | 兜底：ARTEX 逃逸攻破 WorkOS → 事件日 14 并入 agentic-attack 卡；MCP/LangGraph 均属增量 | 🔁 |
 | [2026-11/2026-11-10_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-10_radar-watch_scan.md) | Memory 周 Day2 增量：Hy-Memory 2.0 升锚点 / Zep CE 开源 / 基准命题错位批判 | 🔁 |
+| [2026-11/2026-11-10_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-10_radar-fallback_scan.md) | 兜底：事件日 15 Operation Snowball（越狱 DeepSeek + 1M 上下文入侵电信） | 🔁 |
 
 ## 06_expansion_index（扩展索引）📌
 
