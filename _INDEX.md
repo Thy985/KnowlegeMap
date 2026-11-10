@@ -153,6 +153,7 @@
 | [2026-11/2026-11-10_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-10_radar-watch_scan.md) | Memory 周 Day2 增量：Hy-Memory 2.0 升锚点 / Zep CE 开源 / 基准命题错位批判 | 🔁 |
 | [2026-11/2026-11-10_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-10_radar-fallback_scan.md) | 兜底：事件日 15 Operation Snowball（越狱 DeepSeek + 1M 上下文入侵电信） | 🔁 |
 | [2026-11/2026-11-11_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-11_radar-watch_scan.md) | Memory 周 Day3 增量：StreamMemBench「存储≠会用」/ Zep Agent Skills 程序化沉淀 | 🔁 |
+| [2026-11/2026-11-11_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-11_radar-fallback_scan.md) | 兜底：事件日 16 NEAR AI SGLang RCE + 澳洲强制 AI 事件报告 | 🔁 |
 
 ## 06_expansion_index（扩展索引）📌
 
