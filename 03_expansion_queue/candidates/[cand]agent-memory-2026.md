@@ -78,6 +78,14 @@ Agent 记忆实现层 2026 已分层成熟（Mem0 抽取式 / Zep 时序知识�
 > - **基准批判第 4 条（新增）**：LoCoMo **94%** 的问题只需 ≤2 个历史 session 即可作答，LongMemEval **85%**，主要基准平均约 **1 个 session**；LongMemEval 最多允许 2 次知识更新。即名义测「长期记忆」，实际多在测「单/双会话检索」，与 agent 真实长程任务（数十至数百会话、持续改写）错位——这解释了为何 recency 窗口与小上下文即可高分，是周五口径核对的第一优先假设。
 
 
+> **雷达增量（2026-11-11，Memory 周 Day3：记忆产品转向「程序化沉淀」+ 基准批判第 5 条）**：
+> - **A｜StreamMemBench（arXiv 2606.14571，streaming benchmark for future-oriented assistance）**：两步流式评测 + 四项指标（evidence recall / initial evidence use / feedback incorporation / follow-up reuse），对 8 个记忆系统 × 2 个 backbone 实测：**即使证据已被存储、反馈已在局部被吸收，系统仍普遍无法把观察到的证据用于后续决策、也无法把反馈转成可靠的后续行为**。→ 这是比「命题错位」更狠的一刀：LongMemEval 类基准测的是「能不能检索到答案」，StreamMemBench 测的是「检索到之后行为有没有改变」——记忆的最后一公里是**行为闭环**，不是 recall。列为**基准批判第 5 条**。
+> - **A−｜Zep v4 Context API（10-14）+ Zep Agent Skills（11-05）**：v4 让 agent「沿着图的连接导航、并读回 Zep 是怎么构建这个图的」（可解释的图检索）；Agent Skills 把 **agent 运行轨迹蒸馏为「已验证程序」**，声称在业务任务基准上让更小更便宜的模型跑到接近 Opus 5.5 的水平。→ 与 Hy-Memory 的「代码记忆/为什么这样改」同向：2026 记忆赛道正从「存什么、怎么检索」转向「**把经验沉淀成可复用、可验证的技能**」（A4 程序性记忆 + D3 巩固的合流），这也是唯一能解释「小模型 + 记忆 ≈ 大模型」的机制假设。
+> - **B｜MEMTIER（arXiv 2605.03675）**：分层记忆架构 + 检索瓶颈分析；LongMemEval-S 全 500 题、Qwen2.5-7B、**消费级 6GB GPU** 上 Acc 0.382 / F1 0.412，比全上下文基线（0.050）**+33pp**。→ 对 Tafcm「本地、不先引向量库」路线的直接反例参照：分层 + 检索预算可以在小显存上跑出可用精度，但绝对分数仍低（38%），别把「超基线」当「够用」。
+> - **B｜OpenViking（Context Database for AI Agents，VLDB 2026 论文）**：以「上下文数据库」定位记忆层，自报在 LoCoMo 采样上让 Claude Code / Hermes / OpenClaw 达到 **80%+ 长期记忆准确率**、输入 token 降 **63%**。→ 已出现在 Hy-Memory 的对照名单里（此前只作为他方对比项，未单独入库），本周补记；自报口径，未独立复测。
+> - **剔除**：`meko-mem0`（10-26，Mem0 92.5/94.4 数字的翻版包装，无新机制）；`mcp-memory-service` v10.9 / `-lite`（小工具迭代，B 级以下）；`me0`（自建 MCP 记忆服务，含 consent scopes / outputSchema，可作 E/F 层素材，暂不入库）。
+
+
 ## 2. 与我的知识/项目关系
 - **五维模型 Memory 维度** 缺实现层实证——本卡补上
 - **GrowthOS**（个人经验管理）与 **TeamMind**（跨会话状态）直接可接

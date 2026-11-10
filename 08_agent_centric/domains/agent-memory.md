@@ -63,7 +63,7 @@ Agent Memory
 | **平台内置记忆** | 已记日志 | Anthropic Managed Agents `/mnt/memory/` 文本目录（public beta）；AgentCore Memory 短/长时分离 + `IngestData` 直投；MS AF `agent-framework-azure-cosmos-memory`；Vercel eve 文件记忆 + 可插拔存储；Grok Build markdown notes |
 | **文件/Git-native 路线** | 已记日志 | OKF Agent Memory（Markdown+YAML frontmatter，本地 BM25）与 KnowlegeMap 仓库同构；Mem0 × dsh 原生插件（跨会话 memory bank） |
 | **学术新线（2026-09~11）** | 已记日志 | EnSIMem（证据保留）/ SEEM（事件帧+RPE 溯源）/ Synapse（激活扩散）/ Jev-Mem（双过程+检索预算）/ Mem++（版本化）/ DyadMem（用户×关系双维）/ RealCompanion（真实对话审计）/ Below-the-Prompt（KV 作为记忆，136× 冷 TTFT）/ MemMachine（2604.04853，ground-truth-preserving）/ MINDSET（2610.08586，能量式演化）/ Curation+Consolidation（2610.39790，离线巩固） |
-| **基准批判四条** | FACT（二手分析） | ① 长上下文模型碾压记忆管线（LoCoMo +35.2pp / LongMemEval +33.4pp）；② LoCoMo 1540 题中 99 处得分污染（6.4%）；③ RealCompanion：recency 窗口已满足 95.9% 交互，96% 增益来自无需历史的查询；④ **命题错位**（11-10 新增）：LoCoMo 94% 题只需 ≤2 个 session、LongMemEval 85%，平均约 1 个 session，LongMemEval 最多 2 次知识更新——名义「长期记忆」实际测「单/双会话检索」 |
+| **基准批判五条** | FACT（二手分析） | ① 长上下文模型碾压记忆管线（LoCoMo +35.2pp / LongMemEval +33.4pp）；② LoCoMo 1540 题中 99 处得分污染（6.4%）；③ RealCompanion：recency 窗口已满足 95.9% 交互，96% 增益来自无需历史的查询；④ **命题错位**（11-10 新增）：LoCoMo 94% 题只需 ≤2 个 session、LongMemEval 85%，平均约 1 个 session，LongMemEval 最多 2 次知识更新——名义「长期记忆」实际测「单/双会话检索」；⑤ **存储≠会用**（11-11 新增，StreamMemBench）：8 系统 × 2 backbone，证据已存储、反馈已局部吸收，仍无法用于后续决策或转成后续行为——测 recall 的基准测不到记忆的最后一公里 |
 
 ### 缺口（本领域内、本周重点）
 | 缺口 | 证据 | 优先级 |
@@ -101,4 +101,4 @@ Agent Memory
 - **Tafcm**：recency 窗口优先（RealCompanion 95.9%），文件/Markdown 记忆 + 本地索引，不先引向量库；token 预算按 Jev-Mem 思路设上限与自适应停止。
 - **TeamMind**：跨会话状态按 G1/G2/G3 与记忆分离；作用域四级（会话/用户/租户/agent）+ ABAC；承接 Runtime 缺口④，与 dsh credentials seam / MXC 隔离做逐项对照。
 - **silver-shield**：F1~F5 作为检测维度（注入、污染、谄媚、审计缺失、删除不彻底），PersistBench 作为基线用例来源。
-- **KnowlegeMap / GrowthOS**：证据保留（EnSIMem/SEEM）+ 版本化（Mem++）已被本项目实践验证，可作为"文件即记忆"路线的自身样本。
+- **KnowlegeMap / GrowthOS**：证据保留（EnSIMem/SEEM）+ 版本化（Mem++）已被本项目实践验证，可作为"文件即记忆"路线的自身样本。；**2026 产品化信号（11-05 Zep Agent Skills：运行轨迹→已验证程序，小模型接近 Opus 5.5；Hy-Memory 代码记忆记「为什么这样改」）** |
