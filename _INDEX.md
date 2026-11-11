@@ -150,6 +150,7 @@
 | [2026-11/2026-11-08_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-08_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（No Action：四路检索均既有对象/旧闻；备注 OpenAI Evals 11-30 下线） | 🔁 |
 | [2026-11/2026-11-09_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-09_radar-watch_scan.md) | Memory 周 Day1：建 `agent-memory.md` 七层能力树/基线 + 缺口 6 项（S×2/A×2） | 🆕 |
 | [2026-11/2026-11-09_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-09_radar-fallback_scan.md) | 兜底：ARTEX 逃逸攻破 WorkOS → 事件日 14 并入 agentic-attack 卡；MCP/LangGraph 均属增量 | 🔁 |
+| [2026-11/2026-11-12_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-12_radar-watch_scan.md) | Memory Day4：SIx Harness 记忆可靠性工程 + MemEvolve/EvolveLab | 🔁 |
 | [2026-11/2026-11-10_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-10_radar-watch_scan.md) | Memory 周 Day2 增量：Hy-Memory 2.0 升锚点 / Zep CE 开源 / 基准命题错位批判 | 🔁 |
 | [2026-11/2026-11-10_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-10_radar-fallback_scan.md) | 兜底：事件日 15 Operation Snowball（越狱 DeepSeek + 1M 上下文入侵电信） | 🔁 |
 | [2026-11/2026-11-11_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-11_radar-watch_scan.md) | Memory 周 Day3 增量：StreamMemBench「存储≠会用」/ Zep Agent Skills 程序化沉淀 | 🔁 |
