@@ -24,8 +24,8 @@
 - [x] 周二（11-10）：只追增量——**已完成**：新升 A 级锚点 **腾讯 Hy-Memory 2.0**（三层开源：30B-A3B 记忆专用模型 + 框架 + MemHub 10 工具共享记忆；自报 LoCoMo 72.6% 开源第一，口径不可与 Mem0 横比）+ **Zep Community Edition 开源**（10-29，周五改为读 CE 源码）+ 研究三则（MemMachine/MINDSET/Curation+Consolidation）+ Mem0 spaCy 实体子集合实现细节 + **基准批判第 4 条**（LoCoMo 94%/LongMemEval 85% 题只需 ≤2 会话 → 命题错位）。
 - [x] 周三（11-11）：只追增量——**已完成**：**StreamMemBench**（基准批判第 5 条「存储≠会用」）+ **Zep v4 / Agent Skills**（运行轨迹→已验证程序，程序性记忆产品化）+ MEMTIER（分层记忆在 6GB GPU 上 +33pp 超全上下文，但绝对分仅 38%）+ OpenViking（上下文数据库，自报口径）。
 - [x] 周四（11-12）：只追增量——**已完成**：**SIx Harness《Memory as Infrastructure》**（8 个月单会话线/633k 行，SQLite 本地混合检索 + anti-recurrence store + precision-gated injection + 11 项健康门/心跳/告警预算；四类失败含「静默记忆死亡」；独立佐证「存储≠会用」）+ **MemEvolve/EvolveLab**（记忆架构元进化，12 系统统一代码库，可作周五对照台）；B 级记日志（OMEGA TTL 遗忘、mcp-memory-service v11、MemoryGraph SDK、MemoryMesh）｜**待周六回灌**：能力树新增「记忆子系统可靠性/可观测性」层（健康门/心跳/降级可见/告警预算）
-- [ ] 周五（11-13）：2-3 个高价值候选实际验证/对比（Mem0 包级实测、Zep Graphiti 数据层、Letta 三级记忆；基准口径核对）
-- [ ] 周六（11-14）：验证结果回灌 index/connections/能力树
+- [x] 周五（11-13）：2-3 个高价值候选实际验证/对比——**已完成**：Mem0 OSS `2.2.1` 纯本地实跑（假 LLM/embedder + qdrant 本地路径，add→get_all 2 条→search top 0.837）+ 代码级确认单遍 ADDITIVE 抽取/无图依赖/`expiration_date` TTL/`timestamp` 仅平台 + **SDK 回执不一致**（add 返回 `{"results": []}` 而 get_all 有 2 条）｜**EvolveLab 源码核对**：13 providers = 12 基线 + Evolver，统一 `provide_memory`/`take_in_memory` 接口，但需 API keys + GAIA/WebWalkerQA/xBench 数据集｜**Zep 事实修正**：CE 公告实为 2024-09-26 且现已 deprecated，开源线为 Graphiti，10-29 博文是双时间线机制说明 → Day2「CE 开源」判定作废降 B｜未执行：Letta 三级记忆 API、Zep 本地服务（前提消失）
+- [ ] 周六（11-14）：验证结果回灌 index/connections/能力树——**待办**：① 能力树新增「记忆子系统可靠性/可观测性」层（SIx Harness 健康门/心跳/降级可见/告警预算）；② 基准批判第 5 条并入 SIx「retrieved-but-unused」作第二独立证据；③ 新增「SDK 回执不一致」为基准/口径批判证据；④ 修正能力树锚点表 Zep 行（CE deprecated → Graphiti 开源 + 云产品）；⑤ connections 增/改 Mem0 本地可跑、EvolveLab 对照台两行
 - [ ] 周日（11-15）：本周小结 + 换域判断（下一候选 Computer Use / Browser）
 
 ## 换域记录
