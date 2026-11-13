@@ -65,3 +65,9 @@
 - **zero-credential-execution** → governance（凭据外注=最小权限的可执行形态：actor 仅持 placeholder header），agent-runtime（D 层隔离：被攻陷 agent 无可外泄 secret），developer-tools（credential-provider 作为可插拔组件）
 - **load-shedding-parking** → agent-runtime（F3 伸缩/过载：park budget 5s、parking lot 1024、指数退避，已提交 restore 不取消），observability（park 深度/等待时长=调度容量指标），agent-evaluation（长时程评测的过载语义基线）
 
+## 2026-11-14 回灌：Memory 周验证结论（可靠性三条边）
+> 来源：11-12 SIx Harness 增量 + 11-13 验证日（Mem0 本地实跑 / EvolveLab 结构核对 / Zep CE 作废）回灌。补的是**记忆子系统的失败可检测性**，与 durable-state / checkpoint-recovery 那组「执行状态」边区分开。
+
+- **memory-reliability** → agent-memory（H1~H5：健康门/心跳/降级诚实/静默腐化防护/告警预算；SIx 11 项自检 + 85 次失败零静默），observability（健康门单行状态 `MEMORY-HEALTH: 11/11 GREEN`、hook 心跳把"该发生却没发生"变成事件=可观测原语），governance（"静默失败必须可检测"作为可靠性证据要求，与 E 层审计同构），runtime-defense（记忆被静默腐化=防御面整体失效，且不会出现在任何 benchmark 上）
+- **honest-degradation** → agent-memory（向量腿坏自动降 BM25-only、永不阻塞主流程、失败写 log-once），agent-runtime（降级语义与 fail-open/fail-closed 同构：可降级但必须显式），developer-tools（降级记录=排障证据，避免"看起来正常"）
+- **write-receipt-verification** → agent-memory（Mem0 `add()` 返回 `{"results": []}` 而数据已落库：回执≠状态），governance（F4 审计要求"回执与状态不一致必须可查"），agent-evaluation（写入确认是评测前置条件，否则评测对象本身不明）

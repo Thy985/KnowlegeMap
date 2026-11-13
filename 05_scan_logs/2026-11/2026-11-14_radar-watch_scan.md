@@ -2,7 +2,7 @@
 
 > 分工：周六把本周验证结果回灌 index / connections / 能力树 / graph。**不追新资讯**（本周增量已在 Day2~Day5 收口）。
 
-## 回灌动作（7 项）
+## 回灌动作（8 项）
 
 | # | 动作 | 依据 | 落点 |
 |---|---|---|---|
@@ -13,6 +13,7 @@
 | 5 | 新增锚点 SIx Harness（A）、MemEvolve/EvolveLab（A−）；Mem0 行补本地实测 | 11-12 增量 + 11-13 验证 | §二 锚点表 |
 | 6 | 缺口表：两行改"已完成"，新增"可靠性落地"A 与"回执语义"B | 同上 | §二 缺口表 |
 | 7 | connections 新增 2 行 + Zep 修正注 | Mem0 本地可跑（Tafcm/TeamMind/silver-shield 三个连接面）、EvolveLab 作对照台 | `04_connections/README.md` |
+| 8 | graph 新增 3 条跨域边（memory-reliability / honest-degradation / write-receipt-verification） | 同上；把 H 层的失败可检测性接到 observability / governance / runtime-defense | `08_agent_centric/capabilities/graph.md` |
 
 ## 能力树新增 H 层的理由（为什么它不是运维附录）
 SIx 的四类失败里，前三类（知识丢失 / 重复劳动 / 上下文退化）都能靠改策略缓解，只有第四类**静默记忆死亡**不行——索引、embedding 服务、hook 管道悄悄坏掉，而所有人继续信任它。这类失败不会出现在任何 benchmark 上，也不会被"再调一次检索参数"发现。所以可靠性必须是能力树的一层，而不是上线后才补的监控：健康门要在启动时说话，心跳要让"该发生却没发生"成为可检测事件，降级要诚实（向量腿坏了就降 BM25，不要假装还在语义检索）。

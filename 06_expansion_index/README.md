@@ -440,12 +440,13 @@
 > - B 级仅记日志：`fast-agent` CVE-2026-102610（CVSS 6.4，`serve` 绑 0.0.0.0 暴露 MCP）+ `Agenta` CVE-2026-123786（SSRF），11-06 入 NVD，属中危配置类，不写卡。MCP 规范仍 2026-07-28、A2A 稳定线仍 v1，无重大变更。
 
 ## 2026-11-14 Personal Tech Radar 回灌（周六，Memory 周 Day6）
-> **Changed（回灌日，不追新资讯）**：把 11-13 三项验证结论落到能力树/connections，共 7 处动作。
+> **Changed（回灌日，不追新资讯）**：把 11-13 三项验证结论落到能力树/connections，共 8 处动作。
 > - 能力树新增 **H 层 子系统可靠性/可观测性**：H1 健康门 / H2 心跳（"不触发也算失败"）/ H3 降级诚实（向量腿坏了降 BM25、不阻塞主流程）/ H4 静默腐化防护（维度守卫、水位新鲜度）/ H5 告警预算；基线判断增第 5 条「记忆从两个相反方向失败（重复发现 / 依据腐坏记录行动），可靠性是一等公民；静默记忆死亡比低分更危险」。
 > - 基准批判 ⑤ 并入 SIx「retrieved-but-unused」作**第二独立证据**（合成基准 vs 8 个月真实工作流两条独立链）；新增 ⑥ **口径穿透到回执层**——Mem0 `add()` 返回 `{"results": []}` 而数据已落库。
 > - Zep 锚点修正：CE 公告 **2024-09-26** 且现已 deprecated，`getzep/zep` 为 examples 仓库 → 开源线只剩 **Graphiti**，产品线只剩云 + BYOC；原「CE 开源」判定作废，降 B 观察。
 > - 新增锚点 **SIx Harness（A）**、**MemEvolve/EvolveLab（A−）**；Mem0 行补本地实测（2.2.1 / 单遍 ADDITIVE / 无图依赖 / TTL 可用 / 回执空）。
 > - connections 新增 2 行（Mem0 本地可跑 ✅、EvolveLab 🟡 结构验证）+ Zep 口径修正注。
+> - graph 新增 3 条跨域边：`memory-reliability`（→ observability / governance / runtime-defense）、`honest-degradation`（→ agent-runtime / developer-tools）、`write-receipt-verification`（→ governance / agent-evaluation）。
 > - 未回灌：Letta 三级记忆 API 实测、Graphiti 本地部署成本、EvolveLab 行为验证、SIx/MemEvolve 源码级核对——均如实挂账。
 
 ## 去重基准（扫描前先查这里）
