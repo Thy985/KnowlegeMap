@@ -144,6 +144,14 @@
 | **OpenKruise Agents v0.6.0（CNCF，K8s 原生 agent 沙箱）** | **TeamMind**（若走 K8s 路线：CheckpointRestore 升级策略+PauseStrategy 两档+Commit CRD 即生产级生命周期原语）/ **silver-shield**（Security Identity Provider 在 resume/clone/CSI 重挂时重签 token，防旧身份复用） | Runtime F 层（Stop=删 Pod vs Hibernate=保留 rootfs/内存；PersistentContents 含 gpuMemory；两阶段 SandboxUpdateOps；SecurityProfile 含 MCP 工具访问控制） | ✅ **已验证（11-06 源码级：CRD/CHANGELOG 核对；PauseStrategy 以代码为准修正 blog 转述）** | [sandbox-lifecycle-suspend-resume-2026-11](../03_expansion_queue/candidates/[cand]sandbox-lifecycle-suspend-resume-2026-11.md) |
 | **Durable Execution 品类卡（补充）** | **TeamMind**（新增判定：生命周期 API 应与 sandbox 实现解耦——Substrate/OpenKruise 两条实现佐证「控制面独立」优于把 checkpoint 绑死单一实现） | Runtime A/F 层（恢复语义两派之外补「控制面 vs 数据面」维度） | 🟡 维持观察（§5 补 2 条实现佐证，不升格） | [durable-execution-category-mainstreaming-2026-10](../03_expansion_queue/candidates/[cand]durable-execution-category-mainstreaming-2026-10.md) |
 
+## 2026-11-14 回灌：Memory 周验证结论（2 条新增 + 1 条修正）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Mem0 OSS（`mem0ai 2.2.1`）本地可跑形态** | **Tafcm**（本地记忆层最低成本参照，但不建议先上：qdrant 本地路径 + 假 LLM/embedder 才能零云跑通）/ **TeamMind**（写入确认语义：`add()` 回执不可信，须查 `get_all`）/ **silver-shield**（"回执≠落库"作为新的检测项） | Memory B1（单遍 ADDITIVE 抽取）/ C1（向量+关键词混合）/ D1（`expiration_date` TTL）/ F4（写入审计：回执与状态不一致） | ✅ **已验证（11-13 本地实跑：add→get_all 2 条→search 0.837；依赖无图库）** | [agent-memory-2026](../03_expansion_queue/candidates/[cand]agent-memory-2026.md) |
+| **EvolveLab（MemEvolve 的 12 基线统一实现）** | **引擎 / Validation**（记忆架构横向对照台：同一接口换 13 个 provider）/ **GrowthOS**（记忆结构可按任务域元进化，而非一次选型定终身） | Memory A5（分层映射可比）/ D3（巩固重组可被"进化"搜索）/ 评测方法论（跨基准/跨 backbone 迁移证据） | 🟡 **结构验证（13 providers / 统一接口核对；未跑行为，需 API keys + 三套数据集）** | [agent-memory-2026](../03_expansion_queue/candidates/[cand]agent-memory-2026.md) |
+
+> **修正（同日）**：`agent-memory-2026` 连接行仍有效，但卡内 Zep「Community Edition 开源（10-29）」判定**作废**——CE 公告实为 2024-09-26 且已 deprecated，开源线只剩 Graphiti（自建需 Neo4j 5.26+/FalkorDB + Redis）；`getzep/zep` 是 examples 仓库，不是产品代码。连接关系不变，证据口径已更正。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。
