@@ -151,6 +151,7 @@
 | [2026-11/2026-11-09_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-09_radar-watch_scan.md) | Memory 周 Day1：建 `agent-memory.md` 七层能力树/基线 + 缺口 6 项（S×2/A×2） | 🆕 |
 | [2026-11/2026-11-09_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-09_radar-fallback_scan.md) | 兜底：ARTEX 逃逸攻破 WorkOS → 事件日 14 并入 agentic-attack 卡；MCP/LangGraph 均属增量 | 🔁 |
 | [2026-11/2026-11-12_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-12_radar-fallback_scan.md) | 事件日 17：Claude Code 邮箱进入上下文被模型外发 | 🔁 |
+| [2026-11/2026-11-15_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-15_radar-watch_scan.md) | Memory 周 Day7 小结：三环审计（验证环不完整，不宣称闭环）+ 判定**延长第二周**（F 层 S / E 层 A 未验证）；第二周 11-20 三项实测 | 🔁 |
 | [2026-11/2026-11-14_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-14_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（Potentially Relevant：Claude Duet 审批门 / Gemini agent swarms 观察，来源不足不建卡；其余全为事件日 15~17 已记） | 🔁 |
 | [2026-11/2026-11-14_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-14_radar-watch_scan.md) | Memory Day6 回灌：新增 H 可靠性层、批判六条、Zep 锚点修正 | 🔁 |
 | [2026-11/2026-11-13_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-13_radar-fallback_scan.md) | 兜底事件日 18：Notion × Fireworks 泄露暴露 AI 对话，ZDR 合同≠技术 | 🔁 |
