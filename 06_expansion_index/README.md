@@ -455,6 +455,11 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-16 Personal Tech Radar 兜底（事件日 19：CVE-2026-111770）
+- **CVE-2026-111770**（NVD 2026-11-06）：`@modelcontextprotocol/server` **2.0.0–2.3.0** 在多客户端共用单实例 stateless HTTP transport / McpServer 时，**把响应与通知投给错误客户端**；消息仅用 JSON-RPC request id 关联连接，客户端 id 从 0 起 → 正常并发即碰撞。**2.3.0 修复但需改代码**（per-request/per-session 构造）；stdio 与 per-call 工厂不受影响；**CVSS 未评估**。
+- 判定：**A**，并入既有 S 卡 `[cand]agentic-attack-2026.md`「重大事件日 19」，不新建碎片卡。
+- 去重：MCP 规范仍 2026-07-28（无变更）；MAF MCP 2.x 迁移（11-11）为已知对象；Agent 365 SDK 2.0、Foundry 协议库迁移、LangGraph v1.2.0 均 B 级；OpenAI×HF、Fireworks 已在事件日 13/14/16。
+
 ## 2026-11-16 Personal Tech Radar 深耕（Memory 第二周 Day1·F/E 层建基线）
 - **新对象（S 卡）**：`03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md` —— 记忆信任边界与多租户隔离证据集群。
   - **Trojan Hippo**（arXiv 2605.01970，cs.CR）：单次不可信工具写→休眠 payload→按敏感话题触发外泄；4 记忆后端 × 前沿模型 **ASR 85–100%**，**100 次良性会话后仍激活**；四种防御压到 **0–5%**，utility 代价差异大。**A**

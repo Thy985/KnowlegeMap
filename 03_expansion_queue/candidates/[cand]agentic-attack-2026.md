@@ -109,6 +109,14 @@
 > - **含义**：① **长上下文成为攻击侧的工作记忆**——1M token 让主 agent 数天内始终持有全部主机、口令与失败尝试，不必像人类那样重读笔记；这是「上下文即记忆」在真实入侵中的生产级验证，也是 Memory 周基准批判①（长上下文碾压记忆管线）的攻防侧镜像；② **默认口令 + 未分段内网**仍是主根因——AI 没有发明新弱点，只是把旧弱点的发现/串联速度提高到防守方补丁节奏之外；③ 检测范式须从「异常时段 / 慢速潜伏」转向「高速扫描、批量失败登录、异常隧道」的**速率与重复性**特征；④ 越狱模板 + 拒答词表规避已是可复用工程件，**模型侧拒答不是安全边界**，harness 侧工具权限与出网控制才是。
 > - **证据限制**：Malbear Labs 报告经 Cyber Security News（11-09）二手转述，**精确规模未经独立核验**（原文亦注 outcomes were not independently verified）；VAPOR PANDA×ARTEX×DeepSeek 的关联来自 CrowdStrike 二手转述；未取得 Malbear Labs 原始报告、CrowdStrike 原文与公开目录证据。
 
+> **雷达增量（2026-11-16，重大事件日 19：MCP 官方 SDK 跨客户端响应错投——无状态化没消解的隔离问题）**：
+> - **FACT-1（CVE-2026-111770，NVD 2026-11-06 收录）**：`@modelcontextprotocol/server`（MCP 官方 TypeScript SDK 服务端）**2.0.0 至 2.3.0** 存在跨客户端投递缺陷——当应用在启动时**构造一次** stateless HTTP transport 或 `McpServer`/`Server` 实例、并让多个客户端共用时，响应与通知会被投给**错误的客户端**。
+> - **FACT-2（机制是 id 碰撞，不是内存越界）**：消息只用 **JSON-RPC request identifier** 关联连接；SDK 客户端**从 0 开始编号**，所以正常并发下就会撞号。触发面需要「HTTP 端点可被多个客户端访问 + 单实例复用」两个条件同时成立；**stdio 服务、按调用工厂构造的 server 不受影响**。
+> - **FACT-3（修复方式带破坏性）**：**2.3.0 修复**，但升级会让「复用实例」直接失败，因此**必须改应用代码**（改为 per-request / per-session 构造，或自己做 id 命名空间分区），不是纯版本升级。
+> - **FACT-4（严重度尚未定级）**：NVD 页面显示 **CVSS Base Score N/A（NVD assessment not yet provided）**，即影响面明确但分数未评估；未见厂商安全公告与 SDK release note 原文，**在野利用未知**。
+> - **含义**：① **无状态化去掉的是「会话状态」攻击面，不是「隔离」本身**——实例复用与 id 命名空间成了新的租户边界；这与 Memory 周 MemLeak 的结论同构（共享空间即侧信道，filter 不等于隔离）；② 「启动时初始化一个 server 供所有客户端」是极常见的写法（网关、低代码平台、单容器多租户），受影响面比 CVE 编号看起来大；③ 修复必须落到**构造粒度**，只在网关加鉴权不能解决「响应投错人」；④ 与 11-02 华为云社区对 2026-07-28 无状态规范的分析互相印证：规范解决了扩展性与会话状态，**没解决上下文-工具隔离与最小权限强制**；⑤ silver-shield 可加一条确定性检查：MCP HTTP 服务是否「单实例多客户端」+ request-id 是否全局唯一。
+> - **证据限制**：本条一手为 NVD CVE 记录（描述完整），**CVSS 未评估、厂商公告未取得、SDK 2.3.0 release note 未核对**；实际受影响部署数量未知。
+
 > **雷达增量（2026-11-13，重大事件日 18：推理供应商泄露落到客户 AI 对话——Notion × Fireworks 的 ZDR 缺口）**：
 > - **FACT-1（客户侧确认）**：Notion 于 **11-10 / 11-11** 更新安全公告，确认 Fireworks AI 泄露中被访问的数据集**包含 Notion AI 的 Insights 功能所用 chat transcripts**；称受影响 workspace **不足 1%**，且 11-11 已**吊销**在受影响用户消息中发现的 Notion API key。Notion 强调范围仅限 Insights 分析工作流的 transcript，不是全部 Notion AI 使用；AI Meeting Notes（音频/转写/摘要）未受影响（除非其内容被作为 chat 输入）；其余功能未受影响。transcript 多数**无法归属**到作者或 workspace，也不含 tool-call 结果，但**内容可能包含用户输入/输出的任何敏感信息**。
 > - **FACT-2（ZDR 的口径缺口，本条最关键）**：Notion 说明其零数据保留（ZDR）承诺**只覆盖为生成回复而发送给第三方的实时请求**，不覆盖聊天历史与 Insights 这类**为功能而存储/批处理分析**的数据；Notion 为 Insights **把已存储的请求与响应发给 Fireworks 分析**。Fireworks 对 Notion 有**合同性 ZDR 承诺**，但 Notion 调查发现数据**确实从其使用的 Fireworks 端点被保留下来**。→ 合同承诺 ≠ 技术不落盘。
