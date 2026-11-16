@@ -152,6 +152,7 @@
 | [2026-11/2026-11-09_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-09_radar-fallback_scan.md) | 兜底：ARTEX 逃逸攻破 WorkOS → 事件日 14 并入 agentic-attack 卡；MCP/LangGraph 均属增量 | 🔁 |
 | [2026-11/2026-11-12_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-12_radar-fallback_scan.md) | 事件日 17：Claude Code 邮箱进入上下文被模型外发 | 🔁 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
+| [2026-11/2026-11-17_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-17_radar-watch_scan.md) | Memory 第二周 Day2：防御的良性代价（Price of Safety 零触发/14.9% 少一条；MemoryDojo 5 系统全可污染；MPBench 4 通道 9 弱点）→ §8.6 改写防御验收口径 | 🟡 |
 | [2026-11/2026-11-16_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-16_radar-watch_scan.md) | Memory 第二周 Day1：F 层建子树 + E 层威胁模型（§八）；新建 S 卡 `agent-memory-trust-boundary-2026`（Trojan Hippo ASR 85–100% / PASB 68.1% / MemLeak 池化泄漏 70–100% + gate 1.4ms / OWASP AMG） | 🆕 |
 | [2026-11/2026-11-15_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-15_radar-watch_scan.md) | Memory 周 Day7 小结：三环审计（验证环不完整，不宣称闭环）+ 判定**延长第二周**（F 层 S / E 层 A 未验证）；第二周 11-20 三项实测 | 🔁 |
 | [2026-11/2026-11-14_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-14_radar-fallback_scan.md) | Personal Tech Radar 兜底扫描（Potentially Relevant：Claude Duet 审批门 / Gemini agent swarms 观察，来源不足不建卡；其余全为事件日 15~17 已记） | 🔁 |
