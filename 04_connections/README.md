@@ -158,6 +158,11 @@
 | **Trojan Hippo / PASB / OWASP AMG（写入门控三件套）** | **Tafcm**（只存明确表达 + 已确认事实，推断标记 `inferred` 且默认不读回）/ **silver-shield**（provenance、note 权威度异常、自强化循环检测）/ **GrowthOS**（append-only ledger 防改写） | Memory **B5 写入门控** / **F1.2 休眠载荷** / **F3.1 主张升级** / **F4.1 provenance**；SIx 的"诚实降级"在此延伸为"来源降级"：读回时保留原话/推断/已验证三级 | 🟡 证据到账（论文摘要级）；11-20 本地复现 | [agent-memory-trust-boundary-2026](../03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md) |
 | **MemLeak（检索后 ownership gate）** | **TeamMind**（多租户双层强制：查询 filter + 检索后硬门；空 filter 禁止）/ **Tafcm**（单用户保留 `user_id` 字段，多档案时启用）/ **silver-shield**（跨 scope 命中计数作检测信号） | Memory **E4.1~E4.3** / **G3 命名空间隔离**；"共享 embedding 空间即共享侧信道"，filter 不足、gate 才有效（1.4 ms 代价） | 🟡 证据到账（论文摘要级）；11-20 串读实测 | [agent-memory-trust-boundary-2026](../03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md) |
 
+## 2026-11-17 增量：把"防御的代价"做成指标（1 条新增）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Price of Safety（防御良性代价三读数）** | **silver-shield**（新增"防御自身指标"面板：fire rate / withheld rate / token overhead；只报 ASR 视为未评估）/ **Tafcm**（读回过滤只按来源等级与 scope，不按语义相似度删）/ **TeamMind**（读时 gate 只判 ownership，不做内容相关性裁剪） | Memory **F4/F5** 与 **C4 证据保留**；防御验收从"挡住多少"改为"良性流量动了什么"；读时相关性过滤 = 用相关性冒充安全（2.2% → 14.9%） | 🟡 证据到账（论文摘要级）；11-20 观测项 | [agent-memory-trust-boundary-2026](../03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md) |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

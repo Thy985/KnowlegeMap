@@ -28,7 +28,8 @@
 - [x] 周六（11-14）：验证结果回灌 index/connections/能力树——**已完成**：① 能力树新增 **H 层**（H1 健康门/H2 心跳/H3 降级诚实/H4 静默腐化防护/H5 告警预算）+ 判断 5「记忆双向失败，可靠性是一等公民」；② 批判 ⑤ 并入 SIx「retrieved-but-unused」作第二独立证据（注明合成基准 vs 8 个月真实工作流两条独立链）；③ 新增批判 ⑥「口径穿透到回执层」（Mem0 `add()` 空回执）+ 缺口表新增「写入/删除回执语义」B；④ Zep 锚点行修正（CE 2024-09-26 且 deprecated → 开源线 Graphiti；`getzep/zep` 为 examples 仓库）；⑤ connections 新增 Mem0 本地可跑 ✅ / EvolveLab 🟡 两行 + Zep 口径修正注；⑥ graph 新增三条跨域边（memory-reliability / honest-degradation / write-receipt-verification）；另新增锚点 SIx Harness（A）/ MemEvolve（A−），缺口「可靠性落地」A 级挂账
 - [x] 周日（11-15）：本周小结 + 换域判断——**已完成，判定延长第二周（不换 Computer Use）**：净产出 A~H 八层能力树/13 行锚点/批判 2→6/判断 4→5/4 天 8 组增量/3 项验证/11-14 五项回灌；三环审计=候选完整、回灌完整、**验证仅 1 行为级（Mem0）+1 结构级（EvolveLab）+1 否定结论（Zep CE）**，不宣称闭环完整；延长依据三条（F 层 S 缺口是本周唯一未触碰的最高风险 / E 层连续两周挂账 / 第二周可用确定性检查产出可复现证据，性质不同于采集周）；第二周头号任务=**11-19 三项实测**（注入复现 / delete 回执 / 作用域串读）
 - [x] 第二周周一（11-16）：F 层建子树 + E 层威胁模型——**已完成**：能力树 F 层扩到 F1.1~F5.2（休眠载荷/来源伪造/自强化循环/主张升级/哈希基线/删除回执），E 层扩到 E4.1~E4.3（池化 embedding 侧信道/查询 filter/检索后 gate）；新增 §八（4 条威胁路径 + 8 层防御栈 + E 层 5 条设计规则 + 项目落点 + 11-20 用例参数）；新建 S 卡 `[cand]agent-memory-trust-boundary-2026.md`（Trojan Hippo / PASB / MIND / MemLeak / OWASP AMG）
-- [ ] 第二周周二~周四（11-17~11-19）：只追增量（memory guard 类工具 / PersistBench 复现件 / Graphiti×Mem0 对照）
+- [x] 第二周周二（11-17）：只追增量——**已完成**：新增 **Price of Safety**（2609.22818 v3：sanitization/provenance 零触发、异常检测 0.4%、读时 reranker 扣 2.2% 记忆且 14.9% 问题少一条、token +0~4.5%）→ 改写 §8.6 防御验收口径；**MemoryDojo**（155 轨迹 / 5 系统，全部可污染且随架构变化）；**MPBench**（4 通道 / 9 弱点 / 6 类攻击，写入检索越激进越易利用）；MemPoison（CCS'26 选择性抽取绕过）与 MemMorph（工具选择劫持）记 B+；能力树新增锚点 1 行、缺口 1 行、§8.6；S 卡加 §5.1
+- [ ] 第二周周三~周四（11-18~11-19）：继续只追增量（memory guard 类工具 / PersistBench 复现件 / Graphiti×Mem0 对照）
 - [ ] 第二周周五（11-20）：三项实测（注入复现 / delete 回执一致性 / 作用域串读）
 - [ ] 第二周周六（11-21）：回灌 §八 + connections/graph
 - [ ] 第二周周日（11-22）：小结，达标换 Computer Use / Browser（E 层不允许第三次挂账）
