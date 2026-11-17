@@ -163,6 +163,11 @@
 |---|---|---|---|---|
 | **Price of Safety（防御良性代价三读数）** | **silver-shield**（新增"防御自身指标"面板：fire rate / withheld rate / token overhead；只报 ASR 视为未评估）/ **Tafcm**（读回过滤只按来源等级与 scope，不按语义相似度删）/ **TeamMind**（读时 gate 只判 ownership，不做内容相关性裁剪） | Memory **F4/F5** 与 **C4 证据保留**；防御验收从"挡住多少"改为"良性流量动了什么"；读时相关性过滤 = 用相关性冒充安全（2.2% → 14.9%） | 🟡 证据到账（论文摘要级）；11-20 观测项 | [agent-memory-trust-boundary-2026](../03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md) |
 
+## 2026-11-18 增量：记忆后端的成本维度（1 条新增）
+| 外部对象 | 连接的项目 | 连接的知识点 | 状态 | 候选卡 |
+|---|---|---|---|---|
+| **Mem0×Graphiti 成本/精度对照（2601.07978v2）** | **Tafcm**（本地记忆后端默认向量、图记忆按需而非默认；多跳时序查询确实是需求再引入 Graphiti，且要单列成本）/ **silver-shield**（"能删、能证"优先于"能连图"：回执与审计是安全项，图谱是能力项） | Memory **C2 图检索**与 **B1 写入策略**：图记忆的价值在时序推理而非精度；选型必须把加载/资源/网络成本计入 | 🟡 单一测试床，非验证 | — |
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

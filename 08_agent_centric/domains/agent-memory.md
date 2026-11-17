@@ -76,6 +76,7 @@ Agent Memory
 | 锚点 | 状态 | 关键事实（含口径警示） |
 |---|---|---|
 | **Mem0** | [cand] S，周五验证 | v3 单遍 ADD-only 抽取 + 多信号检索；**已移除图存储**；README 92.5 LoCoMo / 94.4 LongMemEval **注明反映托管平台**，开源 SDK 拿不到；v3 相对 v2：LoCoMo 71.4→91.6、LongMemEval 67.8→93.4，成本降 3-4x；**11-13 本地实测（`mem0ai 2.2.1`）**：假 LLM/假 embedder + qdrant 本地路径跑通 `add`→`get_all` 2 条→`search` top **0.837**；代码级确认**单遍 `ADDITIVE_EXTRACTION_PROMPT`**、依赖表**无任何图库**、`expiration_date` TTL 已进 OSS、`timestamp` 仅平台；**`add()` 回执 `{"results": []}` 与 docstring 不符（写入成功但回执空）** |
+| **Mem0 × Graphiti 成本/精度对照（第三方测试床）** | B，观察 | arXiv **2601.07978v2**（分布式多 agent 系统记忆测试床，受控/受限网络两条件）：**Mem0 在效率上显著优于 Graphiti**——加载更快、资源消耗更低、网络开销最小；**精度差异不显著**；按 Pareto 效率框架判定 Mem0 为最优。口径：单一自建测试床、规模有限，既非厂商自报也非大规模独立复测——只能证明"图记忆在该负载下没有精度溢价"，不能证明"图记忆无用" |
 | **Zep / Graphiti** | [cand] S；**CE 开源判定已作废（11-13 修正）** | 时序知识图谱 + 双时间事实 + ABAC/保留/审计，检索 p50 87ms；自报 DMR 94.8%；**原 LoCoMo 84% 被独立复测更正为 58%**。**修正**：CE 公告实为 **2024-09-26**（Daniel Chalef，"首个 KG 驱动 Zep 产品"，底层即 Graphiti），且帮助中心 FAQ 明确 **CE 已 deprecated、不再支持**；`getzep/zep` 仓库自述"不是 Zep 产品"、只有 examples/integrations、无 `legacy/`；10-29 博文是《How Zep Context Graphs keep two timelines for every fact》。→ **开源线只剩 Graphiti**（自建需 Neo4j 5.26+/FalkorDB + Redis），产品线只剩云 + BYOC。产品增量：v4 Context API（10-14，沿图导航 + 读回图构建方式）、Zep Agent Skills（11-05，轨迹→已验证程序） |
 | **Hy-Memory 2.0（腾讯混元）** | **A，本周新升锚点**（10-19 曾仅记日志） | 三层全开源：Hy-Memory-30B-A3B（Apache-2.0，记忆读写专用，可换装到 Mem0/MemOS）+ 框架 SDK + MemHub（10 工具共享记忆）。自称首个「工作记忆 + 代码记忆」框架；**自报** LoCoMo 72.6%（开源框架第一，1527 题）/ MemoryArena 55.31 / CodeMemoryBench 64.2·35.6；存储占用 6.06%；腾讯三条业务线生产接入。**口径警示：厂商自报、子集与 Mem0 不同，不可横比** |
 | **Letta** | [cand] S，周五验证 | Core-Recall-Archival 自编辑；2026-03 转 memory-first harness；Context Constitution / Context Repositories（git 式版本化）；Letta Code（Apache-2.0） |
@@ -102,6 +103,7 @@ Agent Memory
 | **防御的良性代价与误伤率**（不只看 ASR，还要看"从不触发"和"该给没给"） | Price of Safety：sanitization/provenance **零触发**、异常检测 0.4%、reranker 扣 2.2% 记忆并让 14.9% 问题少一条、50 条抽样仅 2 条合理；token +0~4.5% | **A（11-17 新增；直接改写 8.2 防御栈的验收口径）** |
 | 生命周期（遗忘/冲突/版本化）工程实践 | Mem++ 仅有论文；各厂商 TTL 口径不明 | B |
 | 与执行状态共存的命名空间设计 | Dapr 双 store 有先例但无权限对照 | B |
+| 图记忆（Graphiti）相对向量记忆的边际收益 | 仅 2601.07978 单一测试床：精度无显著差异、成本更高；缺 Tafcm 真实笔记负载与多跳时序查询对照 | B |
 | **记忆子系统可靠性**（健康门/心跳/降级可见/告警预算） | SIx Harness 11 项健康门 + 85 次失败零静默；本项目与 Tafcm 均无对应实现 | **A（能力树已补 H 层，落地待做）** |
 | **写入/删除的回执语义**（怎么确认真的写进去 / 真的删干净） | Mem0 `add()` 空回执；事件日 18 供应商侧留存证明"删了主库≠删干净" | B |
 
