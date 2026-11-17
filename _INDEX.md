@@ -153,6 +153,7 @@
 | [2026-11/2026-11-12_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-12_radar-fallback_scan.md) | 事件日 17：Claude Code 邮箱进入上下文被模型外发 | 🔁 |
 | [2026-11/2026-11-17_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-17_radar-fallback_scan.md) | 兜底事件日 20：MCP Python SDK audience 未校验（CVE-2026-116684，CVSS 6.8）+ AWS mcp-gateway-registry SSRF（CVE-2026-125926，1.0.3–1.34.0）→ 并入 S 卡 | 🟡 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
+| [2026-11/2026-11-18_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-18_radar-fallback_scan.md) | 事件日 21：MCP TS SDK OAuth 客户端凭证外送（CVE-2026-104850，CVSS 7.5）+ IBM ContextForge 网关凭据覆盖（CVE-2026-110279，CVSS 8.1） | 🆕 |
 | [2026-11/2026-11-18_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-18_radar-watch_scan.md) | Memory 第二周 Day3 增量：Mem0×Graphiti 第三方对照（精度无显著差异、Mem0 更省，2601.07978v2）+ 回执/来源治理工具集群（attestari/memwarden/procheiron 等，均 0.0.x 未验证） | 🟡 |
 | [2026-11/2026-11-17_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-17_radar-watch_scan.md) | Memory 第二周 Day2：防御的良性代价（Price of Safety 零触发/14.9% 少一条；MemoryDojo 5 系统全可污染；MPBench 4 通道 9 弱点）→ §8.6 改写防御验收口径 | 🟡 |
 | [2026-11/2026-11-16_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-16_radar-watch_scan.md) | Memory 第二周 Day1：F 层建子树 + E 层威胁模型（§八）；新建 S 卡 `agent-memory-trust-boundary-2026`（Trojan Hippo ASR 85–100% / PASB 68.1% / MemLeak 池化泄漏 70–100% + gate 1.4ms / OWASP AMG） | 🆕 |

@@ -455,6 +455,13 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-18 Personal Tech Radar 兜底（全领域·事件日 21）
+- **CVE-2026-104850（MCP TypeScript SDK OAuth 客户端，A）**：`@modelcontextprotocol/sdk` >=1.12.0,<1.31.0 与 >=2.0.0,<2.2.0；被连接 server 决定授权服务器 → 无交互外送 `refresh_token`/`client_secret`；修复 1.31.0 / 2.2.0；CNA CVSS **7.5**，SSVC automatable=yes/exploitation=none；10-06 发布，NVD Awaiting Analysis。
+- **CVE-2026-110279（IBM ContextForge MCP Gateway，A）**：v1.0.0–v1.1.0；`X-Upstream-Authorization` 恒被改名 `Authorization` → 已认证用户用自己的凭据覆盖网关托管的上游凭据，绕过 per-user 权限与审计归因；修复 v1.1.1（PR #7341）；**CVSS 8.1**；IBM 公告 11-12。
+- **CVE-2026-104120（mcp_server_fetch SSRF）**：公开可利用、PR 未合 → B 观察，不立项。
+- 并入既有 S 卡 `[cand]agentic-attack-2026.md`（事件日 21），不新建碎片卡；1123/116684/EUVD-2026-117801 去重命中。
+- 结构性判断：**MCP 信任根从"工具"转向"授权服务器 + 网关"**；三日（19/20/21）连续同一缺陷族——身份、凭据与资源未绑定。
+
 ## 2026-11-18 Personal Tech Radar 深耕（Memory 第二周 Day3·增量）
 - **Mem0 × Graphiti 第三方成本/精度对照（arXiv 2601.07978v2）**：分布式多 agent 记忆测试床（受控 + 受限网络）测两项后端——**Mem0 加载更快、资源更低、网络开销最小，精度差异不显著**；Pareto 效率判定 Mem0 最优。口径警示：单一自建测试床、规模有限 → **B 观察**，只支撑"该负载下图记忆无精度溢价"。
 - **回执/来源治理工具集群（均为小体量、未验证）**：`attestari`（PyPI 0.0.2，Postgres + 每事实回执 + 签名删除证书）、`memwarden`（npm，11-04，代码级记忆按 SHA-256 复核、失配则召回前拒绝、`forget` 出可审计回执）、`procheiron`（哈希链审计日志 + 外部锚定）、`midas`（治理型记忆，拒 stale/superseded、遗忘返回 erasure receipt）、`agora-mnemo 1.12.4`、`memory-firewall 0.3.1`。**机制方向与 §8.2 一致（回执 + 来源 + 抗篡改审计），但全部 0.0.x/单作者/无采用证据 → C，仅记日志，不入卡**。
