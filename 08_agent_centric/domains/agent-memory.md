@@ -82,6 +82,8 @@ Agent Memory
 | **Letta** | [cand] S，周五验证 | Core-Recall-Archival 自编辑；2026-03 转 memory-first harness；Context Constitution / Context Repositories（git 式版本化）；Letta Code（Apache-2.0） |
 | **A-MEM** | [cand] 观察 | Zettelkasten 动态组织 + 链接，NeurIPS 2025，研究向 |
 | **MemEval（ProsusAI）** | [cand] 观察 | 独立排名：Memory-R1 0.389 / SimpleMem 0.358 / Mem0 0.344 / MemU 0.299 F1 |
+| **PoEM（Proof-of-Execution Memory）** | **A，新升锚点**（有开源代码，未复现） | arXiv **2608.16032v2**（8 页/6 图/5 表，Md Habibur Rahman、Jaeho Kim）：**根本不看记忆**——另建 HMAC 链式、仅可信动作层可写的执行台账；记忆声称"某安全步骤已做"时，只有台账能证明真执行过才允许跳过。对 **FARMA**（伪造"已检查/已确认"条目让 agent 跳过安全检查）在三模型×三场景下 **ASR 0%**，良性误伤 **8/9 格 0%、第 9 格 1.7%**；对照 SENTINEL 误伤 **33–50%**。反直觉发现**能力悖论**：攻击在强模型上更有效（GPT-4o/GPT-4o-mini **98–100%**，Llama-3.1-8B **44%**）——能力越强越会忠实执行被改写的伪造声明。微秒级开销，LangChain 真实 agent 可用。代码 MIT：`github.com/bithabib/ai_security` |
+| **来源绑定三件套（TMA-NM / MemLineage / MutMem）** | A−，观察（理论强、代码待核） | **TMA-NM**（2606.24322）：洗白原来源的三条 agent 通道（自身摘要、可信工具回声、制造佐证）；证明"任何基于内容或血缘的防御在洗白下都不成立（T1），写时来源绑定是必要的（T2），不可篡改的来源绑定 + 抗 Sybil 佐证门控才充分（T3）"；TLA+ 机器校验，8 模型基准显示现有防御在预测处失效（洗白 ASR 最高 **68%**）。**MemLineage**（2605.14421）：每条记忆 Ed25519 签名 + RFC 6962 Merkle 日志 + 派生 DAG（max-of-strong-edges），敏感动作门拒绝任何祖先是 External 的链条。**MutMem**（2608.02843）：签名化"变更授权"而非删除，保留历史轨迹并出签名回执；LongMemEval 91.8% / LoCoMo 74.12%，签名事务中位 **4.865 ms**、p95 **5.674 ms** |
 | **平台内置记忆** | 已记日志 | Anthropic Managed Agents `/mnt/memory/` 文本目录（public beta）；AgentCore Memory 短/长时分离 + `IngestData` 直投；MS AF `agent-framework-azure-cosmos-memory`；Vercel eve 文件记忆 + 可插拔存储；Grok Build markdown notes |
 | **文件/Git-native 路线** | 已记日志 | OKF Agent Memory（Markdown+YAML frontmatter，本地 BM25）与 KnowlegeMap 仓库同构；Mem0 × dsh 原生插件（跨会话 memory bank） |
 | **学术新线（2026-09~11）** | 已记日志 | EnSIMem（证据保留）/ SEEM（事件帧+RPE 溯源）/ Synapse（激活扩散）/ Jev-Mem（双过程+检索预算）/ Mem++（版本化）/ DyadMem（用户×关系双维）/ RealCompanion（真实对话审计）/ Below-the-Prompt（KV 作为记忆，136× 冷 TTFT）/ MemMachine（2604.04853，ground-truth-preserving）/ MINDSET（2610.08586，能量式演化）/ Curation+Consolidation（2610.39790，离线巩固） |
@@ -103,6 +105,7 @@ Agent Memory
 | **防御的良性代价与误伤率**（不只看 ASR，还要看"从不触发"和"该给没给"） | Price of Safety：sanitization/provenance **零触发**、异常检测 0.4%、reranker 扣 2.2% 记忆并让 14.9% 问题少一条、50 条抽样仅 2 条合理；token +0~4.5% | **A（11-17 新增；直接改写 8.2 防御栈的验收口径）** |
 | 生命周期（遗忘/冲突/版本化）工程实践 | Mem++ 仅有论文；各厂商 TTL 口径不明 | B |
 | 与执行状态共存的命名空间设计 | Dapr 双 store 有先例但无权限对照 | B |
+| F 层防御的可复现构造（执行回执 / 来源绑定 / 签名变更） | PoEM（台账证明真执行，ASR 0% / 误伤 ≤1.7%）、TMA-NM（TLA+ 证明写时绑定必要）、MemLineage（Ed25519 + Merkle 日志）、MutMem（签名变更 + 回执）；均论文自报，**PoEM 有 MIT 代码可复现** | A |
 | 图记忆（Graphiti）相对向量记忆的边际收益 | 仅 2601.07978 单一测试床：精度无显著差异、成本更高；缺 Tafcm 真实笔记负载与多跳时序查询对照 | B |
 | **记忆子系统可靠性**（健康门/心跳/降级可见/告警预算） | SIx Harness 11 项健康门 + 85 次失败零静默；本项目与 Tafcm 均无对应实现 | **A（能力树已补 H 层，落地待做）** |
 | **写入/删除的回执语义**（怎么确认真的写进去 / 真的删干净） | Mem0 `add()` 空回执；事件日 18 供应商侧留存证明"删了主库≠删干净" | B |
@@ -299,3 +302,29 @@ Agent Memory
 
 **项目落点补充**：silver-shield 增加"防御自身指标"面板（fire rate / withheld rate / token overhead）；Tafcm 的读回过滤只允许按来源等级（用户原话 > 已确认事实 > 推断）与 scope，不按语义相似度删。
 
+### 8.7 从"检测记忆内容"到"校验执行事实"（11-19 增量，Day4）
+
+11-16~11-18 的防御讨论都默认"要判断这条记忆可不可信"。今天这批工作给出一个更硬的切分：**记忆内容不可判定，但"某动作是否真的执行过"可以判定**。
+
+| 构造 | 判定对象 | 机制 | 报告结果（自报） | 证据等级 |
+|---|---|---|---|---|
+| SENTINEL（对照） | 记忆措辞 | 固定可疑词表打分 | 被"让 LLM 改写一遍"首次即绕过，保护降至 **0** | 论文复现（PoEM 作者） |
+| **PoEM** | **执行事实** | 独立 HMAC 链台账，仅可信动作层可写；跳过动作须台账有据 | ASR **0%**；良性误伤 **0%（8/9 格）/ 1.7%（第 9 格）**；微秒级 | 论文 + MIT 代码，**未复现** |
+| **TMA-NM** | **来源权威** | 写时绑定来源 + 抗 Sybil 佐证门控；TLA+ 证明 | 现有防御洗白 ASR 最高 **68%**；本构造在直接与洗白攻击上均 0 成功 | 论文 + TLA+，代码未核 |
+| **MemLineage** | **派生链** | 每条 Ed25519 签名 + Merkle 日志 + 派生 DAG；敏感动作门 | 未取到量化结果（仅机制） | 论文机制级 |
+| **MutMem** | **变更授权** | 签名化变更、保留历史、出签名回执 | LongMemEval 91.8 / LoCoMo 74.12；中位 4.9 ms | 论文自报 |
+
+**四条判断**：
+1. **"检测措辞"这条线已经可以判死**。SENTINEL 被一次改写绕过、保护归零；Price of Safety 里 sanitization/provenance 在 750 轮良性流量中零触发——检测型防御的问题不是漏报率，而是**它防的是一句话的说法，不是一件事的发生**。
+2. **能力悖论推翻"模型越强越安全"**：同一伪造声明，GPT-4o 98–100% 照做，Llama-3.1-8B 只有 44%。越强的模型越会忠实执行"记忆里写着已完成"的指令——**记忆污染是能力放大器，不是能力缺陷**。
+3. **防御的正确对象是"动作"，不是"文本"**：PoEM 只保护它门控的那些决策（protects exactly the decisions it gates），这是它的边界也是它的诚实之处——**能形式化的部分才敢声称防住**。
+4. **写时绑定 > 读时判断**：TMA-NM 的分离定理把"血缘/来源"从启发式升级为必要条件；MemLineage 把它落成签名 + Merkle 日志。代价是每次写入要签名、每次敏感动作要验链。
+
+**对项目的落点**：
+- **Tafcm**：把"记忆写入"与"动作执行"分两个存储——记忆是可错的叙述，执行台账是不可伪造的事实；任何"上次已处理/已检查"类记忆，只作为提示，不作为跳过依据。
+- **silver-shield**：安全门只认 HMAC/签名台账，不认记忆里的自我声明；台账写入权限必须与记忆写入权限分离（否则攻击者两处都能写，等于没做）。
+- **TeamMind**：跨 agent 共享的记忆必须带 `source_class` 与派生边，敏感动作前做"祖先是否 External"的确定性检查。
+
+**可复现路径（下一步）**：PoEM 仓库含 FARMA 攻击、SENTINEL 复现、PoEM 与 NaivePoEM 消融、自动改写攻击器、LangChain 端口与出图脚本，核心 harness 只依赖 Python 标准库——比 Graphiti 部署门槛低得多，适合本地复现"伪造已完成"这一类。
+
+**同日附带的复现件**：**PersistBench 已进入 `inspect-evals 0.13.0`**（`inspect_evals/persistbench_cross_domain` / `persistbench_sycophancy` / `persistbench_beneficial_memory`），并公开 GitHub 生成/评测 prompt。10-02 记的"有基准"现在变成"有可跑管线"，但需要模型 API 与 judge，属 B 级工具进展。

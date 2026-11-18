@@ -30,7 +30,7 @@
 - [x] 第二周周一（11-16）：F 层建子树 + E 层威胁模型——**已完成**：能力树 F 层扩到 F1.1~F5.2（休眠载荷/来源伪造/自强化循环/主张升级/哈希基线/删除回执），E 层扩到 E4.1~E4.3（池化 embedding 侧信道/查询 filter/检索后 gate）；新增 §八（4 条威胁路径 + 8 层防御栈 + E 层 5 条设计规则 + 项目落点 + 11-20 用例参数）；新建 S 卡 `[cand]agent-memory-trust-boundary-2026.md`（Trojan Hippo / PASB / MIND / MemLeak / OWASP AMG）
 - [x] 第二周周二（11-17）：只追增量——**已完成**：新增 **Price of Safety**（2609.22818 v3：sanitization/provenance 零触发、异常检测 0.4%、读时 reranker 扣 2.2% 记忆且 14.9% 问题少一条、token +0~4.5%）→ 改写 §8.6 防御验收口径；**MemoryDojo**（155 轨迹 / 5 系统，全部可污染且随架构变化）；**MPBench**（4 通道 / 9 弱点 / 6 类攻击，写入检索越激进越易利用）；MemPoison（CCS'26 选择性抽取绕过）与 MemMorph（工具选择劫持）记 B+；能力树新增锚点 1 行、缺口 1 行、§8.6；S 卡加 §5.1
 - [x] 第二周周三（11-18）：只追增量——**已完成**：Mem0×Graphiti 第三方成本/精度对照（2601.07978v2：精度差异不显著、Mem0 更省）→ 锚点 +1、缺口 +1；回执/来源治理工具集群（attestari/memwarden/procheiron/midas/agora-mnemo/memory-firewall，均 0.0.x 单作者）→ C 记日志；OWASP AMG 仅页面 11-07 更新、无发布证据；PersistBench 去重命中；无新卡、无 S/A
-- [ ] 第二周周四（11-19）：继续增量（PersistBench 复现件 / guard 类工具是否有可验证件）：继续只追增量（memory guard 类工具 / PersistBench 复现件 / Graphiti×Mem0 对照）
+- [x] 第二周周四（11-19）：只追增量——**已完成**：**PoEM 执行回执防御**（2608.16032v2：不看记忆、只验 HMAC 执行台账；FARMA 攻击 ASR 0%、误伤 ≤1.7%；SENTINEL 一次改写即归零；能力悖论 GPT-4o 98–100% vs Llama-8B 44%）→ A 锚点 + §8.7；**来源绑定三件套**（TMA-NM 洗白 ASR 68%/TLA+ 证明、MemLineage Ed25519+Merkle、MutMem 签名变更 91.8% LongMemEval）→ A−；**PersistBench 进 inspect-evals 0.13.0** → B；S 卡 §5.2；无新卡（PersistBench 复现件 / guard 类工具是否有可验证件）：继续只追增量（memory guard 类工具 / PersistBench 复现件 / Graphiti×Mem0 对照）
 - [ ] 第二周周五（11-20）：三项实测（注入复现 / delete 回执一致性 / 作用域串读）
 - [ ] 第二周周六（11-21）：回灌 §八 + connections/graph
 - [ ] 第二周周日（11-22）：小结，达标换 Computer Use / Browser（E 层不允许第三次挂账）
