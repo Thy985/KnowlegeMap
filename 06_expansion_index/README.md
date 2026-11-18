@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-19 Personal Tech Radar 兜底（MCP 参考实现批量 + 本地控制面裸奔）
+- **CVE-2026-111771（MCP TypeScript SDK 服务端 bearer 不校验 `aud`）**：`sdk >=1.6.0,<1.32.0`、`server >=2.0,<2.3.0`、`express >=2.0,<2.0.2`、`server-legacy >=2.0,<2.3.1`；CVSS **6.8**；修复 1.32.0 / 2.3.0 / 2.0.2 / 2.3.1。**升级不修复**——须显式开启 audience 校验并给 expected audience，只开检查会全量 401。EUVD-2026-117801 即此条（**修正 11-17 将其误记为 116684 重复项**）。
+- **CVE-2026-48989（Windows-MCP）**：HTTP 传输无认证 + 通配 CORS，`tools/call` 可调 PowerShell，以本机用户身份执行；浏览器任意页面可跨域打 localhost:8000。stdio 不受影响。
+- **CVE-2026-41901（mcp-server-sqlite）**：`write_query` 只读 allowlist 被 **VACUUM INTO** 绕过；同批 7 个 CVE（含 Desktop Commander，二手汇总）。**编号纠错**：Rafael Fuentes 博文标注的 CVE-2026-41902 实为 FreeScout（9.1），非 mcp-server-git 问题。
+- 落点：并入 S 卡 `[cand]agentic-attack-2026.md`（事件日 22），不新建碎片卡。
+
 ## 2026-11-19 Personal Tech Radar 深耕（Memory 第二周 Day4·增量：从检测记忆到校验执行）
 - **PoEM（Proof-of-Execution Memory，arXiv 2608.16032v2）**：不看记忆，另建 HMAC 链执行台账（仅可信动作层可写）；记忆声称"已做"须台账有据才允许跳过。FARMA 攻击下 **ASR 0%**、良性误伤 0%（8/9 格）/1.7%；对照 SENTINEL 误伤 33–50% 且被一次改写绕过归零。**能力悖论**：强模型更易被伪造声明驱动（GPT-4o 98–100% vs Llama-3.1-8B 44%）。MIT 代码可复现 → **A 锚点**。
 - **来源绑定三件套（TMA-NM / MemLineage / MutMem）**：TMA-NM 用 TLA+ 证明"写时来源绑定必要、抗 Sybil 佐证门控充分"，现有防御洗白 ASR 最高 68%；MemLineage 为每条记忆 Ed25519 + Merkle 日志 + 派生 DAG；MutMem 签名化变更并出回执（LongMemEval 91.8 / LoCoMo 74.12，中位 4.9 ms）→ **A− 锚点**（代码待核）。
@@ -465,7 +471,7 @@
 - **CVE-2026-104850（MCP TypeScript SDK OAuth 客户端，A）**：`@modelcontextprotocol/sdk` >=1.12.0,<1.31.0 与 >=2.0.0,<2.2.0；被连接 server 决定授权服务器 → 无交互外送 `refresh_token`/`client_secret`；修复 1.31.0 / 2.2.0；CNA CVSS **7.5**，SSVC automatable=yes/exploitation=none；10-06 发布，NVD Awaiting Analysis。
 - **CVE-2026-110279（IBM ContextForge MCP Gateway，A）**：v1.0.0–v1.1.0；`X-Upstream-Authorization` 恒被改名 `Authorization` → 已认证用户用自己的凭据覆盖网关托管的上游凭据，绕过 per-user 权限与审计归因；修复 v1.1.1（PR #7341）；**CVSS 8.1**；IBM 公告 11-12。
 - **CVE-2026-104120（mcp_server_fetch SSRF）**：公开可利用、PR 未合 → B 观察，不立项。
-- 并入既有 S 卡 `[cand]agentic-attack-2026.md`（事件日 21），不新建碎片卡；1123/116684/EUVD-2026-117801 去重命中。
+- 并入既有 S 卡 `[cand]agentic-attack-2026.md`（事件日 21），不新建碎片卡；1123/116684 去重命中（**11-19 更正：EUVD-2026-117801 实为 CVE-2026-111771，TS SDK 服务端 audience 问题，非 116684 重复**）。
 - 结构性判断：**MCP 信任根从"工具"转向"授权服务器 + 网关"**；三日（19/20/21）连续同一缺陷族——身份、凭据与资源未绑定。
 
 ## 2026-11-18 Personal Tech Radar 深耕（Memory 第二周 Day3·增量）
