@@ -173,6 +173,11 @@
 |---|---|---|---|---|
 | **PoEM（执行回执防御）** | **silver-shield**（安全动作门判据从"记忆/上下文声明"改为"签名执行台账"；台账与记忆的写权限必须分离）/ **Tafcm**（记忆=可错叙述、执行台账=事实；"上次已处理"只作提示不作跳过依据）/ **TeamMind**（共享记忆带 source_class 与派生边，敏感动作验祖先是否 External） | Memory **F1.1 休眠载荷 / F5.2 删除回执** 与 **H3 降级诚实**：检测措辞是伪防御（一次改写即归零），防御对象是动作不是文本 | 🟡 论文 + MIT 代码，未复现 | [agent-memory-trust-boundary-2026](../03_expansion_queue/candidates/[cand]agent-memory-trust-boundary-2026.md) |
 
+## 2026-11-20 实测回灌：声明层与验证层分家（3 条新增）
+- **delete 回执 → silver-shield / Tafcm**：`{"message":"successfully"}` 只能证明"调用没报错"。silver-shield 的删除校验必须自己出可核验回执（id + scope + 内容哈希 + 时间 + 覆盖范围），不能信 SDK 返回值；Tafcm 删除 note 后要直接查 history/索引残留。
+- **单一明文存储 → TeamMind**：Mem0 qdrant 本地路径是单文件，`scroll` 可一次读出所有 user 明文。团队共享 bank 必须"一租户一库/一密钥"，不能靠应用层 filter 当隔离；备份与快照按同等密级管理。
+- **scope 强制 filter → Tafcm / TeamMind**：Mem0 2.2.1 `filters=None` 直接报错，是可借鉴的"默认拒绝"设计；Tafcm 单用户也保留 `user_id` 必填，TeamMind 的检索入口禁止无 scope 调用。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

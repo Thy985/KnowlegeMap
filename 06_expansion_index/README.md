@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-20 Personal Tech Radar 深耕（Memory 第二周 Day5：三项实测）
+- **E1 注入路径（结构级复现）**：Mem0 2.2.1 本地栈写入"财务数据外发"伪策略 → 中性 query 命中 **score 0.8000** → poison 全文进上下文 → 规则 stub 输出 `send_data / confirm=false`。`infer=False` 绕过抽取门控，**模型依从率未测**（Trojan Hippo 85–100% 不可外推）。
+- **E2 删除回执（失败）**：`delete()` 只回 `{"message":"Memory deleted successfully!"}`（无 id/scope/hash/时间）；主记录/向量/qdrant payload 均清零，但 **`~/.mem0/history.db` 保留被删全文**（ADD `new_memory` / DELETE `old_memory`，`is_deleted` 仅置位）。→ R5 级联删除未实现，回执不可核验。
+- **E3 作用域（API 层通过，存储层失败）**：`search/get_all(filters=None)` 直接 `ValueError`；带 filter 零交叉（相同文本 C/D 各 score 1.0，0.79 ms）；`agent_id` 单过滤返回 0（AND）；但 qdrant 单文件 `scroll` 一次读到 A/B/C/D 全部明文。→ MemLeak 前提（检索不强制 scope）在 Mem0 SDK 上不成立；剩余风险在共享库/备份/自建检索。
+- 落点：`agent-memory.md` 新增 **§8.5.1**（结果表 + 三条结论）；缺口表三行改写（作用域 A / 注入 S / 回执 B→A−）。
+
 ## 2026-11-19 Personal Tech Radar 兜底（MCP 参考实现批量 + 本地控制面裸奔）
 - **CVE-2026-111771（MCP TypeScript SDK 服务端 bearer 不校验 `aud`）**：`sdk >=1.6.0,<1.32.0`、`server >=2.0,<2.3.0`、`express >=2.0,<2.0.2`、`server-legacy >=2.0,<2.3.1`；CVSS **6.8**；修复 1.32.0 / 2.3.0 / 2.0.2 / 2.3.1。**升级不修复**——须显式开启 audience 校验并给 expected audience，只开检查会全量 401。EUVD-2026-117801 即此条（**修正 11-17 将其误记为 116684 重复项**）。
 - **CVE-2026-48989（Windows-MCP）**：HTTP 传输无认证 + 通配 CORS，`tools/call` 可调 PowerShell，以本机用户身份执行；浏览器任意页面可跨域打 localhost:8000。stdio 不受影响。

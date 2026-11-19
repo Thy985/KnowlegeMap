@@ -154,6 +154,7 @@
 | [2026-11/2026-11-17_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-17_radar-fallback_scan.md) | 兜底事件日 20：MCP Python SDK audience 未校验（CVE-2026-116684，CVSS 6.8）+ AWS mcp-gateway-registry SSRF（CVE-2026-125926，1.0.3–1.34.0）→ 并入 S 卡 | 🟡 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
 | [2026-11/2026-11-19_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-19_radar-fallback_scan.md) | 兜底：MCP 参考实现批量（CVE-2026-111771 TS SDK audience / CVE-2026-48989 Windows-MCP 无认证 PowerShell / 41901 sqlite 越权）+ 编号纠错 | 🆕 |
+| [2026-11/2026-11-20_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-20_radar-watch_scan.md) | 深耕 Day5 三项实测：注入路径结构级复现 / delete 回执不可核验 + history 留全文 / scope API 强制但存储单文件全量 | 🟡 |
 | [2026-11/2026-11-19_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-19_radar-watch_scan.md) | Memory Day4 增量：PoEM 执行回执防御（ASR 0%、误伤 ≤1.7%）+ 来源绑定三件套（TMA-NM/MemLineage/MutMem）+ PersistBench 进 inspect-evals | 🟡 |
 | [2026-11/2026-11-18_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-18_radar-fallback_scan.md) | 事件日 21：MCP TS SDK OAuth 客户端凭证外送（CVE-2026-104850，CVSS 7.5）+ IBM ContextForge 网关凭据覆盖（CVE-2026-110279，CVSS 8.1） | 🆕 |
 | [2026-11/2026-11-18_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-18_radar-watch_scan.md) | Memory 第二周 Day3 增量：Mem0×Graphiti 第三方对照（精度无显著差异、Mem0 更省，2601.07978v2）+ 回执/来源治理工具集群（attestari/memwarden/procheiron 等，均 0.0.x 未验证） | 🟡 |
