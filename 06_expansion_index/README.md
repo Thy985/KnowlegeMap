@@ -455,6 +455,13 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-20 Personal Tech Radar 兜底（事件日 23：MCP OAuth 客户端缺陷在 Python SDK 复现）
+- **CVE-2026-115563 / EUVD-2026-126629（A）**：MCP Python SDK OAuth 客户端可被恶意 server 指定授权服务器，外泄 `client_secret`/授权码/PKCE verifier/签名断言；`>=1.9.1,<1.30.0`、`>=2.0.0a1,<2.2.0` → 1.30.0 / 2.2.0；**CVSS 7.5**；GHSA-qx49-fqc8-xw99。
+  - **升级不修复**：必须显式 `issuer=`；已存储 registration 无 issuer 仍不绑定，须清空重注册。→ 与 11-18 的 TS SDK CVE-2026-104850 同族，证明"服务器指定 AS"是 MCP OAuth 客户端模型级缺陷。
+- **B 级观察（不立项）**：CVE-2026-116686（Python SDK `$ref` SSRF + 本地文件读取 + 事件循环冻结，6.5）；CVE-2026-63118（Ruby SDK DNS rebinding，6.9，7-29 旧洞）。
+- **框架侧仅普通增量**：MAF .NET 1.28.0 A2A 托管改为只返 message（去 `AgentRunMode.ReturnTask`）；A2A Java SDK 1.5.0.Final（11-03，HTTP client/JPA schema/validation SPI 破坏性变更）→ B，不写。
+- 落点：`[cand]agentic-attack-2026.md` 新增事件日 23 块。
+
 ## 2026-11-20 Personal Tech Radar 深耕（Memory 第二周 Day5：三项实测）
 - **E1 注入路径（结构级复现）**：Mem0 2.2.1 本地栈写入"财务数据外发"伪策略 → 中性 query 命中 **score 0.8000** → poison 全文进上下文 → 规则 stub 输出 `send_data / confirm=false`。`infer=False` 绕过抽取门控，**模型依从率未测**（Trojan Hippo 85–100% 不可外推）。
 - **E2 删除回执（失败）**：`delete()` 只回 `{"message":"Memory deleted successfully!"}`（无 id/scope/hash/时间）；主记录/向量/qdrant payload 均清零，但 **`~/.mem0/history.db` 保留被删全文**（ADD `new_memory` / DELETE `old_memory`，`is_deleted` 仅置位）。→ R5 级联删除未实现，回执不可核验。
