@@ -71,3 +71,10 @@
 - **memory-reliability** → agent-memory（H1~H5：健康门/心跳/降级诚实/静默腐化防护/告警预算；SIx 11 项自检 + 85 次失败零静默），observability（健康门单行状态 `MEMORY-HEALTH: 11/11 GREEN`、hook 心跳把"该发生却没发生"变成事件=可观测原语），governance（"静默失败必须可检测"作为可靠性证据要求，与 E 层审计同构），runtime-defense（记忆被静默腐化=防御面整体失效，且不会出现在任何 benchmark 上）
 - **honest-degradation** → agent-memory（向量腿坏自动降 BM25-only、永不阻塞主流程、失败写 log-once），agent-runtime（降级语义与 fail-open/fail-closed 同构：可降级但必须显式），developer-tools（降级记录=排障证据，避免"看起来正常"）
 - **write-receipt-verification** → agent-memory（Mem0 `add()` 返回 `{"results": []}` 而数据已落库：回执≠状态），governance（F4 审计要求"回执与状态不一致必须可查"），agent-evaluation（写入确认是评测前置条件，否则评测对象本身不明）
+
+## 2026-11-21 回灌：记忆安全边界的三条路径（2 条边）
+> 来源：11-20 三项实测。与 11-14 的可靠性三条边互补——那组管"坏了能不能发现"，这组管"边界建在哪一层才有效"。
+
+- **write-gate-location** → agent-memory（B5.1：门控强度=入口唯一性，`infer=False` 直写旁路使其归零），runtime-defense（旁路=防御面缺口，与 fail-open 同构：合法 API 也能打开缺口），governance（调试直写与生产写入必须分权并可审计）
+- **delete-residue-audit** → agent-memory（F5.2：删除覆盖主记录/向量/审计历史/备份与派生四层，回执五字段），governance（F5 删除权要求"可核验回执"，调用成功不算合规），observability（残留扫描作为 H4 静默腐化检测项，可确定性执行）
+

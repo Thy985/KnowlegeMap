@@ -154,6 +154,7 @@
 | [2026-11/2026-11-17_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-17_radar-fallback_scan.md) | 兜底事件日 20：MCP Python SDK audience 未校验（CVE-2026-116684，CVSS 6.8）+ AWS mcp-gateway-registry SSRF（CVE-2026-125926，1.0.3–1.34.0）→ 并入 S 卡 | 🟡 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
 | [2026-11/2026-11-19_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-19_radar-fallback_scan.md) | 兜底：MCP 参考实现批量（CVE-2026-111771 TS SDK audience / CVE-2026-48989 Windows-MCP 无认证 PowerShell / 41901 sqlite 越权）+ 编号纠错 | 🆕 |
+| [2026-11/2026-11-21_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-21_radar-watch_scan.md) | Memory 第二周 Day6 回灌：三项实测改写防御栈（门控旁路 / 条件性 gate / 回执声明层） | 🟡 |
 | [2026-11/2026-11-20_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-20_radar-fallback_scan.md) | 兜底事件日 23：MCP Python SDK OAuth 凭据外送（CVE-2026-115563，7.5，升级不修复）+ 两个 B 级 SDK 漏洞 | 🆕 |
 | [2026-11/2026-11-20_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-20_radar-watch_scan.md) | 深耕 Day5 三项实测：注入路径结构级复现 / delete 回执不可核验 + history 留全文 / scope API 强制但存储单文件全量 | 🟡 |
 | [2026-11/2026-11-19_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-19_radar-watch_scan.md) | Memory Day4 增量：PoEM 执行回执防御（ASR 0%、误伤 ≤1.7%）+ 来源绑定三件套（TMA-NM/MemLineage/MutMem）+ PersistBench 进 inspect-evals | 🟡 |

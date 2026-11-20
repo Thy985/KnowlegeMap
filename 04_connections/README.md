@@ -178,6 +178,10 @@
 - **单一明文存储 → TeamMind**：Mem0 qdrant 本地路径是单文件，`scroll` 可一次读出所有 user 明文。团队共享 bank 必须"一租户一库/一密钥"，不能靠应用层 filter 当隔离；备份与快照按同等密级管理。
 - **scope 强制 filter → Tafcm / TeamMind**：Mem0 2.2.1 `filters=None` 直接报错，是可借鉴的"默认拒绝"设计；Tafcm 单用户也保留 `user_id` 必填，TeamMind 的检索入口禁止无 scope 调用。
 
+## 2026-11-21 回灌：门控的位置比门控的强度更重要（2 条新增）
+- **直写旁路 → Tafcm / silver-shield**：Mem0 `infer=False` 使抽取门控完全失效，poison 原样落库并命中 0.8。Tafcm 生产只保留一个写入口，调试/批量直写不进常驻进程；silver-shield 把"配置里存在绕过抽取的门控"作为**配置类缺陷**检测项（确定性，不依赖 LLM）。
+- **回执可核验率 → silver-shield / TeamMind**：11-17 的三读数（ASR / 良性触发率 / 扣留率）扩为**四读数**，第四项=回执是否含 `id + scope + 哈希 + 时间 + 覆盖范围`，缺一项记 0。TeamMind 的删除 API 对外只暴露可核验回执，内部 SDK 的 `successfully` 不外传。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

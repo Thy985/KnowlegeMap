@@ -455,6 +455,13 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-21 Personal Tech Radar 深耕（Memory 第二周 Day6：三项实测回灌）
+- **三条改写**：① 写入门控被 `infer=False` 直写旁路完整绕过 → 门控必须绑唯一入口（B5.1）；② 检索后 ownership gate 在强制 filter SDK 上零收益 → 降为条件性控制（E4.2）；③ 删除回执仅声明层，`history.db` 留被删全文 → 删除覆盖四层 + 五字段回执（F5.2）。
+- **新增判断 6/7**：安全边界取三条路径最弱者（默认配置安全 ≠ 系统安全）；门控有效性 = 入口唯一 × 判据外部（接 8.7 PoEM 执行台账）。
+- **验收口径**：3 读数（ASR/良性触发率/扣留率）→ **4 读数**（+回执可核验率），缺字段记 0。
+- **项目落点**：Tafcm 单一写入口 + 删除后扫 history/索引/向量；TeamMind 一租户一库一密钥 + 检索禁无 scope；silver-shield F6 增直写旁路检测与删除残留扫描。
+- 落点：`agent-memory.md` §四 +2 判断、§五 +3 条、§8.2 修订注、新增 §九；S 卡 §5.3；connections 2 行；graph 2 边。
+
 ## 2026-11-20 Personal Tech Radar 兜底（事件日 23：MCP OAuth 客户端缺陷在 Python SDK 复现）
 - **CVE-2026-115563 / EUVD-2026-126629（A）**：MCP Python SDK OAuth 客户端可被恶意 server 指定授权服务器，外泄 `client_secret`/授权码/PKCE verifier/签名断言；`>=1.9.1,<1.30.0`、`>=2.0.0a1,<2.2.0` → 1.30.0 / 2.2.0；**CVSS 7.5**；GHSA-qx49-fqc8-xw99。
   - **升级不修复**：必须显式 `issuer=`；已存储 registration 无 issuer 仍不绑定，须清空重注册。→ 与 11-18 的 TS SDK CVE-2026-104850 同族，证明"服务器指定 AS"是 MCP OAuth 客户端模型级缺陷。
