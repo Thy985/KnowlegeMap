@@ -455,6 +455,15 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-21 Personal Tech Radar 兜底（事件日 24：MCP 网关管理员提权 + 本地 MCP 监听裸露 + 策略归一化失效）
+- 判定 6 行，写 3 条 A（合并入 `[cand]agentic-attack-2026.md` 事件日 24），无新建卡。
+- **CVE-2026-100307（A，AWS mcp-gateway-registry）**：`>=1.0.9,<=1.24.7` → **1.25.0**；`/api/servers/*` 只认证不判权，`groups/import` 可把自身 IdP 组映射到 `mcp-registry-admin`，管理员身份每请求重算 → 下一请求即对全部注册资产有管理权；公告 2026-179-AWS（11-11）、GHSA-rxf3-qgpv-wxvr；**升级不清理历史映射与旧凭据**，须审计 `mcp_scopes`、查 HTTP 日志、轮换托管上游凭据；CVSS 未取。
+- **CVE-2026-112136（A，Mendix Studio Pro 11 MCP Server）**：CWE-1327 未限 loopback，远程可达并可交互；V11.15.0<V11.16.0 / V11.12.6<V11.12.7；CVSS 4.0 **9.2 CRITICAL**（CNA Siemens，NVD 待评估）；Siemens SSA-710379。
+- **CVE-2026-125271（A−，aws-api-mcp-server）**：`>=0.2.13,<1.5.1` → **1.5.1**；操作名归一化错误致含连续大写的操作名永不匹配 denyList/elicitList，策略**静默失效**；CVSS 4.0 **8.5 HIGH**（CNA AMZN），CWE-1025/863，GHSA-4wq9-grf3-qg2p。
+- **订正**：CVE-2026-111770 补 CNA CVSS 3.1 **7.7 HIGH**（NVD 仍 NVD 未评估），影响面与修复不变。
+- **不写**：CVE-2026-116635（AWS Serverless MCP 路径穿越，B）、CVE-2026-117567（esp-mcp 命令注入，B）、MAF .NET A2AAgentOptions/A2A preview4（普通增量）。去重核对：100307/112136/125271/116635/117567 在 06/03/08 均无命中。
+- 核心判断：**"策略存在 ≠ 策略生效"**——静默归一化失败让 denyList 形同不存在；网关管理员是持凭据的单点；本地 MCP listener 仍被误当成本地。
+
 ## 2026-11-21 Personal Tech Radar 深耕（Memory 第二周 Day6：三项实测回灌）
 - **三条改写**：① 写入门控被 `infer=False` 直写旁路完整绕过 → 门控必须绑唯一入口（B5.1）；② 检索后 ownership gate 在强制 filter SDK 上零收益 → 降为条件性控制（E4.2）；③ 删除回执仅声明层，`history.db` 留被删全文 → 删除覆盖四层 + 五字段回执（F5.2）。
 - **新增判断 6/7**：安全边界取三条路径最弱者（默认配置安全 ≠ 系统安全）；门控有效性 = 入口唯一 × 判据外部（接 8.7 PoEM 执行台账）。
@@ -515,7 +524,7 @@
 - 落点：锚点表 +1 行、缺口「防御的良性代价」A、§8.6、S 卡 §5.1。
 
 ## 2026-11-16 Personal Tech Radar 兜底（事件日 19：CVE-2026-111770）
-- **CVE-2026-111770**（NVD 2026-11-06）：`@modelcontextprotocol/server` **2.0.0–2.3.0** 在多客户端共用单实例 stateless HTTP transport / McpServer 时，**把响应与通知投给错误客户端**；消息仅用 JSON-RPC request id 关联连接，客户端 id 从 0 起 → 正常并发即碰撞。**2.3.0 修复但需改代码**（per-request/per-session 构造）；stdio 与 per-call 工厂不受影响；**CVSS 未评估**。
+- **CVE-2026-111770**（NVD 2026-11-06）：`@modelcontextprotocol/server` **2.0.0–2.3.0** 在多客户端共用单实例 stateless HTTP transport / McpServer 时，**把响应与通知投给错误客户端**；消息仅用 JSON-RPC request id 关联连接，客户端 id 从 0 起 → 正常并发即碰撞。**2.3.0 修复但需改代码**（per-request/per-session 构造）；stdio 与 per-call 工厂不受影响；**CNA GitHub CVSS 3.1 7.7 HIGH**（NVD 未评估，11-13 更新）。
 - 判定：**A**，并入既有 S 卡 `[cand]agentic-attack-2026.md`「重大事件日 19」，不新建碎片卡。
 - 去重：MCP 规范仍 2026-07-28（无变更）；MAF MCP 2.x 迁移（11-11）为已知对象；Agent 365 SDK 2.0、Foundry 协议库迁移、LangGraph v1.2.0 均 B 级；OpenAI×HF、Fireworks 已在事件日 13/14/16。
 
