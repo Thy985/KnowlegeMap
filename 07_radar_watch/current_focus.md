@@ -5,7 +5,7 @@
 ## 当前领域：Memory（Agent 记忆实现层 / 记忆治理）
 
 - **周起始日**：2026-11-09（周一）
-- **状态**：active · **第二周（延长，11-16~11-22）· 三项实测已完成，待 11-21 回灌**——第一周（11-09~11-15）候选/回灌环已闭合，验证环仅 1 项行为级 + 1 项结构级 + 1 项否定结论；F 层注入防御（S）与 E 层作用域（A）未验证，故延长
+- **状态**：active · **第二周（延长，11-16~11-22）· 三项实测与回灌已完成，待 11-22 小结**——第一周（11-09~11-15）候选/回灌环已闭合，验证环仅 1 项行为级 + 1 项结构级 + 1 项否定结论；F 层注入防御（S）与 E 层作用域（A）未验证，故延长
 - **为什么现在做它**：领域顺序 Evaluation→Harness→Runtime→Memory 的下一站；Runtime 周已确认「执行状态（workflow store/snapshot）≠ 会话记忆（memory store）」的分层（Dapr 双 state store、Substrate actor snapshot）；且 11-07 兜底捕获的「跨会话持久记忆注入跨 ChatGPT/Claude/Gemini 存活、近半缓解未落地」证明记忆已是真实攻击面——Memory 周不能只比检索分数，必须同时建信任边界。
 
 ## 目标
@@ -32,7 +32,7 @@
 - [x] 第二周周三（11-18）：只追增量——**已完成**：Mem0×Graphiti 第三方成本/精度对照（2601.07978v2：精度差异不显著、Mem0 更省）→ 锚点 +1、缺口 +1；回执/来源治理工具集群（attestari/memwarden/procheiron/midas/agora-mnemo/memory-firewall，均 0.0.x 单作者）→ C 记日志；OWASP AMG 仅页面 11-07 更新、无发布证据；PersistBench 去重命中；无新卡、无 S/A
 - [x] 第二周周四（11-19）：只追增量——**已完成**：**PoEM 执行回执防御**（2608.16032v2：不看记忆、只验 HMAC 执行台账；FARMA 攻击 ASR 0%、误伤 ≤1.7%；SENTINEL 一次改写即归零；能力悖论 GPT-4o 98–100% vs Llama-8B 44%）→ A 锚点 + §8.7；**来源绑定三件套**（TMA-NM 洗白 ASR 68%/TLA+ 证明、MemLineage Ed25519+Merkle、MutMem 签名变更 91.8% LongMemEval）→ A−；**PersistBench 进 inspect-evals 0.13.0** → B；S 卡 §5.2；无新卡（PersistBench 复现件 / guard 类工具是否有可验证件）：继续只追增量（memory guard 类工具 / PersistBench 复现件 / Graphiti×Mem0 对照）
 - [x] 第二周周五（11-20）：三项实测——**已完成**：**E1 注入路径结构级复现**（Mem0 2.2.1 写入伪"安全策略"→ 中性 query 命中 score 0.8000 → poison 进上下文 → 规则 stub 直接外发；`infer=False` 绕过抽取门控、模型依从率未测）；**E2 删除回执失败**（`delete()` 仅回 `{"message":"...successfully!"}`，主记录/向量清零但 `history.db` 保留被删全文，`is_deleted` 仅置位）；**E3 scope API 层通过/存储层失败**（`filters=None` 直接 ValueError、带 filter 零交叉 0.79ms，但 qdrant 单文件可一次读出全部用户明文）
-- [ ] 第二周周六（11-21）：回灌 §八 + connections/graph
+- [x] 第二周周六（11-21）：回灌 §八 + connections/graph——**已完成**：能力树新增 §九（三条改写表 + 四读数验收 + 未闭合清单）、§四 +2 判断（安全边界取最弱路径 / 门控有效性=入口唯一×判据外部）、§五 +3 条项目落点、§8.2 三条修订注；S 卡新增 §5.3（三项本机实测，决策维持观察、三用例转回归集）；connections 新增 2 行；graph 新增 2 边（write-gate-location / delete-residue-audit）；06 index、_INDEX、扫描日志
 - [ ] 第二周周日（11-22）：小结，达标换 Computer Use / Browser（E 层不允许第三次挂账）
 
 ## 换域记录
