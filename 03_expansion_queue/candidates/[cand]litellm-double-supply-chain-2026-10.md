@@ -37,6 +37,33 @@ LiteLLM（企业 AI 栈最广泛部署的推理网关/路由库）2026-10-21 发
 ## 5. 验证结果
 <!-- 验证后回填：实际结果、遗留问题、是否进入 validated -->
 
+## 7. 雷达增量（2026-11-22 兜底扫描 · A 级 · 一手核验）
+**不是新对象，是同一资产的第二条攻击路径**：10 月是发布流水线被投毒，11 月是网关自身漏洞族被在野利用。
+
+### 7.1 CVE-2026-40217（已进 CISA KEV）
+- **FACT（CISA KEV 条目）**：2026-11-18 加入 KEV，整改截止 **2026-12-02**；KEV 归类 "Unprotected Alternate Channel"；引用 advisory `GHSA-wxxx-gvqv-xp7p`。["https://cve.circl.lu/known-exploited-vulnerabilities-catalog/09a710b1-7e8c-4525-8d90-6257f3df1616"]
+- **FACT（NVD）**：`/guardrails/test_custom_code` 通过 bytecode rewriting 执行任意代码；CVSS 3.1 **8.8**（AV:N/AC:L/**PR:L**/UI:N/S:U/C:H/I:H/A:H），CWE-420/94。["https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2026-40217"]
+- **FACT（vendor advisory 转述）**：默认配置下需 **proxy-admin 凭据**；**1.83.11 修复**，手写沙箱替换为 RestrictedPython；X41 D-Sec 2026-02-13 报送，4-08 禁运到期，5-07 出公告。["https://i10x.ai/news/cve-2026-40217-litellm-guardrail-sandbox-escape"]
+- **后果不是"一个洞"**：admin 凭据 → `LITELLM_MASTER_KEY` + 全部 provider key（OpenAI/Anthropic/Bedrock/Vertex）→ 在野 LLMjacking（烧额度、刷账单）；CISA 确认已利用，未标注勒索软件用途。
+- **口径差异（须记）**：NVD 版本字段写 "through 2026-04-08"（日期式、无区间语义），vendor 说 1.83.11 修复——以 vendor advisory 为准。
+
+### 7.2 同族三件（此前未入账）
+- **CVE-2026-42271**：MCP test 端点（`/mcp-rest/test/tools/*`）spawn 用户可控子进程配置，无 command allowlist、无 admin 角色门 → 任意持 proxy key 者可在宿主执行命令；CVSS 8.7，影响 1.74.2–1.83.6，1.83.7 修；**KEV 2026-06-08**。
+- **CVE-2026-48710（Starlette "BadHost"）**：<1.0.1 的 Host 头未校验（`/ ? # [ ]`），鉴权逻辑可被绕过 → 与 42271 组合成**未认证 RCE，CVSS 10.0**；SANS ISC 蜜罐在 **11-15/16** 观测到针对 `/mcp-rest/test/tools/list` 的探测，且攻击者已在做**变种字符绕过 PoC 过滤器**。["https://gridthegrey.com/posts/cve-2026-42271-litellm-rce-exploited-via-host-header-bypass/"]
+- **CVE-2026-42208**：proxy API key 校验 SQLi（调用方 key 直接拼进查询），**未认证**、CVSS 9.8，1.81.16–<1.83.7，1.83.7 修。
+- **CVE-2026-114612**：salt key 跨域复用（既封存密钥又签会话令牌）→ internal_user 提交伪造 admin 密文当 bearer，提权 proxy_admin 并经 MCP stdio 执行命令；1.91.0+ 默认可利用，1.87–1.90.x 需 `EXPERIMENTAL_UI_LOGIN=true`；1.100.4/1.101.3/1.102.2/1.103.1 修。
+- **二手纠错**：FreeBuf 的"组合两漏洞可无认证 RCE"指的是 42271 + 48710（4–6 月线），**不是** 11-18 新进 KEV 的 40217（后者需 admin 凭据）。两条不要混。
+
+### 7.3 判断
+1. **供应链投毒与网关漏洞是同一资产的两条路径，共同点是凭据集中**：gateway 是"一把钥匙开全部模型"的位置，碰一次即全量交出。
+2. **加固顺序**（按杠杆排序，不是按 CVSS）：① 网关不持有长期 provider key（外注凭据 / 短时令牌——与 Runtime 周 Substrate "零凭据执行 + egress PEP" 同构）；② 管理面与推理面网络/身份分离；③ 生产关闭管理测试端点（`/guardrails/test_custom_code`、`/mcp-rest/test/*`）；④ 版本 ≥1.83.11 **且** Starlette ≥1.0.1（只升一个，10.0 链仍在）。
+3. **披露到 KEV 用 7 个月**（2-13 报送 → 4-08 禁运到期 → 5-07 公告 → 11-18 KEV）：vendor 公告不等于有人在打；KEV 才是"已经有人在打"的信号。这与 MCP 事件族里"策略存在 ≠ 策略生效"是同一类认识错误。
+
+### 7.4 与项目连接
+- **silver-shield**：LLM 网关应列入"凭据集中点"清单，检查项=是否持有长期 key、管理端点是否对外、Starlette 版本。
+- **Tafcm / 本地边缘**：本地推理绕开了 gateway 的 key 集中，但同时引入本地控制面裸露（对照 Computer Use 周事件 22/24）——两条路都要"最小凭据 + 管理面不外露"。
+- **TeamMind**：多 agent 运行时的模型网关属于运行时身份基线（R 层），网关凭据应短时、可吊销、可审计。
+
 ## 6. 决策
 - [ ] 晋升 validated（≥2 条独立证据）
 - [ ] 维持观察
