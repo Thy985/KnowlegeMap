@@ -154,6 +154,7 @@
 | [2026-11/2026-11-17_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-17_radar-fallback_scan.md) | 兜底事件日 20：MCP Python SDK audience 未校验（CVE-2026-116684，CVSS 6.8）+ AWS mcp-gateway-registry SSRF（CVE-2026-125926，1.0.3–1.34.0）→ 并入 S 卡 | 🟡 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
 | [2026-11/2026-11-19_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-19_radar-fallback_scan.md) | 兜底：MCP 参考实现批量（CVE-2026-111771 TS SDK audience / CVE-2026-48989 Windows-MCP 无认证 PowerShell / 41901 sqlite 越权）+ 编号纠错 | 🆕 |
+| [2026-11/2026-11-22_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-22_radar-watch_scan.md) | 深耕 Day7 小结：Memory 两周收束（E/F 缺口路径级结案、不宣称闭环完整）→ 换域 Computer Use / Browser（11-23 起） | 🟡 |
 | [2026-11/2026-11-21_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-21_radar-fallback_scan.md) | 兜底事件日 24：MCP 网关管理员提权（CVE-2026-100307，升级不清理历史映射与凭据）+ 本地 MCP 监听裸露（CVE-2026-112136，9.2）+ 策略归一化静默失效（CVE-2026-125271，8.5）；另订正 111770 为 7.7 | 🆕 |
 | [2026-11/2026-11-21_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-21_radar-watch_scan.md) | Memory 第二周 Day6 回灌：三项实测改写防御栈（门控旁路 / 条件性 gate / 回执声明层） | 🟡 |
 | [2026-11/2026-11-20_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-20_radar-fallback_scan.md) | 兜底事件日 23：MCP Python SDK OAuth 凭据外送（CVE-2026-115563，7.5，升级不修复）+ 两个 B 级 SDK 漏洞 | 🆕 |

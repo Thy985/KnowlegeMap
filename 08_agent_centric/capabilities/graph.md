@@ -78,3 +78,8 @@
 - **write-gate-location** → agent-memory（B5.1：门控强度=入口唯一性，`infer=False` 直写旁路使其归零），runtime-defense（旁路=防御面缺口，与 fail-open 同构：合法 API 也能打开缺口），governance（调试直写与生产写入必须分权并可审计）
 - **delete-residue-audit** → agent-memory（F5.2：删除覆盖主记录/向量/审计历史/备份与派生四层，回执五字段），governance（F5 删除权要求"可核验回执"，调用成功不算合规），observability（残留扫描作为 H4 静默腐化检测项，可确定性执行）
 
+## 2026-11-22 小结：记忆边界判据迁移到真实环境执行（2 条边）
+> 来源：Memory 第二周收束。这两条边不是新知识，是**判据搬家**——同一套提问方式从"存进去"迁到"点下去"。
+
+- **action-gate-location** → agent-memory（B5.1 门控=入口唯一），agent-computer-use（B/E 层：点击/输入/本地端口的执行通道枚举），runtime-defense（旁路与 fail-open 同构，合法 API 也能打开缺口），governance（调试通道与生产通道必须分权审计）
+- **action-receipt-verification** → agent-memory（F5.2 删除五字段回执），agent-computer-use（H 层：URL/DOM 路径/进程 + 时间 + 结果哈希 + 覆盖范围），observability（动作日志与回放作为可核验证据，`success` 不算回执），governance（"调用成功"不能作为合规证明）
