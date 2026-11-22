@@ -455,6 +455,17 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-23 Personal Tech Radar 深耕（Computer Use / Browser 第一周 Day1：建能力树/基线）
+
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **Computer Use / Browser 能力树（A~H 八层）** | 2026-11-23 | 本仓基线 | Computer Use / Browser | Tafcm/campus_order/E2E-CLI/silver-shield | 基线文档 | **S** | 是（八层 44 节点） | 否 |
+| **browser-use 1.0 推翻重写**（1.0.0 11-10 / 1.0.6 11-16，REPL+CDP，删 DOM serializer/action schema） | 2026-11-23 | PyPI + GitHub Release | Computer Use / Browser | campus_order/E2E-CLI | [cand] 增量（对象级 Changed） | **A** | 部分 | 未（周五源码级） |
+| **OSWorld 2.0**（2606.29537，108 长时任务/318 调用，20.6% 完成） | 2026-11-23 | arXiv + 官方站 + 榜 | Agent 评测（跨域） | Validation / 本周 C 层 | 评测口径（不建卡） | **A** | 部分 | 否 |
+| **BioShocking**（虚构框架破 6/6 agentic 浏览器护栏，凭据外送） | 2026-11-23 | CSA 研究 note（引 LayerX） | AI 安全（G1） | silver-shield/campus_order | 风险基线（记 baseline） | **A** | 部分 | 否（一手待核） |
+| **Invisible Ink / II-Bench**（低害目标注入与人机确认不可区分）+ **WebTrap**（中途劫持回归原任务） | 2026-11-23 | arXiv 2608.02018 / 2605.08310 | AI 安全（G1） | campus_order F7/G2 | 风险基线 | **A** | 摘要级 | 否 |
+| **Playwright MCP / Webwright / Browser Harness** 三锚点核对（含 quantum 化对比：a11y ref vs 脚本 vs 自愈） | 2026-11-23 | 官方文档/仓库 | Computer Use / Browser | E2E-CLI | 既有卡（不新建） | A/B | 部分 | 否 |
+
 ## 2026-11-22 Personal Tech Radar 兜底（领域外 A 级：LiteLLM 网关漏洞族进入在野利用）
 - **CVE-2026-40217**（CISA KEV **2026-11-18**，整改截止 12-02）：`/guardrails/test_custom_code` 手写沙箱逃逸 → proxy 进程任意代码执行；CVSS 3.1 **8.8**、需 proxy-admin 凭据；**1.83.11** 修复（改 RestrictedPython）；X41 D-Sec 2-13 报送、5-07 公告 → 11-18 才进 KEV（**7 个月**）。
 - **同族三件此前未入账**：CVE-2026-42271（MCP test 端点无 allowlist 命令注入，8.7，1.83.7 修，KEV 6-08）+ CVE-2026-48710（Starlette BadHost Host 头鉴权绕过）→ **未认证 RCE 10.0 链**；SANS ISC 蜜罐 11-15/16 见探测且已变种绕过过滤；CVE-2026-42208（key 校验 SQLi，未认证 9.8）；CVE-2026-114612（salt key 跨域复用提权）。

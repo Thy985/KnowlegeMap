@@ -83,3 +83,9 @@
 
 - **action-gate-location** → agent-memory（B5.1 门控=入口唯一），agent-computer-use（B/E 层：点击/输入/本地端口的执行通道枚举），runtime-defense（旁路与 fail-open 同构，合法 API 也能打开缺口），governance（调试通道与生产通道必须分权审计）
 - **action-receipt-verification** → agent-memory（F5.2 删除五字段回执），agent-computer-use（H 层：URL/DOM 路径/进程 + 时间 + 结果哈希 + 覆盖范围），observability（动作日志与回放作为可核验证据，`success` 不算回执），governance（"调用成功"不能作为合规证明）
+
+## 2026-11-23 基线：真实环境操作的两条边（2 条边）
+> 来源：Computer Use / Browser 周 Day1 建树。与 11-22 的"判据搬家"接续——那组给出提问方式，这组给出提问对象。
+
+- **representation-determines-failure** → agent-computer-use（A 层：a11y=看不见、像素=点偏，无通用最优），agent-evaluation（失败分类应区分表示错与判据错，否则成功率无意义），silver-shield（表示选择即攻击面选择：canvas/无 label 处既是漏检也是隐藏通道）
+- **code-as-action-artifact** → agent-computer-use（B2.1：browser-use 1.0 与 Webwright 独立收敛到脚本为产物），agent-harness-governance（产物可审查性 > 会话可回放性），e2e-cli（E2E 资产改为脚本 + 外部断言；回放只作调试）

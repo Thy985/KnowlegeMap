@@ -191,6 +191,11 @@
 - **LiteLLM 漏洞族 → silver-shield / TeamMind（运行时身份 R 层）**：gateway 一旦被碰，`LITELLM_MASTER_KEY` + 全部 provider key 一次性交出。加固的第一杠杆不是打补丁而是**凭据外注/短时令牌**——与 Runtime 周 Substrate "零凭据执行 + egress PEP" 直接同构，可在 silver-shield 落成检查项。
 - **"披露 ≠ 在野" → 事件判读纪律（MCP / 网关 / 浏览器控制面通用）**：40217 从报送（2-13）到 KEV（11-18）用了 7 个月；只有 KEV / 蜜罐探测 / 厂商确认"已利用"才算在野。与"策略存在 ≠ 策略生效"同类：**公告存在 ≠ 有人在打**。
 
+## 2026-11-23 基线：真实环境操作的三个连接（3 条）
+- **"代码即动作" → E2E-CLI（产物形态）**：browser-use 1.0 与 Webwright 独立收敛到"持久物是脚本/代码而非会话"。E2E-CLI 的 E2E 资产应改为可复用脚本 + 外部断言；会话回放只作调试，不作证据。
+- **"确认点绑不可逆动作" → campus_order / silver-shield（人机交接）**：BioShocking 6/6、弹窗 ASR 86%、Invisible Ink 低害目标不可区分 → "敏感动作需确认"这一模糊规则无效，必须枚举：支付/发送/删除/授权/安装/外发文件。
+- **"成功判据外部化" → Tafcm / Validation（回执）**：`success=True` 与 judge 自评都不是证据；与 Memory 周 F5.2 五字段回执同构，动作侧需"目标标识 + 前后状态 + 结果 + 覆盖范围"。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

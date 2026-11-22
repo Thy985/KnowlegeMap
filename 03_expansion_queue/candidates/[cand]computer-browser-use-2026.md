@@ -51,6 +51,9 @@
 > - **Claude Browser Use GA 技术细节（08-20）**：browser use 读取**页面 accessibility tree、按元素引用点击**（而非猜测屏幕坐标）+ computer use **批量化多动作 turns**——技术路线分化：a11y-tree 引用 vs 像素坐标["https://aitoolsreview.co.uk/insights/claude-computer-use-skills-files-ga"]
 > - **含义**：① **computer use 从"AI 产品功能"进入"开发者工具链"**（GitHub Copilot 桌面应用交互）——E2E-CLI 的"端到端诊断"可借鉴"agent 直接操作被测桌面应用"模式；② **Perplexity Comet 证明"AI 浏览器"品类从消费级走向企业级治理**（admin/audit/MDM）——与 campus_order/OpenClaw 的浏览器操作管理同向；③ **a11y-tree 引用 vs 坐标猜测的技术分化**影响自动化稳定性——自研/选型 browser agent 时优先 a11y-tree 方案（Claude 路线）以规避坐标漂移
 
+> **雷达增量（2026-11-23，Changed — 对象级重写）**：**browser-use 1.0 推翻重写**（1.0.0 于 2026-11-10，1.0.6 于 11-16）。官方原文「We started over. The agent now writes Python in one persistent REPL, straight on Chrome DevTools Protocol. **No DOM serializer, no action schema, nothing in between**.」同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**（BU Bench v2，60 任务 ×3 次，云浏览器，11-09）；默认改为**云浏览器 + Browser Use 网关 key**（本地须显式 `Browser('chromium')`），默认 `max_steps=100` / `timeout=1700s`（0.x 为 500）；1.0.5（11-14）新增**逐次运行的 judge**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；1.0.6 默认模型换 BU 4.0（token 单价为 bu-fast 的 15 倍）。["https://pypi.org/project/browser-use/"]["https://followagents.com/en/agents/browser-use"]
+> **含义**：① 这是**架构级路线变更**而非普通 release——删掉中间抽象层说明维护成本已高于模型能力缺口，与 Webwright「脚本即产物」同一方向；② 官方建议 `pin ==1.0.6`（releases move fast and can break APIs）；③ 本项目此前「browser-use 作为开源事实标准」的定位需改写为「已转向 REPL+CDP 的自有云网关产品」，自托管选型要重新评估（默认路径依赖其云与 key）。
+
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）
 - [ ] 评估给 campus_order/OpenClaw 加 browser-use 的可行性

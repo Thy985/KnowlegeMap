@@ -154,6 +154,7 @@
 | [2026-11/2026-11-17_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-17_radar-fallback_scan.md) | 兜底事件日 20：MCP Python SDK audience 未校验（CVE-2026-116684，CVSS 6.8）+ AWS mcp-gateway-registry SSRF（CVE-2026-125926，1.0.3–1.34.0）→ 并入 S 卡 | 🟡 |
 | [2026-11/2026-11-16_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-16_radar-fallback_scan.md) | 兜底：CVE-2026-111770 MCP 官方 SDK 跨客户端响应错投（2.0.0–2.3.0，2.3.0 需改代码修复）；并入安全 S 卡事件日 19 | 🟡 |
 | [2026-11/2026-11-19_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-19_radar-fallback_scan.md) | 兜底：MCP 参考实现批量（CVE-2026-111771 TS SDK audience / CVE-2026-48989 Windows-MCP 无认证 PowerShell / 41901 sqlite 越权）+ 编号纠错 | 🆕 |
+| [2026-11/2026-11-23_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-23_radar-watch_scan.md) | 深耕 Day1（Computer Use / Browser 第一周）：建八层能力树 A~H（44 节点/锚点 12/批判 5/判断 7/缺口 6）；Day1 意外收获＝browser-use 1.0 架构级重写（REPL+CDP）并入 S 卡 | 🆕 |
 | [2026-11/2026-11-22_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-22_radar-fallback_scan.md) | 兜底 A 级：LiteLLM CVE-2026-40217 进 KEV（11-18）+ 42271/48710 未认证 10.0 链在野探测；网关凭据集中结论 | 🟡 |
 | [2026-11/2026-11-22_radar-watch_scan.md](05_scan_logs/2026-11/2026-11-22_radar-watch_scan.md) | 深耕 Day7 小结：Memory 两周收束（E/F 缺口路径级结案、不宣称闭环完整）→ 换域 Computer Use / Browser（11-23 起） | 🟡 |
 | [2026-11/2026-11-21_radar-fallback_scan.md](05_scan_logs/2026-11/2026-11-21_radar-fallback_scan.md) | 兜底事件日 24：MCP 网关管理员提权（CVE-2026-100307，升级不清理历史映射与凭据）+ 本地 MCP 监听裸露（CVE-2026-112136，9.2）+ 策略归一化静默失效（CVE-2026-125271，8.5）；另订正 111770 为 7.7 | 🆕 |

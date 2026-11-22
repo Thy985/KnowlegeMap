@@ -5,7 +5,7 @@
 ## 当前领域：Computer Use / Browser（浏览器与桌面操作层 / 真实环境执行）
 
 - **周起始日**：2026-11-23（周一）
-- **状态**：active · **第一周（11-23~11-29）· Day0 基线待建**——Memory 两周（11-09~11-22）已收束：E 层作用域与 F 层注入路径均完成确定性实测并结案（路径级，非比例级），故换域；Memory 的 H 层原型仍零代码，已转项目施工项，不占雷达周
+- **状态**：active · **第一周（11-23~11-29）· Day1 基线已建**（能力树 `08_agent_centric/domains/agent-computer-use.md`：A~H 八层 44 节点 / 锚点 12 行 / 基准批判 5 条 / 判断 7 条 / 缺口 6 项）——Memory 两周（11-09~11-22）已收束：E 层作用域与 F 层注入路径均完成确定性实测并结案（路径级，非比例级），故换域；Memory 的 H 层原型仍零代码，已转项目施工项，不占雷达周
 - **为什么现在做它**：领域顺序 Evaluation→Harness→Runtime→Memory→**Computer Use / Browser**→AI Infra/本地边缘。Memory 两周已产出可交接的三条判据（动作门控位置 > 强度 / 判定依据必须外部 / 回执可核验），正好是真实环境执行的判定框架；且 Tafcm / campus_order / E2E-CLI 都直接依赖浏览器自动化，`[cand]computer-browser-use-2026`、`[cand]browser-harness-2026`、`[cand]webwright-2026` 三张卡已在队；事件侧 Windows-MCP 无认证（CVE-2026-48989）、Mendix MCP 监听 9.2（CVE-2026-112136）已证明"本地控制面裸露"是可远程触发的真实风险，真实环境操作面比记忆面更缺边界。
 
 ## 目标
@@ -24,7 +24,7 @@
 - 相邻未覆盖：AI Infra / 本地边缘（接 Tafcm 本地推理）；Evaluation 已闭环（动作成功率的评测口径按需引用）
 
 ## 本周进度（每日分工）
-- [ ] 周一（11-23）：建 Computer Use / Browser 能力树/基线（`08_agent_centric/domains/agent-computer-use.md`）+ 更新本文件——A 环境表示 / B 动作空间与 grounding / C 感知与自验证 / D 会话与状态 / E 隔离与凭据 / F 信任边界 / G 人机交接 / H 可观测与回放；锚点表 3 张既有卡 + 事件侧 2 条；缺口 5-6 项，至少 1 项 S
+- [x] 周一（11-23）：建 Computer Use / Browser 能力树/基线（`08_agent_centric/domains/agent-computer-use.md`）+ 更新本文件 ✅（八层 44 节点；锚点 12；批判 5；判断 7；缺口 6（S1/A2/B3）；Day1 意外收获＝browser-use 1.0 架构级重写并入 S 卡）——A 环境表示 / B 动作空间与 grounding / C 感知与自验证 / D 会话与状态 / E 隔离与凭据 / F 信任边界 / G 人机交接 / H 可观测与回放；锚点表 3 张既有卡 + 事件侧 2 条；缺口 5-6 项，至少 1 项 S
 - [ ] 周二（11-24）：只追增量（browser-use / Playwright MCP / Webwright / Browser Harness 新 release 与活跃变化）
 - [ ] 周三（11-25）：只追增量（相邻：desktop CUA、无障碍树 vs 像素 grounding、动作重放与确定性）
 - [ ] 周四（11-26）：只追增量（安全：本地监听/通配 CORS/浏览器 profile 串用/凭据泄露/沙箱逃逸）
