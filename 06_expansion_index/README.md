@@ -455,6 +455,11 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-24 Personal Tech Radar 兜底（领域外 A 级：微软 Agent Framework PyPI 元包被非授权发布，`.pth` 启动期窃取凭据）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **Microsoft agent-framework 1.26.1 / 1.26.2（PyPI 投毒）**：11-17 20:35 / 21:08 UTC 两次上传（33 分钟间隔），约 21:30 被隔离；last clean = 1.26.0（11-12）；`agent_framework_meta.pth` → `af_runtime_diag.pth`（第二版改名）；不 import 也在每次 Python 启动时执行；窃取 env/`/proc/*/environ`/`.npmrc`/`.git-credentials`/Azure CLI 会话，并申请 Azure MI / Azure DevOps / GitHub Actions OIDC 新令牌外发 webhook.site；保留合法代码故无功能异常 | 2026-11-24（事件 11-17，此前未入账） | GHSA-764m-3ppc-5m73（malware/CWE-506，无 CVE）+ PYSEC-2026-4388 + Wiz + StepSecurity + PyPI 版本历史 | AI 安全（G1）/ 制品供应链 | silver-shield（制品级检测清单）/ Tafcm（hash pin + 发布者白名单）/ TeamMind | [cand] 新建（A） | **A** | 是（多源时间线 + 载荷行为） | 否（静态/行为验证未做；根因"客户端证书被窃"为 Wiz 单源） |
+
 ## 2026-11-24 Personal Tech Radar 深耕（Computer Use / Browser 第一周 Day2：增量日 — WebMCP 页面声明工具 + browser-use 1.0.8）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|
