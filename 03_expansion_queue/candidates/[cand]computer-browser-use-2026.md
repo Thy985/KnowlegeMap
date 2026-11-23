@@ -54,6 +54,14 @@
 > **雷达增量（2026-11-23，Changed — 对象级重写）**：**browser-use 1.0 推翻重写**（1.0.0 于 2026-11-10，1.0.6 于 11-16）。官方原文「We started over. The agent now writes Python in one persistent REPL, straight on Chrome DevTools Protocol. **No DOM serializer, no action schema, nothing in between**.」同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**（BU Bench v2，60 任务 ×3 次，云浏览器，11-09）；默认改为**云浏览器 + Browser Use 网关 key**（本地须显式 `Browser('chromium')`），默认 `max_steps=100` / `timeout=1700s`（0.x 为 500）；1.0.5（11-14）新增**逐次运行的 judge**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；1.0.6 默认模型换 BU 4.0（token 单价为 bu-fast 的 15 倍）。["https://pypi.org/project/browser-use/"]["https://followagents.com/en/agents/browser-use"]
 > **含义**：① 这是**架构级路线变更**而非普通 release——删掉中间抽象层说明维护成本已高于模型能力缺口，与 Webwright「脚本即产物」同一方向；② 官方建议 `pin ==1.0.6`（releases move fast and can break APIs）；③ 本项目此前「browser-use 作为开源事实标准」的定位需改写为「已转向 REPL+CDP 的自有云网关产品」，自托管选型要重新评估（默认路径依赖其云与 key）。
 
+**雷达增量（2026-11-24，Changed — 1.0.7 → 1.0.8，含官方自述的控制面风险）**：
+> - **版本**：1.0.7（GitHub 11-20 20:01 / PyPI 11-21）、**1.0.8（PyPI 2026-11-22，当前最新）**；官方改为建议 `pin ==1.0.8`（此前 1.0.6）。仍在高频迭代。
+> - **judge 扩面**：`result.judgement` 增 `gotchas`（站点经验：限流、页面顺序、字段格式），新增 `judge_context` 可传自有评判标准、`judge=False` 可关；judge 的 token/成本计入 `result.usage` / `result.cost_usd`。仍是"同一模型自评"，但**外部判据可注入** → 缺口② 从"纯自评"变成"自评 + 可给外部标准"，判定主体没变。
+> - **凭据遮罩 ≠ 隔离**（官方原文）：`sensitive_data` + `type_secret()` 会在 cell output / checkpoints / tool results / task / result 中把值替换为 `<secret:name>`，但明写 **"Not a sandbox: model-written Python can read the value, and screenshots"** → E4 只是显示层脱敏，不是执行面隔离。
+> - **官方自述本地控制面风险**（原文）：`Browser('chrome')` 与 `profile=` 打开的是 **127.0.0.1 上无认证的调试端口**，"on a shared machine, other local users can attach to that browser and its logins" → 直接证实判断 7（隔离最小单位是 profile 而非进程）与缺口①；也意味着"借用真实登录态"在多用户机器上等于把登录态暴露给同机任意用户。
+> - **profile 三档（E1 光谱）**：`Browser('chromium')` 全新临时 profile、结束后删除；`Browser('chrome', profile='Work')` 在用户 profile 的临时副本上开新 Chrome（关同步、Windows 除外用户 Chrome 可继续开）；`Browser('chrome')` 直接挂用户已开 Chrome（需开 remote debugging）。
+> - **含义**：① browser-use 亲手拆掉了"自托管==可信"的假设，安全边界必须由部署方提供（一次性 profile / 专用系统用户 / 端口绑定 loopback）；② E2E-CLI / Tafcm 若采用，默认应 `Browser('chromium')` 而非 `Browser('chrome')`；③ `judge_context` 是把外部判据接进判定的唯一官方入口，周五应核对它是否写进 trace 可复核。
+
 ## 4. 验证计划
 - [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）
 - [ ] 评估给 campus_order/OpenClaw 加 browser-use 的可行性

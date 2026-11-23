@@ -455,6 +455,14 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-24 Personal Tech Radar 深耕（Computer Use / Browser 第一周 Day2：增量日 — WebMCP 页面声明工具 + browser-use 1.0.8）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **WebMCP（页面声明工具，Give agents tools, not DOM）** | 2026-11-24 | Chrome 官方文档（2026-05-18 首发布/10-07 更新）+ Playwright MCP 11-18 release | Computer Use / 动作空间 + 信任边界 | E2E-CLI / silver-shield / campus_order | [cand] | **A** | 是（新建卡） | 未 |
+| **browser-use 1.0.8**（1.0.7 11-20/21 → 1.0.8 11-22；judge `gotchas`/`judge_context`；`sensitive_data` 非沙箱；`Browser('chrome')`/`profile=` 开 127.0.0.1 无认证端口） | 2026-09-01（对象）/ 2026-11-24（增量） | PyPI + GitHub Release | Computer Use | E2E-CLI / Tafcm | [cand] | S | 是（并入 S 卡） | 未（周五） |
+| **Playwright MCP 11-18**：页面工具直接暴露为 `webmcp_<tool>`（schema/描述/结果不可信、`tools/list_changed`、`--no-webmcp` 可关）；`browser_take_screenshot` 文档不再排除"据截图动作" | 2026-11-23（对象）/ 2026-11-24（增量） | microsoft/playwright-mcp release notes | Computer Use | E2E-CLI | [cand] | A | 是（并入能力树） | 未（周五） |
+| Webwright / Browser Harness（复核无新版本） | 2026-11-24 | GitHub / piwheels | Computer Use | E2E-CLI | [observe] | B | — | 未 |
+
 ## 2026-11-23 Personal Tech Radar 兜底（领域外 A 级：Langflow 双 9.8 未授权漏洞 → AI 编排平台暴露面）
 
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |

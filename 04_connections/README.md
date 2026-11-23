@@ -196,6 +196,11 @@
 - **"确认点绑不可逆动作" → campus_order / silver-shield（人机交接）**：BioShocking 6/6、弹窗 ASR 86%、Invisible Ink 低害目标不可区分 → "敏感动作需确认"这一模糊规则无效，必须枚举：支付/发送/删除/授权/安装/外发文件。
 - **"成功判据外部化" → Tafcm / Validation（回执）**：`success=True` 与 judge 自评都不是证据；与 Memory 周 F5.2 五字段回执同构，动作侧需"目标标识 + 前后状态 + 结果 + 覆盖范围"。
 
+## 2026-11-24 增量：工具清单成为不可信输入（2 条）
+
+- **WebMCP 页面声明工具** → E2E-CLI / silver-shield / campus_order：动作空间从"操作 UI"变成"调用页面给的契约"；注入面**前移到工具清单**（读 description 时即生效，执行之前），`tools/list_changed` 允许页面中途改写 agent 的动作面；`execute` 返回值是页面自证而非外部事实 → E2E 断言仍须独立。🟡 新建 A 卡 [`webmcp-page-declared-tools-2026`](../03_expansion_queue/candidates/[cand]webmcp-page-declared-tools-2026.md)
+- **browser-use 1.0.8 的自我揭短** → Tafcm / E2E-CLI：官方承认 `Browser('chrome')`/`profile=` 打开 **127.0.0.1 无认证调试端口**（同机用户可接管登录态），且 `sensitive_data` 明写"非沙箱、模型可读" → 判断 7（隔离最小单位是 profile）由"待验证"升为**厂商自述**，部署默认应改 `Browser('chromium')`（一次性临时 profile）。🟡 增量并入 S 卡 [`computer-browser-use-2026`](../03_expansion_queue/candidates/[cand]computer-browser-use-2026.md)
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

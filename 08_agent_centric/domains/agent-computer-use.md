@@ -86,8 +86,8 @@ Computer Use / Browser
 
 | 对象 | 对应层 | 关键事实 | 证据等级 | 状态 |
 |---|---|---|---|---|
-| **browser-use 1.0.6**（2026-11-16；1.0.0 于 11-10） | A4 / B2 / C2.3 / H2 | **推翻重写**：agent 在**一个持久 Python REPL 里直接写代码、跑在原始 CDP 上**，"no DOM serializer, no action schema"；同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**；默认云浏览器 + 网关 key；默认 `max_steps=100`、`timeout=1700s`；1.0.5（11-14）新增**每次运行由自选 judge 模型判**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`） | FACT（PyPI + GitHub Release）+ 自报数字 | `[cand]` → 本周五验证 |
-| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required" | FACT（playwright.dev/mcp） | `[cand]` |
+| **browser-use 1.0.8**（2026-11-22；1.0.6 于 11-16，1.0.0 于 11-10） | A4 / B2 / C2.3 / H2 | **推翻重写**：agent 在**一个持久 Python REPL 里直接写代码、跑在原始 CDP 上**，"no DOM serializer, no action schema"；同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**；默认云浏览器 + 网关 key；默认 `max_steps=100`、`timeout=1700s`；1.0.5（11-14）新增**每次运行由自选 judge 模型判**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；**1.0.8 增 `gotchas` + `judge_context`**（可注入外部判据，判定者仍是同一模型）；官方自述 `Browser('chrome')`/`profile=` 会开 **127.0.0.1 无认证调试端口**，同机用户可接管登录态；`sensitive_data` 明写 **"Not a sandbox: model-written Python can read the value, and screenshots"** | FACT（PyPI + GitHub Release）+ 自报数字 | `[cand]` → 本周五验证（1.0.8） |
+| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required"；**2026-11-18 起把 WebMCP 页面注册工具直接暴露为 `webmcp_<tool>`**（名称/描述/schema/结果均视为不可信，`--no-webmcp` 可关）；**`browser_take_screenshot` 文档已改为不再排除"据截图动作"**（推翻 Day1 基线） | FACT（playwright.dev/mcp + release notes） | `[cand]` |
 | **Webwright**（MS Research，`microsoft/Webwright`） | B2.1 / H3 | 终端原生：agent 写 Playwright 脚本、跑 bash、看日志、迭代；**持久产物是脚本**（可复用/可审查/可回放），会话只是进程；Online-Mind2Web **86.7%**、Odysseys **60.1%**（基线 GPT-5.4 33.5%） | FACT（官方仓库/页/论文）+ 自报基准 | `[cand]` |
 | **Browser Harness**（browser-use 团队） | B2 / F1 / EP-002 | 极简自愈 harness：一根 CDP WebSocket 连 Chrome，agent 在 `agent-workspace/` 里边跑边写缺失代码；无框架、无 recipes；15.7k stars、PyPI 0.1.6 | FACT（仓库/包） | `[cand]` |
 | **Claude browser/computer use toolsets**（`browser_toolset_20260801` / `computer_toolset_20260801`，均 GA） | A2/A3 / B1 / G2 | browser 侧读 accessibility tree + 元素引用（非坐标猜测），27 个内置成员工具 + 4 可选；computer 侧整桌面操作；支持单次调用内**连续多动作**；09-12 起 Pro/Max 可直接授权使用电脑 | FACT（官方文档/Release Notes） | 锚点（不建卡） |
@@ -126,7 +126,7 @@ Computer Use / Browser
 | # | 缺口 | 层级 | 等级 | 计划 |
 |---|---|---|---|---|
 | ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | 周四扫描 + 周五本机 `ss -ltnp` / profile 权限结构核查（无 GUI，包级+源码级） |
-| ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.5 的 judgement 是模型自评而非外部证据 | C2 / H2 | **A** | 周五读 browser-use 1.0.6 源码，确认 judgement 字段来源与是否有状态断言 |
+| ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.8 的 judgement 仍是模型自评（新增 `judge_context` 可注入外部判据，但判定主体未变） | C2 / H2 | **A** | 周五读 browser-use 1.0.8 源码，确认 judgement 字段来源、`judge_context` 是否入 trace、是否有状态断言 |
 | ③ | **表示覆盖率**：a11y 树对 canvas/自绘/无 label 控件的漏检率无公开数据 | A6 | A | 周五做最小对照（同一页面 a11y 快照 vs 截图元素数） |
 | ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | 延后（需真实站点，风险高） |
 | ⑤ | **确认疲劳的量化**：Invisible Ink 只有定性结论，无 field 数据；确认点阈值缺经验值 | F7 / G2 | B | 观察，不投入 |
@@ -134,8 +134,8 @@ Computer Use / Browser
 
 ## 三、验证计划（周五 11-27，2–3 个候选）
 
-1. **browser-use 1.0.6（首选，包级 + 源码级）**：本机无 GUI，按先例降级——`pip download`/装包核对 API 表面是否真的只剩"REPL + CDP"；读源码确认：(a) 是否有 DOM serializer 残留，(b) `judgement` 的 `prompt_injection_detected` 是模型判断还是确定性检查，(c) 默认云浏览器是否意味着本地执行必须显式传 `Browser('chromium')`，(d) `max_steps=100` 对长任务的截断行为。
-2. **Playwright MCP（源码级）**：核对 a11y 快照的 ref 生命周期与持久会话默认值；确认 `browser_take_screenshot` 明确"不能据此动作"这一设计约束是否真被执行层强制（还是仅文档约定）。
+1. **browser-use 1.0.8（首选，包级 + 源码级）**：本机无 GUI，按先例降级——`pip download`/装包核对 API 表面是否真的只剩"REPL + CDP"；读源码确认：(a) 是否有 DOM serializer 残留，(b) `judgement` 的 `prompt_injection_detected` 是模型判断还是确定性检查、`judge_context` 落在何处，(c) 默认云浏览器是否意味着本地执行必须显式传 `Browser('chromium')`，(d) `max_steps=100` 对长任务的截断行为。
+2. **Playwright MCP（源码级）**：核对 a11y 快照的 ref 生命周期与持久会话默认值；确认 11-18 文档改动后 `browser_take_screenshot` 与 `browser_snapshot` 的分工（是否只是措辞放宽，执行层未变），并核对 `webmcp_*` 工具是否对页面 schema 做校验。
 3. **Webwright（只读对比）**：以"脚本产物 vs 会话"作为 B2.1 的对照轴，与 browser-use 1.0 的"REPL 即产物"比较——两者都把持久物从会话挪到了代码，这是本周最值得确认的方向判断。
 
 ## 四、判断（Day1 基线，待验证）
@@ -164,3 +164,11 @@ Computer Use / Browser
 - **Day1 意外收获（Changed）**：browser-use 在 11-10~11-16 完成 **1.0 推翻重写**（删掉 DOM serializer 与 action schema，改持久 Python REPL 直连 CDP），已作为增量写入 `[cand]computer-browser-use-2026.md`。
 - 基准批判 5 条、判断 7 条、缺口 6 项（S 1 / A 2 / B 3）。
 - 未做：任何实跑（本机无 GUI）；缺口①②③ 排到周五。
+
+## 七、Day2 增量记录（2026-11-24，周二）
+
+- **Changed · browser-use**：1.0.7（11-20/21）→ **1.0.8（11-22）**；judge 增 `gotchas` / `judge_context`；官方自述 `Browser('chrome')` / `profile=` 开 127.0.0.1 无认证调试端口；`sensitive_data` 明写"非沙箱"。已并入 `[cand]computer-browser-use-2026.md`。
+- **Changed · Playwright MCP**：11-18 release 把 **WebMCP 页面工具**直接暴露为 `webmcp_<tool>`（页面提供的名称/描述/schema/结果均不可信，`tools/list_changed` 可中途改工具面，`--no-webmcp` 可关）；同时 `browser_take_screenshot` 文档**不再排除"据截图动作"**——Day1 基线里"文档明写不能据此动作"这一条作废，改记为"措辞已放宽，执行层是否强制待周五核"。
+- **New · WebMCP**：新建 A 卡 `[cand]webmcp-page-declared-tools-2026.md`。核心不是"更快"，而是**动作空间从 UI 操作变成页面给的契约**：注入面前移到工具清单（执行之前），成功判据变成页面 `execute` 的返回值（自证）。
+- **No Action**：Webwright 未检索到 11-23/24 新 release（GitHub 页面 robots 限制，未直取，标注未核）；Browser Harness 最新仍 0.1.10（2026-08-26，piwheels），无新版本。
+- **旁证（不改判断、记一笔）**：Playwright MCP 自己的 README 现写明"coding agent 更适合 CLI-as-SKILL，比 MCP 省 token"——**连 MCP 服务方都建议编码 agent 走 CLI**，与判断 2"代码即动作"同向。
