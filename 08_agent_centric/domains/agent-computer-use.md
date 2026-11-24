@@ -93,6 +93,9 @@ Computer Use / Browser
 | **Claude browser/computer use toolsets**（`browser_toolset_20260801` / `computer_toolset_20260801`，均 GA） | A2/A3 / B1 / G2 | browser 侧读 accessibility tree + 元素引用（非坐标猜测），27 个内置成员工具 + 4 可选；computer 侧整桌面操作；支持单次调用内**连续多动作**；09-12 起 Pro/Max 可直接授权使用电脑 | FACT（官方文档/Release Notes） | 锚点（不建卡） |
 | **OSWorld-Verified**（369→360 任务，执行式评测） | C2.1 / C3 | 人类基线 **72.36%**；2024 年 SOTA 12.24% → 2026 年多模型越过人类线（Claude Fable 5 自报 85.0%、开源 Holo3-35B-A3B 82.6%、Qwen-CUA 论文 86.2）；**verified 与自报差距 6–11pt**（Sonnet 4.6 72.5 vs 78.5、Opus 4.8 72.7 vs 83.4） | 第三方汇总 + 论文 | 评测口径 |
 | **OSWorld 2.0**（arXiv 2606.29537，2026-06-28；v2 07-13） | C3 / C5 / C6 / H4 | **108 个长时任务**，人工中位 1.6 小时，平均 **318 次工具调用**（1.0 约 30 次）；500 步内二值完成率 Claude Opus 4.8 **20.6%** / 部分分 54.8%，GPT-5.5 约 13%；10 月榜 Opus 5 34.72%/70.19%；**失败画像**：丢约束、漏中途到达的信息、**猜而不问**、**跳过验证**、隐藏状态恢复差 | FACT（论文 + 官方站 + 榜） | 关键证据 |
+| **agent-desktop**（Vercel Labs，npm 1.2.0，Apache-2.0） | A2 / A6 / B1 / C2 / D3 / G | 桌面侧无障碍树 + ref：`snapshot --app Finder -i` → `@s8f3k2p9:e8`（ref 携带快照 id，裸 `@e8` 报 `INVALID_ARGS`）；UI 变了动作返回 `STALE_REF` / `AMBIGUOUS_TARGET`；**错误自带 `disposition.retry` 是否安全**；默认 headless（不动真实指针/焦点），`--headed` 才物理输入；60 命令（56 可用，`key-down/up`、`mouse-down/up` 需 daemon 能释放按住键才执行）；1.2.0 起 `agent-desktop mcp` 把每条命令暴露为 `desktop_*` stdio 工具；`--stdin` 让密钥不进 argv；跨 macOS AX / Windows UIA / Linux AT-SPI；官方自警「snapshot/clipboard/截图可能含隐私桌面内容」 | FACT（npm 1.2.0 README）+ 第三方（per-agent cursor） | `[cand]` → 周五/周六包级核对 |
+| **ComponentBench**（arXiv 2608.18307） | A1 / A6 / B1 / C3 | 同任务、同 harness，只换观察/动作空间（AX-tree / Set-of-Marks / Pixel / Browser-Use）：GPT-5 mini **AX 83.1 → Pixel 48.9（−34.2pt）**，GPT-5.4 反而 **Pixel 83.8 > AX 81.5 > SoM 77.0**；clutter 使 Pixel **−14.3%** 而 AX 仅 **−0.2%**，紧凑间距 Pixel −13.6% / AX −4.5%；任务级不对称：**123 个任务 AX 稳过而 Pixel 稳挂，反向仅 52**；Drag/Drop AX **72.1** / Pixel 57.4 / SoM 31.8 / Browser-Use **29.7**（DOM 动作面做不了真空间拖拽）；聚合稳定（跑间 ≤1.4pt）但 GPT-5 mini Pixel 有 **17.3% 任务逐条翻转** | FACT（论文表格） | 关键证据（缺口③ 部分闭环） |
+| **GUI 回放 / 效果核验族**（OpenAdapt / EchoPath / Activity Frames / AgentRR / agrepl） | B2.1 / C2 / H2 / H3 | **OpenAdapt**：一次演示编译为确定性程序，健康路径零模型调用；故障注入 90 例中「只看屏幕」静默接受 **54/90** → 带外效果校验 **9/90** → 完整 system-of-record 读路径 **0/90**（第二域 24/36→3/36）；**EchoPath**（2609.16635）轨迹→参数化可调用记忆 + 图像目标重瞄（IBTR），中位 token **−90%** / 时间 **−60%**；**Activity Frames**（2608.05784）零模型编译、字节可复现，**但确定性只对存储后的 OCR 文本向前成立、不回溯像素**；**agrepl**（2607.16200）传输层 MITM 重放 F=1.0（只重放外部交互） | 论文（OpenAdapt 为 draft 2026-07） | `[cand]` 品类卡 |
 | **CSA《CUA Safety Blind Spots》**（2026-04-15） | F1 / F2 / F7 | 对抗弹窗在 OSWorld + VisualWebArena 上**平均 ASR 86%**，同时任务完成率 **−47%**；"ignore pop-ups" 类系统提示**无效**；隐藏通道（Unicode tag、零字号、白底白字、离屏）通用可打；Promptware Kill Chain 七阶段，36 起真实事件中 **21 起跨 ≥4 阶段**；结构性防御建议 **planner-executor 分离**（特权 planner 不碰不可信内容） | 二手研究摘要（一手待核） | 风险基线 |
 | **BioShocking**（LayerX，2026-07） | F3 / F5 / F7 | 纯自然语言"虚构框架"绕护栏 → 窃取已登录凭据；**6/6 被测 agentic 浏览器全部中招**（ChatGPT Atlas / Comet / Claude Chrome 扩展 / Fellou / Genspark / Sigma）；无代码执行、无漏洞利用；修复不一致：OpenAI 已补、Anthropic 修复**仍可绕过**、Perplexity 关单不处理、3 家无回应 | 二手（CSA 研究 note 引 LayerX） | 风险基线 |
 | **UW agentic browser 研究**（2026-06-30） | D4 / F6 | 7 款 agentic 浏览器对同源策略处理各异；"像人类用户一样的权限"反而能被骗过人不会中招的招；**不同 origin 的信息在记忆里混流**（压缩/改写导致来源丢失） | 二手（校方新闻） | 风险基线 |
@@ -127,8 +130,8 @@ Computer Use / Browser
 |---|---|---|---|---|
 | ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | 周四扫描 + 周五本机 `ss -ltnp` / profile 权限结构核查（无 GUI，包级+源码级） |
 | ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.8 的 judgement 仍是模型自评（新增 `judge_context` 可注入外部判据，但判定主体未变） | C2 / H2 | **A** | 周五读 browser-use 1.0.8 源码，确认 judgement 字段来源、`judge_context` 是否入 trace、是否有状态断言 |
-| ③ | **表示覆盖率**：a11y 树对 canvas/自绘/无 label 控件的漏检率无公开数据 | A6 | A | 周五做最小对照（同一页面 a11y 快照 vs 截图元素数） |
-| ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | 延后（需真实站点，风险高） |
+| ③ | **表示覆盖率**：a11y 树对 canvas/自绘/无 label 控件的漏检率无公开数据 | A6 | A | **部分闭环（11-25）**：ComponentBench 给出受控对照（Drag/Drop、Advanced Editors 上 a11y 与 Pixel 排序相反；clutter 下 Pixel 掉 14pt 而 AX 只掉 0.2pt）；剩余：自建任务集上的漏检率 |
+| ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | **升级为 A-（11-25）**：已有 5 个对象可对照（传输 / 编译 / 执行三层确定性），周五做降级验证（SoR 断言两臂） |
 | ⑤ | **确认疲劳的量化**：Invisible Ink 只有定性结论，无 field 数据；确认点阈值缺经验值 | F7 / G2 | B | 观察，不投入 |
 | ⑥ | **本地/边缘协同**：浏览器 agent 与本地模型（Tafcm）的延迟与上下文预算 | H5 / 边缘 | B | 转 AI Infra 周 |
 
@@ -172,3 +175,12 @@ Computer Use / Browser
 - **New · WebMCP**：新建 A 卡 `[cand]webmcp-page-declared-tools-2026.md`。核心不是"更快"，而是**动作空间从 UI 操作变成页面给的契约**：注入面前移到工具清单（执行之前），成功判据变成页面 `execute` 的返回值（自证）。
 - **No Action**：Webwright 未检索到 11-23/24 新 release（GitHub 页面 robots 限制，未直取，标注未核）；Browser Harness 最新仍 0.1.10（2026-08-26，piwheels），无新版本。
 - **旁证（不改判断、记一笔）**：Playwright MCP 自己的 README 现写明"coding agent 更适合 CLI-as-SKILL，比 MCP 省 token"——**连 MCP 服务方都建议编码 agent 走 CLI**，与判断 2"代码即动作"同向。
+
+## 八、Day3 增量记录（2026-11-25，周三）
+
+- **New · agent-desktop**（A）：Vercel Labs 的桌面 a11y 执行面，npm **1.2.0**（约 5 万下载/周、48 个版本）。核心不是"a11y 一定更好"，而是把不确定性显式化：ref **绑快照 id**（裸 ref 报错）、UI 变了返回 `STALE_REF` / `AMBIGUOUS_TARGET`、错误自带 **`disposition.retry`**、默认 **headless**（`--headed` 才动物理指针）、1.2.0 起 `agent-desktop mcp` 暴露 `desktop_*` 工具、`--stdin` 让密钥不进 argv。官方自警"快照/剪贴板/截图可含隐私"，第三方补一句更关键：**a11y 树暴露面可能大于单窗口截图**。卡见 `[cand]agent-desktop-a11y-desktop-2026-11.md`。
+- **New · GUI 回放 / 效果核验品类**（A）：5 个对象合起来给出本周最硬的一条数字——**OpenAdapt 故障注入 90 例，只看屏幕的验证静默接受 54/90；加带外效果校验 9/90；完整 system-of-record 读路径 0/90**（第二域 24/36→3/36）。EchoPath 用 IBTR 重瞄把回放成本打到 token −90% / 时间 −60%；Activity Frames 明确"确定性只对存储后的 OCR 文本向前成立，不回溯像素"。卡见 `[cand]gui-action-replay-effect-verification-2026-11.md`。
+- **判断 1 从"设计推断"升级为"受控证据"**：ComponentBench 在同一 harness 上只换表示，GPT-5 mini AX 83.1 → Pixel 48.9（−34.2pt）；但 GPT-5.4 的排序**反过来**（Pixel 83.8 > AX 81.5 > SoM 77.0）——所以不是"结构化一律更好"，而是**表示 × 模型能力 × 场景密度三者交互**：clutter 下 Pixel −14.3%、AX −0.2%，GPT-5.4 在 clutter=none 时 Pixel 领先 4.5%、到 clutter=medium 反转成 AX 领先 9.7%。"选哪种表示"必须先测自己的任务分布与场景密度，不能抄结论。
+- **判断 3 获得量化支撑**：OpenAdapt 的 54/90 正是"屏幕成功 ≠ 已写入"的比例化版本；加上 EchoPath 的"拒绝模糊步骤"、agent-desktop 的 `STALE_REF`，三者指向同一件事——**回执要来自执行外部状态，且失败要能"拒绝继续"而不是重试到成功**。
+- **Changed · 缺口③ 部分闭环、缺口④ 升级 A-**（见 2.4 表）。
+- **No Action / 记日志**：Gemini computer use 上 macOS（11-19，US 英文，AI Plus/Pro/Ultra）——消费级产品铺开，属市场信号不属工程对象，记 B；n8n Nod（11-10，自托管个人 agent，自带沙箱电脑与"发送/支付/删除前询问"）——B，产品级；UI-TARS-desktop 仓库最后 commit 仍 10-09（腾讯云镜像页 11-24 为转载），无新版本。

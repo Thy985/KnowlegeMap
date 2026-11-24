@@ -455,6 +455,15 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-25 Personal Tech Radar 深耕（Computer Use / Browser 第一周 Day3：桌面 a11y 执行面 + 回放/效果核验）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **agent-desktop**（Vercel Labs，npm 1.2.0）：桌面无障碍树 + ref（`@s8f3k2p9:e8` 携带快照 id，裸 ref 报 `INVALID_ARGS`）；UI 变化返回 `STALE_REF` / `AMBIGUOUS_TARGET`；错误带 `disposition.retry` 是否安全；默认 headless、`--headed` 才物理输入；60 命令（56 可用）；1.2.0 增 `agent-desktop mcp`（`desktop_*` stdio）；`--stdin` 让密钥不进 argv；macOS AX / Windows UIA / Linux AT-SPI | 2026-11-25 | npm README（一手）+ GitHub（robots 拒直取）+ 第三方三篇 | Computer Use / 表示层（A2/A6） | E2E-CLI（断言绑快照）/ Tafcm / silver-shield | [cand] 新建（A） | **A** | 是 | 否（周五/周六包级核对） |
+| **GUI 回放与效果核验族**（OpenAdapt / EchoPath / Activity Frames / AgentRR / agrepl）：OpenAdapt 故障注入 90 例，「只看屏幕」静默接受 **54/90** → 带外效果校验 **9/90** → 完整 system-of-record **0/90**（第二域 24/36→3/36）；EchoPath 图像重瞄（IBTR），token −90% / 时间 −60%；Activity Frames 明确"确定性只对存储 OCR 文本向前成立、不回溯像素"；agrepl 传输层重放 F=1.0 | 2026-11-25 | 论文（OpenAdapt draft 2026-07 + 4 篇 arXiv） | Computer Use / 回放（H2/H3）+ 评测 | E2E-CLI / campus_order / silver-shield | [cand] 新建（A，品类） | **A** | 是 | 否（周五降级验证） |
+| **ComponentBench**（arXiv 2608.18307）：同任务同 harness 只换表示——GPT-5 mini AX 83.1 → Pixel 48.9（−34.2pt）；GPT-5.4 排序反转（Pixel 83.8 > AX 81.5 > SoM 77.0）；clutter 下 Pixel −14.3% / AX −0.2%；123 任务 AX 稳过而 Pixel 稳挂、反向仅 52；Drag/Drop AX 72.1 vs Browser-Use 29.7 | 2026-11-25 | arXiv 论文表格（一手） | 评测口径 / 表示层 | E2E-CLI / campus_order 选型 | 评测证据（不建卡） | **A** | 是 | — |
+| **Gemini computer use on macOS**（11-19，US 英文，AI Plus/Pro/Ultra）：可操控原生 App + 网页，实时预览 + 暂停/批准；无 Windows/Linux 时间表 | 2026-11-25 | 二手汇总（TechCrunch 转述） | 市场信号 | — | 记日志（B） | B | 否 | 否 |
+| **n8n Nod**（11-10 research preview，自托管个人 agent，自带沙箱电脑，发送/支付/删除前询问，98% 自报 226 任务） | 2026-11-25 | 二手 | 产品级 | Tafcm 对照 | 记日志（B） | B | 否 | 否 |
+
 ## 2026-11-24 Personal Tech Radar 兜底（领域外 A 级：微软 Agent Framework PyPI 元包被非授权发布，`.pth` 启动期窃取凭据）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|

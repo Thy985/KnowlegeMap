@@ -201,6 +201,12 @@
 - **WebMCP 页面声明工具** → E2E-CLI / silver-shield / campus_order：动作空间从"操作 UI"变成"调用页面给的契约"；注入面**前移到工具清单**（读 description 时即生效，执行之前），`tools/list_changed` 允许页面中途改写 agent 的动作面；`execute` 返回值是页面自证而非外部事实 → E2E 断言仍须独立。🟡 新建 A 卡 [`webmcp-page-declared-tools-2026`](../03_expansion_queue/candidates/[cand]webmcp-page-declared-tools-2026.md)
 - **browser-use 1.0.8 的自我揭短** → Tafcm / E2E-CLI：官方承认 `Browser('chrome')`/`profile=` 打开 **127.0.0.1 无认证调试端口**（同机用户可接管登录态），且 `sensitive_data` 明写"非沙箱、模型可读" → 判断 7（隔离最小单位是 profile）由"待验证"升为**厂商自述**，部署默认应改 `Browser('chromium')`（一次性临时 profile）。🟡 增量并入 S 卡 [`computer-browser-use-2026`](../03_expansion_queue/candidates/[cand]computer-browser-use-2026.md)
 
+## 2026-11-25 增量：桌面的表示、回执与回放（3 条）
+
+1. **agent-desktop（a11y 树 + 快照 id ref）→ E2E-CLI 的断言粒度**：`@s8f3k2p9:e8` 里带快照 id，意味着断言可以绑到"某一版 UI"而不是"某个坐标"；`STALE_REF` / `AMBIGUOUS_TARGET` 是可直接映射的失败类，不需要靠截图 diff 猜。→ 桌面 E2E 落地路径：**脚本 + ref 断言 + SoR 校验**三层，缺一层就退化成 `success` 布尔。
+2. **OpenAdapt 的 54/90 → 0/90 → campus_order 的确认点设计**：屏幕断言会静默放过六成注入故障，只有 system-of-record 读路径是 0。这给"支付/提交/删除"类动作定了硬要求：**效果声明 + 外部校验 + 核验失败即拒绝**，而不是"点完看弹窗"。
+3. **EchoPath 的 IBTR 重瞄 → silver-shield 的新检测面**：回放的"目标重解析/repair"是可被诱导的环节——屏幕上放一个更显眼、同名的假控件，重瞄就会把动作改道。与 WebTrap"把攻击目标变成任务前置条件"同机制；检测项应包含"重瞄依据的是哪一帧证据、repair 是否留痕"。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。
