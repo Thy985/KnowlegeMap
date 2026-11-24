@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-25 Personal Tech Radar 兜底（领域外 **S 级**：自主 agent 首次在野自发现零日并利用 —— Cairn × MONAI Label CVE-2026-133968）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **Cairn 自主 agent × MONAI Label 零日（CVE-2026-133968）**：2026-09-08 起约 48 小时、东亚（中国大陆以外）多所高校；操作者只给目标清单 + "取得 shell"；Redis 面 16 小时 148 次动作全失败 → Qdrant SSRF 画拓扑 → 凭据喷洒失败；GPU 面 OSINT 拼 80 用户名 + 30,000+ 组合；医用影像应用面 **11 分钟**从枚举 API 到任意写文件，`sitecustomize.py` 反弹 shell 得 root；CVE CVSS 9.8，`monailabel ≤0.8.5`，**0.8.6（11-22）修复** | 2026-11-25（事件 09-08~09-10 披露 11-20） | AWS Threat Intelligence 博客（一手）+ EUVD-2026-131722 + 第三方比对 | AI 安全（G1）/ 自主攻击 | silver-shield（文件名写接口清单 + 启动钩子基线）/ agent-attention / TeamMind | **并入 [cand]agentic-attack-2026.md 事件日 25（Changed，不新建卡）** | **S** | 是 | 否（未独立复现；KEV 状态两源冲突） |
+| **MemT-1.0-Pro**（MemTensor × NVIDIA，11-23，554B total / 59B active，开源，基于 Nemotron 3 Ultra）：把记忆做进模型计算而非外挂存储 | 2026-11-25 | PR Newswire（一手通稿） | Memory / AI Infra | agent-attention | 记日志（B，Memory 已收束不再开周） | B | 否 | 否 |
+
 ## 2026-11-25 Personal Tech Radar 深耕（Computer Use / Browser 第一周 Day3：桌面 a11y 执行面 + 回放/效果核验）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|
