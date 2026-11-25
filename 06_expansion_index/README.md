@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-26 Personal Tech Radar 兜底（1 项补记，领域外 A 级）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **VS Code MCP elicitation 通知 → command link 注入**（CVE-2026-120779，1.0.0<1.145.3，CWE-94，**CVSS 3.1 9.6**，UI:R；`ChatMCP=off` / `registryOnly` 临时缓解；无 workaround） | 2026-11-11（本次 11-26 补记） | NVD（CNA Microsoft）+ mallory.ai 摘要 | MCP 客户端安全（G1） | silver-shield（客户端渲染面检测项）/ Tafcm+TeamMind（MCP 接入白名单） | 并入 `[cand]agentic-attack-2026.md` 事件日 26 | **A** | 部分 | 否 |
+> 不写：Capsule《Agentic AI Threat Landscape》为 2026 上半年战役综述（ClawHavoc/hackerbot-claw/Aqua Trivy），非新事件；NEAR AI SGLang 已事件日 16；Cairn×MONAI 已事件日 25。
+
 ## 2026-11-26 Personal Tech Radar 深耕（Computer Use Day4 · 安全：本地控制面 / profile / 凭据 / 沙箱逃逸）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|

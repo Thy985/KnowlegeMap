@@ -109,6 +109,14 @@
 > - **含义**：① **长上下文成为攻击侧的工作记忆**——1M token 让主 agent 数天内始终持有全部主机、口令与失败尝试，不必像人类那样重读笔记；这是「上下文即记忆」在真实入侵中的生产级验证，也是 Memory 周基准批判①（长上下文碾压记忆管线）的攻防侧镜像；② **默认口令 + 未分段内网**仍是主根因——AI 没有发明新弱点，只是把旧弱点的发现/串联速度提高到防守方补丁节奏之外；③ 检测范式须从「异常时段 / 慢速潜伏」转向「高速扫描、批量失败登录、异常隧道」的**速率与重复性**特征；④ 越狱模板 + 拒答词表规避已是可复用工程件，**模型侧拒答不是安全边界**，harness 侧工具权限与出网控制才是。
 > - **证据限制**：Malbear Labs 报告经 Cyber Security News（11-09）二手转述，**精确规模未经独立核验**（原文亦注 outcomes were not independently verified）；VAPOR PANDA×ARTEX×DeepSeek 的关联来自 CrowdStrike 二手转述；未取得 Malbear Labs 原始报告、CrowdStrike 原文与公开目录证据。
 
+> **雷达补记（2026-11-26 兜底捕获，事件日 26：VS Code MCP elicitation 通知 → 命令注入，CVSS 9.6；事发 11-11，属漏项补记）**
+> - **FACT-1（CVE-2026-120779，A）**：Microsoft **Visual Studio Code 1.0.0 < 1.145.3**；远端 MCP server 在**没有活跃聊天会话**时提交 `elicitation` 请求，`McpElicitationService` 退化为 workbench 通知；通知渲染器把 server 控制的字符串当**链接文本**解析，内嵌 command link 在用户点击时调用 workbench 命令；非字符串 message 对象还可伪装渲染器内部的 linked-text 结构。CWE-94；CNA Microsoft 评 **CVSS 3.1 9.6**（`AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H`），NVD 尚未独立评估（"Awaiting Enrichment"），NVD 发布 2026-11-11。
+> - **FACT-2（影响与缓解）**：得手为**用户权限**的任意代码执行（不提权到管理员/SYSTEM）；无专门 workaround；临时缓解＝`ChatMCP` 策略关闭 MCP，或 `registryOnly` 限定白名单；**沙箱化本地 stdio MCP server 无效**（洞在远端 server 触发的客户端渲染路径）。
+> - **含义**：① MCP 注入面再添一类——不是工具描述、不是工具输出，而是**协议的会话交互通道（elicitation）降级成 UI 通知**：信任从「模型读文本」移到「渲染器把字符串当链接」，模型侧提示词防御完全不在链路上；② `UI:R` 是唯一降压点，但这正是「让用户点一下」的经典社会工程，与本周 P5（授权一次即整段会话生效）同构——**人机交接点再次成为最薄弱环节**；③ 版本跨度 1.0.0→1.145.3 说明缺陷长期存在，属迟发现，不能按「新洞」推断近期引入。
+> - **证据限制**：NVD 仅 CNA 评分、无 NVD 评估；行为细节取自 mallory.ai 的 CVE 摘要（**MSRC 公告原文未取**）；Capsule Security 11 月报告称「CVSS 9.6 的核心 MCP 基础设施 RCE」数值吻合但**未点名 CVE**，不作同一性断言。
+> - **关联订正（不新增结论）**：NotebookCheck（11-24）称 CISA 已把 CVE-2026-133968 列入 KEV，与 EUVD（11-20）"Not listed" 不矛盾（时间差）；本次尝试抓 CISA KEV JSON 只得到 `catalogVersion 2026.05.22` 的陈旧快照，**不能用于判定**，KEV 状态仍挂「待核」。
+> - **今日不写（B 及以下）**：Capsule《The Agentic AI Threat Landscape Has Crossed a Threshold》为 2026 上半年战役（ClawHavoc 约 12% skill 感染、hackerbot-claw 打 CI/CD 含 Aqua Trivy 全仓接管、AI reviewer 被操纵）的**综述**，非新事件；NEAR AI SGLang 已在事件日 16；Cairn 已在事件日 25。
+
 > **雷达增量（2026-11-25，重大事件日 25：自主 agent 首次在野「自发现零日并利用」——Cairn × MONAI Label CVE-2026-133968）**
 > - **FACT-1（事件本体，S 级，AWS 一手）**：Amazon Threat Intelligence 2026-09-10 发现一个**未加认证即暴露公网**的 Cairn 实例（开源自主渗透框架），其运营历史（项目配置、操作者 prompt、模型输出）全部可读；由此还原出 **2026-09-08 起约 48 小时**的行动：操作者只给出**目标 IP 清单**与一句目标「取得 shell 权限」（仅措辞微调），其余规划、执行、失败后换招全部由 agent 自行完成，目标为**中国大陆以外东亚地区多所高校**。AWS 称操作者用简体中文写 prompt、脚本时间戳为中国标准时（**归因是 AWS 的表述，本卡只记录，不做政治解读**）["https://aws.amazon.com/jp/blogs/news/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"]
 > - **FACT-2（三个作战面的失败与成功，给出"持久性"的量）**：
