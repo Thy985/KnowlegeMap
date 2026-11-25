@@ -455,6 +455,16 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-26 Personal Tech Radar 深耕（Computer Use Day4 · 安全：本地控制面 / profile / 凭据 / 沙箱逃逸）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **本地控制面暴露面清单**（7 种失效模式 + 6 问核查）：P1 无认证 CDP（browser-use `Browser('chrome')`）/ P2 本地 bridge 无 Host-Origin 校验 + DNS rebinding（chrome-devtools-axi ≤0.1.26、**Playwright MCP <0.0.40 CVE-2025-9611**）/ P3 默认绑 `0.0.0.0`（PraisonAI CVE-2026-40289）/ P4 扩展中继无 token（**OpenClaw CVE-2026-28458**，ws://127.0.0.1:18792/cdp）/ P5 扩展权限组合即后门（Manus `debugger+cookies+<all_urls>`）/ P6 profile 指针与 Chrome 136+/147+ 护栏被拆 / P7 凭据解密器藏在 skill 运行时（SkillLeak） | 2026-11-26（对象发生时间 2025-11~2026-09） | NVD / OSV / PyPA / Mindgard / Xygeni / PR #142 | Computer Use 安全（E2/E4/E5/F1） | silver-shield（检测项）/ TeamMind（能力组合授信）/ campus_order（OpenClaw 版本 ≥2026.2.1）/ Tafcm+E2E-CLI（一次性 profile） | **新建 [cand]local-control-plane-exposure-2026-11.md**（A，对应缺口① S） | **A** | 是 | 否（周五本机端口/权限核查） |
+| **Playwright MCP DNS rebinding**（CVE-2025-9611 / GHSA-6fg3-hvw7-2fwq，2026-01-07，High，<0.0.40→0.0.40） | 2026-11-26 | OSV / GitLab advisory | Computer Use 安全 | E2E-CLI | 并入 2.1 锚点（Changed）+ 清单卡 P2 | A | 是 | 是（CVE 已修，现行 `--allowed-hosts` 默认校验） |
+| **OpenClaw Browser Relay 无认证**（CVE-2026-28458，7.4，2026.1.20→2026.2.1） | 2026-11-26 | NVD（VulnCheck） | Computer Use 安全 | campus_order（OpenClaw） | 并入 2.1 锚点 + 清单卡 P4 | A | 是 | 是（fix 已发布，版本核对待做） |
+| **Chrome 136+/147+ 远程调试限制 + browser-harness 绕过** | 2026-11-26 | 二手技术博客 + PR #142 | Computer Use 安全 | Tafcm / E2E-CLI | 并入 2.1 锚点 + 清单卡 P6 | B（待核原文） | 是 | 否 |
+| **SkillLeak**（`@szc-ft/mcp-szcd-client`，DPAPI 解全 profile 密码 → MCP 回传远端） | 2026-11-26 | Xygeni（单源） | 供应链 / 凭据 | silver-shield / dsh-pentest | 并入 `[cand]skill-supply-chain-security-2026.md` §3.5 | A | 是 | 否 |
+| **Manus Browser Operator**（2025-11 历史锚点；`debugger+cookies+<all_urls>`，持久 WS 控制面，跨域 cookie 外传） | 2026-11-26（补录） | Mindgard + 厂商文档 | Computer Use 安全 | TeamMind | 只入 2.1 锚点，不建卡 | A- | 是 | 是（第三方实测） |
+
 ## 2026-11-25 Personal Tech Radar 兜底（领域外 **S 级**：自主 agent 首次在野自发现零日并利用 —— Cairn × MONAI Label CVE-2026-133968）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|

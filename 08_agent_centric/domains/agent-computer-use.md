@@ -87,7 +87,7 @@ Computer Use / Browser
 | 对象 | 对应层 | 关键事实 | 证据等级 | 状态 |
 |---|---|---|---|---|
 | **browser-use 1.0.8**（2026-11-22；1.0.6 于 11-16，1.0.0 于 11-10） | A4 / B2 / C2.3 / H2 | **推翻重写**：agent 在**一个持久 Python REPL 里直接写代码、跑在原始 CDP 上**，"no DOM serializer, no action schema"；同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**；默认云浏览器 + 网关 key；默认 `max_steps=100`、`timeout=1700s`；1.0.5（11-14）新增**每次运行由自选 judge 模型判**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；**1.0.8 增 `gotchas` + `judge_context`**（可注入外部判据，判定者仍是同一模型）；官方自述 `Browser('chrome')`/`profile=` 会开 **127.0.0.1 无认证调试端口**，同机用户可接管登录态；`sensitive_data` 明写 **"Not a sandbox: model-written Python can read the value, and screenshots"** | FACT（PyPI + GitHub Release）+ 自报数字 | `[cand]` → 本周五验证（1.0.8） |
-| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required"；**2026-11-18 起把 WebMCP 页面注册工具直接暴露为 `webmcp_<tool>`**（名称/描述/schema/结果均视为不可信，`--no-webmcp` 可关）；**`browser_take_screenshot` 文档已改为不再排除"据截图动作"**（推翻 Day1 基线） | FACT（playwright.dev/mcp + release notes） | `[cand]` |
+| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required"；**2026-11-18 起把 WebMCP 页面注册工具直接暴露为 `webmcp_<tool>`**（名称/描述/schema/结果均视为不可信，`--no-webmcp` 可关）；**`browser_take_screenshot` 文档已改为不再排除"据截图动作"**（推翻 Day1 基线）；**安全侧：<0.0.40 不校验 Origin → DNS rebinding 可调用全部工具（CVE-2025-9611 / GHSA-6fg3-hvw7-2fwq，2026-01-07，High；0.0.40 修复）**；现行 `--allowed-hosts` 默认只允许 localhost/loopback 与 `--host` 指定值，传 `*` 即关闭检查；`--allowed-origins` 官方明写**「不是安全边界、不影响重定向」** | FACT（playwright.dev/mcp + release notes + OSV） | `[cand]` |
 | **Webwright**（MS Research，`microsoft/Webwright`） | B2.1 / H3 | 终端原生：agent 写 Playwright 脚本、跑 bash、看日志、迭代；**持久产物是脚本**（可复用/可审查/可回放），会话只是进程；Online-Mind2Web **86.7%**、Odysseys **60.1%**（基线 GPT-5.4 33.5%） | FACT（官方仓库/页/论文）+ 自报基准 | `[cand]` |
 | **Browser Harness**（browser-use 团队） | B2 / F1 / EP-002 | 极简自愈 harness：一根 CDP WebSocket 连 Chrome，agent 在 `agent-workspace/` 里边跑边写缺失代码；无框架、无 recipes；15.7k stars、PyPI 0.1.6 | FACT（仓库/包） | `[cand]` |
 | **Claude browser/computer use toolsets**（`browser_toolset_20260801` / `computer_toolset_20260801`，均 GA） | A2/A3 / B1 / G2 | browser 侧读 accessibility tree + 元素引用（非坐标猜测），27 个内置成员工具 + 4 可选；computer 侧整桌面操作；支持单次调用内**连续多动作**；09-12 起 Pro/Max 可直接授权使用电脑 | FACT（官方文档/Release Notes） | 锚点（不建卡） |
@@ -96,6 +96,13 @@ Computer Use / Browser
 | **agent-desktop**（Vercel Labs，npm 1.2.0，Apache-2.0） | A2 / A6 / B1 / C2 / D3 / G | 桌面侧无障碍树 + ref：`snapshot --app Finder -i` → `@s8f3k2p9:e8`（ref 携带快照 id，裸 `@e8` 报 `INVALID_ARGS`）；UI 变了动作返回 `STALE_REF` / `AMBIGUOUS_TARGET`；**错误自带 `disposition.retry` 是否安全**；默认 headless（不动真实指针/焦点），`--headed` 才物理输入；60 命令（56 可用，`key-down/up`、`mouse-down/up` 需 daemon 能释放按住键才执行）；1.2.0 起 `agent-desktop mcp` 把每条命令暴露为 `desktop_*` stdio 工具；`--stdin` 让密钥不进 argv；跨 macOS AX / Windows UIA / Linux AT-SPI；官方自警「snapshot/clipboard/截图可能含隐私桌面内容」 | FACT（npm 1.2.0 README）+ 第三方（per-agent cursor） | `[cand]` → 周五/周六包级核对 |
 | **ComponentBench**（arXiv 2608.18307） | A1 / A6 / B1 / C3 | 同任务、同 harness，只换观察/动作空间（AX-tree / Set-of-Marks / Pixel / Browser-Use）：GPT-5 mini **AX 83.1 → Pixel 48.9（−34.2pt）**，GPT-5.4 反而 **Pixel 83.8 > AX 81.5 > SoM 77.0**；clutter 使 Pixel **−14.3%** 而 AX 仅 **−0.2%**，紧凑间距 Pixel −13.6% / AX −4.5%；任务级不对称：**123 个任务 AX 稳过而 Pixel 稳挂，反向仅 52**；Drag/Drop AX **72.1** / Pixel 57.4 / SoM 31.8 / Browser-Use **29.7**（DOM 动作面做不了真空间拖拽）；聚合稳定（跑间 ≤1.4pt）但 GPT-5 mini Pixel 有 **17.3% 任务逐条翻转** | FACT（论文表格） | 关键证据（缺口③ 部分闭环） |
 | **GUI 回放 / 效果核验族**（OpenAdapt / EchoPath / Activity Frames / AgentRR / agrepl） | B2.1 / C2 / H2 / H3 | **OpenAdapt**：一次演示编译为确定性程序，健康路径零模型调用；故障注入 90 例中「只看屏幕」静默接受 **54/90** → 带外效果校验 **9/90** → 完整 system-of-record 读路径 **0/90**（第二域 24/36→3/36）；**EchoPath**（2609.16635）轨迹→参数化可调用记忆 + 图像目标重瞄（IBTR），中位 token **−90%** / 时间 **−60%**；**Activity Frames**（2608.05784）零模型编译、字节可复现，**但确定性只对存储后的 OCR 文本向前成立、不回溯像素**；**agrepl**（2607.16200）传输层 MITM 重放 F=1.0（只重放外部交互） | 论文（OpenAdapt 为 draft 2026-07） | `[cand]` 品类卡 |
+| **OpenClaw CVE-2026-28458**（Browser Relay，2026-03 披露） | E2 / E3 | 扩展中继端点 `ws://127.0.0.1:18792/cdp` **不要求认证 token**，**网站**可经 loopback 连上 → 窃取会话 cookie + 在其他 tab 执行 JS；`2026.1.20 ≤ v < 2026.2.1`，CWE-306；CVSS 4.0 **7.4**（CNA VulnCheck，NVD 未评）；修复 commit `a1e89af` | FACT（NVD） | 复用（silver-shield 检测项） |
+| **本地 MCP bridge 两种失败**：`chrome-devtools-axi`（≤0.1.26→0.1.27）与 **PraisonAI** | E2 / E5 | 前者 `127.0.0.1:9224` 只按 method/path 分发、无 Host/Origin/认证，`POST /call` 直通任意 CDP → 完全接管 Chrome（GHSA-x439-jhfh-v9x2，2026-07-22）；后者 `browser start` 默认绑 **`0.0.0.0`** 且 `/ws` 接受**不带 Origin** 的客户端 → 未认证者伪装 controller 劫持扩展会话（CVE-2026-40289 / PYSEC-2026-485）。**同一层，三种不同校验缺位** | FACT | 复用 |
+| **Manus Browser Operator**（扩展 2025-11-18 发布、11-22 全量；历史锚点，非本轮新增） | E4 / E5 / F1 | 权限组合 `debugger` + `cookies` + `<all_urls>`；持久 WebSocket 连 `wss://api.manus.im` 作为控制面，服务端实时下发导航/点击/输入 → 跨域枚举 cookie 并经预签名 URL 外传；Chrome 仅提示「某扩展正在调试此浏览器」；授权为**整段会话 open-ended**（不能按域名/动作收窄）；厂商文案明说「clears standard access barriers」 | FACT（Mindgard 实测 + 厂商文档） | 风险基线 |
+| **Chrome 远程调试护栏**（136+ / 147+） | E2 / D3 | Chrome 136+ 起默认 user-data-dir **不允许**开 `--remote-debugging-port`（防「让 Chrome 调试启动→读全部 cookie」）；147+ 品牌版改为**静默阻塞 + 每次重启 Allow**，`DevToolsActivePort` 可能不写；browser-harness PR #142 用 `CHROME_CONFIG_HOME` 指向伪「非默认」路径绕过 → **自动化工具主动拆除浏览器护栏** | FACT（策略二手转述待核 + PR 一手） | 待核 + 风险基线 |
+| **SkillLeak**（2026-09） | E5 / F6 | `@szc-ft/mcp-szcd-client` 的 `local-browser-test` skill 在 `connect()` 调 `_decryptCredentials()`：Windows DPAPI + AES-256-GCM 解**整个 profile 已存密码**，明文写 `~/.szcd-mcp/deps/decrypted-creds.json` 并作为 MCP tool result 流向默认远端；**能力不在 install hook 里**——只扫安装期行为的审查会漏 | FACT（Xygeni 单源） | 并入 skill-supply-chain 卡 |
+| **Manus 生态对照**（AIPex 等） | — | 开源替代宣称「数据不出本机 / MIT」——与 P5 形成「厂商后端代理 vs 本地执行」的信任对照，暂不立项 | 二手（GitHub 描述） | 记日志 |
+
 | **CSA《CUA Safety Blind Spots》**（2026-04-15） | F1 / F2 / F7 | 对抗弹窗在 OSWorld + VisualWebArena 上**平均 ASR 86%**，同时任务完成率 **−47%**；"ignore pop-ups" 类系统提示**无效**；隐藏通道（Unicode tag、零字号、白底白字、离屏）通用可打；Promptware Kill Chain 七阶段，36 起真实事件中 **21 起跨 ≥4 阶段**；结构性防御建议 **planner-executor 分离**（特权 planner 不碰不可信内容） | 二手研究摘要（一手待核） | 风险基线 |
 | **BioShocking**（LayerX，2026-07） | F3 / F5 / F7 | 纯自然语言"虚构框架"绕护栏 → 窃取已登录凭据；**6/6 被测 agentic 浏览器全部中招**（ChatGPT Atlas / Comet / Claude Chrome 扩展 / Fellou / Genspark / Sigma）；无代码执行、无漏洞利用；修复不一致：OpenAI 已补、Anthropic 修复**仍可绕过**、Perplexity 关单不处理、3 家无回应 | 二手（CSA 研究 note 引 LayerX） | 风险基线 |
 | **UW agentic browser 研究**（2026-06-30） | D4 / F6 | 7 款 agentic 浏览器对同源策略处理各异；"像人类用户一样的权限"反而能被骗过人不会中招的招；**不同 origin 的信息在记忆里混流**（压缩/改写导致来源丢失） | 二手（校方新闻） | 风险基线 |
@@ -128,7 +135,7 @@ Computer Use / Browser
 
 | # | 缺口 | 层级 | 等级 | 计划 |
 |---|---|---|---|---|
-| ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | 周四扫描 + 周五本机 `ss -ltnp` / profile 权限结构核查（无 GUI，包级+源码级） |
+| ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | **部分闭环（11-26）**：产出 **7 种失效模式 + 6 问清单**（新卡 `[cand]local-control-plane-exposure-2026-11.md`）；剩余：周五本机 `ss -ltnp` / profile 权限结构核查（无 GUI，包级+源码级） |
 | ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.8 的 judgement 仍是模型自评（新增 `judge_context` 可注入外部判据，但判定主体未变） | C2 / H2 | **A** | 周五读 browser-use 1.0.8 源码，确认 judgement 字段来源、`judge_context` 是否入 trace、是否有状态断言 |
 | ③ | **表示覆盖率**：a11y 树对 canvas/自绘/无 label 控件的漏检率无公开数据 | A6 | A | **部分闭环（11-25）**：ComponentBench 给出受控对照（Drag/Drop、Advanced Editors 上 a11y 与 Pixel 排序相反；clutter 下 Pixel 掉 14pt 而 AX 只掉 0.2pt）；剩余：自建任务集上的漏检率 |
 | ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | **升级为 A-（11-25）**：已有 5 个对象可对照（传输 / 编译 / 执行三层确定性），周五做降级验证（SoR 断言两臂） |
@@ -150,6 +157,7 @@ Computer Use / Browser
 5. **会话继承是权限放大器，风险不在"能读到密码"**：agentic browser 继承全部已登录态，同时又与攻击者可控的文本共享同一上下文——真正的危险是"凭据与指令同处一个可被改写的窗口"，而不是凭据本身被读。UW 研究补了另一半：跨 origin 的信息在记忆里混流后连来源都丢了。
 6. **基准只测 happy path，能力数字与安全数字必须分开报**：82% 的 OSWorld 与 86% 的弹窗 ASR 可以同时成立，因为测的不是同一件事。任何"agent 可无人值守"的结论都必须同时给出完成率、合规率（ST-WebAgentBench 式 CuP）与静默失败率。
 7. **隔离的最小单位是 profile 而非进程（待验证）**：CDP 端口 + 持久 profile = 同机任意进程可取用登录态；"一任务一 profile + 一次性凭据"比"套一层容器"更贴近实际威胁面。这条要在周五用本机端口/目录核查证实或推翻。
+8. **控制面按「谁能触发」分层，而不是按「是否本地」**（Day4 新增）：同机进程（无认证 CDP）、浏览器内任意网页（DNS rebinding / 通配 Origin / 扩展中继）、局域网-公网（默认绑 `0.0.0.0`）是三套威胁，需要三套校验；`127.0.0.1` 只挡第三类。7 种已发生形态里 4 种由「正常使用」触发（打开网页 / 装扩展 / 跑 skill），因此默认路径即暴露面。
 
 ## 五、项目映射
 
@@ -184,3 +192,14 @@ Computer Use / Browser
 - **判断 3 获得量化支撑**：OpenAdapt 的 54/90 正是"屏幕成功 ≠ 已写入"的比例化版本；加上 EchoPath 的"拒绝模糊步骤"、agent-desktop 的 `STALE_REF`，三者指向同一件事——**回执要来自执行外部状态，且失败要能"拒绝继续"而不是重试到成功**。
 - **Changed · 缺口③ 部分闭环、缺口④ 升级 A-**（见 2.4 表）。
 - **No Action / 记日志**：Gemini computer use 上 macOS（11-19，US 英文，AI Plus/Pro/Ultra）——消费级产品铺开，属市场信号不属工程对象，记 B；n8n Nod（11-10，自托管个人 agent，自带沙箱电脑与"发送/支付/删除前询问"）——B，产品级；UI-TARS-desktop 仓库最后 commit 仍 10-09（腾讯云镜像页 11-24 为转载），无新版本。
+
+## 九、Day4 安全增量记录（2026-11-26，周四）
+
+- **New · 本地控制面暴露面清单（A，对应缺口① S）**：新建 `[cand]local-control-plane-exposure-2026-11.md`，把「本地控制面」按**被谁触发**拆成 7 种已发生形态（P1 无认证 CDP / P2 本地 bridge 无 Host-Origin 校验 + DNS rebinding / P3 默认绑 `0.0.0.0` / P4 扩展中继无 token / P5 扩展权限组合即后门 / P6 profile 指针与浏览器护栏被拆 / P7 凭据解密器藏在 skill 运行时），并给出 6 问核查清单。核心分布：**7 种里 4 种由「正常使用」触发**——默认路径即暴露，不是「有人来打」才暴露。
+- **Changed · Playwright MCP 安全侧入表**：<0.0.40 不校验 Origin（CVE-2025-9611 / GHSA-6fg3-hvw7-2fwq，2026-01-07，High），DNS rebinding 可调用全部工具；0.0.40 修复。现行 `--allowed-hosts` 默认只允许 localhost/loopback 与 `--host`，`*` 关闭检查；`--allowed-origins` 官方明写「不是安全边界、不影响重定向」。**含义**：MCP server 的「CORS 参数」与「安全边界」必须分开读，后者只由 Host 校验与认证提供。
+- **Changed · Chrome 远程调试护栏**：136+ 起默认 data dir 禁开 `--remote-debugging-port`；147+ 品牌版静默阻塞 + 每次 Allow 对话框，`DevToolsActivePort` 可能不写；browser-harness PR #142 用 `CHROME_CONFIG_HOME` 伪造非默认路径绕过。这把判断 7 补了一个限定：**不是「任意进程随时可取用」，而是「用户点过一次 Allow / 工具自拆护栏之后，端口即无认证」**——风险从「默认裸奔」变成「一次性授权被长期复用」。
+- **判断 8 新增**（见 §四）：控制面按触发者分层，`127.0.0.1` 只挡公网，不挡同机进程，更不挡浏览器内网页。
+- **Manus Browser Operator（历史锚点）**：2025-11 事件，补入 2.1，不新建卡。它的价值不是「又一个产品」，而是**把 P5 形态写成可对照的实例**：`debugger + cookies + <all_urls>` 三者组合 ≈ 完整 RAT 能力；授权粒度是整段会话，用户无法按域名/动作收窄；厂商明确以「绕过标准访问屏障」作为卖点。
+- **SkillLeak 并入 skill-supply-chain 卡**：凭据能力放在 **skill 运行时**而不是 install hook，`connect()` 才解密全部已存密码 → 审查点要前移到「技能首次被调用时做了什么」。
+- **No Action / 记日志**：Anthropic 披露 5 条浏览器/系统利用链（2026-10-27，Chrome 156 修 62 个 CVE、13 个沙箱逃逸）——平台侧补丁事件，对本领域的含义只是「浏览器版本是 computer-use 的前置条件」，记 B；AIPex 等开源替代（宣称本地执行/MIT）记 B；Manus 博客时间元数据冲突已在卡内标注。
+- **未做**：本机 `ss -ltnp` / profile 权限核查（周五）；DNS rebinding 只做设计未实跑；Chrome 官方 release note 原文未取。

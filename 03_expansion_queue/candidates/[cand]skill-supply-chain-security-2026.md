@@ -21,6 +21,13 @@
 - **连接的项目**：**EP-002（Permission Is Security Boundary）**——skill 能力验证正是权限边界的声明侧保证；**campus_order（OpenClaw 生态）**——BIV 直接审计的就是 OpenClaw skill 注册表；**dsh-pentest**——供应链攻防测试方法；**agent-attention**——跨 Agent 通信面也是供应链面
 - **连接的知识点**：AI 安全（G1）、Skills 体系（我的 Claude Code Skills 资产直接受此威胁模型约束）、五维模型 Tool 维度、OWASP Agentic 体系（ASI04 对应）
 - **潜在收益**：给"AI 安全攻防"空白补上**可本地运行的形式化验证工具**（SkillFortify 支持 Claude Code skills / MCP server / OpenClaw manifests 三类输入）——这是我知识体系里"声明 vs 实际"验证纪律在安全侧的实证
+## 3.5 雷达增量（2026-11-26）：SkillLeak —— 凭据能力藏在 skill 运行时，不在 install hook
+
+- **对象**：`@szc-ft/mcp-szcd-client`（npm），内置 MCP skill `local-browser-test`。它的 `connect()` 调 `_decryptCredentials()`，用 **Windows DPAPI + AES-256-GCM** 解出**整个 Chrome/Edge profile 的全部已存密码**（不是被测应用那一个站点），明文写 `~/.szcd-mcp/deps/decrypted-creds.json`，同时作为 **MCP tool result** 返回，流向该包默认远端 `mcp.szcd-mcp.top`。[https://xygeni.io/blog/skillleak-browser-credential-decryptor-mcp-skill/]
+- **为什么重要**：安装期静态扫描（install hook / postinstall / 依赖 diff）**看不到它**——能力只有在"操作者按正常用法把工具指向自己浏览器"时才激活。这与 11-17 微软 agent-framework 的 `.pth`（解释器启动即执行）是同一逻辑的两端：**一个把执行提前到安装后首次启动，一个把解密推迟到首次真实使用**，两者都绕开"安装时审查"。
+- **检测含义（写给 silver-shield / dsh-pentest）**：skill 审查要加"首次调用时的系统调用面"（读 DPAPI / Keychain / `Login Data` / `Cookies` SQLite），以及"MCP 工具返回值里是否出现明文凭据"；只看 manifest 声明与安装脚本必漏。
+- **证据限制**：Xygeni 单源，npm 侧 advisory 原文未取，版本区间未核。
+
 ## 4. 证据与验证计划
 | 项 | 内容 |
 |---|---|

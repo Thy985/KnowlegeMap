@@ -207,6 +207,12 @@
 2. **OpenAdapt 的 54/90 → 0/90 → campus_order 的确认点设计**：屏幕断言会静默放过六成注入故障，只有 system-of-record 读路径是 0。这给"支付/提交/删除"类动作定了硬要求：**效果声明 + 外部校验 + 核验失败即拒绝**，而不是"点完看弹窗"。
 3. **EchoPath 的 IBTR 重瞄 → silver-shield 的新检测面**：回放的"目标重解析/repair"是可被诱导的环节——屏幕上放一个更显眼、同名的假控件，重瞄就会把动作改道。与 WebTrap"把攻击目标变成任务前置条件"同机制；检测项应包含"重瞄依据的是哪一帧证据、repair 是否留痕"。
 
+## 2026-11-26 增量：控制面的三个触发者（3 条）
+
+1. **`127.0.0.1` ≠ 安全 → silver-shield 的端口基线要带"触发者"字段**：同机进程、浏览器内网页、公网是三套威胁；只记"是否 loopback"会把 DNS rebinding（chrome-devtools-axi / Playwright MCP）与扩展中继（OpenClaw `/cdp`）都判成安全。检测项应写成「地址 + 是否校验 Host/Origin + 是否有 per-session token + 凭据面级别」四元组。
+2. **P5 扩展权限组合 → TeamMind 的授信单位**：`debugger + cookies + <all_urls>` 三项合起来等价于完整 RAT 能力，但每一项单看都"合理"。多 agent 体系给组件授信时必须按**能力组合**评估，不能按来源（"厂商官方扩展"）或单项权限放行；且授权粒度要能按域名/动作收窄，否则就是整段会话的 open-ended 授权。
+3. **P7 运行时解密 → 审查点前移**：SkillLeak 的能力不在 install hook，而在 `connect()` 首次指向真实浏览器时。skill 审查因此要加"首次调用行为"与"MCP 返回值是否含明文凭据"；同一条也适用于 E2E-CLI 的插件加载链。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

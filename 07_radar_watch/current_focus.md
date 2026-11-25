@@ -5,7 +5,7 @@
 ## 当前领域：Computer Use / Browser（浏览器与桌面操作层 / 真实环境执行）
 
 - **周起始日**：2026-11-23（周一）
-- **状态**：active · **第一周（11-23~11-29）· Day1 基线已建 · Day2 增量已追 · Day3 增量已追**（能力树 `08_agent_centric/domains/agent-computer-use.md`：A~H 八层 44 节点 / 锚点 12 行 / 基准批判 5 条 / 判断 7 条 / 缺口 6 项）——Memory 两周（11-09~11-22）已收束：E 层作用域与 F 层注入路径均完成确定性实测并结案（路径级，非比例级），故换域；Memory 的 H 层原型仍零代码，已转项目施工项，不占雷达周
+- **状态**：active · **第一周（11-23~11-29）· Day1 基线已建 · Day2 增量已追 · Day3 增量已追 · Day4 安全增量已追**（能力树 `08_agent_centric/domains/agent-computer-use.md`：A~H 八层 44 节点 / 锚点 12 行 / 基准批判 5 条 / 判断 7 条 / 缺口 6 项）——Memory 两周（11-09~11-22）已收束：E 层作用域与 F 层注入路径均完成确定性实测并结案（路径级，非比例级），故换域；Memory 的 H 层原型仍零代码，已转项目施工项，不占雷达周
 - **为什么现在做它**：领域顺序 Evaluation→Harness→Runtime→Memory→**Computer Use / Browser**→AI Infra/本地边缘。Memory 两周已产出可交接的三条判据（动作门控位置 > 强度 / 判定依据必须外部 / 回执可核验），正好是真实环境执行的判定框架；且 Tafcm / campus_order / E2E-CLI 都直接依赖浏览器自动化，`[cand]computer-browser-use-2026`、`[cand]browser-harness-2026`、`[cand]webwright-2026` 三张卡已在队；事件侧 Windows-MCP 无认证（CVE-2026-48989）、Mendix MCP 监听 9.2（CVE-2026-112136）已证明"本地控制面裸露"是可远程触发的真实风险，真实环境操作面比记忆面更缺边界。
 
 ## 目标
@@ -27,7 +27,7 @@
 - [x] 周一（11-23）：建 Computer Use / Browser 能力树/基线（`08_agent_centric/domains/agent-computer-use.md`）+ 更新本文件 ✅（八层 44 节点；锚点 12；批判 5；判断 7；缺口 6（S1/A2/B3）；Day1 意外收获＝browser-use 1.0 架构级重写并入 S 卡）——A 环境表示 / B 动作空间与 grounding / C 感知与自验证 / D 会话与状态 / E 隔离与凭据 / F 信任边界 / G 人机交接 / H 可观测与回放；锚点表 3 张既有卡 + 事件侧 2 条；缺口 5-6 项，至少 1 项 S
 - [x] 周二（11-24）：只追增量 ✅——browser-use 1.0.7→**1.0.8（11-22）**（judge `gotchas`/`judge_context`、`sensitive_data` 非沙箱、`Browser('chrome')`/`profile=` 开 127.0.0.1 无认证端口＝判断 7 厂商自述）；Playwright MCP 11-18 把 **WebMCP 页面工具**暴露为 `webmcp_<tool>` + `browser_take_screenshot` 文档放宽（Day1 基线作废）；**新建 A 卡 WebMCP**；Webwright/Browser Harness 复核无新版本（记日志）
 - [x] 周三（11-25）：只追增量 ✅——**agent-desktop（Vercel Labs，npm 1.2.0）** 桌面 a11y 树 + 快照 id ref + `STALE_REF`/`disposition.retry`（新建 A 卡）；**GUI 回放/效果核验品类**（OpenAdapt 54/90→0/90、EchoPath IBTR token −90%、Activity Frames「确定性不回溯像素」、agrepl F=1.0，新建 A 品类卡）；**ComponentBench** 同 harness 换表示：GPT-5 mini AX 83.1→Pixel 48.9、GPT-5.4 排序反转、clutter 下 Pixel −14.3% / AX −0.2%（缺口③ 部分闭环、缺口④ 升 A-）；Gemini macOS CUA 与 n8n Nod 记 B 日志
-- [ ] 周四（11-26）：只追增量（安全：本地监听/通配 CORS/浏览器 profile 串用/凭据泄露/沙箱逃逸）
+- [x] 周四（11-26）：安全增量 ✅——**本地控制面 7 种暴露模式 + 6 问清单**（新 A 卡 `local-control-plane-exposure-2026-11`，缺口① 部分闭环）；Playwright MCP **CVE-2025-9611**（<0.0.40 无 Origin 校验，DNS rebinding 可调全部工具）+ OpenClaw **CVE-2026-28458**（Browser Relay `/cdp` 无 token，网站可窃 cookie）+ chrome-devtools-axi / PraisonAI 两类 bridge 失败 + Chrome 136+/147+ 调试护栏与 browser-harness 绕过 + Manus `debugger+cookies+<all_urls>` 历史锚点 + SkillLeak（DPAPI 解全 profile 密码）；判断 8 新增（按触发者分层）
 - [ ] 周五（11-27）：2-3 个高价值候选实际验证/对比（优先 browser-use 本地实跑、Playwright MCP 源码核对；无 GUI 则降级为"包级 + 源码级"并如实标注）
 - [ ] 周六（11-28）：验证结果回灌 index/connections/能力树/graph
 - [ ] 周日（11-29）：小结 + 换域判断（下一候选 AI Infra / 本地边缘，接 Tafcm）；若验证环未闭合，按"最小驻留"延长
