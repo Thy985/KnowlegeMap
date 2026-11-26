@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-27 Personal Tech Radar 兜底（事件日 27 补记，领域外）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **jupyter-mcp-server CVE-2026-77359**（`<1.0.3`；`/mcp` 有 Host/Origin 校验而 `/api/connect`、`/api/stop` 没有 → DNS rebinding 换掉 `runtime_url` → agent 执行通道指向攻击者 kernel；CWE-350；GHSA 记 9.3、NVD 未评） | 2026-11-27（事发 11-20，漏项补记） | NVD 一手 | AI 安全攻防（G1） | silver-shield / TeamMind / E2E-CLI | 并入事件日 27 | **A** | 是 | 公告级（未复现） |
+> 不写：CVE-2026-114090（trigger.dev `--mcp` 绑 0.0.0.0、`/sse`/`/messages` 无认证，7.6，10-21）＝事件日 22/24 同族第 4 例；CSA《MCP's Transport Trust Gap》（11-09）＝框架性综述，所引 SDK CVE 已在事件日 20~23。
+
 ## 2026-11-27 Personal Tech Radar 深耕（Computer Use Day5 · 周五验证：3 候选源码级核对）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|
