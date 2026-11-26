@@ -11,7 +11,7 @@
 
 同时，「凭据泄露」也不是单一动作：profile 目录可读、cookie store 可枚举、系统密码库可解密、剪贴板/下载目录可捞——每一种的**触发条件与检测点**都不同，混成一句「agent 会偷密码」就无法施工。
 
-## 2. 为什么现在值得关注（7 种失效模式，全部有已发生证据）
+## 2. 为什么现在值得关注（9 种失效模式，全部有已发生或代码级证据）
 
 | # | 失效模式 | 对象与事实 | 谁能触发 | 证据 |
 |---|---|---|---|---|
@@ -22,8 +22,10 @@
 | P5 | **扩展权限组合本身即后门** | Manus Browser Operator（扩展 2025-11-18 发布、11-22 起全量；非本轮新增，补为历史锚点）：`debugger` + `cookies` + `<all_urls>`，持久 WebSocket 连 `wss://api.manus.im`，服务端实时下发导航/点击/输入，跨域枚举 cookie 并经预签名 URL 外传；Chrome 只给「某扩展正在调试此浏览器」的小提示；授权是**整段会话 open-ended**，不能按域名/动作收窄 | 远端厂商后端（经本地扩展代理） | FACT（Mindgard 实测）+ 厂商文档（「clears standard access barriers」） |
 | P6 | **profile 指针与浏览器护栏被拆** | Chrome 136+ 起，默认 user-data-dir 不允许开 `--remote-debugging-port`（防「让 Chrome 以调试模式启动→读全部 cookie」）；Chrome 147+ 品牌版改为**静默阻塞 + 每次重启弹 Allow**，`DevToolsActivePort` 可能不写。而 browser-harness PR #142（2026-04）用 `CHROME_CONFIG_HOME` 指向伪「非默认」路径绕过该检查，让默认 profile 继续可调试 | 本地自动化工具（自拆护栏） | FACT（Chrome 策略，二手转述待核具体版本）+ PR 描述（一手） |
 | P7 | **凭据解密器藏在 skill 运行时** | SkillLeak（2026-09）：`@szc-ft/mcp-szcd-client` 的 `local-browser-test` skill 在 `connect()` 调 `_decryptCredentials()`，用 Windows DPAPI + AES-256-GCM 解出**整个 Chrome/Edge profile 的全部已存密码**，明文写 `~/.szcd-mcp/deps/decrypted-creds.json` 并作为 MCP tool result 返回，流向默认远端 `mcp.szcd-mcp.top` | 装了该包、且按正常用法指向自己浏览器的人 | FACT（Xygeni 分析） |
+| P8 | **「默认校验」在非 loopback 绑定下静默退化为 no-op** | Playwright MCP **0.0.86** 源码（`playwright-core/lib/coreBundle.js`）：`computeAllowedHosts(requested, bound)` 只在 `requested` 与 `bound` **都**是 loopback 时返回 `{localhost,127.0.0.1,[::1]}`；任一非 loopback 且未显式传 `--allowed-hosts` 时返回 **null**，而 `isAllowedHost()` 首行是 `if (!allowedHosts) return true;` → **`--host 0.0.0.0`（容器/远程/局域网常态）时 Host 检查整体关闭**，与 CLI 帮助「Defaults to localhost, loopback IPs and the host passed via --host」字面不符 | 部署者（把服务绑到 0.0.0.0 的人） | FACT（0.0.86 源码，2026-11-27 核） |
+| P9 | **CDP 端口的「应答者身份」不可验证 + 残留文件劫持** | browser-use 1.0.8 `browser/local.py` 的 `require_debug_port()` 自警原文：browser-harness 0.1.13「attached to whatever answered on 127.0.0.1:9222 / 9223, **which any local user or process can open (another user's Chrome, a fake one): the agent then typed your secrets into their browser**」；并实现 `_left_over()`：`DevToolsActivePort` 残留而端口被别的进程占用时**主动抛错**。本机实测：`chrome` 监听 `127.0.0.1:9222`，`GET /json/version`、`/json/list` **无认证**返回 `webSocketDebuggerUrl` 与 tab 列表（只读，未 attach） | 同机任意进程/用户（先占端口或伪造应答） | FACT（源码 + 本机实测 2026-11-27） |
 
-**关键分布**：7 种里 4 种（P2/P4/P5/P7）的触发者是「正常使用就会发生」的角色——浏览一个网页、装一个扩展、跑一次 skill；只有 P1/P3 是「别人要主动来打」。这解释了为什么这类问题在 review 里总被低估：**默认路径即暴露**。
+**关键分布**：9 种里 6 种（P2/P4/P5/P7/P8/P9）的触发者是「正常使用/正常部署就会发生」的角色——浏览一个网页、装一个扩展、跑一次 skill、把服务绑到 `0.0.0.0`、留一个旧 `DevToolsActivePort`。只有 P1/P3 需要「别人主动来打」，P6 是工具自拆护栏。这解释了为什么这类问题在 review 里总被低估：**默认路径即暴露**；更关键的是 **P8 说明「有校验」也可能是 no-op**——审查要问「它在哪种部署形态下退化为不校验」，而不是「有没有这段代码」。
 
 ## 3. 6 问核查清单（每个控制面都要答）
 
@@ -33,6 +35,7 @@
 4. **谁能到达**：同机进程 / 浏览器内网页 / 局域网 / 公网——四者分别做过什么？
 5. **凭据面多大**：profile 目录、cookie store、系统密码库、剪贴板、下载目录、`/proc/*/environ`、`.git-credentials`——哪些是「全 profile」级而不是「单站点」级？
 6. **失败是否 fail-closed**：校验缺失时是拒绝，还是「宽松放行 + 日志」？
+7. **（Day5 追加）默认值在什么形态下退化为 no-op**：换绑定地址（`--host 0.0.0.0`）、进容器、放在反向代理后面时，第 2 问的校验是否仍然生效？——P8 的教训是：**校验函数存在 ≠ 默认参数下被调用**。
 
 ## 4. 与我的连接
 
@@ -50,12 +53,12 @@
 |---|---|
 | 一手来源 | NVD CVE-2026-28458｜OSV GHSA-6fg3-hvw7-2fwq｜GitLab advisory CVE-2025-9611｜PyPA PYSEC-2026-485｜Mindgard（Manus）｜browser-harness PR #142｜Chrome 136+ 策略（二手转述）｜Xygeni（SkillLeak） |
 | 证据等级 | FACT（CVE/advisory/厂商文档）+ DESIGN（6 问清单为本仓归纳） |
-| 验证方式 | 周五：本机 `ss -ltnp` 取监听面基线；`ls -ld` 核 profile 目录权限；对 Playwright MCP 核 `--allowed-hosts` 默认值与 `*` 语义；对 DNS rebinding 做一次最小 PoC 设计（不实跑攻击） |
+| 验证方式 | 周五已完成 **3/4**（2026-11-27）：① 本机 `ss -ltnp` 基线 ✅——chrome 监听 `127.0.0.1:9222`，`/json/version`、`/json/list` 无认证可读（只读，未 attach）；② Playwright MCP `--allowed-hosts` 默认 ✅——0.0.86 源码确认非 loopback 绑定时返回 null 即**关闭校验**（新缺陷 P8）；③ DNS rebinding 最小 PoC 设计 ❌ 未做；④ profile 目录权限核查 ❌ 未做。全部为源码级/只读，**未实跑攻击** |
 | 预期完成时间 | 2026-11-27（周五，与 browser-use / Playwright MCP 验证合并） |
 
 ## 6. 决策
-- [ ] 晋升 validated（≥2 条独立证据）
-- [x] 维持观察（清单本身已可用；待周五本机核查补「我这台机器」的事实）
+- [x] 晋升 validated（≥2 条独立证据）——2026-11-27：P1/P9 有「厂商源码自警 + 本机实测」双证据；P8 有 0.0.86 源码一手；P2/P4/P7 各有官方 advisory。**升 A → validated（源码级 + 本机只读，未实跑攻击）**。
+- [ ] 维持观察
 - [ ] 拒绝（原因）
 
 ## 7. 证据限制

@@ -62,12 +62,25 @@
 > - **profile 三档（E1 光谱）**：`Browser('chromium')` 全新临时 profile、结束后删除；`Browser('chrome', profile='Work')` 在用户 profile 的临时副本上开新 Chrome（关同步、Windows 除外用户 Chrome 可继续开）；`Browser('chrome')` 直接挂用户已开 Chrome（需开 remote debugging）。
 > - **含义**：① browser-use 亲手拆掉了"自托管==可信"的假设，安全边界必须由部署方提供（一次性 profile / 专用系统用户 / 端口绑定 loopback）；② E2E-CLI / Tafcm 若采用，默认应 `Browser('chromium')` 而非 `Browser('chrome')`；③ `judge_context` 是把外部判据接进判定的唯一官方入口，周五应核对它是否写进 trace 可复核。
 
+## 3.9 源码级验证（2026-11-27，周五 Day5｜未实跑）
+
+取包 `browser_use-1.0.8-py3-none-any.whl`（300,909 B / 47 py / 976 KB）。四个验证问题全部有代码答案：
+
+- **无 DOM serializer 是代码事实**：`grep -rln "serialize_dom|DOMSerializer|markdownify|dom_tree|bs4"` 零命中。执行面是 `browser/`（`browser.py` 65 KB + `local.py` 27 KB）+ `ax.py` + `repl/`（`worker.py` 58 KB / `session.py` 28 KB）。**「one persistent Python REPL on raw CDP」成立。**
+- **judge 是模型，不是确定性核验**：`agent/judge.py` 单次 `model_request` + Pydantic `Judgement`。`judge_cached` **把 judge 当作 run 的再一轮**，复用 run 的 messages/instructions/tool definitions 吃 prompt cache → **judge 与 actor 共享上下文，不独立**；`judge_run` 另发新 prompt（全额计费）。trace 预算 `120_000` 字符（超限保头 1/5 + 尾）、单 part `5_000`、截图 `4` 张（Cloud 20）、超时 180s。`judge_context` 拼成 `<judge_context>` 置于 prompt 前部、上限 `20_000` 字符、明写「user's own criteria and comes first」。
+  → 结论：**「判据可注入」≠「判定依据外部」**。它做到了前者，未做到后者。
+- **本地执行必须显式**：`browser/local.py:333` 自建 `--user-data-dir=… --remote-debugging-port=0`（随机端口）；用户自开 Chrome 需 `BU_CDP_URL`；**9222/9223 永不猜测**（原文 `Ports 9222/9223 are never guessed`）。
+- **`max_steps` 两处默认**：`Agent.run(max_steps=100)` 入口默认（最后一步是 delivery-only turn），内部 `Session.max_steps=1000`。此前记录的「100」对入口成立，但**不能推断 100 步必断**——内部上限是 1000。
+
+**安全侧新增（并入 P1 证据链）**：`require_debug_port()` 的 docstring 明写 browser-harness 0.1.13 会 attach 到 `127.0.0.1:9222/9223` 上**任何应答者**（「another user's Chrome, a fake one」），后果是「the agent then typed your secrets into their browser」；并实现 `_left_over()` 在 `DevToolsActivePort` 残留且端口被他人占用时**直接抛错**。→ 厂商是在防**自己的 attach 行为**被劫持，不是防外部攻击。
+
 ## 4. 验证计划
-- [ ] 跑一次 browser-use 最小 demo（任务：抓取并导出结构化数据）
+- [x] **源码级核对 1.0.8（2026-11-27）**：无 DOM serializer / judge 机制 / 本地显式 / max_steps 双默认，四项完成（见 §3.9）
+- [ ] 跑一次 browser-use 最小 demo（本机 9222 上是活动 Chrome，为不打断会话未接管；需独立 profile 后再跑）
 - [ ] 评估给 campus_order/OpenClaw 加 browser-use 的可行性
 - [ ] 与 Claude browser use 对比"托管浏览器 vs 自托管"取舍
 
 ## 5. 决策
-- [ ] 晋升 validated
-- [x] 维持观察
+- [x] 晋升 validated（源码级，2026-11-27；**未实跑**，环境限制已在 §3.9 标注）
+- [ ] 维持观察
 - [ ] 拒绝

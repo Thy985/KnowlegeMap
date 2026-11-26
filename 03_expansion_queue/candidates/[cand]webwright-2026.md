@@ -23,8 +23,13 @@ Microsoft Research 开源的终端原生 Web Agent 框架（`microsoft/Webwright
 | 验证方式 | 读论文/源码（skill_factory）→ 对比 browser-use 路线 → 评估 E2E-CLI 升级可行性 |
 | 预期完成时间 | 观察期（2026-09 内决定是否深入） |
 ## 5. 验证结果
-<!-- 待回填 -->
+
+**包级核对（2026-11-27，周五 Day5｜只读，未跑 CLI）**：PyPI `webwright 0.0.7` 存在并可下载（`webwright-0.0.7-py3-none-any.whl`）。包形态印证「脚本即产物 + diff 迭代」：`webwright/main.py` 入口、`lib/functions/scan_python_code.py`（扫描并生成函数文件）、`lib/functions/scan_html_code.py`、**`lib/functions/apply_code_diff_to_file.py`**（`generate_diff` + 应用 diff）、`lib/omnilog.py`、`lib/function_wrapper.py`、`lib/set_store.py`。
+
+**对照结论（与 browser-use 1.0.8 同为「持久物从会话挪到代码」）**：粒度差一层——Webwright 的持久物是**最终脚本文件（+diff 历史）**，不含执行记录；browser-use 的持久物是 `state/cells/0001.txt…`（**代码 + 输出，跨 run 续编号**，`repl/session.py:340-343`），含执行回执。两者都还没到「外部 system-of-record」。可作为能力树 B2.1 / 判断 10 的对照轴。
+
+**未做**：未安装、未跑 CLI、未验证其"verify"环节是否真做外部校验（只从文件名与函数名判断，二手于代码结构）。
 ## 6. 决策
-- [ ] 晋升 validated
-- [x] 维持观察
+- [ ] 晋升 validated（只做包级，距 validated 还差一次实跑）
+- [x] 维持观察（包级结构已验证，方向判断已入能力树判断 10）
 - [ ] 拒绝

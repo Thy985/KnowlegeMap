@@ -455,6 +455,15 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-27 Personal Tech Radar 深耕（Computer Use Day5 · 周五验证：3 候选源码级核对）
+| 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
+|---|---|---|---|---|---|---|---|---|
+| **browser-use 1.0.8 源码级核对**（无 DOM serializer 是代码事实；judge=单次模型请求，`judge_cached` 复用 run 前缀 → **判定不独立**；`judge_context` 20k 只注入不核验；`run(max_steps=100)` vs `Session 1000` 双默认；`require_debug_port` 防「9222 任何应答者」劫持） | 2026-09-01 | PyPI wheel（300,909 B） | Browser Harness | Tafcm / campus_order / E2E-CLI | **升 validated（源码级，未实跑）** | **S** | 是 | 源码级 |
+| **@playwright/mcp 0.0.86**（实现已并入 `playwright-core/lib/coreBundle.js`，独立 repo 只剩 `createConnection` 壳；WebMCP `_parseInputSchema` 只 `JSON.parse`、参数原样交页面 `executeTool`；ref=`aria-ref` 会话内瞬时无 stale；**新缺陷 P8**：非 loopback 绑定时 `computeAllowedHosts` 返回 null → `isAllowedHost` 直接放行 = Host 检查关闭） | 2026-09（版本疑云 11-27 解） | npm pack + coreBundle 源码 | MCP / 浏览器控制面 | silver-shield / TeamMind | **升 validated（源码级）** | **A** | 是 | 源码级 |
+| **本地控制面清单 P8/P9**（P8 默认校验 no-op；P9 CDP「应答者身份」不可验证 + 本机 9222 `/json/version`、`/json/list` 无认证可读） | 2026-11-26 | 0.0.86 源码 + browser-use 源码 + 本机只读 | 安全（G1） | silver-shield | **7 模式 → 9 模式，升 validated** | **A** | 是 | 源码 + 只读实测 |
+| **webwright 0.0.7 包级核对**（`apply_code_diff_to_file`/`scan_python_code` → 脚本 + diff 即产物，**无执行记录**；与 browser-use 的 cell 落盘构成「持久物等级」对照） | 2026-09-02 | PyPI wheel | Web Agent（S5） | E2E-CLI | 维持观察（等级统一为 **B**） | B | 部分 | 包级 |
+> 不写：Chrome 146 本机 CDP 属环境自带（已并入 P9 证据）；`@playwright/mcp` 的 `--allowed-origins` 语义无变化。
+
 ## 2026-11-26 Personal Tech Radar 兜底（1 项补记，领域外 A 级）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|
