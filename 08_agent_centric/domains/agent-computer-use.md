@@ -86,19 +86,20 @@ Computer Use / Browser
 
 | 对象 | 对应层 | 关键事实 | 证据等级 | 状态 |
 |---|---|---|---|---|
-| **browser-use 1.0.8**（2026-11-22；1.0.6 于 11-16，1.0.0 于 11-10） | A4 / B2 / C2.3 / H2 | **推翻重写**：agent 在**一个持久 Python REPL 里直接写代码、跑在原始 CDP 上**，"no DOM serializer, no action schema"；同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**；默认云浏览器 + 网关 key；默认 `max_steps=100`、`timeout=1700s`；1.0.5（11-14）新增**每次运行由自选 judge 模型判**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；**1.0.8 增 `gotchas` + `judge_context`**（可注入外部判据，判定者仍是同一模型）；官方自述 `Browser('chrome')`/`profile=` 会开 **127.0.0.1 无认证调试端口**，同机用户可接管登录态；`sensitive_data` 明写 **"Not a sandbox: model-written Python can read the value, and screenshots"** | FACT（PyPI + GitHub Release）+ 自报数字 | `[cand]` → 本周五验证（1.0.8） |
-| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required"；**2026-11-18 起把 WebMCP 页面注册工具直接暴露为 `webmcp_<tool>`**（名称/描述/schema/结果均视为不可信，`--no-webmcp` 可关）；**`browser_take_screenshot` 文档已改为不再排除"据截图动作"**（推翻 Day1 基线）；**安全侧：<0.0.40 不校验 Origin → DNS rebinding 可调用全部工具（CVE-2025-9611 / GHSA-6fg3-hvw7-2fwq，2026-01-07，High；0.0.40 修复）**；现行 `--allowed-hosts` 默认只允许 localhost/loopback 与 `--host` 指定值，传 `*` 即关闭检查；`--allowed-origins` 官方明写**「不是安全边界、不影响重定向」** | FACT（playwright.dev/mcp + release notes + OSV） | `[cand]` |
-| **Webwright**（MS Research，`microsoft/Webwright`） | B2.1 / H3 | 终端原生：agent 写 Playwright 脚本、跑 bash、看日志、迭代；**持久产物是脚本**（可复用/可审查/可回放），会话只是进程；Online-Mind2Web **86.7%**、Odysseys **60.1%**（基线 GPT-5.4 33.5%） | FACT（官方仓库/页/论文）+ 自报基准 | `[cand]` |
+| **browser-use 1.0.8**（2026-11-22；1.0.6 于 11-16，1.0.0 于 11-10） | A4 / B2 / C2.3 / H2 | **推翻重写**：agent 在**一个持久 Python REPL 里直接写代码、跑在原始 CDP 上**，"no DOM serializer, no action schema"；同模型对比 0.x 自报 **+33 分 / 便宜 2.7–5.2x / 快 2–3x**；默认云浏览器 + 网关 key；默认 `max_steps=100`、`timeout=1700s`；1.0.5（11-14）新增**每次运行由自选 judge 模型判**（`success` / `failure_reason` / `prompt_injection_detected` / `bot_block_or_captcha_detected`）；**1.0.8 增 `gotchas` + `judge_context`**（可注入外部判据，判定者仍是同一模型）；官方自述 `Browser('chrome')`/`profile=` 会开 **127.0.0.1 无认证调试端口**，同机用户可接管登录态；`sensitive_data` 明写 **"Not a sandbox: model-written Python can read the value, and screenshots"** | FACT（PyPI wheel 一手，源码级核对 11-27） | **validated（源码级）** · 见 `[cand]computer-browser-use-2026` §3.9 |
+| **Playwright MCP**（MS 官方，70+ 工具） | A2 / B1 / D1 / H1 | 默认**无障碍快照**而非像素；每元素给 `ref`（如 `e5`），动作按 ref 而非坐标；跨 Chromium/Firefox/WebKit/Edge；**默认持久会话**（登录态与 cookie 跨会话保留）；官方定位"no vision models required"；**2026-11-18 起把 WebMCP 页面注册工具直接暴露为 `webmcp_<tool>`**（名称/描述/schema/结果均视为不可信，`--no-webmcp` 可关）；**`browser_take_screenshot` 文档已改为不再排除"据截图动作"**（推翻 Day1 基线）；**安全侧：<0.0.40 不校验 Origin → DNS rebinding 可调用全部工具（CVE-2025-9611 / GHSA-6fg3-hvw7-2fwq，2026-01-07，High；0.0.40 修复）**；现行 `--allowed-hosts` 默认只允许 localhost/loopback 与 `--host` 指定值，传 `*` 即关闭检查；`--allowed-origins` 官方明写**「不是安全边界、不影响重定向」** | FACT（npm pack 0.0.86 + `coreBundle` 源码 11-27） | **validated（源码级）** · 实现已并入 `playwright-core`；**P8：非 loopback 绑定时 Host 检查静默关闭** |
+| **Webwright**（MS Research，`microsoft/Webwright`） | B2.1 / H3 | 终端原生：agent 写 Playwright 脚本、跑 bash、看日志、迭代；**持久产物是脚本**（可复用/可审查/可回放），会话只是进程；Online-Mind2Web **86.7%**、Odysseys **60.1%**（基线 GPT-5.4 33.5%） | FACT（PyPI 0.0.7 包级 11-27）+ 论文自报 | **B · 维持观察**（脚本+diff 即产物，无执行记录） |
 | **Browser Harness**（browser-use 团队） | B2 / F1 / EP-002 | 极简自愈 harness：一根 CDP WebSocket 连 Chrome，agent 在 `agent-workspace/` 里边跑边写缺失代码；无框架、无 recipes；15.7k stars、PyPI 0.1.6 | FACT（仓库/包） | `[cand]` |
 | **Claude browser/computer use toolsets**（`browser_toolset_20260801` / `computer_toolset_20260801`，均 GA） | A2/A3 / B1 / G2 | browser 侧读 accessibility tree + 元素引用（非坐标猜测），27 个内置成员工具 + 4 可选；computer 侧整桌面操作；支持单次调用内**连续多动作**；09-12 起 Pro/Max 可直接授权使用电脑 | FACT（官方文档/Release Notes） | 锚点（不建卡） |
 | **OSWorld-Verified**（369→360 任务，执行式评测） | C2.1 / C3 | 人类基线 **72.36%**；2024 年 SOTA 12.24% → 2026 年多模型越过人类线（Claude Fable 5 自报 85.0%、开源 Holo3-35B-A3B 82.6%、Qwen-CUA 论文 86.2）；**verified 与自报差距 6–11pt**（Sonnet 4.6 72.5 vs 78.5、Opus 4.8 72.7 vs 83.4） | 第三方汇总 + 论文 | 评测口径 |
 | **OSWorld 2.0**（arXiv 2606.29537，2026-06-28；v2 07-13） | C3 / C5 / C6 / H4 | **108 个长时任务**，人工中位 1.6 小时，平均 **318 次工具调用**（1.0 约 30 次）；500 步内二值完成率 Claude Opus 4.8 **20.6%** / 部分分 54.8%，GPT-5.5 约 13%；10 月榜 Opus 5 34.72%/70.19%；**失败画像**：丢约束、漏中途到达的信息、**猜而不问**、**跳过验证**、隐藏状态恢复差 | FACT（论文 + 官方站 + 榜） | 关键证据 |
-| **agent-desktop**（Vercel Labs，npm 1.2.0，Apache-2.0） | A2 / A6 / B1 / C2 / D3 / G | 桌面侧无障碍树 + ref：`snapshot --app Finder -i` → `@s8f3k2p9:e8`（ref 携带快照 id，裸 `@e8` 报 `INVALID_ARGS`）；UI 变了动作返回 `STALE_REF` / `AMBIGUOUS_TARGET`；**错误自带 `disposition.retry` 是否安全**；默认 headless（不动真实指针/焦点），`--headed` 才物理输入；60 命令（56 可用，`key-down/up`、`mouse-down/up` 需 daemon 能释放按住键才执行）；1.2.0 起 `agent-desktop mcp` 把每条命令暴露为 `desktop_*` stdio 工具；`--stdin` 让密钥不进 argv；跨 macOS AX / Windows UIA / Linux AT-SPI；官方自警「snapshot/clipboard/截图可能含隐私桌面内容」 | FACT（npm 1.2.0 README）+ 第三方（per-agent cursor） | `[cand]` → 周五/周六包级核对 |
+| **agent-desktop**（Vercel Labs，npm 1.2.0，Apache-2.0） | A2 / A6 / B1 / C2 / D3 / G | 桌面侧无障碍树 + ref：`snapshot --app Finder -i` → `@s8f3k2p9:e8`（ref 携带快照 id，裸 `@e8` 报 `INVALID_ARGS`）；UI 变了动作返回 `STALE_REF` / `AMBIGUOUS_TARGET`；**错误自带 `disposition.retry` 是否安全**；默认 headless（不动真实指针/焦点），`--headed` 才物理输入；60 命令（56 可用，`key-down/up`、`mouse-down/up` 需 daemon 能释放按住键才执行）；1.2.0 起 `agent-desktop mcp` 把每条命令暴露为 `desktop_*` stdio 工具；`--stdin` 让密钥不进 argv；跨 macOS AX / Windows UIA / Linux AT-SPI；官方自警「snapshot/clipboard/截图可能含隐私桌面内容」 | FACT（npm README）+ 第三方 | `[cand]`（A）· **包级核对未做**（周五时间用满三候选，顺延） |
 | **ComponentBench**（arXiv 2608.18307） | A1 / A6 / B1 / C3 | 同任务、同 harness，只换观察/动作空间（AX-tree / Set-of-Marks / Pixel / Browser-Use）：GPT-5 mini **AX 83.1 → Pixel 48.9（−34.2pt）**，GPT-5.4 反而 **Pixel 83.8 > AX 81.5 > SoM 77.0**；clutter 使 Pixel **−14.3%** 而 AX 仅 **−0.2%**，紧凑间距 Pixel −13.6% / AX −4.5%；任务级不对称：**123 个任务 AX 稳过而 Pixel 稳挂，反向仅 52**；Drag/Drop AX **72.1** / Pixel 57.4 / SoM 31.8 / Browser-Use **29.7**（DOM 动作面做不了真空间拖拽）；聚合稳定（跑间 ≤1.4pt）但 GPT-5 mini Pixel 有 **17.3% 任务逐条翻转** | FACT（论文表格） | 关键证据（缺口③ 部分闭环） |
 | **GUI 回放 / 效果核验族**（OpenAdapt / EchoPath / Activity Frames / AgentRR / agrepl） | B2.1 / C2 / H2 / H3 | **OpenAdapt**：一次演示编译为确定性程序，健康路径零模型调用；故障注入 90 例中「只看屏幕」静默接受 **54/90** → 带外效果校验 **9/90** → 完整 system-of-record 读路径 **0/90**（第二域 24/36→3/36）；**EchoPath**（2609.16635）轨迹→参数化可调用记忆 + 图像目标重瞄（IBTR），中位 token **−90%** / 时间 **−60%**；**Activity Frames**（2608.05784）零模型编译、字节可复现，**但确定性只对存储后的 OCR 文本向前成立、不回溯像素**；**agrepl**（2607.16200）传输层 MITM 重放 F=1.0（只重放外部交互） | 论文（OpenAdapt 为 draft 2026-07） | `[cand]` 品类卡 |
 | **OpenClaw CVE-2026-28458**（Browser Relay，2026-03 披露） | E2 / E3 | 扩展中继端点 `ws://127.0.0.1:18792/cdp` **不要求认证 token**，**网站**可经 loopback 连上 → 窃取会话 cookie + 在其他 tab 执行 JS；`2026.1.20 ≤ v < 2026.2.1`，CWE-306；CVSS 4.0 **7.4**（CNA VulnCheck，NVD 未评）；修复 commit `a1e89af` | FACT（NVD） | 复用（silver-shield 检测项） |
 | **本地 MCP bridge 两种失败**：`chrome-devtools-axi`（≤0.1.26→0.1.27）与 **PraisonAI** | E2 / E5 | 前者 `127.0.0.1:9224` 只按 method/path 分发、无 Host/Origin/认证，`POST /call` 直通任意 CDP → 完全接管 Chrome（GHSA-x439-jhfh-v9x2，2026-07-22）；后者 `browser start` 默认绑 **`0.0.0.0`** 且 `/ws` 接受**不带 Origin** 的客户端 → 未认证者伪装 controller 劫持扩展会话（CVE-2026-40289 / PYSEC-2026-485）。**同一层，三种不同校验缺位** | FACT | 复用 |
 | **Manus Browser Operator**（扩展 2025-11-18 发布、11-22 全量；历史锚点，非本轮新增） | E4 / E5 / F1 | 权限组合 `debugger` + `cookies` + `<all_urls>`；持久 WebSocket 连 `wss://api.manus.im` 作为控制面，服务端实时下发导航/点击/输入 → 跨域枚举 cookie 并经预签名 URL 外传；Chrome 仅提示「某扩展正在调试此浏览器」；授权为**整段会话 open-ended**（不能按域名/动作收窄）；厂商文案明说「clears standard access barriers」 | FACT（Mindgard 实测 + 厂商文档） | 风险基线 |
+| **jupyter-mcp-server CVE-2026-77359**（2026-11-20；`< 1.0.3` → 1.0.3） | E2 / E4 / F1 | standalone `streamable-http` 下 **`/mcp` 有 Host/Origin 校验，会改状态的 `/api/connect` / `/api/stop` 没有** → DNS rebinding 打进来后**替换 `runtime_url` / `document_url`**，服务器对攻击者主机建 kernel client，此后 Jupyter API 与 WebSocket 流量全流向对方（或掐掉当前 kernel）；CWE-350；NVD 未评 CVSS，GHSA 侧记 4.0 **9.3**（第三方待核）；CNA 原话「the vulnerability is the missing management-route origin boundary, not a lack of Host validation on /mcp」；stdio 启动不走此路径 | FACT（NVD 一手） | 复用（silver-shield 检测项；判断 9 第三例） |
 | **Chrome 远程调试护栏**（136+ / 147+） | E2 / D3 | Chrome 136+ 起默认 user-data-dir **不允许**开 `--remote-debugging-port`（防「让 Chrome 调试启动→读全部 cookie」）；147+ 品牌版改为**静默阻塞 + 每次重启 Allow**，`DevToolsActivePort` 可能不写；browser-harness PR #142 用 `CHROME_CONFIG_HOME` 指向伪「非默认」路径绕过 → **自动化工具主动拆除浏览器护栏** | FACT（策略二手转述待核 + PR 一手） | 待核 + 风险基线 |
 | **SkillLeak**（2026-09） | E5 / F6 | `@szc-ft/mcp-szcd-client` 的 `local-browser-test` skill 在 `connect()` 调 `_decryptCredentials()`：Windows DPAPI + AES-256-GCM 解**整个 profile 已存密码**，明文写 `~/.szcd-mcp/deps/decrypted-creds.json` 并作为 MCP tool result 流向默认远端；**能力不在 install hook 里**——只扫安装期行为的审查会漏 | FACT（Xygeni 单源） | 并入 skill-supply-chain 卡 |
 | **Manus 生态对照**（AIPex 等） | — | 开源替代宣称「数据不出本机 / MIT」——与 P5 形成「厂商后端代理 vs 本地执行」的信任对照，暂不立项 | 二手（GitHub 描述） | 记日志 |
@@ -135,10 +136,10 @@ Computer Use / Browser
 
 | # | 缺口 | 层级 | 等级 | 计划 |
 |---|---|---|---|---|
-| ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | **部分闭环（11-26）**：产出 **7 种失效模式 + 6 问清单**（新卡 `[cand]local-control-plane-exposure-2026-11.md`）；剩余：周五本机 `ss -ltnp` / profile 权限结构核查（无 GUI，包级+源码级） |
-| ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.8 的 judgement 仍是模型自评（新增 `judge_context` 可注入外部判据，但判定主体未变） | C2 / H2 | **A** | 周五读 browser-use 1.0.8 源码，确认 judgement 字段来源、`judge_context` 是否入 trace、是否有状态断言 |
+| ① | **本地控制面裸露清单**：CDP/调试端口、MCP server 绑定地址、CORS、profile 目录权限、剪贴板/下载目录 | E2/E5 | **S** | **闭环至端口级（11-27）**：**7 种 → 9 种**（+P8 默认校验 no-op、+P9 CDP 应答者不可验证/`DevToolsActivePort` 残留），清单卡升 validated；本机 `ss -ltnp` + 9222 `/json/version` `/json/list` **无认证可读已实测**（只读，未 attach）；**剩 profile 目录权限未核**（转周日挂账） |
+| ② | **动作回执的可核验性**：现框架几乎都只有 `success=True`；browser-use 1.0.8 的 judgement 仍是模型自评 | C2 / H2 | **A** | **已定性（11-27）**：judge = 单次 `model_request`（`Judgement` 六字段），`judge_cached` 复用 run 的 messages/tools 吃前缀缓存 → **判定与 actor 不独立**；judge 输入不进 `result`（只进 `usage`）；REPL 落盘 `state/cells/NNNN.txt` 构成第二级证据（代码+输出、跨 run 续编号）。**未达五字段回执** → 转 E2E-CLI 施工项（自建外部断言 runner） |
 | ③ | **表示覆盖率**：a11y 树对 canvas/自绘/无 label 控件的漏检率无公开数据 | A6 | A | **部分闭环（11-25）**：ComponentBench 给出受控对照（Drag/Drop、Advanced Editors 上 a11y 与 Pixel 排序相反；clutter 下 Pixel 掉 14pt 而 AX 只掉 0.2pt）；剩余：自建任务集上的漏检率 |
-| ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | **升级为 A-（11-25）**：已有 5 个对象可对照（传输 / 编译 / 执行三层确定性），周五做降级验证（SoR 断言两臂） |
+| ④ | **回放确定性**：脚本化（Webwright）vs 会话录制在登录态/时间/网络下的可重放度无实测 | B6 / H3 | B | **A-**：5 对象可对照；**11-27 只得到「持久物等级」结论（判断 10），重放度本身仍未实跑**（Webwright CLI 未跑、SoR 断言两臂未做）→ 顺延 |
 | ⑤ | **确认疲劳的量化**：Invisible Ink 只有定性结论，无 field 数据；确认点阈值缺经验值 | F7 / G2 | B | 观察，不投入 |
 | ⑥ | **本地/边缘协同**：浏览器 agent 与本地模型（Tafcm）的延迟与上下文预算 | H5 / 边缘 | B | 转 AI Infra 周 |
 
@@ -158,6 +159,9 @@ Computer Use / Browser
 6. **基准只测 happy path，能力数字与安全数字必须分开报**：82% 的 OSWorld 与 86% 的弹窗 ASR 可以同时成立，因为测的不是同一件事。任何"agent 可无人值守"的结论都必须同时给出完成率、合规率（ST-WebAgentBench 式 CuP）与静默失败率。
 7. **隔离的最小单位是 profile 而非进程（待验证）**：CDP 端口 + 持久 profile = 同机任意进程可取用登录态；"一任务一 profile + 一次性凭据"比"套一层容器"更贴近实际威胁面。这条要在周五用本机端口/目录核查证实或推翻。
 8. **控制面按「谁能触发」分层，而不是按「是否本地」**（Day4 新增）：同机进程（无认证 CDP）、浏览器内任意网页（DNS rebinding / 通配 Origin / 扩展中继）、局域网-公网（默认绑 `0.0.0.0`）是三套威胁，需要三套校验；`127.0.0.1` 只挡第三类。7 种已发生形态里 4 种由「正常使用」触发（打开网页 / 装扩展 / 跑 skill），因此默认路径即暴露面。
+   - **11-27 三例同构（判断 9 强化）**：P8＝校验只对 loopback 绑定生效；jupyter CVE-2026-77359＝校验只对 `/mcp` 路由生效；CSA 11-09 综述里的 SDK＝本地 HTTP 默认不开 rebinding 防护。三次都不是「没有校验」，而是**校验的覆盖范围小于攻击可达范围**。审查问题应改成**按「入口 × 绑定/传输形态」逐格清点**：这条校验覆盖哪些路由、在哪些 bind 下生效、未覆盖时返回什么、谁能触发未覆盖的那个入口。
+
+11. **证据深度是结论的限定语，不是脚注（Day6 新增）**：包级（读到版本与文件清单）< 源码级（读到机制与默认值）< 实跑（在本机观察行为）。本周三候选全部停在源码级——源码级足以判定「机制是什么、默认值在哪退化为 no-op」，但不足以判定「在本机是否真的成立」。**「validated」必须带深度标签**，否则等同于「读过文档」；跨周比较时，源码级的 validated 与实跑级的 validated 不可混排。这条不是对本周的自我否定：在没有可用 GUI、且 9222 上跑着他人的活动会话时，实跑本身就是错误动作（见判断 7 与 P9）。
 
 ## 五、项目映射
 
@@ -248,3 +252,44 @@ Computer Use / Browser
 - **判断 3 补一条限定**：browser-use 的「成功」由 judge 模型给，`judge_cached` 下 judge 与 actor 共享上下文 → **不是独立判定**；`judge_context` 只让用户把判据喂进去，不能让判据被机器核验。故它属于「判定依据可注入」，不属于「判定依据外部」。
 - **缺口更新**：① 本地控制面——**本机端口核查已做**（9222 无认证可读），剩 profile 权限核查；② 动作回执可核验性——**已部分闭环**（judge 机制 + cell 落盘两级证据），剩「trace 是否含 judge 输入」未核（judge 的 prompt 不进 `result`，只进 `usage`）；④ 回放确定性——仍未实跑。
 - **未做（如实挂账）**：三项均**未实跑**（不接管 9222 上的活动 Chrome）；DNS rebinding 未构造；Webwright 未跑通其 CLI；`@playwright/mcp` 未启动 server 做端到端 call。
+
+## 十一、Day6 回灌记录（2026-11-28，周六）
+
+> 分工：周六只做**验证结果回灌**，不新扫描。Day5 的结论按「对象 → 层 → 可执行约束」三列落到锚点表、缺口表、判断、connections、graph。
+
+### 11.1 锚点状态变更（4 行）
+
+| 对象 | 变更前 | 变更后 | 回灌要点 |
+|---|---|---|---|
+| browser-use 1.0.8 | `[cand]` → 本周五验证 | **validated（源码级）** | 无 DOM serializer 是代码事实；judge 与 actor 共享前缀 → 判定不独立；产物停在「代码 + 输出」级（`state/cells/0001.txt…`） |
+| Playwright MCP 0.0.86 | `[cand]` | **validated（源码级）** | 实现已并入 `playwright-core/lib/coreBundle`，独立包只剩 `createConnection` 壳；ref 无代数、无 stale 语义；**P8＝非 loopback 绑定时 Host 检查整体关闭** |
+| Webwright 0.0.7 | `[cand]`（A/B 不一致） | **B · 维持观察** | 等级统一为 B；`apply_code_diff_to_file` → 脚本 + diff 即产物，**无执行记录**，与 browser-use 的 cell 落盘构成两级对照 |
+| 本地控制面清单 | 7 模式 `[cand]` | **9 模式 validated** | +P8（默认值 no-op）+P9（CDP 应答者不可验证 / `DevToolsActivePort` 残留）；**6/9 由正常使用触发** |
+
+新增锚点 1 行：**jupyter-mcp-server CVE-2026-77359**（E2/E4/F1，`/mcp` 有校验而 `/api/connect`、`/api/stop` 无 → 换掉执行后端）。它不是「Computer Use 对象」，是**判断 9 的第三例证据**——校验范围小于攻击可达范围。
+
+### 11.2 缺口回填（3 行）
+
+| # | 变更 |
+|---|---|
+| ① 本地控制面 | **闭环至端口级**：9 模式 + 本机 `ss -ltnp` + 9222 `/json/version`、`/json/list` 无认证可读（只读未 attach）；**剩 profile 目录权限**未核 → 挂账 |
+| ② 动作回执可核验 | **已定性**：judge 单请求、`judge_cached` 共享前缀（判定不独立）、judge 输入不入 `result`、cell 落盘为第二级证据；**未达五字段回执** → 转 E2E-CLI 施工项 |
+| ④ 回放确定性 | 只得到「持久物等级」结论（判断 10）；**重放度本身仍未实跑**（Webwright CLI / SoR 断言两臂未做）→ 顺延 |
+
+③ 不变（ComponentBench 已是部分闭环，剩自建任务集漏检率）；⑤⑥ 不变（观察 / 转 AI Infra 周）。
+
+### 11.3 判断增补
+
+- **判断 9 强化**：三例同构 → 审查问题改为「入口 × 绑定/传输形态逐格清点」，含四个子问（覆盖哪些路由 / 哪些 bind 生效 / 未覆盖时返回什么 / 谁能触发未覆盖入口）。
+- **判断 11 新增**：**证据深度是结论的限定语**（包级 < 源码级 < 实跑）；「validated」必须带深度标签，跨周比较时不同深度不可混排。
+
+### 11.4 落到别处
+
+- `04_connections/README.md`：新增「2026-11-28 回灌」4 条（校验二维清点 → silver-shield；判定独立性 → E2E-CLI/Tafcm；持久等级 → E2E-CLI；部署形态 → Tafcm/campus_order）。
+- `08_agent_centric/capabilities/graph.md`：新增 4 边（guard-coverage-scope / judge-independence / artifact-persistence-tier / deployment-shape-validity）。
+- `06_expansion_index/README.md`：置顶 11-28 回灌段（状态变更，不新增对象）。
+
+### 11.5 未做（如实挂账，交周日）
+
+- profile 目录权限核查；browser-use 最小 demo（需独立 profile）；`@playwright/mcp` 端到端 call；Webwright CLI 实跑；DNS rebinding PoC；P8 用真实 `--host 0.0.0.0` 启动验证。
+- agent-desktop 包级核对（周五时间用满三候选，顺延）。

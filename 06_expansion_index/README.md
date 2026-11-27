@@ -455,6 +455,14 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-28 Personal Tech Radar 回灌（Computer Use Day6 · 状态变更，无新增对象）
+- **browser-use 1.0.8**：`[cand]` → **validated（源码级）**（无 DOM serializer / judge 与 actor 共享前缀 / `state/cells` 二级证据）。
+- **@playwright/mcp 0.0.86**：`[cand]` → **validated（源码级）**（并入 `playwright-core/lib/coreBundle`；ref 无 stale 语义；P8 非 loopback 时 Host 检查关闭）。
+- **本地控制面清单**：7 模式 → **9 模式 validated**（+P8 / +P9；6/9 由正常使用触发）；缺口① 闭环至端口级（剩 profile 权限）。
+- **Webwright 0.0.7**：等级统一 **B**（脚本 + diff 即产物，无执行记录），维持观察。
+- **jupyter CVE-2026-77359**（11-27 兜底捕获）：作为**判断 9 第三例**并入能力树锚点，不新建卡。
+- 回灌落点：能力树 §十一 + 判断 9 强化 + 判断 11（证据深度分级）+ 缺口 3 行；connections 4 条；graph 4 边。
+
 ## 2026-11-27 Personal Tech Radar 兜底（事件日 27 补记，领域外）
 | 对象 | 首次发现 | 来源 | 分类 | 项目关系 | 状态 | 优先级 | 已深入 | 已验证 |
 |---|---|---|---|---|---|---|---|---|

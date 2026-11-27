@@ -89,3 +89,11 @@
 
 - **representation-determines-failure** → agent-computer-use（A 层：a11y=看不见、像素=点偏，无通用最优），agent-evaluation（失败分类应区分表示错与判据错，否则成功率无意义），silver-shield（表示选择即攻击面选择：canvas/无 label 处既是漏检也是隐藏通道）
 - **code-as-action-artifact** → agent-computer-use（B2.1：browser-use 1.0 与 Webwright 独立收敛到脚本为产物），agent-harness-governance（产物可审查性 > 会话可回放性），e2e-cli（E2E 资产改为脚本 + 外部断言；回放只作调试）
+
+## 2026-11-28 回灌：Computer Use 周验证回灌（4 条边）
+> 来源：Day5 三候选源码级核对 + 本机只读实测。这组边不是新对象，是**把「怎么问」固化成可复用的检查维度**。
+
+- **guard-coverage-scope** → agent-computer-use（E2：入口 × 绑定/传输二维；P8 绑定退化 + jupyter 路由缺省 + SDK 默认无防护，三例同构），web-security（CWE-350 类「判定依赖可控来源」；missing route boundary 与 missing validation 是两种缺陷），governance（公告措辞本身是证据：CNA 特意区分「缺校验」与「校验不全」），silver-shield（检测项从布尔改为四元组表格）
+- **judge-independence** → agent-computer-use（C2.3：judge 与 actor 共享 messages/tools 前缀 → 自评），agent-evaluation（D1/D3：判分器与被测共享上下文时，校准与一致性数字失效），e2e-testing（断言须由独立 runner 执行，不复用被测会话）
+- **artifact-persistence-tier** → agent-computer-use（H2/H3：会话 < 脚本 < 代码+执行记录 < SoR），agent-harness-governance（产物可审查性分级决定可审计性），e2e-cli（资产归档门槛：低于第三级不进 CI 证据链），observability（回执载体等级 = 可核验上限）
+- **deployment-shape-validity** → agent-computer-use（E2/E5：stdio 与 streamable-http、loopback 与 0.0.0.0 是不同信任模型），agent-runtime（零信任默认 vs 绑定形态；与 Substrate 短时凭据 + egress PEP 同一提问方式），governance（部署清单必须显式写传输模式与生效校验）

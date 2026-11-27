@@ -213,6 +213,13 @@
 2. **P5 扩展权限组合 → TeamMind 的授信单位**：`debugger + cookies + <all_urls>` 三项合起来等价于完整 RAT 能力，但每一项单看都"合理"。多 agent 体系给组件授信时必须按**能力组合**评估，不能按来源（"厂商官方扩展"）或单项权限放行；且授权粒度要能按域名/动作收窄，否则就是整段会话的 open-ended 授权。
 3. **P7 运行时解密 → 审查点前移**：SkillLeak 的能力不在 install hook，而在 `connect()` 首次指向真实浏览器时。skill 审查因此要加"首次调用行为"与"MCP 返回值是否含明文凭据"；同一条也适用于 E2E-CLI 的插件加载链。
 
+## 2026-11-28 回灌：Computer Use 周验证结论（4 条）
+
+1. **校验要按「入口 × 部署形态」二维清点 → silver-shield 检测项模板**：三例同构——P8（Playwright MCP 的 Host 检查只对 loopback 绑定生效）、jupyter CVE-2026-77359（`/mcp` 有 Host/Origin 校验而 `/api/connect`、`/api/stop` 没有）、CSA 11-09 综述里的 SDK（本地 HTTP 默认不开 rebinding 防护）。三条都不是「没有校验」，而是「校验覆盖范围 < 攻击可达范围」。检测项因此不能写「是否校验 Host/Origin」，要写成四元组表格：**覆盖哪些路由 / 在哪些 bind 与传输模式下生效 / 未覆盖时返回什么（放行还是报错）/ 谁能触发未覆盖的那个入口**。✅ 依据 `[cand]local-control-plane-exposure-2026-11`（9 模式）+ CVE-2026-77359。
+2. **判分的独立性取决于上下文是否共享 → E2E-CLI / Tafcm**：browser-use 的 `judge_cached` 把 judge 当作 run 的再一轮（复用 run 的 messages/instructions/tool definitions 吃 prompt cache）→ judge 与 actor 同前缀，等于自己给自己判卷。`judge_context` 让用户把判据喂进去，但判据仍由同一模型解释。E2E 的成功判定必须由**不共享上下文**的进程执行（独立 runner + 外部 SoR），否则「判据可注入」会被误当成「判定依据外部」。✅
+3. **产物持久等级就是证据上限 → E2E-CLI / Tafcm**：会话 < 脚本 < 代码+执行记录 < 外部 system-of-record。browser-use 第三级（`state/cells/NNNN.txt` 代码+输出、跨 run 续编号）、Webwright 第二级（脚本+diff）、Playwright MCP 的 ref 不构成持久物。E2E 资产归档必须标等级，**低于第三级不进 CI 证据链**；判据「回执可核验」先问载体在哪一级。✅
+4. **「部署形态」是必须显式登记的配置项 → Tafcm 本地部署 / campus_order**：同一个 MCP server，stdio 与 `streamable-http` 是两套信任模型（jupyter 的漏洞只落在后者）；`--host 0.0.0.0` 与默认 loopback 是两套校验（P8）。部署清单要写死三件事：**绑定地址 + 传输模式 + 该模式下哪几条校验实际生效**，并逐条在目标形态下复验——「默认安全」只在默认形态成立。✅
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。
