@@ -293,3 +293,32 @@ Computer Use / Browser
 
 - profile 目录权限核查；browser-use 最小 demo（需独立 profile）；`@playwright/mcp` 端到端 call；Webwright CLI 实跑；DNS rebinding PoC；P8 用真实 `--host 0.0.0.0` 启动验证。
 - agent-desktop 包级核对（周五时间用满三候选，顺延）。
+
+## 十二、第一周小结与结案口径（2026-11-29，周日）
+
+### 12.1 三环审计
+
+| 环 | 状态 | 证据 |
+|---|---|---|
+| 候选 | ✅ 完整 | A~H 八层 44 节点；锚点 21 行；判断 11 条；缺口 6 项。新增卡 3 张（agent-desktop A / GUI 回放与效果核验品类 A / 本地控制面暴露 A），WebMCP A 入 Day2；既有 S/A 卡补 §3.9 |
+| 验证 | ✅ **源码级** | browser-use 1.0.8（无 DOM serializer / judge 不独立 / `state/cells` 二级证据）、@playwright/mcp 0.0.86（并入 coreBundle / ref 无 stale 语义 / P8）、本地控制面 9 模式（含本机 9222 `/json/version`、`/json/list` 只读实测）。**无一项实跑** |
+| 回灌 | ✅ 完整 | §十一 四段（锚点 4 行 / 缺口 3 行 / 判断增补 / 挂账）；connections 4 条；graph 4 边；index 置顶段；`_INDEX` 行；日志 11-28 |
+
+### 12.2 结案口径与不宣称的部分
+
+**结案口径＝源码级**：本周判定的都是「机制是什么、默认值在哪退化为 no-op」，没有一项是「在本机真的成立」。按判断 11，源码级 validated 与实跑级 validated 不可混排——因此本周的结论在跨周引用时必须带「源码级」限定语。
+
+**不宣称闭环完整**：7 项执行级验证未做，全部依赖真实 GUI 或独立 profile：① profile 目录权限核查；② browser-use 最小 demo（需独立 profile，不能复用 9222 上的活动会话）；③ `@playwright/mcp` 端到端 call；④ Webwright CLI 实跑；⑤ DNS rebinding PoC；⑥ P8 用真实 `--host 0.0.0.0` 启动验证；⑦ agent-desktop 包级核对（1.2.0 发布时间 / Linux Wayland）。①②③ 转 silver-shield / E2E-CLI / Tafcm 施工项，④⑤⑥⑦ 留在本域挂账，不随周携带。
+
+### 12.3 可复用的四条结论（交给下一域）
+
+1. **判断 9**：校验要按「入口 × 绑定/传输形态」逐格清点，四个子问（覆盖哪些路由 / 哪些 bind 生效 / 未覆盖时返回什么 / 谁能触发未覆盖入口）。→ 直接适用于本地推理服务的 bind 与认证。
+2. **判断 10**：产物持久等级决定可核验上限（会话 < 脚本 < 代码+执行记录 < SoR）。→ 适用于 bench 结果与压测记录：没有可复现命令与原始输出的数字不进证据链。
+3. **判断 11**：证据深度是结论的限定语（包级 < 源码级 < 实跑）。→ 适用于厂商 bench 与量化收益宣称，默认按包级看待。
+4. **判断 8**：按「谁能触发」给暴露面分层，而不是按「哪个组件有洞」——9 模式里 6 种由正常使用触发。
+
+### 12.4 未解决的理论问题（留在域内，不带走）
+
+- 表示与动作空间的交叉项仍未闭合：ComponentBench 已证明同 harness 换表示会反转排序（GPT-5 mini AX 83.1 → Pixel 48.9；GPT-5.4 Pixel 83.8 > AX 81.5），但缺「什么任务形态该用哪种表示」的判别规则，只有相关性没有选择函数。
+- 回放确定性只有品类级证据（OpenAdapt 屏幕断言 54/90 → 9/90 → 0/90），重放度本身未实测。
+

@@ -455,6 +455,12 @@
 > **判定：延长第二周（不换 Computer Use / Browser）**。依据三条：① F 层注入/污染防御（S）是本周唯一完全未触碰的 S 缺口，且最危险的判断正落在此处；② E 层作用域（A）承接 Runtime 缺口④，连续两周挂账，不允许第三次；③ 第二周可用确定性命中检查产出可复现证据（非继续采集）。
 > **第二周头号任务**：11-20 三项实测——注入复现（污染写入→检索命中→输出改变）/ `delete()` 回执一致性（写→删→查残留）/ 作用域串读（同库不同 `user_id`/`agent_id` 交叉检索）。达标后 11-22 换 Computer Use / Browser。
 
+## 2026-11-29 Personal Tech Radar 周小结（Computer Use 收束 → 换域 AI Infra / 本地边缘，无新增对象）
+- **Computer Use / Browser 第一周三环闭合（源码级）**：候选 ✅（能力树 A~H 44 节点 / 锚点 21 / 判断 11 / 缺口 6；新卡 3 张）、验证 ✅（browser-use 1.0.8 / @playwright/mcp 0.0.86 / 本地控制面 9 模式，均 validated·源码级）、回灌 ✅（§十一 + §十二 + connections 4 + graph 4）。
+- **不宣称实跑闭环**：7 项执行级验证（profile 权限 / 最小 demo / 端到端 call / Webwright CLI / DNS rebinding PoC / P8 真实 0.0.0.0 / agent-desktop 包级）转项目施工项与域内挂账。
+- **换域 → AI Infra / 本地边缘（11-30 起，第一周）**：起点锚点 SGLang v1.0 + Intel first-class（11-27）、vLLM 0.34.0（11-16）、ggml v1.0.0、Edge0-145B、Inkling 2 Mini、`[cand]local-edge-llm-2026`、G3 空白。
+- **携带判据**：判断 9（入口 × 部署形态）、判断 11（证据深度分级）——在本域分别落到「本地服务 bind/认证」与「厂商 bench」。
+
 ## 2026-11-28 Personal Tech Radar 回灌（Computer Use Day6 · 状态变更，无新增对象）
 - **browser-use 1.0.8**：`[cand]` → **validated（源码级）**（无 DOM serializer / judge 与 actor 共享前缀 / `state/cells` 二级证据）。
 - **@playwright/mcp 0.0.86**：`[cand]` → **validated（源码级）**（并入 `playwright-core/lib/coreBundle`；ref 无 stale 语义；P8 非 loopback 时 Host 检查关闭）。

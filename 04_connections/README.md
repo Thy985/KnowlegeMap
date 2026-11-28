@@ -220,6 +220,12 @@
 3. **产物持久等级就是证据上限 → E2E-CLI / Tafcm**：会话 < 脚本 < 代码+执行记录 < 外部 system-of-record。browser-use 第三级（`state/cells/NNNN.txt` 代码+输出、跨 run 续编号）、Webwright 第二级（脚本+diff）、Playwright MCP 的 ref 不构成持久物。E2E 资产归档必须标等级，**低于第三级不进 CI 证据链**；判据「回执可核验」先问载体在哪一级。✅
 4. **「部署形态」是必须显式登记的配置项 → Tafcm 本地部署 / campus_order**：同一个 MCP server，stdio 与 `streamable-http` 是两套信任模型（jupyter 的漏洞只落在后者）；`--host 0.0.0.0` 与默认 loopback 是两套校验（P8）。部署清单要写死三件事：**绑定地址 + 传输模式 + 该模式下哪几条校验实际生效**，并逐条在目标形态下复验——「默认安全」只在默认形态成立。✅
 
+## 2026-11-29 周小结：Computer Use → AI Infra 的三条交接（3 条）
+
+1. **「入口 × 部署形态」清点法直接迁移到本地推理服务 → Tafcm 本地部署**：判断 9 在 Computer Use 周由三例同构逼出来（P8 只对 loopback 生效 / jupyter 只对 `/mcp` 生效 / SDK 本地 HTTP 默认无防护）。本地推理同一问题：`--host 0.0.0.0`、OpenAI 兼容端点、无 API key、`/metrics` 裸奔。验收提问不变：覆盖哪些路由 / 哪种 bind 生效 / 未覆盖时返回什么 / 谁能触发。✅ 依据 `agent-computer-use.md` 判断 9。
+2. **bench 数字默认按「包级」看待 → Tafcm / E2E-CLI**：判断 11 的证据深度分级（包级 < 源码级 < 实跑）落到性能域就是：厂商宣称的 tokens/s、量化收益、显存占用，在没有本机可复现命令 + 原始输出前一律算包级。E2E-CLI 的回归基线同理——「比上版快 20%」若无同机同参数记录，不进结论。✅
+3. **量化与 offload 的「默认值即结论」→ Tafcm 6GB 显存约束**：vLLM 0.34.0 把 `gpu_memory_utilization` 默认拉到 1.0、`block-size` 默认 16→64，这类默认值在 6GB 卡上直接决定 OOM 与否；与判断 9 同构——**默认值只在默认硬件成立**。验收提问：这条默认值在什么显存/后端/精度下退化为错误配置。✅ 依据 `[cand]local-edge-llm-2026` + vLLM 0.34.0 release。
+
 ## 规则
 
 - 只有进入 `03_expansion_queue/validated` 的对象才能把状态改为 ✅（绿）。

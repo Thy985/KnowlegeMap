@@ -97,3 +97,7 @@
 - **judge-independence** → agent-computer-use（C2.3：judge 与 actor 共享 messages/tools 前缀 → 自评），agent-evaluation（D1/D3：判分器与被测共享上下文时，校准与一致性数字失效），e2e-testing（断言须由独立 runner 执行，不复用被测会话）
 - **artifact-persistence-tier** → agent-computer-use（H2/H3：会话 < 脚本 < 代码+执行记录 < SoR），agent-harness-governance（产物可审查性分级决定可审计性），e2e-cli（资产归档门槛：低于第三级不进 CI 证据链），observability（回执载体等级 = 可核验上限）
 - **deployment-shape-validity** → agent-computer-use（E2/E5：stdio 与 streamable-http、loopback 与 0.0.0.0 是不同信任模型），agent-runtime（零信任默认 vs 绑定形态；与 Substrate 短时凭据 + egress PEP 同一提问方式），governance（部署清单必须显式写传输模式与生效校验）
+## 2026-11-29 周小结：Computer Use → AI Infra 交接（3 条边）
+- **guard-coverage-scope** → ai-infra（F 层：本地推理服务的 bind × 认证 × 端点覆盖面，与 P8/jupyter 同构），tafcm-local（`--host 0.0.0.0` + 无 key 的 OpenAI 兼容端点）
+- **noise-vs-signal-bench** → ai-infra（E 层：厂商 tokens/s、量化收益、显存占用默认按包级；与「评测隔离」同一问题——谁出题、谁执行、谁判分），e2e-testing（回归基线须同机同参数）
+- **local-edge-viability** → ai-infra（B 层：量化 + KV cache + offload 在 6GB 显存下的可行边界），tafcm-local（GTX 1660S / 64GB），tafcm-ux（首 token 延迟直接决定交互手感）
